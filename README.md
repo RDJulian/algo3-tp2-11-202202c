@@ -4,6 +4,8 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
+[Enlace al .pdf](https://campus.fi.uba.ar/pluginfile.php/239595/mod_assign/intro/%5BTP2%5D%20%5B2022%202C%5D%20-%20v1.pdf)
+
 ## Grupo 13
 
 * **Integrante 1** - [Julian Ruiz Diaz](https://github.com/RDJulian)

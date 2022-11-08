@@ -21,8 +21,7 @@ public class Criadero extends Estructura{
     public Zangano engendrarZangano() {
         this.estado.efectuarEstado();
         this.cantidadLarvas -= 1;
-        //Hay que ponerse de acuerdo con la relacion entre las Razas y lo demas
-        return new Zangano(new ReservaGas()); //TODO: Cambiar esto asap.
+        return new Zangano();
     }
 
     public void pasarTurnoOperativo() {

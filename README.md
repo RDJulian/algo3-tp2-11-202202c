@@ -11,7 +11,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - [Julian Ruiz Diaz](https://github.com/RDJulian)
 * **Integrante 2** - [Matías Cáceres](https://github.com/MatiasAgustinCaceres)
 * **Integrante 3** - [Andrés Jonathan Claros](https://github.com/andyclaros)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 4** - [Joel Fernandez Fox](https://github.com/Blisstar)
 
 Corrector: **Diego Sanchez**
 

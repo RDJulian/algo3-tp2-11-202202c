@@ -43,7 +43,7 @@ public class CasoDeUso2Test {
         assertEquals(criadero.getLarvas(), 2);
     }
 */
-    //COMPLETAR CON TODOS LOS EDIFICIOS
+    //TODO: COMPLETAR CON TODOS LOS EDIFICIOS
     public void pasarKTurnos(Estructura estructura, Integer k) {
         for (int i = 0; i < k; i++) {
             estructura.pasarTurno();

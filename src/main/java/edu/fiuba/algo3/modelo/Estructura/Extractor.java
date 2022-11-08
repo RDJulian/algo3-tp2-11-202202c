@@ -4,6 +4,10 @@ import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 
 public class Extractor extends Estructura{
 
+    public Extractor(){
+        this.tiempoConstruccionRestante = 6;
+    }
+
     @Override
     public void pasarTurnoOperativo() {
     }

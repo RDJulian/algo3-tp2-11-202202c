@@ -16,10 +16,11 @@ public class CasoDeUso4Test {
     public void test01UnExtractorNoGeneraGasSinZanganos(){
         GasVespeno gasVespeno = new GasVespeno();
         ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor();
-        pasarKTurnos(extractor, 6);
+        Extractor extractor = new Extractor(reservaGas);
 
         gasVespeno.agregarRefineria(extractor);
+        pasarKTurnos(extractor, 6);
+
         extractor.pasarTurno();
 
         assertEquals(reservaGas.getRecurso(),0);
@@ -29,11 +30,12 @@ public class CasoDeUso4Test {
     public void test02UnExtractorGeneraDiezGasConUnZangano(){
         GasVespeno gasVespeno = new GasVespeno();
         ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor();
-        pasarKTurnos(extractor, 6);
+        Extractor extractor = new Extractor(reservaGas);
 
         gasVespeno.agregarRefineria(extractor);
-        extractor.agregarZangano(new Zangano(reservaGas));
+        pasarKTurnos(extractor, 6);
+
+        extractor.agregarZangano(new Zangano());
         extractor.pasarTurno();
 
         assertEquals(reservaGas.getRecurso(),10);
@@ -43,12 +45,13 @@ public class CasoDeUso4Test {
     public void test03UnExtractorGeneraVeinteGasConDosZanganos(){
         GasVespeno gasVespeno = new GasVespeno();
         ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor();
-        pasarKTurnos(extractor, 6);
+        Extractor extractor = new Extractor(reservaGas);
 
         gasVespeno.agregarRefineria(extractor);
-        extractor.agregarZangano(new Zangano(reservaGas));
-        extractor.agregarZangano(new Zangano(reservaGas));
+        pasarKTurnos(extractor, 6);
+
+        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano());
         extractor.pasarTurno();
 
         assertEquals(reservaGas.getRecurso(),20);
@@ -58,13 +61,14 @@ public class CasoDeUso4Test {
     public void test04UnExtractorGeneraTreintaGasConTresZanganos(){
         GasVespeno gasVespeno = new GasVespeno();
         ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor();
-        pasarKTurnos(extractor, 6);
+        Extractor extractor = new Extractor(reservaGas);
 
         gasVespeno.agregarRefineria(extractor);
-        extractor.agregarZangano(new Zangano(reservaGas));
-        extractor.agregarZangano(new Zangano(reservaGas));
-        extractor.agregarZangano(new Zangano(reservaGas));
+        pasarKTurnos(extractor, 6);
+
+        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano());
         extractor.pasarTurno();
 
         assertEquals(reservaGas.getRecurso(),30);
@@ -74,16 +78,16 @@ public class CasoDeUso4Test {
     public void test05UnExtractorNoAdmiteMasDeTresZanganos(){
         GasVespeno gasVespeno = new GasVespeno();
         ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor();
+        Extractor extractor = new Extractor(reservaGas);
         pasarKTurnos(extractor, 6);
 
         gasVespeno.agregarRefineria(extractor);
-        extractor.agregarZangano(new Zangano(reservaGas));
-        extractor.agregarZangano(new Zangano(reservaGas));
-        extractor.agregarZangano(new Zangano(reservaGas));
+        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano());
 
         assertThrows(ExtractorLleno.class, () -> {
-            extractor.agregarZangano(new Zangano(reservaGas));;
+            extractor.agregarZangano(new Zangano());;
         });
     }
 

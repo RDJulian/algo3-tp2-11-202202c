@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Estructura.Asimilador;
-import edu.fiuba.algo3.modelo.Exceptions.CombinacionDeEstructurasInvalida;
+import edu.fiuba.algo3.modelo.Excepciones.CombinacionDeEstructurasInvalida;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import org.junit.jupiter.api.Test;
 

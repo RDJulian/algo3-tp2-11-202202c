@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Estructura.Criadero;
-import edu.fiuba.algo3.modelo.Exceptions.EstructuraNoOperativaException;
+import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativa;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ public class CasoDeUso2Test {
     public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion(){
         Criadero criadero = new Criadero();
         pasarKTurnos(criadero, 3);
-        assertThrows(EstructuraNoOperativaException.class, () -> {
+        assertThrows(EstructuraNoOperativa.class, () -> {
             criadero.engendrarZangano();
         });
     }

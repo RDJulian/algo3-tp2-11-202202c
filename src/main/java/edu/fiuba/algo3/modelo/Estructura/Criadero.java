@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
-import edu.fiuba.algo3.modelo.Exceptions.CombinacionDeEstructurasInvalida;
+import edu.fiuba.algo3.modelo.Excepciones.CombinacionDeEstructurasInvalida;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Zangano;
+import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
+import edu.fiuba.algo3.modelo.Trabajador.Zangano;
 
 public class Criadero extends Estructura{
 
@@ -20,7 +21,8 @@ public class Criadero extends Estructura{
     public Zangano engendrarZangano() {
         this.estado.efectuarEstado();
         this.cantidadLarvas -= 1;
-        return new Zangano();
+        //Hay que ponerse de acuerdo con la relacion entre las Razas y lo demas
+        return new Zangano(new ReservaGas()); //TODO: Cambiar esto asap.
     }
 
     public void pasarTurnoOperativo() {

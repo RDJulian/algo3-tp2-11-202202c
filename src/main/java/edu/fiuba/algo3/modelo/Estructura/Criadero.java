@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
-import edu.fiuba.algo3.modelo.Excepciones.CombinacionDeEstructurasInvalida;
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
+import edu.fiuba.algo3.modelo.CeldaDeTerreno.CeldaDeTerreno;
+import edu.fiuba.algo3.modelo.CompatibilidadDeTerreno.CompatibilidadDeTerreno;
+import edu.fiuba.algo3.modelo.CompatibilidadDeTerreno.ConstruibleEnLlanura;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
 
 public class Criadero extends Estructura{
 
     private Integer cantidadLarvas;
 
-    public Criadero(){
+    public Criadero(CeldaDeTerreno celdaDeTerreno){
+        CompatibilidadDeTerreno compatibilidad = new ConstruibleEnLlanura();
+        this.celdaDeTerreno = celdaDeTerreno.verificarCompatibilidad(compatibilidad);
         this.cantidadLarvas = 3;
         this.tiempoConstruccionRestante = 4;
     }
@@ -27,11 +29,5 @@ public class Criadero extends Estructura{
     public void pasarTurnoOperativo() {
         this.cantidadLarvas += 1;
     }
-
-
-    public void construirEnGasVespeno(GasVespeno gasVespeno) {
-        throw new CombinacionDeEstructurasInvalida();
-    }
-
 
 }

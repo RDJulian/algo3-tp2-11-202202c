@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.CeldaDeTerreno.TerrenoLlano;
 import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativa;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
@@ -11,7 +12,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion(){
-        Criadero criadero = new Criadero();
+        Criadero criadero = new Criadero(new TerrenoLlano());
         pasarKTurnos(criadero, 3);
         assertThrows(EstructuraNoOperativa.class, () -> {
             criadero.engendrarZangano();
@@ -20,7 +21,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test02CriaderoSeTerminaDeConstruirYEstaOperativoDespuesDePasarLosTurnosCorrespondientes(){
-        Criadero criadero = new Criadero();
+        Criadero criadero = new Criadero(new TerrenoLlano());
         pasarKTurnos(criadero, 4);
         criadero.engendrarZangano();
         assertEquals(criadero.getLarvas(), 2);

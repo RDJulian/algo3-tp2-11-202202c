@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.CeldaDeTerreno.Volcan;
 import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Estructura.Asimilador;
-import edu.fiuba.algo3.modelo.Excepciones.CombinacionDeEstructurasInvalida;
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Excepciones.TerrenoIncompatible;
 import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
 import org.junit.jupiter.api.Test;
 
@@ -15,28 +15,22 @@ public class CasoDeUso3Test {
 
     @Test
     public void test01CriaderoNoSePuedeConstruirSobreElGasVespeno(){
-        Criadero criadero = new Criadero();
-        GasVespeno gasVespeno = new GasVespeno();
-        assertThrows(CombinacionDeEstructurasInvalida.class, () -> {
-            gasVespeno.agregarRefineria(criadero);
+        assertThrows(TerrenoIncompatible.class, () -> {
+            new Criadero(new Volcan());
         });
     }
 
     @Test
     public void test02ExtractorSePuedeConstruirSobreElGasVespeno(){
-        Extractor extractor = new Extractor(new ReservaGas());
-        GasVespeno gasVespeno = new GasVespeno();
         assertDoesNotThrow(() -> {
-            gasVespeno.agregarRefineria(extractor);
+            new Extractor(new Volcan(), new ReservaGas());
         });
     }
 
     @Test
     public void test03AsimiladorSePuedeConstruirSobreElGasVespeno(){
-        Asimilador asimilador = new Asimilador();
-        GasVespeno gasVespeno = new GasVespeno();
         assertDoesNotThrow(() -> {
-            gasVespeno.agregarRefineria(asimilador);
+            new Asimilador(new Volcan(), new ReservaGas());
         });
     }
 

@@ -1,11 +1,14 @@
 package edu.fiuba.algo3.modelo.CeldaDeTerreno;
 
 import edu.fiuba.algo3.modelo.CompatibilidadDeTerreno.CompatibilidadDeTerreno;
+import edu.fiuba.algo3.modelo.Cubierta.Cubierta;
+import edu.fiuba.algo3.modelo.Mundo.Cuadricula;
 
 public abstract class CeldaDeTerreno {
 
     private CeldaDeTerreno celdaSuperior;
     private CeldaDeTerreno celdaInferior;
+    protected Cubierta cubierta;
 
     public CeldaDeTerreno getCeldaSuperior() {
         return celdaSuperior;
@@ -26,4 +29,9 @@ public abstract class CeldaDeTerreno {
 
     public abstract CeldaDeTerreno verificarCompatibilidad(CompatibilidadDeTerreno compatibilidad);
 
+    public void energizar() {
+        this.cubierta = cubierta.energizar();
+    }
+
+    public int getEnergiaPresente() {return this.cubierta.getEnergiaPresente();}
 }

@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
-import edu.fiuba.algo3.modelo.Excepciones.CombinacionDeEstructurasInvalida;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
+import edu.fiuba.algo3.modelo.Piso.Moho;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
 
-public class Criadero extends Estructura{
+public class Criadero extends Estructura {
 
     private Integer cantidadLarvas;
 
-    public Criadero(){
+    public Criadero(Posicion posicion) {
+        super(posicion);
         this.cantidadLarvas = 3;
         this.tiempoConstruccionRestante = 4;
     }
@@ -30,8 +32,11 @@ public class Criadero extends Estructura{
 
 
     public void construirEnGasVespeno(GasVespeno gasVespeno) {
-        throw new CombinacionDeEstructurasInvalida();
+        throw new ConstruccionNoValida();
     }
 
 
+    public void construir(Moho moho) {
+        moho.enRango(this.posicion);
+    }
 }

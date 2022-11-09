@@ -1,13 +1,15 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Posicion.Rango;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 
-public class Asimilador extends Estructura {
+public class Pilon extends Estructura {
+    private Rango rango;
 
-    public Asimilador(Posicion posicion) {
+    public Pilon(Posicion posicion) {
         super(posicion);
-        this.tiempoConstruccionRestante = 6;
+        this.rango = new Rango(posicion, 3);
     }
 
     @Override
@@ -18,5 +20,9 @@ public class Asimilador extends Estructura {
     @Override
     public void construirEnGasVespeno(GasVespeno gasVespeno) {
 
+    }
+
+    public void enRango(Posicion posicion) {
+        this.rango.incluye(posicion);
     }
 }

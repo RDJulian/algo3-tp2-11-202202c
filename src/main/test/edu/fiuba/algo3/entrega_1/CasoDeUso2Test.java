@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativa;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso2Test {
 
     @Test
-    public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion(){
-        Criadero criadero = new Criadero();
+    public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
+        Criadero criadero = new Criadero(new Posicion(0, 0));
         pasarKTurnos(criadero, 3);
         assertThrows(EstructuraNoOperativa.class, () -> {
             criadero.engendrarZangano();
@@ -19,30 +20,31 @@ public class CasoDeUso2Test {
     }
 
     @Test
-    public void test02CriaderoSeTerminaDeConstruirYEstaOperativoDespuesDePasarLosTurnosCorrespondientes(){
-        Criadero criadero = new Criadero();
+    public void test02CriaderoSeTerminaDeConstruirYEstaOperativoDespuesDePasarLosTurnosCorrespondientes() {
+        Criadero criadero = new Criadero(new Posicion(0, 0));
         pasarKTurnos(criadero, 4);
         criadero.engendrarZangano();
         assertEquals(criadero.getLarvas(), 2);
-    }
-/*
-    @Test
-    public void test03ExtractorNoEstaOperativoMientrasSeEncuentraEnConstruccion(){
-        Extractor extractor = new Extractor();
-        pasarKTurnos(criadero, 3);
-        assertThrows(EstructuraNoOperativaException.class, () -> {
-            criadero.engendrarZangano();
-        });
     }
 
-    @Test
-    public void test02CriaderoSeTerminaDeConstruirYEstaOperativoDespuesDePasarLosTurnosCorrespondientes(){
-        Criadero criadero = new Criadero();
-        pasarKTurnos(criadero, 4);
-        criadero.engendrarZangano();
-        assertEquals(criadero.getLarvas(), 2);
-    }
-*/
+    /*
+        @Test
+        public void test03ExtractorNoEstaOperativoMientrasSeEncuentraEnConstruccion(){
+            Extractor extractor = new Extractor();
+            pasarKTurnos(criadero, 3);
+            assertThrows(EstructuraNoOperativaException.class, () -> {
+                criadero.engendrarZangano();
+            });
+        }
+
+        @Test
+        public void test02CriaderoSeTerminaDeConstruirYEstaOperativoDespuesDePasarLosTurnosCorrespondientes(){
+            Criadero criadero = new Criadero();
+            pasarKTurnos(criadero, 4);
+            criadero.engendrarZangano();
+            assertEquals(criadero.getLarvas(), 2);
+        }
+    */
     //TODO: COMPLETAR CON TODOS LOS EDIFICIOS
     public void pasarKTurnos(Estructura estructura, Integer k) {
         for (int i = 0; i < k; i++) {

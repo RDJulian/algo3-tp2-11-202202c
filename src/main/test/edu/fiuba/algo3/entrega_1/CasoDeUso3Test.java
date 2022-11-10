@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Estructura.Asimilador;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
 import org.junit.jupiter.api.Test;
 
@@ -16,34 +17,28 @@ public class CasoDeUso3Test {
 
     @Test
     public void test01CriaderoNoSePuedeConstruirSobreElGasVespeno() {
-        Criadero criadero = new Criadero(new Posicion(0, 0));
-        GasVespeno gasVespeno = new GasVespeno();
+        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Recurso recurso = new GasVespeno();
         assertThrows(ConstruccionNoValida.class, () -> {
-            gasVespeno.agregarRefineria(criadero);
+            estructura.construir(recurso);
         });
     }
 
     @Test
     public void test02ExtractorSePuedeConstruirSobreElGasVespeno() {
-        Extractor extractor = new Extractor(new Posicion(0, 0), new ReservaGas());
-        GasVespeno gasVespeno = new GasVespeno();
+        Estructura estructura = new Extractor(new Posicion(0, 0));
+        Recurso recurso = new GasVespeno();
         assertDoesNotThrow(() -> {
-            gasVespeno.agregarRefineria(extractor);
+            estructura.construir(recurso);
         });
     }
 
     @Test
     public void test03AsimiladorSePuedeConstruirSobreElGasVespeno() {
-        Asimilador asimilador = new Asimilador(new Posicion(0, 0));
-        GasVespeno gasVespeno = new GasVespeno();
+        Estructura estructura = new Asimilador(new Posicion(0, 0));
+        Recurso recurso = new GasVespeno();
         assertDoesNotThrow(() -> {
-            gasVespeno.agregarRefineria(asimilador);
+            estructura.construir(recurso);
         });
-    }
-
-    public void pasarKTurnos(Estructura estructura, Integer k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
     }
 }

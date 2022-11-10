@@ -3,31 +3,23 @@ package edu.fiuba.algo3.modelo.Estructura;
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvas;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public class Criadero extends Estructura {
-    private int larvas;
+public class PuertoEstelar extends Estructura {
 
-    public Criadero(Posicion posicion) {
+    public PuertoEstelar(Posicion posicion) {
         super(posicion);
-        this.estado = new EnConstruccion(4);
+        this.estado = new EnConstruccion(10);
         this.construible = new Construible(new NoSobreRecurso());
-        this.larvas = 3;
     }
 
     @Override
     public void efectuarOperacion() {
-        if (this.larvas == 0) {
-            throw new CriaderoSinLarvas();
-        }
-        this.larvas -= 1;
+
     }
 
     @Override
     public void pasarTurnoOperativo() {
-        if (this.larvas < 3) {
-            this.larvas += 1;
-        }
+
     }
 }

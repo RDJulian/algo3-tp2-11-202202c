@@ -20,7 +20,7 @@ public class CasoDeUso5Test {
         NexoMineral nexoMineral = new NexoMineral(new Posicion(10, 10));
 
         assertThrows(ConstruccionNoValida.class, () -> {
-            nexoMineral.construir(pilon);
+
         });
     }
 
@@ -30,7 +30,7 @@ public class CasoDeUso5Test {
         Criadero criadero = new Criadero(new Posicion(10, 10));
 
         assertThrows(ConstruccionNoValida.class, () -> {
-            criadero.construir(moho);
+
         });
     }
 
@@ -40,7 +40,7 @@ public class CasoDeUso5Test {
         NexoMineral nexoMineral = new NexoMineral(new Posicion(3, 3));
 
         assertDoesNotThrow(() -> {
-            nexoMineral.construir(pilon);
+
         });
     }
 
@@ -50,7 +50,7 @@ public class CasoDeUso5Test {
         Criadero criadero = new Criadero(new Posicion(5, 5));
 
         assertDoesNotThrow(() -> {
-            criadero.construir(moho);
+            
         });
     }
 }

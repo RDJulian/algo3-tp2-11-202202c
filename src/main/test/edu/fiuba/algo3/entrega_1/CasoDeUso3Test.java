@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +19,7 @@ public class CasoDeUso3Test {
         Estructura estructura = new Criadero(new Posicion(0, 0));
         Recurso recurso = new GasVespeno();
         assertThrows(ConstruccionNoValida.class, () -> {
-            estructura.construir(recurso);
+            estructura.construible(recurso);
         });
     }
 
@@ -29,7 +28,7 @@ public class CasoDeUso3Test {
         Estructura estructura = new Extractor(new Posicion(0, 0));
         Recurso recurso = new GasVespeno();
         assertDoesNotThrow(() -> {
-            estructura.construir(recurso);
+            estructura.construible(recurso);
         });
     }
 
@@ -38,7 +37,7 @@ public class CasoDeUso3Test {
         Estructura estructura = new Asimilador(new Posicion(0, 0));
         Recurso recurso = new GasVespeno();
         assertDoesNotThrow(() -> {
-            estructura.construir(recurso);
+            estructura.construible(recurso);
         });
     }
 }

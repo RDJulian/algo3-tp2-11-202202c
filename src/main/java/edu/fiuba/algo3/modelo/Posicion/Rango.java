@@ -11,14 +11,15 @@ public class Rango {
         this.radio = radio;
     }
 
-    public void incluye(Posicion posicion) {
+    public boolean incluye(Posicion posicion) {
         //REDO: Este metodo rompe encapsulamiento.
         if (!(posicion.getX() <= this.posicion.getX() + radio &
                 posicion.getX() >= this.posicion.getX() - radio &
                 posicion.getY() <= this.posicion.getY() + radio &
                 posicion.getY() >= this.posicion.getY() - radio)) {
-            throw new ConstruccionNoValida();
+            return false;
         }
+        return true;
     }
 
     public void expandir() {

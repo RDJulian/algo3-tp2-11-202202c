@@ -27,7 +27,11 @@ public class CasoDeUso2Test {
 
     @Test
     public void test02AccesoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
+        Pilon pilon = new Pilon(new Posicion(0, 0));
+        pasarKTurnos(pilon, 5);
+
         Estructura estructura = new Acceso(new Posicion(0, 0));
+        estructura.construible(pilon);
         pasarKTurnos(estructura, 7);
 
         assertThrows(EstructuraNoOperativa.class, () -> {
@@ -139,7 +143,11 @@ public class CasoDeUso2Test {
 
     @Test
     public void test09PuertoEstelarNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
+        Pilon pilon = new Pilon(new Posicion(0, 0));
+        pasarKTurnos(pilon, 5);
+
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
+        estructura.construible(pilon);
         pasarKTurnos(estructura, 9);
 
         assertThrows(EstructuraNoOperativa.class, () -> {

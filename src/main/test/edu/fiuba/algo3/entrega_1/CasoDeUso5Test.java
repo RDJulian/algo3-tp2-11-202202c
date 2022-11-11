@@ -13,6 +13,7 @@ public class CasoDeUso5Test {
     @Test
     public void test01NoSePuedeConstruirUnaEstructuraProtossFueraDelRangoDeUnPilon() {
         Pilon pilon = new Pilon(new Posicion(0, 0));
+        pasarKTurnos(pilon, 5);
         Estructura estructura = new Acceso(new Posicion(10, 10));
 
         assertThrows(ConstruccionNoValida.class, () -> {
@@ -33,6 +34,7 @@ public class CasoDeUso5Test {
     @Test
     public void test03SePuedeConstruirUnaEstructuraProtossEnElRangoDeUnPilon() {
         Pilon pilon = new Pilon(new Posicion(0, 0));
+        pasarKTurnos(pilon, 5);
         Estructura estructura = new Acceso(new Posicion(3, 3));
 
         assertDoesNotThrow(() -> {
@@ -48,5 +50,11 @@ public class CasoDeUso5Test {
         assertDoesNotThrow(() -> {
             estructura.construible(moho);
         });
+    }
+
+    public void pasarKTurnos(Estructura estructura, int k) {
+        for (int i = 0; i < k; i++) {
+            estructura.pasarTurno();
+        }
     }
 }

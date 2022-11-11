@@ -34,7 +34,8 @@ public class Pilon extends Estructura {
 
     }
 
-    public void enRango(Posicion posicion) {
-        this.rango.incluye(posicion);
+    public boolean enRango(Posicion posicion) {
+        this.estado.operar(this);
+        return this.rango.incluye(posicion);
     }
 }

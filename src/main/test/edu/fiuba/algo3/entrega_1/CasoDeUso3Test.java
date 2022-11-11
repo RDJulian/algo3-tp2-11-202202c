@@ -4,9 +4,10 @@ import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Estructura.Asimilador;
-import edu.fiuba.algo3.modelo.Excepciones.CombinacionDeEstructurasInvalida;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
+import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,35 +15,29 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso3Test {
 
     @Test
-    public void test01CriaderoNoSePuedeConstruirSobreElGasVespeno(){
-        Criadero criadero = new Criadero();
-        GasVespeno gasVespeno = new GasVespeno();
-        assertThrows(CombinacionDeEstructurasInvalida.class, () -> {
-            gasVespeno.agregarRefineria(criadero);
+    public void test01CriaderoNoSePuedeConstruirSobreElGasVespeno() {
+        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Recurso recurso = new GasVespeno();
+        assertThrows(ConstruccionNoValida.class, () -> {
+            estructura.construible(recurso);
         });
     }
 
     @Test
-    public void test02ExtractorSePuedeConstruirSobreElGasVespeno(){
-        Extractor extractor = new Extractor(new ReservaGas());
-        GasVespeno gasVespeno = new GasVespeno();
+    public void test02ExtractorSePuedeConstruirSobreElGasVespeno() {
+        Estructura estructura = new Extractor(new Posicion(0, 0));
+        Recurso recurso = new GasVespeno();
         assertDoesNotThrow(() -> {
-            gasVespeno.agregarRefineria(extractor);
+            estructura.construible(recurso);
         });
     }
 
     @Test
-    public void test03AsimiladorSePuedeConstruirSobreElGasVespeno(){
-        Asimilador asimilador = new Asimilador();
-        GasVespeno gasVespeno = new GasVespeno();
+    public void test03AsimiladorSePuedeConstruirSobreElGasVespeno() {
+        Estructura estructura = new Asimilador(new Posicion(0, 0));
+        Recurso recurso = new GasVespeno();
         assertDoesNotThrow(() -> {
-            gasVespeno.agregarRefineria(asimilador);
+            estructura.construible(recurso);
         });
-    }
-
-    public void pasarKTurnos(Estructura estructura, Integer k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
     }
 }

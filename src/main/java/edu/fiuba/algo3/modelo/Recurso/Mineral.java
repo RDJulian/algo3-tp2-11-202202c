@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRecurso;
-import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
+import edu.fiuba.algo3.modelo.Reserva.Reserva;
 
 public class Mineral extends Recurso {
     public Mineral() {
@@ -14,7 +14,8 @@ public class Mineral extends Recurso {
     }
 
     @Override
-    public void extraerRecurso(int unidades, ReservaGas reservaGas) {
-        
+    public void extraerRecurso(int unidades, Reserva reserva) {
+        this.unidades -= unidades;
+        reserva.agregarRecurso(unidades);
     }
 }

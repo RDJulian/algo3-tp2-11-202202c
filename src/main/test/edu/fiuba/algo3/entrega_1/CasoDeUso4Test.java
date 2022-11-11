@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Reserva.ReservaGas;
+import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
 import org.junit.jupiter.api.Test;
 
@@ -17,22 +17,22 @@ public class CasoDeUso4Test {
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
         GasVespeno gasVespeno = new GasVespeno();
-        ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reservaGas);
+        Reserva reserva = new Reserva();
+        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
 
         extractor.pasarTurno();
 
-        assertEquals(reservaGas.getRecurso(), 0);
+        assertEquals(reserva.getRecurso(), 0);
     }
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
         GasVespeno gasVespeno = new GasVespeno();
-        ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reservaGas);
+        Reserva reserva = new Reserva();
+        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -40,14 +40,14 @@ public class CasoDeUso4Test {
         extractor.agregarZangano(new Zangano());
         extractor.pasarTurno();
 
-        assertEquals(reservaGas.getRecurso(), 10);
+        assertEquals(reserva.getRecurso(), 10);
     }
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
         GasVespeno gasVespeno = new GasVespeno();
-        ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reservaGas);
+        Reserva reserva = new Reserva();
+        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -56,14 +56,14 @@ public class CasoDeUso4Test {
         extractor.agregarZangano(new Zangano());
         extractor.pasarTurno();
 
-        assertEquals(reservaGas.getRecurso(), 20);
+        assertEquals(reserva.getRecurso(), 20);
     }
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
         GasVespeno gasVespeno = new GasVespeno();
-        ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reservaGas);
+        Reserva reserva = new Reserva();
+        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -73,14 +73,14 @@ public class CasoDeUso4Test {
         extractor.agregarZangano(new Zangano());
         extractor.pasarTurno();
 
-        assertEquals(reservaGas.getRecurso(), 30);
+        assertEquals(reserva.getRecurso(), 30);
     }
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
         GasVespeno gasVespeno = new GasVespeno();
-        ReservaGas reservaGas = new ReservaGas();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reservaGas);
+        Reserva reserva = new Reserva();
+        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
         pasarKTurnos(extractor, 6);
         extractor.construible(gasVespeno);
 

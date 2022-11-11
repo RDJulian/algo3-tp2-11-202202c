@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.Costo;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoPilon;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
@@ -11,7 +12,7 @@ public class Acceso extends Estructura {
     public Acceso(Posicion posicion) {
         super(posicion);
         this.estado = new EnConstruccion(8);
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon());
+        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(150, 0));
     }
 
     @Override

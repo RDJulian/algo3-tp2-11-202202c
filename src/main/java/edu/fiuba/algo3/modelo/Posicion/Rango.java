@@ -20,4 +20,8 @@ public class Rango {
             throw new ConstruccionNoValida();
         }
     }
+
+    public void expandir() {
+        this.radio += 1;
+    }
 }

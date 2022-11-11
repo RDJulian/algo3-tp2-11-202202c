@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Reserva.Reserva;
 
 public abstract class Estructura {
     protected Posicion posicion;
@@ -28,16 +29,20 @@ public abstract class Estructura {
     }
 
     public void construible(Recurso recurso) {
-        construible.construible(recurso);
+        this.construible.construible(recurso);
         this.construir(recurso);
     }
 
     public void construible(Pilon pilon) {
-        construible.construible(pilon, this.posicion);
+        this.construible.construible(pilon, this.posicion);
     }
 
     public void construible(Moho moho) {
-        construible.construible(moho, this.posicion);
+        this.construible.construible(moho, this.posicion);
+    }
+
+    public void construible(Reserva reservaMineral, Reserva reservaGas) {
+        this.construible.construible(reservaMineral, reservaGas);
     }
 
     public abstract void efectuarOperacion();
@@ -45,5 +50,4 @@ public abstract class Estructura {
     public abstract void pasarTurnoOperativo();
 
     public abstract void construir(Recurso recurso);
-
 }

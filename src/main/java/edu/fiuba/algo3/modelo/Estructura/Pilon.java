@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.Costo;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoPilon;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
@@ -14,7 +15,7 @@ public class Pilon extends Estructura {
     public Pilon(Posicion posicion) {
         super(posicion);
         this.estado = new EnConstruccion(5);
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon());
+        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(100, 0));
         this.rango = new Rango(posicion, 3);
     }
 

@@ -10,6 +10,8 @@ import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
 import edu.fiuba.algo3.modelo.EstadoEstructura.SinEnergia;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Vida.Escudo;
+import edu.fiuba.algo3.modelo.Vida.Normal;
 
 import java.util.Vector;
 
@@ -21,6 +23,8 @@ public class PuertoEstelar extends Estructura {
         this.estado = new EnConstruccion(10);
         this.estadoEnergetico = new SinEnergia();
         this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(150, 150));
+        this.vida = new Normal(600);
+        this.defensa = new Escudo(600);
     }
 
     @Override
@@ -56,7 +60,8 @@ public class PuertoEstelar extends Estructura {
 
     @Override
     public void pasarTurnoOperativo() {
-
+        this.vida.regenerar();
+        this.defensa.regenerar();
     }
 
     @Override

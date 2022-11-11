@@ -10,6 +10,8 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
+import edu.fiuba.algo3.modelo.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 import java.util.Vector;
 
@@ -23,6 +25,8 @@ public class Extractor extends Estructura {
         this.estado = new EnConstruccion(6);
         this.construible = new Construible(new SobreGasVespeno(), new NoNecesitaRango(), new Costo(100, 0));
         this.zanganos = new Vector<Zangano>(0);
+        this.vida = new Regenerativa(750);
+        this.defensa = new SinEscudo();
     }
 
     public Extractor(Posicion posicion, Reserva reserva) {
@@ -31,6 +35,8 @@ public class Extractor extends Estructura {
         this.construible = new Construible(new SobreGasVespeno(), new NoNecesitaRango(), new Costo(100, 0));
         this.reserva = reserva;
         this.zanganos = new Vector<Zangano>(0);
+        this.vida = new Regenerativa(750);
+        this.defensa = new SinEscudo();
     }
 
     @Override
@@ -43,6 +49,8 @@ public class Extractor extends Estructura {
         for (Zangano zangano : zanganos) {
             zangano.extraerRecurso(this.gasVespeno, this.reserva);
         }
+        this.vida.regenerar();
+        this.defensa.regenerar();
     }
 
     @Override

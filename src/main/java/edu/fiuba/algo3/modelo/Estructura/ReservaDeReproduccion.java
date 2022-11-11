@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.Construible.RangoMoho;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class ReservaDeReproduccion extends Estructura {
 
@@ -14,6 +16,8 @@ public class ReservaDeReproduccion extends Estructura {
         super(posicion);
         this.estado = new EnConstruccion(12);
         this.construible = new Construible(new NoSobreRecurso(), new RangoMoho(), new Costo(150, 0));
+        this.vida = new Regenerativa(1000);
+        this.defensa = new SinEscudo();
     }
 
     @Override
@@ -23,7 +27,8 @@ public class ReservaDeReproduccion extends Estructura {
 
     @Override
     public void pasarTurnoOperativo() {
-
+        this.vida.regenerar();
+        this.defensa.regenerar();
     }
 
     @Override

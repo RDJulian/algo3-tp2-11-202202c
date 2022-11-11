@@ -5,6 +5,9 @@ import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvas;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Vida.Normal;
+import edu.fiuba.algo3.modelo.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class Criadero extends Estructura {
     private int larvas;
@@ -14,6 +17,8 @@ public class Criadero extends Estructura {
         this.estado = new EnConstruccion(4);
         this.construible = new Construible(new NoSobreRecurso(), new NoNecesitaRango(), new Costo(50, 0));
         this.larvas = 3;
+        this.vida = new Regenerativa(500);
+        this.defensa = new SinEscudo();
     }
 
     @Override
@@ -29,6 +34,8 @@ public class Criadero extends Estructura {
         if (this.larvas < 3) {
             this.larvas += 1;
         }
+        this.vida.regenerar();
+        this.defensa.regenerar();
     }
 
     @Override

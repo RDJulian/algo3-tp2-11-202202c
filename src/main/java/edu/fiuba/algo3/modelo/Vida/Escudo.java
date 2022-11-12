@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Vida;
 
-public class Escudo extends Defensa{
+public class Escudo extends Defensa {
 
     public Escudo(int cantEscudo) {
         super(cantEscudo);
@@ -8,8 +8,10 @@ public class Escudo extends Defensa{
 
     @Override
     public void regenerar() {
-        int nuevoEscudo = this.cantEscudo + 10;
-        if (nuevoEscudo>limite){nuevoEscudo=limite;}
+        int nuevoEscudo = this.cantEscudo + 10; //Se puede cambiar.
+        if (nuevoEscudo > limite) {
+            nuevoEscudo = limite;
+        }
         this.cantEscudo = nuevoEscudo;
     }
 }

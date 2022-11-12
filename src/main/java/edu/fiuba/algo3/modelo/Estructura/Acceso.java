@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.EstadoEstructura.ConEnergia;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
 import edu.fiuba.algo3.modelo.EstadoEstructura.SinEnergia;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
@@ -32,7 +33,7 @@ public class Acceso extends Estructura {
 
     @Override
     public void pasarTurno() {
-        this.estadoEnergetico.pasarTurno(this, this.estado);
+        this.estadoEnergetico.pasarTurno(this, this.estado, this.vida, this.defensa);
     }
 
     @Override
@@ -42,14 +43,18 @@ public class Acceso extends Estructura {
     }
 
     @Override
+    public Piso construible(Piso moho) {
+        this.construible.construible(moho, this.posicion);
+        return null;
+    }
+
+    @Override
     public void efectuarOperacion() {
 
     }
 
     @Override
     public void pasarTurnoOperativo() {
-        this.vida.regenerar();
-        this.defensa.regenerar();
     }
 
     @Override

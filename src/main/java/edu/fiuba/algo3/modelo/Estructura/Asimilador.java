@@ -15,7 +15,7 @@ public class Asimilador extends Estructura {
     public Asimilador(Posicion posicion) {
         super(posicion);
         this.estado = new EnConstruccion(6);
-        this.construible = new Construible(new SobreGasVespeno(), new NoNecesitaRango(), new Costo(100, 0));
+        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0));
         this.vida = new Normal(450);
         this.defensa = new Escudo(450);
     }
@@ -23,7 +23,7 @@ public class Asimilador extends Estructura {
     public Asimilador(Posicion posicion, Reserva reserva) {
         super(posicion);
         this.estado = new EnConstruccion(6);
-        this.construible = new Construible(new SobreGasVespeno(), new NoNecesitaRango(), new Costo(100, 0));
+        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0));
         this.reserva = reserva;
         this.vida = new Normal(450);
         this.defensa = new Escudo(450);

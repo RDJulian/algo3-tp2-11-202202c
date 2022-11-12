@@ -29,7 +29,7 @@ public class Extractor extends Estructura {
     public Extractor(Posicion posicion, Reserva reserva) {
         super(posicion);
         this.estado = new EnConstruccion(6);
-        this.construible = new Construible(new SobreGasVespeno(), new NoNecesitaRango(), new Costo(100, 0));
+        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0));
         this.reserva = reserva;
         this.zanganos = new Vector<>(0);
         this.vida = new Regenerativa(750);

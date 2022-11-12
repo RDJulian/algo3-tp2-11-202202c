@@ -15,7 +15,7 @@ public class NexoMineral extends Estructura {
     public NexoMineral(Posicion posicion) {
         super(posicion);
         this.estado = new EnConstruccion(4);
-        this.construible = new Construible(new SobreMineral(), new NoNecesitaRango(), new Costo(50, 0));
+        this.construible = new Construible(new SobreMineral(), new NoSobreMoho(), new Costo(50, 0));
         this.vida = new Normal(250);
         this.defensa = new Escudo(250);
     }
@@ -23,7 +23,7 @@ public class NexoMineral extends Estructura {
     public NexoMineral(Posicion posicion, Reserva reserva) {
         super(posicion);
         this.estado = new EnConstruccion(4);
-        this.construible = new Construible(new SobreMineral(), new NoNecesitaRango(), new Costo(50, 0));
+        this.construible = new Construible(new SobreMineral(), new NoSobreMoho(), new Costo(50, 0));
         this.reserva = reserva;
         this.vida = new Normal(250);
         this.defensa = new Escudo(250);

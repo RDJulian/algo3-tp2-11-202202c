@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.modelo.Construible;
 
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public class NoNecesitaRango implements ConstruibleSobreRango {
-    //Esto puede dar problemas en el caso de que una estructura Protoss se quiera construir en Moho
+public class NoSobreMoho implements ConstruibleSobreRango {
 
     @Override
     public void construible(Piso piso, Posicion posicion) {
-
+        piso.construible(this);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class NoNecesitaRango implements ConstruibleSobreRango {
 
     @Override
     public void construirEnMoho() {
-
+        throw new ConstruccionNoValida();
     }
 }

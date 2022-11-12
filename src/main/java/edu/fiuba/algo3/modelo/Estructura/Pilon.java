@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Pilon extends Estructura {
+public class Pilon extends Estructura implements Piso {
     private Rango rango;
 
     public Pilon(Posicion posicion) {

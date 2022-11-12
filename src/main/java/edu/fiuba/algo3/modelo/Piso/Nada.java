@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class Nada implements Piso {
     @Override
-    public void enRango(Posicion posicion) {
-
+    public boolean enRango(Posicion posicion) { //Tener cuidado con esto.
+        return true;
     }
 
     @Override

@@ -16,9 +16,7 @@ public class CasoDeUso1Test {
         pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
-        assertThrows(CriaderoSinLarvas.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(CriaderoSinLarvas.class, estructura::operar);
     }
 
     @Test
@@ -28,9 +26,7 @@ public class CasoDeUso1Test {
         estructura.pasarTurno();
         operarKVeces(estructura, 3);
 
-        assertThrows(CriaderoSinLarvas.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(CriaderoSinLarvas.class, estructura::operar);
     }
 
     @Test
@@ -43,9 +39,7 @@ public class CasoDeUso1Test {
         estructura.pasarTurno();
         estructura.operar();
 
-        assertThrows(CriaderoSinLarvas.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(CriaderoSinLarvas.class, estructura::operar);
     }
 
     @Test
@@ -58,9 +52,7 @@ public class CasoDeUso1Test {
         pasarKTurnos(estructura, 2);
         operarKVeces(estructura, 2);
 
-        assertThrows(CriaderoSinLarvas.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(CriaderoSinLarvas.class, estructura::operar);
     }
 
     @Test
@@ -73,9 +65,7 @@ public class CasoDeUso1Test {
         pasarKTurnos(estructura, 3);
         operarKVeces(estructura, 3);
 
-        assertThrows(CriaderoSinLarvas.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(CriaderoSinLarvas.class, estructura::operar);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

@@ -18,26 +18,20 @@ public class CasoDeUso3Test {
     public void test01CriaderoNoSePuedeConstruirSobreElGasVespeno() {
         Estructura estructura = new Criadero(new Posicion(0, 0));
         Recurso recurso = new GasVespeno();
-        assertThrows(ConstruccionNoValida.class, () -> {
-            estructura.construible(recurso);
-        });
+        assertThrows(ConstruccionNoValida.class, () -> estructura.construible(recurso));
     }
 
     @Test
     public void test02ExtractorSePuedeConstruirSobreElGasVespeno() {
         Estructura estructura = new Extractor(new Posicion(0, 0));
         Recurso recurso = new GasVespeno();
-        assertDoesNotThrow(() -> {
-            estructura.construible(recurso);
-        });
+        assertDoesNotThrow(() -> estructura.construible(recurso));
     }
 
     @Test
     public void test03AsimiladorSePuedeConstruirSobreElGasVespeno() {
         Estructura estructura = new Asimilador(new Posicion(0, 0));
         Recurso recurso = new GasVespeno();
-        assertDoesNotThrow(() -> {
-            estructura.construible(recurso);
-        });
+        assertDoesNotThrow(() -> estructura.construible(recurso));
     }
 }

@@ -14,15 +14,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new Criadero(new Posicion(0, 0));
         pasarKTurnos(estructura, 3);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -34,15 +30,11 @@ public class CasoDeUso2Test {
         estructura.construible(pilon);
         pasarKTurnos(estructura, 7);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -50,15 +42,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new Asimilador(new Posicion(0, 0));
         pasarKTurnos(estructura, 5);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -66,15 +54,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new Espiral(new Posicion(0, 0));
         pasarKTurnos(estructura, 9);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -82,15 +66,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new Extractor(new Posicion(0, 0));
         pasarKTurnos(estructura, 5);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -98,15 +78,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new Guarida(new Posicion(0, 0));
         pasarKTurnos(estructura, 11);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -114,15 +90,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new NexoMineral(new Posicion(0, 0));
         pasarKTurnos(estructura, 3);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -130,15 +102,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new Pilon(new Posicion(0, 0));
         pasarKTurnos(estructura, 4);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -150,15 +118,11 @@ public class CasoDeUso2Test {
         estructura.construible(pilon);
         pasarKTurnos(estructura, 9);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     @Test
@@ -166,15 +130,11 @@ public class CasoDeUso2Test {
         Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
         pasarKTurnos(estructura, 11);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            estructura.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, estructura::operar);
 
         estructura.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.operar();
-        });
+        assertDoesNotThrow(estructura::operar);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

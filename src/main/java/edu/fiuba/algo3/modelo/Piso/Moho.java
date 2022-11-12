@@ -13,10 +13,11 @@ public class Moho implements Piso {
         this.turnos = 0;
     }
 
-    public void enRango(Posicion posicion) {
+    public boolean enRango(Posicion posicion) {
         if (!(this.rango.incluye(posicion))) {
             throw new ConstruccionNoValida();
         }
+        return true;
     }
 
     public void pasarTurno() {

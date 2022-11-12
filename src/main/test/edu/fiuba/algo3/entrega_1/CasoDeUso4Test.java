@@ -88,9 +88,7 @@ public class CasoDeUso4Test {
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());
 
-        assertThrows(ExtractorLleno.class, () -> {
-            extractor.agregarZangano(new Zangano());
-        });
+        assertThrows(ExtractorLleno.class, () -> extractor.agregarZangano(new Zangano()));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {

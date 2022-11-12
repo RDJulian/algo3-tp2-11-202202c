@@ -2,13 +2,12 @@ package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
-import edu.fiuba.algo3.modelo.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class NexoMineral extends Estructura {
     private Recurso mineral;
@@ -20,6 +19,12 @@ public class NexoMineral extends Estructura {
         this.construible = new Construible(new SobreMineral(), new NoNecesitaRango(), new Costo(50, 0));
         this.vida = new Normal(250);
         this.defensa = new Escudo(250);
+    }
+
+    @Override
+    public Piso construible(Piso moho) {
+        this.construible.construible(moho, this.posicion);
+        return null;
     }
 
     public NexoMineral(Posicion posicion, Reserva reserva) {
@@ -39,8 +44,6 @@ public class NexoMineral extends Estructura {
     @Override
     public void pasarTurnoOperativo() {
         mineral.extraerRecurso(20, this.reserva); //Asumimos 20.
-        this.vida.regenerar();
-        this.defensa.regenerar();
     }
 
     @Override

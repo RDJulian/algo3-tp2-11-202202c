@@ -3,9 +3,10 @@ package edu.fiuba.algo3.modelo.Estructura;
 import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvas;
+import edu.fiuba.algo3.modelo.Piso.Moho;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Vida.Normal;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -15,10 +16,16 @@ public class Criadero extends Estructura {
     public Criadero(Posicion posicion) {
         super(posicion);
         this.estado = new EnConstruccion(4);
-        this.construible = new Construible(new NoSobreRecurso(), new NoNecesitaRango(), new Costo(50, 0));
+        this.construible = new Construible(new NoSobreRecurso(), new RangoMoho(), new Costo(50, 0));
         this.larvas = 3;
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
+    }
+
+    @Override
+    public Piso construible(Piso moho) {
+        this.construible.construible(moho, this.posicion);
+        return new Moho(this.posicion);
     }
 
     @Override
@@ -34,8 +41,6 @@ public class Criadero extends Estructura {
         if (this.larvas < 3) {
             this.larvas += 1;
         }
-        this.vida.regenerar();
-        this.defensa.regenerar();
     }
 
     @Override

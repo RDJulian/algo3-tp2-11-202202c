@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -18,6 +19,12 @@ public class Asimilador extends Estructura {
         this.construible = new Construible(new SobreGasVespeno(), new NoNecesitaRango(), new Costo(100, 0));
         this.vida = new Normal(450);
         this.defensa = new Escudo(450);
+    }
+
+    @Override
+    public Piso construible(Piso moho) {
+        this.construible.construible(moho, this.posicion);
+        return null;
     }
 
     public Asimilador(Posicion posicion, Reserva reserva) {
@@ -37,8 +44,6 @@ public class Asimilador extends Estructura {
     @Override
     public void pasarTurnoOperativo() {
         gasVespeno.extraerRecurso(20, this.reserva);
-        this.vida.regenerar();
-        this.defensa.regenerar();
     }
 
     @Override

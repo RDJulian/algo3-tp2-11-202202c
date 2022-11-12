@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
-import edu.fiuba.algo3.modelo.Piso.Moho;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -25,7 +25,7 @@ public abstract class Estructura {
     }
 
     public void pasarTurno() {
-        this.estado.pasarTurno(this);
+        this.estado.pasarTurno(this, this.vida, this.defensa);
     }
 
     public void operar() {
@@ -41,9 +41,12 @@ public abstract class Estructura {
         this.construible.construible(pilon, this.posicion);
     }
 
-    public void construible(Moho moho) {
-        this.construible.construible(moho, this.posicion);
-    }
+    public abstract Piso construible(Piso moho);
+    //Esta es la solucion mas facil para mantener aca este metodo.
+    //La solucion deberia ser mas prolija, porque hay muchas definiciones de construible()
+    //Este metodo solo tiene sentido para los Zerg, no deberia estar definida en todas, o sino,
+    //Deberia ser un solo metodo, que tome tanto Pilon como Moho, y algunas devuelvan Moho.
+    //Ahi si tendria mas sentido que este definida para todas, y aca que este como abstracta.
 
     public void construible(Reserva reservaMineral, Reserva reservaGas) {
         this.construible.construible(reservaMineral, reservaGas);
@@ -55,9 +58,15 @@ public abstract class Estructura {
 
     public abstract void construir(Recurso recurso);
 
-    public void daniar(int danio) {this.defensa.proteger(this.vida,danio);}
+    public void daniar(int danio) {
+        this.defensa.proteger(this, this.vida, danio);
+    }
 
-    public int getVida() {return this.vida.getVida();}
+    public int getVida() {
+        return this.vida.getVida();
+    }
 
-    public int getDefensa() {return this.defensa.getDefensa();}
+    public int getDefensa() {
+        return this.defensa.getDefensa();
+    }
 }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Construible.Costo;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
@@ -20,14 +21,18 @@ public class Guarida extends Estructura {
     }
 
     @Override
+    public Piso construible(Piso moho) {
+        this.construible.construible(moho, this.posicion);
+        return null;
+    }
+
+    @Override
     public void efectuarOperacion() {
 
     }
 
     @Override
     public void pasarTurnoOperativo() {
-        this.vida.regenerar();
-        this.defensa.regenerar();
     }
 
     @Override

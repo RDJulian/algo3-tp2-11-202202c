@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Construible;
 
 import edu.fiuba.algo3.modelo.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.Piso.Moho;
+import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -25,7 +25,7 @@ public class Construible {
         this.sobreRango.construible(pilon, posicion);
     }
 
-    public void construible(Moho moho, Posicion posicion) {
+    public void construible(Piso moho, Posicion posicion) {
         this.sobreRango.construible(moho, posicion);
     }
 

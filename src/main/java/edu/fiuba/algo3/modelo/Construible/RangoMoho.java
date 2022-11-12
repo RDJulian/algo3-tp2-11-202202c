@@ -1,17 +1,25 @@
 package edu.fiuba.algo3.modelo.Construible;
 
-import edu.fiuba.algo3.modelo.Estructura.Pilon;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class RangoMoho implements ConstruibleSobreRango {
     @Override
-    public void construible(Pilon pilon, Posicion posicion) {
-        //Para lanzar excepcion a futuro
+    public void construible(Piso moho, Posicion posicion) {
+        moho.construible(this);
+        if (!moho.enRango(posicion)) {
+            throw new ConstruccionNoValida();
+        }
     }
 
     @Override
-    public void construible(Piso moho, Posicion posicion) {
-        moho.enRango(posicion);
+    public void construirEnPilon() {
+        throw new ConstruccionNoValida();
+    }
+
+    @Override
+    public void construirEnMoho() {
+
     }
 }

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Estructura;
 import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
-import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -25,12 +24,6 @@ public class Extractor extends Estructura {
         this.zanganos = new Vector<>(0);
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
-    }
-
-    @Override
-    public Piso construible(Piso moho) {
-        this.construible.construible(moho, this.posicion);
-        return null;
     }
 
     public Extractor(Posicion posicion, Reserva reserva) {

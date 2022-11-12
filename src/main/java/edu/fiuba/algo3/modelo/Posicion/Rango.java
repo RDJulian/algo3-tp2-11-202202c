@@ -19,5 +19,5 @@ public class Rango {
 
     public void expandir() {
         this.radio += 1;
-    }
+    } //Esto solo aplica al Moho.
 }

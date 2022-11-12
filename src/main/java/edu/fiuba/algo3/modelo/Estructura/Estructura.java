@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
+import edu.fiuba.algo3.modelo.Piso.Nada;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -37,16 +38,10 @@ public abstract class Estructura {
         this.construir(recurso);
     }
 
-    public void construible(Pilon pilon) {
-        this.construible.construible(pilon, this.posicion);
+    public Piso construible(Piso piso) {
+        this.construible.construible(piso, this.posicion);
+        return new Nada();
     }
-
-    public abstract Piso construible(Piso moho);
-    //Esta es la solucion mas facil para mantener aca este metodo.
-    //La solucion deberia ser mas prolija, porque hay muchas definiciones de construible()
-    //Este metodo solo tiene sentido para los Zerg, no deberia estar definida en todas, o sino,
-    //Deberia ser un solo metodo, que tome tanto Pilon como Moho, y algunas devuelvan Moho.
-    //Ahi si tendria mas sentido que este definida para todas, y aca que este como abstracta.
 
     public void construible(Reserva reservaMineral, Reserva reservaGas) {
         this.construible.construible(reservaMineral, reservaGas);

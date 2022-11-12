@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Piso;
 
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRango;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Posicion.Rango;
 
@@ -14,10 +14,12 @@ public class Moho implements Piso {
     }
 
     public boolean enRango(Posicion posicion) {
-        if (!(this.rango.incluye(posicion))) {
-            throw new ConstruccionNoValida();
-        }
-        return true;
+        return this.rango.incluye(posicion);
+    }
+
+    @Override
+    public void construible(ConstruibleSobreRango sobreRango) {
+        sobreRango.construirEnMoho();
     }
 
     public void pasarTurno() {

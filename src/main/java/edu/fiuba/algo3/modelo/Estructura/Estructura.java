@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Piso.Nada;
 import edu.fiuba.algo3.modelo.Piso.Piso;
+import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -19,6 +20,7 @@ public abstract class Estructura {
 
     public Estructura(Posicion posicion) {
         this.posicion = posicion;
+        posicion.setEstadoPosicion(new Ocupada());
     }
 
     public void setEstado(EstadoOperativo estado) {
@@ -64,4 +66,6 @@ public abstract class Estructura {
     public int getDefensa() {
         return this.defensa.getDefensa();
     }
+
+    public Posicion getPosicion() { return this.posicion; }
 }

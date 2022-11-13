@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Piso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRango;
+import edu.fiuba.algo3.modelo.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Posicion.Rango;
 
@@ -23,8 +25,14 @@ public class Moho implements Piso {
     }
 
     public void pasarTurno() {
+        this.turnos += 1;
         if (this.turnos % 2 == 0) {
             this.rango.expandir();
         }
     }
+
+    public void expandirSobre(Posicion posicion) throws PosicionOcupada {
+        posicion.ocupable();
+    }
+
 }

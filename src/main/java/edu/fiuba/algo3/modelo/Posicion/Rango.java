@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Posicion;
 
+import edu.fiuba.algo3.modelo.Estructura.Estructura;
+
 public class Rango {
     private Posicion posicion;
     private int radio;
@@ -20,4 +22,6 @@ public class Rango {
     public void expandir() {
         this.radio += 1;
     } //Esto solo aplica al Moho.
+
+
 }

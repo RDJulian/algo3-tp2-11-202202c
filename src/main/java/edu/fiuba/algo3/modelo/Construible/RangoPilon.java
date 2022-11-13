@@ -8,7 +8,7 @@ public class RangoPilon implements ConstruibleSobreRango {
     @Override
     public void construible(Piso pilon, Posicion posicion) {
         pilon.construible(this);
-        if (!pilon.enRango(posicion)) {
+        if (pilon.fueraDeRango(posicion)) {
             throw new ConstruccionNoValida();
         }
     }

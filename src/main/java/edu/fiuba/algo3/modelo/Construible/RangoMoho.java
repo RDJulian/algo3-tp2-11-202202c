@@ -8,7 +8,7 @@ public class RangoMoho implements ConstruibleSobreRango {
     @Override
     public void construible(Piso moho, Posicion posicion) {
         moho.construible(this);
-        if (!moho.enRango(posicion)) {
+        if (moho.fueraDeRango(posicion)) {
             throw new ConstruccionNoValida();
         }
     }

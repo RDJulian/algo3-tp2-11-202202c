@@ -49,7 +49,7 @@ public class PuertoEstelar extends Estructura {
     public void setEstadoEnergetico(Vector<Pilon> pilones) {
         EstadoEnergetico estadoACambiar = new SinEnergia();
         for (Pilon pilon : pilones) {
-            if (pilon.enRango(this.posicion)) {
+            if (!pilon.fueraDeRango(this.posicion)) {
                 estadoACambiar = new ConEnergia();
             }
         }

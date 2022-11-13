@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Posicion;
 
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupada;
-
 public class Posicion {
     private int posicionX;
     private int posicionY;
@@ -23,7 +21,7 @@ public class Posicion {
         return this.posicionY;
     }
 
-    public void ocupable() throws PosicionOcupada {
+    public void ocupable() {
         estadoPosicion.ocupable();
     }
 

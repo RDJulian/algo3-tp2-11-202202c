@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
+import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Nada;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
@@ -67,5 +68,11 @@ public abstract class Estructura {
         return this.defensa.getDefensa();
     }
 
-    public Posicion getPosicion() { return this.posicion; }
+    public Posicion getPosicion() {
+        return this.posicion;
+    }
+
+    public void expandible(Moho moho) {
+        moho.expandibleSobre(this.posicion);
+    }
 }

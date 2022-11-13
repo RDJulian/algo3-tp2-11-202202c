@@ -35,9 +35,9 @@ public class Pilon extends Estructura implements Piso {
 
     }
 
-    public boolean enRango(Posicion posicion) {
+    public boolean fueraDeRango(Posicion posicion) {
         this.estado.operar(this);
-        return this.rango.incluye(posicion);
+        return !this.rango.incluye(posicion);
     }
 
     @Override

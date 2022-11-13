@@ -8,8 +8,6 @@ import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
-import java.util.Vector;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -31,7 +29,7 @@ public class CasoDeUso14Test {
     }
 
     @Test
-    public void test02ElMohoNoPuedeExpandirseSobreUnaPosicionConEdificacion(){
+    public void test02ElMohoNoPuedeExpandirseSobreUnaPosicionConEdificacion() {
         Pilon pilon = new Pilon(new Posicion(6, 6));
         pasarKTurnos(pilon, 5);
 
@@ -40,11 +38,11 @@ public class CasoDeUso14Test {
         pasarKTurnos(puertoEstelar, 10);
 
         Moho moho = new Moho(new Posicion(0, 0));
-        assertThrows(PosicionOcupada.class, () -> moho.expandirSobre(puertoEstelar.getPosicion()));
+        assertThrows(PosicionOcupada.class, () -> moho.expandibleSobre(puertoEstelar));
     }
 
     @Test
-    public void test03ElMohoSePuedeExpandirseSobreUnaPosicionNoOcupada(){
+    public void test03ElMohoSePuedeExpandirseSobreUnaPosicionNoOcupada() {
         Pilon pilon = new Pilon(new Posicion(6, 6));
         pasarKTurnos(pilon, 5);
 
@@ -53,7 +51,7 @@ public class CasoDeUso14Test {
         pasarKTurnos(puertoEstelar, 10);
 
         Moho moho = new Moho(new Posicion(0, 0));
-        assertDoesNotThrow( () -> moho.expandirSobre(new Posicion(6,7)));
+        assertDoesNotThrow(() -> moho.expandibleSobre(new Posicion(6, 7)));
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

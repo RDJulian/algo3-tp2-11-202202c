@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Estructura.*;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -28,7 +27,8 @@ public class CasoDeUso7Test {
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
         GasVespeno gasVespeno = new GasVespeno();
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -49,14 +49,15 @@ public class CasoDeUso7Test {
     public void test03NexoMineralObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
         Recurso mineral = new Mineral();
-        Estructura estructura = new NexoMineral(new Posicion(0, 0), reserva);
-        estructura.construible(mineral);
+        NexoMineral nexoMineral = new NexoMineral();
+        nexoMineral.setReserva(reserva);
+        nexoMineral.construible(mineral);
 
-        pasarKTurnos(estructura, 5);
+        pasarKTurnos(nexoMineral, 5);
 
         assertEquals(reserva.getRecurso(), 20);
 
-        estructura.pasarTurno();
+        nexoMineral.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 40);
     }
@@ -65,14 +66,15 @@ public class CasoDeUso7Test {
     public void test04AsimiladorObtieneGasCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
         Recurso gasVespeno = new GasVespeno();
-        Estructura estructura = new Asimilador(new Posicion(0, 0), reserva);
-        estructura.construible(gasVespeno);
+        Asimilador asimilador = new Asimilador();
+        asimilador.setReserva(reserva);
+        asimilador.construible(gasVespeno);
 
-        pasarKTurnos(estructura, 7);
+        pasarKTurnos(asimilador, 7);
 
         assertEquals(reserva.getRecurso(), 20);
 
-        estructura.pasarTurno();
+        asimilador.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 40);
     }

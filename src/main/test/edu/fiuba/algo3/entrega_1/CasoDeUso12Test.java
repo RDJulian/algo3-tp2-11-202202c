@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,10 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CasoDeUso12Test {
     @Test
     public void test01DaniarUnaEstructuraProtossHastaQuitarleVidaDeberiaRegenerarSoloSuEscudoAlPasarTurnos() {
-        Estructura estructura = new Acceso(new Posicion(0, 0));
-        Pilon pilon = new Pilon(new Posicion(1, 1));
-        pasarKTurnos(pilon, 5);
-        estructura.construible(pilon);
+        Estructura estructura = new Acceso();
+        estructura.setEstadoEnergetico(new Activo());
 
         pasarKTurnos(estructura, 8);
         estructura.daniar(555);

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Nada;
@@ -14,26 +15,26 @@ import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public abstract class Estructura {
     protected Posicion posicion;
-    protected EstadoOperativo estado;
+    protected EstadoOperativo estadoOperativo;
+    protected EstadoEnergetico estadoEnergetico;
     protected Construible construible;
     protected Vida vida;
     protected Defensa defensa;
 
-    public Estructura(Posicion posicion) {
-        this.posicion = posicion;
-        posicion.setEstadoPosicion(new Ocupada());
+    public void setEstadoOperativo(EstadoOperativo estadoOperativo) {
+        this.estadoOperativo = estadoOperativo;
     }
 
-    public void setEstado(EstadoOperativo estado) {
-        this.estado = estado;
+    public void setEstadoEnergetico(EstadoEnergetico estadoEnergetico) {
+        this.estadoEnergetico = estadoEnergetico;
     }
 
     public void pasarTurno() {
-        this.estado.pasarTurno(this, this.vida, this.defensa);
+        this.estadoEnergetico.pasarTurno(this, this.estadoOperativo, this.vida, this.defensa);
     }
 
     public void operar() {
-        this.estado.operar(this);
+        this.estadoEnergetico.operar(this, this.estadoOperativo);
     }
 
     public void construible(Recurso recurso) {
@@ -48,6 +49,12 @@ public abstract class Estructura {
 
     public void construible(Reserva reservaMineral, Reserva reservaGas) {
         this.construible.construible(reservaMineral, reservaGas);
+    }
+
+    public void construible(Posicion posicion) {
+        posicion.ocupable();
+        posicion.setEstadoPosicion(new Ocupada());
+        this.posicion = posicion;
     }
 
     public abstract void efectuarOperacion();

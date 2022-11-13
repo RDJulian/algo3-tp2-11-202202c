@@ -12,8 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso13Test {
     @Test
     public void test01UnCriaderoSeConstruyeCreaMohoLuegoEsDestruidaPeroElMohoSigueEstando() {
-        Criadero criadero = new Criadero(new Posicion(0, 0));
-        Estructura reservaDeReproduccion = new ReservaDeReproduccion(new Posicion(-3, -3));
+        Criadero criadero = new Criadero();
+        criadero.construible(new Posicion(0, 0));
+        Estructura reservaDeReproduccion = new ReservaDeReproduccion();
+        reservaDeReproduccion.construible(new Posicion(-3, -3));
         Moho moho = new Moho(new Posicion(2, 2));
 
         Piso nuevoMoho = criadero.construible(moho);

@@ -17,7 +17,7 @@ public abstract class Vida {
         int nuevaVida = cantVida - danio;
         if (nuevaVida <= 0) {
             nuevaVida = 0;
-            estructura.setEstado(new Destruido());
+            estructura.setEstadoOperativo(new Destruido());
         }
         this.cantVida = nuevaVida;
     }

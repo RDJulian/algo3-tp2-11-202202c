@@ -15,8 +15,10 @@ public class CasoDeUso9Test {
 
     @Test
     public void test01UnaEstructuraProtossSigueActivaSiSeDestruyeUnPilonPeroEstaEnCercaniaDeOtro() {
-        Pilon unPilon = new Pilon(new Posicion(0, 0));
-        Pilon otroPilon = new Pilon(new Posicion(6, 6));
+        Pilon unPilon = new Pilon();
+        unPilon.construible(new Posicion(0, 0));
+        Pilon otroPilon = new Pilon();
+        otroPilon.construible(new Posicion(6, 6));
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
@@ -25,7 +27,8 @@ public class CasoDeUso9Test {
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
+        PuertoEstelar puertoEstelar = new PuertoEstelar();
+        puertoEstelar.construible(new Posicion(3, 3));
         puertoEstelar.construible(unPilon);
         pasarKTurnos(puertoEstelar, 10);
 
@@ -36,8 +39,10 @@ public class CasoDeUso9Test {
 
     @Test
     public void test02UnaEstructuraProtossQuedaInactivaSiSeDestruyeUnPilonYNoEstaEnCercaniaDeOtro() {
-        Pilon unPilon = new Pilon(new Posicion(0, 0));
-        Pilon otroPilon = new Pilon(new Posicion(7, 7));
+        Pilon unPilon = new Pilon();
+        unPilon.construible(new Posicion(0, 0));
+        Pilon otroPilon = new Pilon();
+        otroPilon.construible(new Posicion(7, 7));
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
@@ -46,7 +51,8 @@ public class CasoDeUso9Test {
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
+        PuertoEstelar puertoEstelar = new PuertoEstelar();
+        puertoEstelar.construible(new Posicion(3, 3));
         puertoEstelar.construible(unPilon);
         pasarKTurnos(puertoEstelar, 10);
 

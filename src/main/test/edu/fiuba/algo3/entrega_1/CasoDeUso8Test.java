@@ -2,7 +2,6 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficiente;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Acceso(new Posicion(0, 0));
+        Estructura estructura = new Acceso();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -32,7 +31,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Asimilador(new Posicion(0, 0));
+        Estructura estructura = new Asimilador();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -49,7 +48,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -66,7 +65,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Espiral(new Posicion(0, 0));
+        Estructura estructura = new Espiral();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -83,7 +82,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Extractor(new Posicion(0, 0));
+        Estructura estructura = new Extractor();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -100,7 +99,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Guarida(new Posicion(0, 0));
+        Estructura estructura = new Guarida();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -117,7 +116,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new NexoMineral(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -134,7 +133,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new Pilon(new Posicion(0, 0));
+        Estructura estructura = new Pilon();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -151,7 +150,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
+        Estructura estructura = new PuertoEstelar();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
@@ -168,7 +167,7 @@ public class CasoDeUso8Test {
         Reserva reservaGas = new Reserva(0);
         Reserva reservaMineral = new Reserva(0);
 
-        Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
+        Estructura estructura = new ReservaDeReproduccion();
 
         assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 

@@ -12,8 +12,8 @@ public class SinEnergia implements EstadoEnergetico {
         throw new EstructuraNoOperativa();
     }
 
+    //Se podria suponer que una estructura sin energia no puede regenerar su escudo.
     @Override
     public void pasarTurno(Estructura estructura, EstadoOperativo estadoOperativo, Vida vida, Defensa defensa) {
-
     }
 }

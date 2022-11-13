@@ -17,8 +17,11 @@ public class CasoDeUso15Test { //Se deberia resumir o setear directamente los es
     @Test
     public void test01ElMineralSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
         Recurso mineral = new Mineral();
-        Pilon pilon = new Pilon(new Posicion(0, 0));
-        Estructura nexoMineral = new NexoMineral(new Posicion(0, 0), new Reserva());
+        Pilon pilon = new Pilon();
+        pilon.construible(new Posicion(0, 0));
+        NexoMineral nexoMineral = new NexoMineral();
+        nexoMineral.construible(new Posicion(0, 0));
+        nexoMineral.setReserva(new Reserva());
 
         pasarKTurnos(pilon, 5);
         nexoMineral.construible(pilon);
@@ -35,7 +38,9 @@ public class CasoDeUso15Test { //Se deberia resumir o setear directamente los es
     @Test
     public void test02ElGasVespenoSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
         Recurso mineral = new GasVespeno();
-        Extractor extractor = new Extractor(new Posicion(0, 0), new Reserva());
+        Extractor extractor = new Extractor();
+        extractor.construible(new Posicion(0, 0));
+        extractor.setReserva(new Reserva());
         extractor.construible(mineral);
         pasarKTurnos(extractor, 6);
         extractor.agregarZangano(new Zangano());

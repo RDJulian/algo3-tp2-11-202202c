@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Estructura.*;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficiente;
-import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
@@ -19,16 +17,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Acceso(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 50);
         assertEquals(reservaGas.getRecurso(), 200);
     }
@@ -40,16 +34,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Asimilador(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 100);
         assertEquals(reservaGas.getRecurso(), 200);
     }
@@ -61,16 +51,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Criadero(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 150);
         assertEquals(reservaGas.getRecurso(), 200);
     }
@@ -82,16 +68,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Espiral(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 50);
         assertEquals(reservaGas.getRecurso(), 100);
     }
@@ -103,16 +85,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Extractor(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 100);
         assertEquals(reservaGas.getRecurso(), 200);
     }
@@ -124,16 +102,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Guarida(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 0);
         assertEquals(reservaGas.getRecurso(), 100);
     }
@@ -145,16 +119,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new NexoMineral(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 150);
         assertEquals(reservaGas.getRecurso(), 200);
     }
@@ -166,16 +136,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new Pilon(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 100);
         assertEquals(reservaGas.getRecurso(), 200);
     }
@@ -187,16 +153,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 50);
         assertEquals(reservaGas.getRecurso(), 50);
     }
@@ -208,16 +170,12 @@ public class CasoDeUso8Test {
 
         Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
 
-        assertThrows(RecursoInsuficiente.class, () -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertThrows(RecursoInsuficiente.class, () -> estructura.construible(reservaMineral, reservaGas));
 
         reservaGas.agregarRecurso(200);
         reservaMineral.agregarRecurso(200);
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(reservaMineral, reservaGas);
-        });
+        assertDoesNotThrow(() -> estructura.construible(reservaMineral, reservaGas));
         assertEquals(reservaMineral.getRecurso(), 50);
         assertEquals(reservaGas.getRecurso(), 200);
     }

@@ -21,7 +21,7 @@ public class CasoDeUso9Test {
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
 
-        Vector<Pilon> pilones = new Vector();
+        Vector<Pilon> pilones = new Vector<>();
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
@@ -31,9 +31,7 @@ public class CasoDeUso9Test {
 
         puertoEstelar.setEstadoEnergetico(pilones);
 
-        assertDoesNotThrow(() -> {
-            puertoEstelar.operar();
-        });
+        assertDoesNotThrow(puertoEstelar::operar);
     }
 
     @Test
@@ -44,7 +42,7 @@ public class CasoDeUso9Test {
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
 
-        Vector<Pilon> pilones = new Vector();
+        Vector<Pilon> pilones = new Vector<>();
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
@@ -55,9 +53,7 @@ public class CasoDeUso9Test {
         pilones.remove(0);
         puertoEstelar.setEstadoEnergetico(pilones);
 
-        assertThrows(EstructuraNoOperativa.class, () -> {
-            puertoEstelar.operar();
-        });
+        assertThrows(EstructuraNoOperativa.class, puertoEstelar::operar);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

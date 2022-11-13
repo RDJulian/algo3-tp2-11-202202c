@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
-import edu.fiuba.algo3.modelo.Construible.Costo;
-import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Construible.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -12,7 +9,7 @@ import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Pilon extends Estructura {
+public class Pilon extends Estructura implements Piso {
     private Rango rango;
 
     public Pilon(Posicion posicion) {
@@ -22,12 +19,6 @@ public class Pilon extends Estructura {
         this.rango = new Rango(posicion, 3);
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
-    }
-
-    @Override
-    public Piso construible(Piso moho) {
-        this.construible.construible(moho, this.posicion);
-        return null;
     }
 
     @Override
@@ -44,8 +35,13 @@ public class Pilon extends Estructura {
 
     }
 
-    public boolean enRango(Posicion posicion) {
+    public boolean fueraDeRango(Posicion posicion) {
         this.estado.operar(this);
-        return this.rango.incluye(posicion);
+        return !this.rango.incluye(posicion);
+    }
+
+    @Override
+    public void construible(ConstruibleSobreRango sobreRango) {
+        sobreRango.construirEnPilon();
     }
 }

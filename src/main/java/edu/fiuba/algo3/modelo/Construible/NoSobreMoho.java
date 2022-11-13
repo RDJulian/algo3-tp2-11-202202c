@@ -4,22 +4,20 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public class RangoMoho implements ConstruibleSobreRango {
+public class NoSobreMoho implements ConstruibleSobreRango {
+
     @Override
-    public void construible(Piso moho, Posicion posicion) {
-        moho.construible(this);
-        if (moho.fueraDeRango(posicion)) {
-            throw new ConstruccionNoValida();
-        }
+    public void construible(Piso piso, Posicion posicion) {
+        piso.construible(this);
     }
 
     @Override
     public void construirEnPilon() {
-        throw new ConstruccionNoValida();
+
     }
 
     @Override
     public void construirEnMoho() {
-
+        throw new ConstruccionNoValida();
     }
 }

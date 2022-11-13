@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.EstadoEstructura.ConEnergia;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
 import edu.fiuba.algo3.modelo.EstadoEstructura.SinEnergia;
+import edu.fiuba.algo3.modelo.Piso.Nada;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -37,15 +38,10 @@ public class Acceso extends Estructura {
     }
 
     @Override
-    public void construible(Pilon pilon) {
-        this.construible.construible(pilon, this.posicion);
+    public Piso construible(Piso piso) {
+        this.construible.construible(piso, this.posicion);
         this.estadoEnergetico = new ConEnergia();
-    }
-
-    @Override
-    public Piso construible(Piso moho) {
-        this.construible.construible(moho, this.posicion);
-        return null;
+        return new Nada();
     }
 
     @Override

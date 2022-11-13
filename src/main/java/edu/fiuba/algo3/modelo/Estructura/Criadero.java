@@ -23,8 +23,8 @@ public class Criadero extends Estructura {
     }
 
     @Override
-    public Piso construible(Piso moho) {
-        this.construible.construible(moho, this.posicion);
+    public Piso construible(Piso piso) {
+        this.construible.construible(piso, this.posicion);
         return new Moho(this.posicion);
     }
 

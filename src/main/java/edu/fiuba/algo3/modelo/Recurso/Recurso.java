@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRecurso;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoVacio;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 
 public abstract class Recurso {
@@ -8,5 +9,12 @@ public abstract class Recurso {
 
     public abstract void construible(ConstruibleSobreRecurso sobreRecurso);
 
-    public abstract void extraerRecurso(int unidades, Reserva reserva);
+    public void extraerRecurso(int unidades, Reserva reserva) {
+        int nuevasUnidades = this.unidades - unidades;
+        if (nuevasUnidades < 0) {
+            throw new RecursoVacio();
+        }
+        this.unidades = nuevasUnidades;
+        reserva.agregarRecurso(unidades);
+    }
 }

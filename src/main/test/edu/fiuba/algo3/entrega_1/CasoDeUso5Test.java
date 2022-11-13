@@ -16,9 +16,7 @@ public class CasoDeUso5Test {
         pasarKTurnos(pilon, 5);
         Estructura estructura = new Acceso(new Posicion(10, 10));
 
-        assertThrows(ConstruccionNoValida.class, () -> {
-            estructura.construible(pilon);
-        });
+        assertThrows(ConstruccionNoValida.class, () -> estructura.construible(pilon));
     }
 
     @Test
@@ -26,9 +24,7 @@ public class CasoDeUso5Test {
         Moho moho = new Moho(new Posicion(0, 0));
         Estructura estructura = new ReservaDeReproduccion(new Posicion(10, 10));
 
-        assertThrows(ConstruccionNoValida.class, () -> {
-            estructura.construible(moho);
-        });
+        assertThrows(ConstruccionNoValida.class, () -> estructura.construible(moho));
     }
 
     @Test
@@ -37,9 +33,7 @@ public class CasoDeUso5Test {
         pasarKTurnos(pilon, 5);
         Estructura estructura = new Acceso(new Posicion(3, 3));
 
-        assertDoesNotThrow(() -> {
-            estructura.construible(pilon);
-        });
+        assertDoesNotThrow(() -> estructura.construible(pilon));
     }
 
     @Test

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvas;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
 
@@ -13,7 +12,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test01CriaderoSeIniciaConTresLarvas() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero();
         pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
@@ -22,7 +21,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test02CriaderoSeIniciaConTresLarvasYNoPuedeSuperarTres() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero();
         pasarKTurnos(estructura, 4);
         estructura.pasarTurno();
         operarKVeces(estructura, 3);
@@ -32,7 +31,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test03CriaderoSeIniciaConTresLarvasSeUsanTresPasaElTurnoYSeGeneraUna() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero();
         pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
@@ -44,7 +43,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test04CriaderoSeIniciaConTresLarvasSeUsanTresPasanTurnosYSeGeneranDos() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero();
         pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
@@ -56,7 +55,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test05CriaderoSeIniciaConTresLarvasSeUsanTresPasanTurnosYSeGeneranTres() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero();
         pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 

@@ -14,11 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso14Test {
     @Test
     public void test01UnaEstructuraProtossNoSePuedeConstruirSobreMoho() {
-        Estructura acceso = new Acceso(new Posicion(0, 0));
-        Estructura nexoMineral = new NexoMineral(new Posicion(0, 0));
-        Estructura asimilador = new Asimilador(new Posicion(0, 0));
-        Estructura pilon = new Pilon(new Posicion(0, 0));
-        Estructura puertoEstelar = new PuertoEstelar(new Posicion(0, 0));
+        Estructura acceso = new Acceso();
+        Estructura nexoMineral = new NexoMineral();
+        Estructura asimilador = new Asimilador();
+        Estructura pilon = new Pilon();
+        Estructura puertoEstelar = new PuertoEstelar();
+        acceso.construible(new Posicion(0, 0));
+        nexoMineral.construible(new Posicion(0, 0));
+        asimilador.construible(new Posicion(0, 0));
+        pilon.construible(new Posicion(0, 0));
+        puertoEstelar.construible(new Posicion(0, 0));
         Piso moho = new Moho(new Posicion(3, 3));
 
         assertThrows(ConstruccionNoValida.class, () -> acceso.construible(moho));
@@ -30,12 +35,8 @@ public class CasoDeUso14Test {
 
     @Test
     public void test02ElMohoNoPuedeExpandirseSobreUnaPosicionConEdificacion() {
-        Pilon pilon = new Pilon(new Posicion(6, 6));
-        pasarKTurnos(pilon, 5);
-
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(6, 6));
-        puertoEstelar.construible(pilon);
-        pasarKTurnos(puertoEstelar, 10);
+        PuertoEstelar puertoEstelar = new PuertoEstelar();
+        puertoEstelar.construible(new Posicion(6, 6));
 
         Moho moho = new Moho(new Posicion(0, 0));
         assertThrows(PosicionOcupada.class, () -> moho.expandibleSobre(puertoEstelar));
@@ -43,13 +44,6 @@ public class CasoDeUso14Test {
 
     @Test
     public void test03ElMohoSePuedeExpandirseSobreUnaPosicionNoOcupada() {
-        Pilon pilon = new Pilon(new Posicion(6, 6));
-        pasarKTurnos(pilon, 5);
-
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(6, 6));
-        puertoEstelar.construible(pilon);
-        pasarKTurnos(puertoEstelar, 10);
-
         Moho moho = new Moho(new Posicion(0, 0));
         assertDoesNotThrow(() -> moho.expandibleSobre(new Posicion(6, 7)));
     }

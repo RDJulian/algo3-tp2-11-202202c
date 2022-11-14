@@ -15,23 +15,23 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso3Test {
 
     @Test
-    public void test01CriaderoNoSePuedeConstruirSobreElGasVespeno() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+    public void test01EstructuraNoSePuedeConstruirSobreElGasVespeno() {
+        Estructura estructura = new Criadero();
         Recurso recurso = new GasVespeno();
         assertThrows(ConstruccionNoValida.class, () -> estructura.construible(recurso));
     }
 
     @Test
     public void test02ExtractorSePuedeConstruirSobreElGasVespeno() {
-        Estructura estructura = new Extractor(new Posicion(0, 0));
-        Recurso recurso = new GasVespeno();
+        Estructura estructura = new Extractor();
+        Recurso recurso = new GasVespeno(new Posicion(0, 0));
         assertDoesNotThrow(() -> estructura.construible(recurso));
     }
 
     @Test
     public void test03AsimiladorSePuedeConstruirSobreElGasVespeno() {
-        Estructura estructura = new Asimilador(new Posicion(0, 0));
-        Recurso recurso = new GasVespeno();
+        Estructura estructura = new Asimilador();
+        Recurso recurso = new GasVespeno(new Posicion(0, 0));
         assertDoesNotThrow(() -> estructura.construible(recurso));
     }
 }

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
+import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
@@ -12,25 +12,15 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 import java.util.Vector;
 
-public class Extractor extends Estructura {
+public class Extractor extends Estructura implements ExtraeRecurso {
     private Vector<Zangano> zanganos;
     private Recurso gasVespeno;
     private Reserva reserva;
 
-    public Extractor(Posicion posicion) {
-        super(posicion);
-        this.estado = new EnConstruccion(6);
-        this.construible = new Construible(new SobreGasVespeno(), new RangoMoho(), new Costo(100, 0));
-        this.zanganos = new Vector<>(0);
-        this.vida = new Regenerativa(750);
-        this.defensa = new SinEscudo();
-    }
-
-    public Extractor(Posicion posicion, Reserva reserva) {
-        super(posicion);
-        this.estado = new EnConstruccion(6);
+    public Extractor() {
+        this.estadoOperativo = new EnConstruccion(6);
+        this.estadoEnergetico = new Activo();
         this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0));
-        this.reserva = reserva;
         this.zanganos = new Vector<>(0);
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
@@ -44,12 +34,13 @@ public class Extractor extends Estructura {
     @Override
     public void pasarTurnoOperativo() {
         for (Zangano zangano : zanganos) {
-            zangano.extraerRecurso(this.gasVespeno, this.reserva);
+            zangano.usarExtractor(this.gasVespeno, this.reserva, this);
         }
     }
 
     @Override
     public void construir(Recurso recurso) {
+        recurso.ocupable(this);
         this.gasVespeno = recurso;
     }
 
@@ -58,5 +49,10 @@ public class Extractor extends Estructura {
             throw new ExtractorLleno();
         }
         this.zanganos.add(zangano);
+    }
+
+    //Creo este metodo para setear la reserva por ahora
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 }

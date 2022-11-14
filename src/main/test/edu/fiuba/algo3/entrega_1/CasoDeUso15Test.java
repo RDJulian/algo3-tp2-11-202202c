@@ -16,13 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso15Test { //Se deberia resumir o setear directamente los estados para ahorrar lineas de codigo.
     @Test
     public void test01ElMineralSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Recurso mineral = new Mineral();
-        Pilon pilon = new Pilon(new Posicion(0, 0));
-        Estructura nexoMineral = new NexoMineral(new Posicion(0, 0), new Reserva());
-
-        pasarKTurnos(pilon, 5);
-        nexoMineral.construible(pilon);
+        Recurso mineral = new Mineral(new Posicion(0, 0));
+        NexoMineral nexoMineral = new NexoMineral();
+        nexoMineral.setReserva(new Reserva());
         nexoMineral.construible(mineral);
+
         pasarKTurnos(nexoMineral, 4);
 
         pasarKTurnos(nexoMineral, 99);
@@ -34,8 +32,9 @@ public class CasoDeUso15Test { //Se deberia resumir o setear directamente los es
 
     @Test
     public void test02ElGasVespenoSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Recurso mineral = new GasVespeno();
-        Extractor extractor = new Extractor(new Posicion(0, 0), new Reserva());
+        Recurso mineral = new GasVespeno(new Posicion(0, 0));
+        Extractor extractor = new Extractor();
+        extractor.setReserva(new Reserva());
         extractor.construible(mineral);
         pasarKTurnos(extractor, 6);
         extractor.agregarZangano(new Zangano());

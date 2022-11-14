@@ -15,7 +15,8 @@ public class CasoDeUso6Test {
     @Test
     public void test01ElMohoSeExpandeCadaDosTurnosYSePuedeConstruirEnElLuegoDeExpandirse() {
         Moho moho = new Moho(new Posicion(0, 0));
-        Estructura estructura = new ReservaDeReproduccion(new Posicion(6, 6));
+        Estructura estructura = new ReservaDeReproduccion();
+        estructura.construible(new Posicion(6, 6));
 
         assertThrows(ConstruccionNoValida.class, () -> estructura.construible(moho)); //Se puede sacar.
 

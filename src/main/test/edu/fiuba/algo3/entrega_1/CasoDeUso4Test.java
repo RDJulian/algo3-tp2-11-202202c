@@ -16,9 +16,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -30,9 +31,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -45,9 +47,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -61,9 +64,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -78,12 +82,13 @@ public class CasoDeUso4Test {
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         pasarKTurnos(extractor, 6);
         extractor.construible(gasVespeno);
-
+        
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());

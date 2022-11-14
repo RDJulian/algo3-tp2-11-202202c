@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public class ConEnergia implements EstadoEnergetico {
+public class Activo implements EstadoEnergetico {
 
     @Override
     public void operar(Estructura estructura, EstadoOperativo estadoOperativo) {

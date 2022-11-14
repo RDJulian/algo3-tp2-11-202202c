@@ -19,7 +19,7 @@ public class EnConstruccion implements EstadoOperativo {
     public void pasarTurno(Estructura estructura, Vida vida, Defensa defensa) {
         this.tiempoParaOperar -= 1;
         if (this.tiempoParaOperar == 0) {
-            estructura.setEstado(new Operativo());
+            estructura.setEstadoOperativo(new Operativo());
         }
         vida.regenerar();
         defensa.regenerar();

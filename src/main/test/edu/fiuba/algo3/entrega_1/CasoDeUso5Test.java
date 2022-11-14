@@ -12,9 +12,11 @@ public class CasoDeUso5Test {
 
     @Test
     public void test01NoSePuedeConstruirUnaEstructuraProtossFueraDelRangoDeUnPilon() {
-        Pilon pilon = new Pilon(new Posicion(0, 0));
+        Pilon pilon = new Pilon();
+        pilon.construible(new Posicion(0, 0));
         pasarKTurnos(pilon, 5);
-        Estructura estructura = new Acceso(new Posicion(10, 10));
+        Estructura estructura = new Acceso();
+        estructura.construible(new Posicion(10, 10));
 
         assertThrows(ConstruccionNoValida.class, () -> estructura.construible(pilon));
     }
@@ -22,16 +24,19 @@ public class CasoDeUso5Test {
     @Test
     public void test02NoSePuedeConstruirUnaEstructuraZergFueraDelRangoDelMoho() {
         Moho moho = new Moho(new Posicion(0, 0));
-        Estructura estructura = new ReservaDeReproduccion(new Posicion(10, 10));
+        Estructura estructura = new ReservaDeReproduccion();
+        estructura.construible(new Posicion(10, 10));
 
         assertThrows(ConstruccionNoValida.class, () -> estructura.construible(moho));
     }
 
     @Test
     public void test03SePuedeConstruirUnaEstructuraProtossEnElRangoDeUnPilon() {
-        Pilon pilon = new Pilon(new Posicion(0, 0));
+        Pilon pilon = new Pilon();
+        pilon.construible(new Posicion(0, 0));
         pasarKTurnos(pilon, 5);
-        Estructura estructura = new Acceso(new Posicion(3, 3));
+        Estructura estructura = new Acceso();
+        estructura.construible(new Posicion(3, 3));
 
         assertDoesNotThrow(() -> estructura.construible(pilon));
     }
@@ -39,7 +44,8 @@ public class CasoDeUso5Test {
     @Test
     public void test04SePuedeConstruirUnaEstructuraZergEnElRangoDelMoho() {
         Moho moho = new Moho(new Posicion(0, 0));
-        Estructura estructura = new ReservaDeReproduccion(new Posicion(5, 5));
+        Estructura estructura = new ReservaDeReproduccion();
+        estructura.construible(new Posicion(5, 5));
 
         assertDoesNotThrow(() -> {
             estructura.construible(moho);

@@ -16,9 +16,10 @@ public class CasoDeUso7Test {
     @Test
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
-        Recurso mineral = new Mineral();
+        Recurso mineral = new Mineral(new Posicion(0, 0));
         Zangano zangano = new Zangano();
 
+        mineral.ocupable(zangano);
         zangano.extraerRecurso(mineral, reserva);
 
         assertEquals(reserva.getRecurso(), 10);
@@ -26,9 +27,10 @@ public class CasoDeUso7Test {
 
     @Test
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(new Posicion(0, 0), reserva);
+        Extractor extractor = new Extractor();
+        extractor.setReserva(reserva);
         extractor.construible(gasVespeno);
 
         pasarKTurnos(extractor, 6);
@@ -48,15 +50,16 @@ public class CasoDeUso7Test {
     @Test
     public void test03NexoMineralObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
-        Recurso mineral = new Mineral();
-        Estructura estructura = new NexoMineral(new Posicion(0, 0), reserva);
-        estructura.construible(mineral);
+        Recurso mineral = new Mineral(new Posicion(0, 0));
+        NexoMineral nexoMineral = new NexoMineral();
+        nexoMineral.setReserva(reserva);
+        nexoMineral.construible(mineral);
 
-        pasarKTurnos(estructura, 5);
+        pasarKTurnos(nexoMineral, 5);
 
         assertEquals(reserva.getRecurso(), 20);
 
-        estructura.pasarTurno();
+        nexoMineral.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 40);
     }
@@ -64,15 +67,16 @@ public class CasoDeUso7Test {
     @Test
     public void test04AsimiladorObtieneGasCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
-        Recurso gasVespeno = new GasVespeno();
-        Estructura estructura = new Asimilador(new Posicion(0, 0), reserva);
-        estructura.construible(gasVespeno);
+        Recurso gasVespeno = new GasVespeno(new Posicion(0, 0));
+        Asimilador asimilador = new Asimilador();
+        asimilador.setReserva(reserva);
+        asimilador.construible(gasVespeno);
 
-        pasarKTurnos(estructura, 7);
+        pasarKTurnos(asimilador, 7);
 
         assertEquals(reserva.getRecurso(), 20);
 
-        estructura.pasarTurno();
+        asimilador.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 40);
     }

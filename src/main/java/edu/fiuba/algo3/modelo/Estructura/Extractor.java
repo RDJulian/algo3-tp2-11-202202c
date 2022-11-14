@@ -34,13 +34,13 @@ public class Extractor extends Estructura implements ExtraeRecurso {
     @Override
     public void pasarTurnoOperativo() {
         for (Zangano zangano : zanganos) {
-            zangano.extraerRecurso(this.gasVespeno, this.reserva);
+            zangano.usarExtractor(this.gasVespeno, this.reserva, this);
         }
     }
 
     @Override
     public void construir(Recurso recurso) {
-        recurso.ocupable();
+        recurso.ocupable(this);
         this.gasVespeno = recurso;
     }
 

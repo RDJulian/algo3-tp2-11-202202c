@@ -16,9 +16,10 @@ public class CasoDeUso7Test {
     @Test
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
-        Recurso mineral = new Mineral();
+        Recurso mineral = new Mineral(new Posicion(0, 0));
         Zangano zangano = new Zangano();
 
+        mineral.ocupable(zangano);
         zangano.extraerRecurso(mineral, reserva);
 
         assertEquals(reserva.getRecurso(), 10);

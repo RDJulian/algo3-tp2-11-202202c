@@ -27,12 +27,12 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
 
     @Override
     public void pasarTurnoOperativo() {
-        mineral.extraerRecurso(20, this.reserva); //Asumimos 20.
+        mineral.extraerRecurso(20, this.reserva, this); //Asumimos 20.
     }
 
     @Override
     public void construir(Recurso recurso) {
-        recurso.ocupable();
+        recurso.ocupable(this);
         this.mineral = recurso;
     }
 

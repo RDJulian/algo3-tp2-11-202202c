@@ -27,12 +27,12 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
 
     @Override
     public void pasarTurnoOperativo() {
-        gasVespeno.extraerRecurso(20, this.reserva);
+        gasVespeno.extraerRecurso(20, this.reserva, this);
     }
 
     @Override
     public void construir(Recurso recurso) {
-        recurso.ocupable();
+        recurso.ocupable(this);
         this.gasVespeno = recurso;
     }
 

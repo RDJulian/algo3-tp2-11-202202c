@@ -88,7 +88,7 @@ public class CasoDeUso4Test {
         extractor.setReserva(reserva);
         pasarKTurnos(extractor, 6);
         extractor.construible(gasVespeno);
-
+        
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());

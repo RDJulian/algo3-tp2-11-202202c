@@ -9,4 +9,8 @@ public class Zangano {
         recurso.extraerRecurso(10, reserva);
     }
 
+    public void ocupar(Recurso mineral) {
+        mineral.ocupable();
+    }
+
 }

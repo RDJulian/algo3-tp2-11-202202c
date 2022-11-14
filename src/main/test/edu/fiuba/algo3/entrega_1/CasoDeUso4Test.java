@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
@@ -15,7 +16,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor();
         extractor.setReserva(reserva);
@@ -30,7 +31,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor();
         extractor.setReserva(reserva);
@@ -46,7 +47,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor();
         extractor.setReserva(reserva);
@@ -63,7 +64,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor();
         extractor.setReserva(reserva);
@@ -81,7 +82,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor();
         extractor.setReserva(reserva);

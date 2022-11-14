@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Estructura.*;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -25,7 +26,7 @@ public class CasoDeUso7Test {
 
     @Test
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
-        GasVespeno gasVespeno = new GasVespeno();
+        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor();
         extractor.setReserva(reserva);
@@ -48,7 +49,7 @@ public class CasoDeUso7Test {
     @Test
     public void test03NexoMineralObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
-        Recurso mineral = new Mineral();
+        Recurso mineral = new Mineral(new Posicion(0, 0));
         NexoMineral nexoMineral = new NexoMineral();
         nexoMineral.setReserva(reserva);
         nexoMineral.construible(mineral);
@@ -65,7 +66,7 @@ public class CasoDeUso7Test {
     @Test
     public void test04AsimiladorObtieneGasCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
-        Recurso gasVespeno = new GasVespeno();
+        Recurso gasVespeno = new GasVespeno(new Posicion(0, 0));
         Asimilador asimilador = new Asimilador();
         asimilador.setReserva(reserva);
         asimilador.construible(gasVespeno);

@@ -32,6 +32,7 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
 
     @Override
     public void construir(Recurso recurso) {
+        recurso.ocupable();
         this.mineral = recurso;
     }
 

@@ -29,10 +29,19 @@ public abstract class Estructura {
         this.estadoEnergetico = estadoEnergetico;
     }
 
+    public int getVida() {
+        return this.vida.getVida();
+    }
+
+    public int getDefensa() {
+        return this.defensa.getDefensa();
+    }
+
     public void pasarTurno() {
         this.estadoEnergetico.pasarTurno(this, this.estadoOperativo, this.vida, this.defensa);
     }
 
+    //Capaz operar deberia ser operable, que sea una consulta mas que otra cosa.
     public void operar() {
         this.estadoEnergetico.operar(this, this.estadoOperativo);
     }
@@ -67,13 +76,6 @@ public abstract class Estructura {
         this.defensa.proteger(this, this.vida, danio);
     }
 
-    public int getVida() {
-        return this.vida.getVida();
-    }
-
-    public int getDefensa() {
-        return this.defensa.getDefensa();
-    }
 
     public Posicion getPosicion() {
         return this.posicion;

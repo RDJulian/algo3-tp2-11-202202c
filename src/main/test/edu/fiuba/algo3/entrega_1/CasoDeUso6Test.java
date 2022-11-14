@@ -18,13 +18,13 @@ public class CasoDeUso6Test {
         Estructura estructura = new ReservaDeReproduccion();
         estructura.construible(new Posicion(6, 6));
 
-        assertThrows(ConstruccionNoValida.class, () -> estructura.construible(moho)); //Se puede sacar.
+        assertThrows(ConstruccionNoValida.class, () -> estructura.construiblePiso(moho)); //Se puede sacar.
 
         moho.pasarTurno();
         moho.pasarTurno();
 
         assertDoesNotThrow(() -> {
-            estructura.construible(moho);
+            estructura.construiblePiso(moho);
         });
     }
 }

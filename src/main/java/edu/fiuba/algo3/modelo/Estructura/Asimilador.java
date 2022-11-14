@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Estructura;
 import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
@@ -15,7 +16,7 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
     public Asimilador() {
         this.estadoOperativo = new EnConstruccion(6);
         this.estadoEnergetico = new Activo();
-        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0));
+        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0), new NoRequiereOtra());
         this.vida = new Normal(450);
         this.defensa = new Escudo(450);
     }
@@ -39,5 +40,10 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
     //Creo este metodo para setear la reserva por ahora
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    @Override
+    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.construibleConAsimilador();
     }
 }

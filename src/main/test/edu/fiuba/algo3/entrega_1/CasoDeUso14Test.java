@@ -26,11 +26,11 @@ public class CasoDeUso14Test {
         puertoEstelar.construible(new Posicion(0, 0));
         Piso moho = new Moho(new Posicion(3, 3));
 
-        assertThrows(ConstruccionNoValida.class, () -> acceso.construible(moho));
-        assertThrows(ConstruccionNoValida.class, () -> nexoMineral.construible(moho));
-        assertThrows(ConstruccionNoValida.class, () -> asimilador.construible(moho));
-        assertThrows(ConstruccionNoValida.class, () -> pilon.construible(moho));
-        assertThrows(ConstruccionNoValida.class, () -> puertoEstelar.construible(moho));
+        assertThrows(ConstruccionNoValida.class, () -> acceso.construiblePiso(moho));
+        assertThrows(ConstruccionNoValida.class, () -> nexoMineral.construiblePiso(moho));
+        assertThrows(ConstruccionNoValida.class, () -> asimilador.construiblePiso(moho));
+        assertThrows(ConstruccionNoValida.class, () -> pilon.construiblePiso(moho));
+        assertThrows(ConstruccionNoValida.class, () -> puertoEstelar.construiblePiso(moho));
     }
 
     @Test
@@ -47,11 +47,4 @@ public class CasoDeUso14Test {
         Moho moho = new Moho(new Posicion(0, 0));
         assertDoesNotThrow(() -> moho.expandibleSobre(new Posicion(6, 7)));
     }
-
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
-    }
-
 }

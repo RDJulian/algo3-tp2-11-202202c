@@ -29,7 +29,7 @@ public class CasoDeUso9Test {
 
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.construible(new Posicion(3, 3));
-        puertoEstelar.construible(unPilon);
+        puertoEstelar.construiblePiso(unPilon);
         pasarKTurnos(puertoEstelar, 10);
 
         puertoEstelar.setEstadoEnergetico(pilones);
@@ -53,7 +53,7 @@ public class CasoDeUso9Test {
 
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.construible(new Posicion(3, 3));
-        puertoEstelar.construible(unPilon);
+        puertoEstelar.construiblePiso(unPilon);
         pasarKTurnos(puertoEstelar, 10);
 
         pilones.remove(0);

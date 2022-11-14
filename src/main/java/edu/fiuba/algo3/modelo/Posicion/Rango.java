@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Posicion;
 
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
-
 public class Rango {
     private Posicion posicion;
     private int radio;
@@ -11,12 +9,12 @@ public class Rango {
         this.radio = radio;
     }
 
-    public boolean incluye(Posicion posicion) {
+    public boolean noIncluye(Posicion posicion) {
         //REDO: Este metodo rompe encapsulamiento.
-        return posicion.getX() <= this.posicion.getX() + radio &
+        return !(posicion.getX() <= this.posicion.getX() + radio &
                 posicion.getX() >= this.posicion.getX() - radio &
                 posicion.getY() <= this.posicion.getY() + radio &
-                posicion.getY() >= this.posicion.getY() - radio;
+                posicion.getY() >= this.posicion.getY() - radio);
     }
 
     public void expandir() {

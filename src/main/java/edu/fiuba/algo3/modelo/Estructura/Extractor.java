@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
+import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Trabajador.Zangano;
@@ -20,7 +21,7 @@ public class Extractor extends Estructura implements ExtraeRecurso {
     public Extractor() {
         this.estadoOperativo = new EnConstruccion(6);
         this.estadoEnergetico = new Activo();
-        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0));
+        this.construible = new Construible(new SobreGasVespeno(), new NoSobreMoho(), new Costo(100, 0), new NoRequiereOtra());
         this.zanganos = new Vector<>(0);
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
@@ -54,5 +55,10 @@ public class Extractor extends Estructura implements ExtraeRecurso {
     //Creo este metodo para setear la reserva por ahora
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    @Override
+    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.construibleConExtractor();
     }
 }

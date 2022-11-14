@@ -15,7 +15,7 @@ public class Moho implements Piso {
     }
 
     public boolean fueraDeRango(Posicion posicion) {
-        return !this.rango.incluye(posicion);
+        return this.rango.noIncluye(posicion);
     }
 
     @Override

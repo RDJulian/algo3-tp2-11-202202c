@@ -18,7 +18,7 @@ public class CasoDeUso13Test {
         reservaDeReproduccion.construible(new Posicion(-3, -3));
         Moho moho = new Moho(new Posicion(2, 2));
 
-        Piso nuevoMoho = criadero.construible(moho);
+        Piso nuevoMoho = criadero.construiblePiso(moho);
         pasarKTurnos(criadero, 4);
 
         criadero.daniar(600);
@@ -26,7 +26,7 @@ public class CasoDeUso13Test {
         assertThrows(EstructuraDestruida.class, criadero::operar);
 
         assertDoesNotThrow(() -> {
-            reservaDeReproduccion.construible(nuevoMoho);
+            reservaDeReproduccion.construiblePiso(nuevoMoho);
         });
 
     }

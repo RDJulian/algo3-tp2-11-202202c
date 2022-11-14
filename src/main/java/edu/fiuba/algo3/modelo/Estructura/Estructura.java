@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.RequiereOtraEstructura;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Piso.Moho;
@@ -46,12 +47,16 @@ public abstract class Estructura {
         this.estadoEnergetico.operar(this, this.estadoOperativo);
     }
 
+
+    //Todos los metodos del tipo construible no deberian ser polimorficos por naturaleza
+    //Se les esta pasando a cada uno un parametro distinto, deberian tener nombres distintos para no
+    //Entrar en problemas.
     public void construible(Recurso recurso) {
         this.construible.construible(recurso);
         this.construir(recurso);
     }
 
-    public Piso construible(Piso piso) {
+    public Piso construiblePiso(Piso piso) {
         this.construible.construible(piso, this.posicion);
         return new Nada();
     }
@@ -66,6 +71,10 @@ public abstract class Estructura {
         this.posicion = posicion;
     }
 
+    public void construible(Estructura estructura) {
+        this.construible.construible(estructura);
+    }
+
     public abstract void efectuarOperacion();
 
     public abstract void pasarTurnoOperativo();
@@ -76,12 +85,9 @@ public abstract class Estructura {
         this.defensa.proteger(this, this.vida, danio);
     }
 
-
-    public Posicion getPosicion() {
-        return this.posicion;
-    }
-
     public void expandible(Moho moho) {
         moho.expandibleSobre(this.posicion);
     }
+
+    public abstract void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura);
 }

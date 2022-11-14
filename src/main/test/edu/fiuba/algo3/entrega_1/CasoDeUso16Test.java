@@ -58,10 +58,4 @@ public class CasoDeUso16Test {
 
         assertThrows(ExtractorIncorrecto.class, () -> zangano.extraerRecurso(mineral, reserva));
     }
-
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
-    }
 }

@@ -17,7 +17,7 @@ public class Pilon extends Estructura implements Piso {
     public Pilon() {
         this.estadoOperativo = new EnConstruccion(5);
         this.estadoEnergetico = new Activo(); //Supuesto
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(100, 0));
+        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(100, 0), new NoRequiereOtra());
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
     }
@@ -46,11 +46,16 @@ public class Pilon extends Estructura implements Piso {
 
     public boolean fueraDeRango(Posicion posicion) {
         this.estadoOperativo.operar(this);
-        return !this.rango.incluye(posicion);
+        return this.rango.noIncluye(posicion);
     }
 
     @Override
     public void construible(ConstruibleSobreRango sobreRango) {
         sobreRango.construirEnPilon();
+    }
+
+    @Override
+    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.construibleConPilon();
     }
 }

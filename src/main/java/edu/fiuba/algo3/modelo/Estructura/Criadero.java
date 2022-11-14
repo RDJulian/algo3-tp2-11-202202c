@@ -16,14 +16,14 @@ public class Criadero extends Estructura {
     public Criadero() {
         this.estadoOperativo = new EnConstruccion(4);
         this.estadoEnergetico = new Activo();
-        this.construible = new Construible(new NoSobreRecurso(), new RangoMoho(), new Costo(50, 0));
+        this.construible = new Construible(new NoSobreRecurso(), new RangoMoho(), new Costo(50, 0), new NoRequiereOtra());
         this.larvas = 3;
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
     }
 
     @Override
-    public Piso construible(Piso piso) {
+    public Piso construiblePiso(Piso piso) {
         this.construible.construible(piso, this.posicion);
         return new Moho(this.posicion);
     }
@@ -46,5 +46,10 @@ public class Criadero extends Estructura {
     @Override
     public void construir(Recurso recurso) {
 
+    }
+
+    @Override
+    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.construibleConCriadero();
     }
 }

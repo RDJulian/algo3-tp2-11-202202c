@@ -18,7 +18,7 @@ public class CasoDeUso5Test {
         Estructura estructura = new Acceso();
         estructura.construible(new Posicion(10, 10));
 
-        assertThrows(ConstruccionNoValida.class, () -> estructura.construible(pilon));
+        assertThrows(ConstruccionNoValida.class, () -> estructura.construiblePiso(pilon));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class CasoDeUso5Test {
         Estructura estructura = new ReservaDeReproduccion();
         estructura.construible(new Posicion(10, 10));
 
-        assertThrows(ConstruccionNoValida.class, () -> estructura.construible(moho));
+        assertThrows(ConstruccionNoValida.class, () -> estructura.construiblePiso(moho));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CasoDeUso5Test {
         estructura.construible(new Posicion(5, 5));
 
         assertDoesNotThrow(() -> {
-            estructura.construible(moho);
+            estructura.construiblePiso(moho);
         });
     }
 

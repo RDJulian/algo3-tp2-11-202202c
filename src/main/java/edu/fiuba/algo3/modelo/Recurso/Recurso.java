@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRecurso;
-import edu.fiuba.algo3.modelo.Estructura.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrecto;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacio;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;

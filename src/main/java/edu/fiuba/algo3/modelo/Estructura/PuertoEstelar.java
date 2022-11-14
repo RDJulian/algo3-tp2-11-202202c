@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
-import edu.fiuba.algo3.modelo.Construible.Costo;
-import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Construible.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.*;
 import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
@@ -21,13 +18,13 @@ public class PuertoEstelar extends Estructura {
     public PuertoEstelar() {
         this.estadoOperativo = new EnConstruccion(10);
         this.estadoEnergetico = new SinEnergia();
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(150, 150));
+        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(150, 150), new RequiereAcceso());
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
     }
 
     @Override
-    public Piso construible(Piso piso) {
+    public Piso construiblePiso(Piso piso) {
         this.construible.construible(piso, this.posicion);
         this.estadoEnergetico = new Activo();
         return new Nada();
@@ -55,5 +52,10 @@ public class PuertoEstelar extends Estructura {
     @Override
     public void construir(Recurso recurso) {
 
+    }
+
+    @Override
+    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.construibleConPuertoEstelar();
     }
 }

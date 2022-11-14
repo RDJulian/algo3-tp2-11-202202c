@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Trabajador;
 
-import edu.fiuba.algo3.modelo.Estructura.ExtraeRecurso;
+import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 

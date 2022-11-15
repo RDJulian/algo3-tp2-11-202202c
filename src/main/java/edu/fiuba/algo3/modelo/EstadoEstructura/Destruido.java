@@ -15,4 +15,9 @@ public class Destruido implements EstadoOperativo {
     public void pasarTurno(Estructura estructura, Vida vida, Defensa defensa) {
 
     }
+
+    @Override
+    public void atacable() {
+        throw new EstructuraDestruida();
+    }
 }

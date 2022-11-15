@@ -16,4 +16,9 @@ public class Operativo implements EstadoOperativo {
         defensa.regenerar();
     }
 
+    @Override
+    public void atacable() {
+
+    }
+
 }

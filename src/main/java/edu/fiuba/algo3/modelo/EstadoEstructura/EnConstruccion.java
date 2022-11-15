@@ -24,4 +24,9 @@ public class EnConstruccion implements EstadoOperativo {
         vida.regenerar();
         defensa.regenerar();
     }
+
+    @Override
+    public void atacable() {
+
+    }
 }

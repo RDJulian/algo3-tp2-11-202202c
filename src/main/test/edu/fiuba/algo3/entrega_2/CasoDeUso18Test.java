@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.EstadoEstructura.Operativo;
 import edu.fiuba.algo3.modelo.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.NexoMineral;
+import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValido;
 import edu.fiuba.algo3.modelo.Excepciones.EstructuraDestruida;
 import edu.fiuba.algo3.modelo.Unidad.*;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso18Test {
 
     //Supuesto: Todas las estructuras se construyen en Tierra.
+    //Extender este caso de uso para que se ataquen entre unidades.
 
     //Buscar otra forma de probar esto para no necesitar un getter.
     @Test
@@ -131,9 +133,160 @@ public class CasoDeUso18Test {
         assertThrows(EstructuraDestruida.class, estructura::operar);
     }
 
+    @Test
+    public void test09UnZerlingHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad unidad = new Zerling();
+        Unidad otraUnidad = new Zealot();
+
+        atacarKVeces(unidad, otraUnidad, 39);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test10UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zealot();
+        Unidad unidad = new Hidralisco();
+
+        atacarKVeces(unidad, otraUnidad, 15);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test11UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zealot();
+        Unidad unidad = new Mutalisco();
+
+        atacarKVeces(unidad, otraUnidad, 17);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test12UnGuardianHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zealot();
+        Unidad unidad = new Guardian();
+
+        atacarKVeces(unidad, otraUnidad, 6);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test13UnZealotHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zerling();
+        Unidad unidad = new Zealot();
+
+        atacarKVeces(unidad, otraUnidad, 4);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test14UnDragonHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zerling();
+        Unidad unidad = new Dragon();
+
+        atacarKVeces(unidad, otraUnidad, 1);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test15UnScoutHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zerling();
+        Unidad unidad = new Scout();
+
+        atacarKVeces(unidad, otraUnidad, 4);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test16UnZerlingHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad unidad = new Zerling();
+        Unidad otraUnidad = new Scout();
+
+        assertThrows(AtaqueNoValido.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test17UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Scout();
+        Unidad unidad = new Hidralisco();
+
+        atacarKVeces(unidad, otraUnidad, 24);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test18UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Scout();
+        Unidad unidad = new Mutalisco();
+
+        atacarKVeces(unidad, otraUnidad, 27);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test19UnGuardianHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Scout();
+        Unidad unidad = new Guardian();
+
+        assertThrows(AtaqueNoValido.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test20UnZealotHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Mutalisco();
+        Unidad unidad = new Zealot();
+
+        assertThrows(AtaqueNoValido.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test21UnDragonHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Mutalisco();
+        Unidad unidad = new Dragon();
+
+        atacarKVeces(unidad, otraUnidad, 5);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
+    @Test
+    public void test22UnScoutHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Mutalisco();
+        Unidad unidad = new Scout();
+
+        atacarKVeces(unidad, otraUnidad, 8);
+
+        assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+    }
+
     void atacarKVeces(Unidad unidad, Estructura estructura, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacarEstructura(estructura);
+        }
+    }
+
+    void atacarKVeces(Unidad unidad, Unidad otraUnidad, int k) {
+        for (int i = 0; i < k; i++) {
+            unidad.atacarUnidad(otraUnidad);
         }
     }
 }

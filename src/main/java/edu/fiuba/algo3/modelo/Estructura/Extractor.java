@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
 import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
-import edu.fiuba.algo3.modelo.Trabajador.Zangano;
+import edu.fiuba.algo3.modelo.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 

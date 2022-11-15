@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
-import edu.fiuba.algo3.modelo.Trabajador.Zangano;
+import edu.fiuba.algo3.modelo.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -88,7 +88,7 @@ public class CasoDeUso4Test {
         extractor.setReserva(reserva);
         pasarKTurnos(extractor, 6);
         extractor.construible(gasVespeno);
-        
+
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());

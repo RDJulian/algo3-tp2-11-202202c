@@ -43,6 +43,9 @@ public abstract class Estructura {
     }
 
     //Capaz operar deberia ser operable, que sea una consulta mas que otra cosa.
+    //Hay estructuras que en realidad no operan. Capaz este metodo, si la estructura esta operativa,
+    //Puede mandar un mensaje a algun tipo de objeto que maneje los comportamientos particulares.
+    //Eso tambien puede traer sus problemas porque hay estructuras que devuelven Moho, Unidades, etc.
     public void operar() {
         this.estadoEnergetico.operar(this, this.estadoOperativo);
     }

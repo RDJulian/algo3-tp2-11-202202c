@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Estructura.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRango;
+import edu.fiuba.algo3.modelo.Construible.RangoMoho;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
@@ -14,17 +14,15 @@ public class CasoDeUso6Test {
 
     @Test
     public void test01ElMohoSeExpandeCadaDosTurnosYSePuedeConstruirEnElLuegoDeExpandirse() {
+        ConstruibleSobreRango rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
-        Estructura estructura = new ReservaDeReproduccion();
-        estructura.construible(new Posicion(6, 6));
+        Posicion posicion = new Posicion(6, 6);
 
-        assertThrows(ConstruccionNoValida.class, () -> estructura.construiblePiso(moho)); //Se puede sacar.
+        assertThrows(ConstruccionNoValidaException.class, () -> moho.construible(rangoMoho, posicion));
 
         moho.pasarTurno();
         moho.pasarTurno();
 
-        assertDoesNotThrow(() -> {
-            estructura.construiblePiso(moho);
-        });
+        assertDoesNotThrow(() -> moho.construible(rangoMoho, posicion));
     }
 }

@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.Extractor;
-import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
+import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -16,11 +16,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
 
         pasarKTurnos(extractor, 6);
 
@@ -31,11 +30,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
 
         pasarKTurnos(extractor, 6);
 
@@ -47,11 +45,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
 
         pasarKTurnos(extractor, 6);
 
@@ -64,11 +61,10 @@ public class CasoDeUso4Test {
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
 
         pasarKTurnos(extractor, 6);
 
@@ -82,18 +78,16 @@ public class CasoDeUso4Test {
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        pasarKTurnos(extractor, 6);
-        extractor.construible(gasVespeno);
+        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
 
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());
         extractor.agregarZangano(new Zangano());
 
-        assertThrows(ExtractorLleno.class, () -> extractor.agregarZangano(new Zangano()));
+        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(new Zangano()));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {

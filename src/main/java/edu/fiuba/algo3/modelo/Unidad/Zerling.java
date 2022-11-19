@@ -11,6 +11,6 @@ public class Zerling extends Unidad {
         this.tipoUnidad = new UnidadTierra();
         this.vida = new Regenerativa(35);
         this.defensa = new SinEscudo();
-        this.estadoOperativo = new EnConstruccion(2);
+        this.estadoEstructura = new EnConstruccion(2);
     }
 }

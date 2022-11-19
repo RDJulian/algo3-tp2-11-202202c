@@ -1,19 +1,31 @@
 package edu.fiuba.algo3.modelo.EstadoEstructura;
 
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativa;
+import edu.fiuba.algo3.modelo.Estructura.Memento;
+import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativaException;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public class SinEnergia implements EstadoEnergetico {
-
+public class SinEnergia implements EstadoEstructura {
+    //Supuesto: una estructura Protoss sin energia (Acceso y Puerto Estelar) no pueden hacer nada
+    //cuando no estan en el rango de un Pilon. Esto significa que su escudo no puede regenerarse.
     @Override
-    public void operar(Estructura estructura, EstadoOperativo estadoOperativo) {
-        throw new EstructuraNoOperativa();
+    public void operable() {
+        throw new EstructuraNoOperativaException();
     }
 
-    //Se podria suponer que una estructura sin energia no puede regenerar su escudo.
     @Override
-    public void pasarTurno(Estructura estructura, EstadoOperativo estadoOperativo, Vida vida, Defensa defensa) {
+    public void pasarTurno(Estructura estructura, Vida vida, Defensa defensa) {
+    }
+
+    @Override
+    public void atacable() {
+    }
+
+    @Override
+    public void cambiarEnergia(Memento estructura, Boolean energizado) {
+        if (energizado) {
+            estructura.restaurarEstado();
+        }
     }
 }

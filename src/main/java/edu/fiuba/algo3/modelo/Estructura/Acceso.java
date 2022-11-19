@@ -1,35 +1,46 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
-import edu.fiuba.algo3.modelo.EstadoEstructura.SinEnergia;
-import edu.fiuba.algo3.modelo.Piso.Nada;
-import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEstructura;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Acceso extends Estructura {
+import java.util.Vector;
 
-    public Acceso() {
-        this.estadoOperativo = new EnConstruccion(8);
-        this.estadoEnergetico = new SinEnergia();
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(150, 0), new NoRequiereOtra());
+public class Acceso extends Estructura implements Memento {
+    private EstadoEstructura memento;
+
+    public Acceso(Posicion posicion) {
+        super(posicion);
+        this.estadoEstructura = new EnConstruccion(8);
         this.vida = new Normal(500);
         this.defensa = new Escudo(500);
     }
 
+    public boolean energizado(Vector<Pilon> pilones) {
+        for (Pilon pilon : pilones) {
+            if (!pilon.fueraDeRango(this.posicion)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Muy probablemente quede mejor si se saca de aca.
     @Override
-    public Piso construiblePiso(Piso piso) {
-        this.construible.construible(piso, this.posicion);
-        this.estadoEnergetico = new Activo();
-        return new Nada();
+    public void guardarEstado() {
+        this.memento = this.estadoEstructura;
     }
 
     @Override
-    public void efectuarOperacion() {
+    public void restaurarEstado() {
+        this.estadoEstructura = this.memento;
+    }
 
+    public void setEstado(Vector<Pilon> pilones) {
+        this.estadoEstructura.cambiarEnergia(this, energizado(pilones));
     }
 
     @Override
@@ -37,12 +48,7 @@ public class Acceso extends Estructura {
     }
 
     @Override
-    public void construir(Recurso recurso) {
-
-    }
-
-    @Override
-    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.construibleConAcceso();
+    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.manejar(Acceso.class);
     }
 }

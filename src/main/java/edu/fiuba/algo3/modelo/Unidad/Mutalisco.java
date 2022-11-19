@@ -11,6 +11,6 @@ public class Mutalisco extends Unidad {
         this.tipoUnidad = new UnidadAire();
         this.vida = new Regenerativa(120);
         this.defensa = new SinEscudo();
-        this.estadoOperativo = new EnConstruccion(7);
+        this.estadoEstructura = new EnConstruccion(7);
     }
 }

@@ -11,6 +11,6 @@ public class Guardian extends Unidad {
         this.tipoUnidad = new UnidadAire();
         this.vida = new Regenerativa(100);
         this.defensa = new SinEscudo();
-        this.estadoOperativo = new EnConstruccion(4);
+        this.estadoEstructura = new EnConstruccion(4);
     }
 }

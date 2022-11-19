@@ -15,7 +15,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.tipoUnidad = new UnidadTierra();
         this.vida = new Regenerativa(25);
         this.defensa = new SinEscudo();
-        this.estadoOperativo = new EnConstruccion(1);
+        this.estadoEstructura = new EnConstruccion(1);
     }
 
     public void usarExtractor(Recurso recurso, Reserva reserva, ExtraeRecurso extractor) {
@@ -27,7 +27,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     }
 
     public void ocupar(Recurso mineral) { // No parece una buena solucion
-        mineral.ocupable(this);
+        mineral.ocupar(this);
     }
 
     @Override

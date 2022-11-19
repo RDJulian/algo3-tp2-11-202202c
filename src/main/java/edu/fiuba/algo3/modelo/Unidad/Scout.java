@@ -11,6 +11,6 @@ public class Scout extends Unidad {
         this.tipoUnidad = new UnidadAire();
         this.vida = new Normal(150);
         this.defensa = new Escudo(100);
-        this.estadoOperativo = new EnConstruccion(9);
+        this.estadoEstructura = new EnConstruccion(9);
     }
 }

@@ -11,6 +11,6 @@ public class Dragon extends Unidad {
         this.tipoUnidad = new UnidadTierra();
         this.vida = new Normal(100);
         this.defensa = new Escudo(80);
-        this.estadoOperativo = new EnConstruccion(6);
+        this.estadoEstructura = new EnConstruccion(6);
     }
 }

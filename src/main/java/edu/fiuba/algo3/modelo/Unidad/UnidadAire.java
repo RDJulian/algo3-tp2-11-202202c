@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.Unidad;
 
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValido;
+import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 
 public class UnidadAire implements TipoUnidad {
     @Override
     public int recibirDanio(int danioAire, int danioTierra) {
         if (danioAire == 0) {
-            throw new AtaqueNoValido();
+            throw new AtaqueNoValidoException();
         }
         return danioAire;
     }

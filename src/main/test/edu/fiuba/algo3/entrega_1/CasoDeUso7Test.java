@@ -19,7 +19,7 @@ public class CasoDeUso7Test {
         Recurso mineral = new Mineral(new Posicion(0, 0));
         Zangano zangano = new Zangano();
 
-        mineral.ocupable(zangano);
+        mineral.ocupar(zangano);
         zangano.extraerRecurso(mineral, reserva);
 
         assertEquals(reserva.getRecurso(), 10);
@@ -29,9 +29,7 @@ public class CasoDeUso7Test {
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
         GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
         Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Extractor extractor = new Extractor(new Posicion(0, 0), gasVespeno, reserva);
 
         pasarKTurnos(extractor, 6);
 
@@ -51,9 +49,7 @@ public class CasoDeUso7Test {
     public void test03NexoMineralObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
         Recurso mineral = new Mineral(new Posicion(0, 0));
-        NexoMineral nexoMineral = new NexoMineral();
-        nexoMineral.setReserva(reserva);
-        nexoMineral.construible(mineral);
+        NexoMineral nexoMineral = new NexoMineral(new Posicion(0, 0), mineral, reserva);
 
         pasarKTurnos(nexoMineral, 5);
 
@@ -68,9 +64,7 @@ public class CasoDeUso7Test {
     public void test04AsimiladorObtieneGasCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
         Recurso gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Asimilador asimilador = new Asimilador();
-        asimilador.setReserva(reserva);
-        asimilador.construible(gasVespeno);
+        Asimilador asimilador = new Asimilador(new Posicion(0, 0), gasVespeno, reserva);
 
         pasarKTurnos(asimilador, 7);
 

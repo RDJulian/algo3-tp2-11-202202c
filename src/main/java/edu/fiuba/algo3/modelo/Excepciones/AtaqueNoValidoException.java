@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Excepciones;
 
-public class AtaqueNoValido extends RuntimeException {
+public class AtaqueNoValidoException extends RuntimeException {
 
-    public AtaqueNoValido() {
+    public AtaqueNoValidoException() {
         super("Esta unidad no puede atacar a la unidad deseada.");
     }
 }

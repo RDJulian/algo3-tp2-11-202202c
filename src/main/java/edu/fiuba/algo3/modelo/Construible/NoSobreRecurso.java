@@ -1,21 +1,14 @@
 package edu.fiuba.algo3.modelo.Construible;
 
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
+import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Recurso.Mineral;
 
 public class NoSobreRecurso implements ConstruibleSobreRecurso {
     @Override
-    public void construible(Recurso recurso) {
-        recurso.construible(this);
-    }
-
-    @Override
-    public void construirEnGas() {
-        throw new ConstruccionNoValida();
-    }
-
-    @Override
-    public void construirEnMineral() {
-        throw new ConstruccionNoValida();
+    public void manejar(Class<?> recurso) {
+        if (recurso == Mineral.class || recurso == GasVespeno.class) {
+            throw new ConstruccionNoValidaException();
+        }
     }
 }

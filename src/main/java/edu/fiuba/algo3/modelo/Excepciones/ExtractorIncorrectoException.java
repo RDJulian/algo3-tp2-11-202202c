@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Excepciones;
 
-public class ExtractorIncorrecto extends RuntimeException {
+public class ExtractorIncorrectoException extends RuntimeException {
 
-    public ExtractorIncorrecto() {
+    public ExtractorIncorrectoException() {
         super("El extractor que quiere usar no es el correcto.");
     }
 

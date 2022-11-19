@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValido;
+import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Unidad.*;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ public class CasoDeUso19Test {
         Unidad unaUnidad = new Zerling();
         Unidad otraUnidad = new Scout();
 
-        assertThrows(AtaqueNoValido.class, () -> unaUnidad.atacarUnidad(otraUnidad));
+        assertThrows(AtaqueNoValidoException.class, () -> unaUnidad.atacarUnidad(otraUnidad));
     }
 
     @Test

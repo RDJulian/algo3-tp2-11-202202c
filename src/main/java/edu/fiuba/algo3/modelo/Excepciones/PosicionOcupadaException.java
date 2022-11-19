@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Excepciones;
 
-public class PosicionOcupada extends RuntimeException {
-    public PosicionOcupada() {
+public class PosicionOcupadaException extends RuntimeException {
+    public PosicionOcupadaException() {
         super("La posición ocupada no puede ser utilizable");
     }
 }

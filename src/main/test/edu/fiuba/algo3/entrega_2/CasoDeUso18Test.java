@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.Operativo;
-import edu.fiuba.algo3.modelo.Estructura.Criadero;
+import edu.fiuba.algo3.modelo.EstadoEstructura.Operativa;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.NexoMineral;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValido;
-import edu.fiuba.algo3.modelo.Excepciones.EstructuraDestruida;
+import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Excepciones.EstructuraDestruidaException;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Unidad.*;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +21,9 @@ public class CasoDeUso18Test {
     //Buscar otra forma de probar esto para no necesitar un getter.
     @Test
     public void test01UnZanganoNoHaceDanioAUnaEstructura() {
-        Estructura estructura = new NexoMineral();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Zangano();
 
         unidad.atacarEstructura(estructura);
@@ -30,107 +33,114 @@ public class CasoDeUso18Test {
 
     @Test
     public void test02UnZerlingHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new NexoMineral();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Zerling();
 
         atacarKVeces(unidad, estructura, 124);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test03UnHidraliscoHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new NexoMineral();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Hidralisco();
 
         atacarKVeces(unidad, estructura, 49);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test04UnMutaliscoHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new NexoMineral();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Mutalisco();
 
         atacarKVeces(unidad, estructura, 55);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test05UnGuardianHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new NexoMineral();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Guardian();
 
         atacarKVeces(unidad, estructura, 19);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test06UnZealotHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new Criadero();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Zealot();
 
         atacarKVeces(unidad, estructura, 62);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test07UnDragonHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new Criadero();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Dragon();
 
         atacarKVeces(unidad, estructura, 24);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test08UnScoutHaceElDanioEsperadoAUnaEstructura() {
-        Estructura estructura = new Criadero();
-        estructura.setEstadoOperativo(new Operativo());
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
         Unidad unidad = new Scout();
 
         atacarKVeces(unidad, estructura, 62);
 
-        assertDoesNotThrow(estructura::operar);
+        assertDoesNotThrow(estructura::operable);
 
         unidad.atacarEstructura(estructura);
 
-        assertThrows(EstructuraDestruida.class, estructura::operar);
+        assertThrows(EstructuraDestruidaException.class, estructura::operable);
     }
 
     @Test
@@ -141,7 +151,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 39);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -152,7 +162,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 15);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -163,7 +173,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 17);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -174,7 +184,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 6);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -185,7 +195,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 4);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -196,7 +206,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 1);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -207,7 +217,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 4);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -215,7 +225,7 @@ public class CasoDeUso18Test {
         Unidad unidad = new Zerling();
         Unidad otraUnidad = new Scout();
 
-        assertThrows(AtaqueNoValido.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(AtaqueNoValidoException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -226,7 +236,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 24);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -237,7 +247,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 27);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -245,7 +255,7 @@ public class CasoDeUso18Test {
         Unidad otraUnidad = new Scout();
         Unidad unidad = new Guardian();
 
-        assertThrows(AtaqueNoValido.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(AtaqueNoValidoException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -253,7 +263,7 @@ public class CasoDeUso18Test {
         Unidad otraUnidad = new Mutalisco();
         Unidad unidad = new Zealot();
 
-        assertThrows(AtaqueNoValido.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(AtaqueNoValidoException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -264,7 +274,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 5);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
     @Test
@@ -275,10 +285,10 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 8);
 
         assertDoesNotThrow(() -> unidad.atacarUnidad(otraUnidad));
-        assertThrows(EstructuraDestruida.class, () -> unidad.atacarUnidad(otraUnidad));
+        assertThrows(EstructuraDestruidaException.class, () -> unidad.atacarUnidad(otraUnidad));
     }
 
-    void atacarKVeces(Unidad unidad, Estructura estructura, int k) {
+    void atacarKVeces(Unidad unidad, edu.fiuba.algo3.modelo.Estructura.Estructura estructura, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacarEstructura(estructura);
         }

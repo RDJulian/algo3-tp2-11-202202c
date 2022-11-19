@@ -11,6 +11,6 @@ public class Hidralisco extends Unidad {
         this.tipoUnidad = new UnidadTierra();
         this.vida = new Regenerativa(80);
         this.defensa = new SinEscudo();
-        this.estadoOperativo = new EnConstruccion(4);
+        this.estadoEstructura = new EnConstruccion(4);
     }
 }

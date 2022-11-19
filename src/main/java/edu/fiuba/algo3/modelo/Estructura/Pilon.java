@@ -1,61 +1,47 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Posicion.Rango;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
 public class Pilon extends Estructura implements Piso {
     private Rango rango;
 
-    public Pilon() {
-        this.estadoOperativo = new EnConstruccion(5);
-        this.estadoEnergetico = new Activo(); //Supuesto
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(100, 0), new NoRequiereOtra());
+    public Pilon(Posicion posicion) {
+        super(posicion);
+        this.rango = new Rango(this.posicion, 3);
+        this.estadoEstructura = new EnConstruccion(5);
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
-    }
-
-    @Override
-    public void construible(Posicion posicion) {
-        posicion.ocupable();
-        posicion.setEstadoPosicion(new Ocupada());
-        this.posicion = posicion;
-        this.rango = new Rango(posicion, 3);
-    }
-
-    @Override
-    public void efectuarOperacion() {
-
     }
 
     @Override
     public void pasarTurnoOperativo() {
     }
 
-    @Override
-    public void construir(Recurso recurso) {
-
-    }
-
+    //No esta tan bueno usar operable dos veces, pero lo dejo por si se accede directamente a fueraDeRango.
+    //No se deberia poder considerar el rango si no esta operativa.
     public boolean fueraDeRango(Posicion posicion) {
-        this.estadoOperativo.operar(this);
+        this.estadoEstructura.operable();
         return this.rango.noIncluye(posicion);
     }
 
     @Override
-    public void construible(ConstruibleSobreRango sobreRango) {
-        sobreRango.construirEnPilon();
+    public void construible(ConstruibleSobreRango sobreRango, Posicion posicion) {
+        this.estadoEstructura.operable();
+        sobreRango.manejar(Pilon.class);
+        if (fueraDeRango(posicion)) {
+            throw new ConstruccionNoValidaException();
+        }
     }
 
     @Override
-    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.construibleConPilon();
+    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.manejar(Pilon.class);
     }
 }

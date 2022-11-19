@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 public interface Piso {
     boolean fueraDeRango(Posicion posicion);
 
-    void construible(ConstruibleSobreRango sobreRango);
+    void construible(ConstruibleSobreRango sobreRango, Posicion posicion);
 
     void pasarTurno();
 }

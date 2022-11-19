@@ -15,6 +15,6 @@ public class GasVespeno extends Recurso {
 
     @Override
     public void construible(ConstruibleSobreRecurso sobreRecurso) {
-        sobreRecurso.construirEnGas();
+        sobreRecurso.manejar(GasVespeno.class);
     }
 }

@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRango;
+import edu.fiuba.algo3.modelo.Construible.RangoMoho;
+import edu.fiuba.algo3.modelo.Construible.RangoPilon;
+import edu.fiuba.algo3.modelo.EstadoEstructura.Operativa;
 import edu.fiuba.algo3.modelo.Estructura.*;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValida;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
@@ -12,49 +16,39 @@ public class CasoDeUso5Test {
 
     @Test
     public void test01NoSePuedeConstruirUnaEstructuraProtossFueraDelRangoDeUnPilon() {
-        Pilon pilon = new Pilon();
-        pilon.construible(new Posicion(0, 0));
-        pasarKTurnos(pilon, 5);
-        Estructura estructura = new Acceso();
-        estructura.construible(new Posicion(10, 10));
+        ConstruibleSobreRango rangoPilon = new RangoPilon();
+        Pilon pilon = new Pilon(new Posicion(0, 0));
+        pilon.setEstado(new Operativa());
+        Posicion posicion = new Posicion(10, 10);
 
-        assertThrows(ConstruccionNoValida.class, () -> estructura.construiblePiso(pilon));
+        assertThrows(ConstruccionNoValidaException.class, () -> pilon.construible(rangoPilon, posicion));
     }
 
     @Test
     public void test02NoSePuedeConstruirUnaEstructuraZergFueraDelRangoDelMoho() {
+        ConstruibleSobreRango rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
-        Estructura estructura = new ReservaDeReproduccion();
-        estructura.construible(new Posicion(10, 10));
+        Posicion posicion = new Posicion(10, 10);
 
-        assertThrows(ConstruccionNoValida.class, () -> estructura.construiblePiso(moho));
+        assertThrows(ConstruccionNoValidaException.class, () -> moho.construible(rangoMoho, posicion));
     }
 
     @Test
     public void test03SePuedeConstruirUnaEstructuraProtossEnElRangoDeUnPilon() {
-        Pilon pilon = new Pilon();
-        pilon.construible(new Posicion(0, 0));
-        pasarKTurnos(pilon, 5);
-        Estructura estructura = new Acceso();
-        estructura.construible(new Posicion(3, 3));
+        ConstruibleSobreRango rangoPilon = new RangoPilon();
+        Pilon pilon = new Pilon(new Posicion(0, 0));
+        pilon.setEstado(new Operativa());
+        Posicion posicion = new Posicion(3, 3);
 
-        assertDoesNotThrow(() -> estructura.construible(pilon));
+        assertDoesNotThrow(() -> pilon.construible(rangoPilon, posicion));
     }
 
     @Test
     public void test04SePuedeConstruirUnaEstructuraZergEnElRangoDelMoho() {
+        ConstruibleSobreRango rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
-        Estructura estructura = new ReservaDeReproduccion();
-        estructura.construible(new Posicion(5, 5));
+        Posicion posicion = new Posicion(5, 5);
 
-        assertDoesNotThrow(() -> {
-            estructura.construiblePiso(moho);
-        });
-    }
-
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
+        assertDoesNotThrow(() -> moho.construible(rangoMoho, posicion));
     }
 }

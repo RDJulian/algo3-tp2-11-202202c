@@ -5,17 +5,16 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class Nada implements Piso {
     @Override
-    public boolean fueraDeRango(Posicion posicion) { //Tener cuidado con esto.
+    public boolean fueraDeRango(Posicion posicion) {
         return false;
     }
 
     @Override
-    public void construible(ConstruibleSobreRango sobreRango) {
-
+    public void construible(ConstruibleSobreRango sobreRango, Posicion posicion) {
+        sobreRango.manejar(Nada.class);
     }
 
     @Override
     public void pasarTurno() {
-
     }
 }

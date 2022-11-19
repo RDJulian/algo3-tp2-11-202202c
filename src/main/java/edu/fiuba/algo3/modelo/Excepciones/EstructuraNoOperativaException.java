@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Excepciones;
 
-public class EstructuraNoOperativa extends RuntimeException {
+public class EstructuraNoOperativaException extends RuntimeException {
 
-    public EstructuraNoOperativa(){
+    public EstructuraNoOperativaException() {
         super("La estructura se encuentra en construcción");
     }
 

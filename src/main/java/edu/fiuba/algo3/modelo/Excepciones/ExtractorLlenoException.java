@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Excepciones;
 
-public class ExtractorLleno extends RuntimeException{
+public class ExtractorLlenoException extends RuntimeException {
 
-    public ExtractorLleno(){
+    public ExtractorLlenoException() {
         super("No se puede agregar mas Zanganos a este extractor.");
     }
 }

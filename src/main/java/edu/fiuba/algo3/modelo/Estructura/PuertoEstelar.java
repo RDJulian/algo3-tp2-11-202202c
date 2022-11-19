@@ -1,48 +1,45 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.Activo;
 import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEnergetico;
-import edu.fiuba.algo3.modelo.EstadoEstructura.SinEnergia;
-import edu.fiuba.algo3.modelo.Piso.Nada;
-import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEstructura;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
 import java.util.Vector;
 
-public class PuertoEstelar extends Estructura {
+public class PuertoEstelar extends Estructura implements Memento {
+    private EstadoEstructura memento;
 
-    public PuertoEstelar() {
-        this.estadoOperativo = new EnConstruccion(10);
-        this.estadoEnergetico = new SinEnergia();
-        this.construible = new Construible(new NoSobreRecurso(), new RangoPilon(), new Costo(150, 150), new RequiereAcceso());
+    public PuertoEstelar(Posicion posicion) {
+        super(posicion);
+        this.estadoEstructura = new EnConstruccion(10);
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
     }
 
-    @Override
-    public Piso construiblePiso(Piso piso) {
-        this.construible.construible(piso, this.posicion);
-        this.estadoEnergetico = new Activo();
-        return new Nada();
-    }
-
-    public void setEstadoEnergetico(Vector<Pilon> pilones) {
-        EstadoEnergetico estadoACambiar = new SinEnergia();
+    public boolean energizado(Vector<Pilon> pilones) {
         for (Pilon pilon : pilones) {
             if (!pilon.fueraDeRango(this.posicion)) {
-                estadoACambiar = new Activo();
+                return true;
             }
         }
-        this.estadoEnergetico = estadoACambiar;
+        return false;
     }
 
     @Override
-    public void efectuarOperacion() {
+    public void guardarEstado() {
+        this.memento = this.estadoEstructura;
+    }
 
+    @Override
+    public void restaurarEstado() {
+        this.estadoEstructura = this.memento;
+    }
+
+    public void setEstado(Vector<Pilon> pilones) {
+        this.estadoEstructura.cambiarEnergia(this, energizado(pilones));
     }
 
     @Override
@@ -50,12 +47,7 @@ public class PuertoEstelar extends Estructura {
     }
 
     @Override
-    public void construir(Recurso recurso) {
-
-    }
-
-    @Override
-    public void construirConOtraEstructura(RequiereOtraEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.construibleConPuertoEstelar();
+    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.manejar(PuertoEstelar.class);
     }
 }

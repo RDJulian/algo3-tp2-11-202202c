@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Excepciones;
 
-public class RecursoVacio extends RuntimeException {
+public class RecursoVacioException extends RuntimeException {
 
-    public RecursoVacio() {
+    public RecursoVacioException() {
         super("El recurso que esta extrayendo ya esta vacio.");
     }
 }

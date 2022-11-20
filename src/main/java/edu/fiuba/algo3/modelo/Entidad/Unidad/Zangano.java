@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Entidad.Daniable;
+import edu.fiuba.algo3.modelo.Entidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
@@ -19,7 +20,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.tipoUnidad = new UnidadTierra();
         this.vida = new Regenerativa(25);
         this.defensa = new SinEscudo();
-        this.estadoEstructura = new EnConstruccion(1);
+        this.estadoEntidad = new EnConstruccion(1);
     }
 
     //Un Zangano no ataca, asi que directamente tira excepcion.

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.Ejecutar;
 import edu.fiuba.algo3.modelo.Entidad.Daniable;
 import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
+import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
@@ -39,8 +40,12 @@ public abstract class Estructura implements Daniable {
 
     @Override
     public void daniar(int danioTierra, int danioAire) {
+        if (danioTierra == 0) {
+            throw new AtaqueNoValidoException();
+        }
         this.defensa.proteger(this, this.vida, danioTierra);
     }
 
+    //Construible deberia llamar a operable(), sino no tiene sentido que habilite!
     public abstract void construible(Construible requiereOtraEstructura);
 }

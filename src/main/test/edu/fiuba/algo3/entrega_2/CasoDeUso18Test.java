@@ -18,11 +18,12 @@ public class CasoDeUso18Test {
 
     //Supuesto: Todas las estructuras se construyen en Tierra.
     @Test
-    public void test01UnZanganoNoHaceDanioAUnaEstructura() {
+    public void test01UnZanganoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Zangano();
+        unidad.setEstado(new Operativa());
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
     }
@@ -33,6 +34,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Zerling();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 124);
 
@@ -49,6 +51,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Hidralisco();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 49);
 
@@ -65,6 +68,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Mutalisco();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 55);
 
@@ -81,6 +85,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Guardian();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 19);
 
@@ -97,6 +102,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Zealot();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 62);
 
@@ -113,6 +119,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Dragon();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 24);
 
@@ -129,6 +136,7 @@ public class CasoDeUso18Test {
         Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Scout();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, estructura, 62);
 
@@ -143,6 +151,7 @@ public class CasoDeUso18Test {
     public void test09UnZerlingHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad unidad = new Zerling();
         Unidad otraUnidad = new Zealot();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 39);
 
@@ -154,6 +163,7 @@ public class CasoDeUso18Test {
     public void test10UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot();
         Unidad unidad = new Hidralisco();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 15);
 
@@ -165,6 +175,7 @@ public class CasoDeUso18Test {
     public void test11UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot();
         Unidad unidad = new Mutalisco();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 17);
 
@@ -176,6 +187,7 @@ public class CasoDeUso18Test {
     public void test12UnGuardianHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot();
         Unidad unidad = new Guardian();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 6);
 
@@ -187,6 +199,7 @@ public class CasoDeUso18Test {
     public void test13UnZealotHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zerling();
         Unidad unidad = new Zealot();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 4);
 
@@ -198,6 +211,7 @@ public class CasoDeUso18Test {
     public void test14UnDragonHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zerling();
         Unidad unidad = new Dragon();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 1);
 
@@ -209,6 +223,7 @@ public class CasoDeUso18Test {
     public void test15UnScoutHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zerling();
         Unidad unidad = new Scout();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 4);
 
@@ -220,6 +235,7 @@ public class CasoDeUso18Test {
     public void test16UnZerlingHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad unidad = new Zerling();
         Unidad otraUnidad = new Scout();
+        unidad.setEstado(new Operativa());
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -228,6 +244,7 @@ public class CasoDeUso18Test {
     public void test17UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout();
         Unidad unidad = new Hidralisco();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 24);
 
@@ -239,6 +256,7 @@ public class CasoDeUso18Test {
     public void test18UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout();
         Unidad unidad = new Mutalisco();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 27);
 
@@ -250,6 +268,7 @@ public class CasoDeUso18Test {
     public void test19UnGuardianHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout();
         Unidad unidad = new Guardian();
+        unidad.setEstado(new Operativa());
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -258,6 +277,7 @@ public class CasoDeUso18Test {
     public void test20UnZealotHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Mutalisco();
         Unidad unidad = new Zealot();
+        unidad.setEstado(new Operativa());
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -266,6 +286,7 @@ public class CasoDeUso18Test {
     public void test21UnDragonHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Mutalisco();
         Unidad unidad = new Dragon();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 5);
 
@@ -277,11 +298,55 @@ public class CasoDeUso18Test {
     public void test22UnScoutHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Mutalisco();
         Unidad unidad = new Scout();
+        unidad.setEstado(new Operativa());
 
         atacarKVeces(unidad, otraUnidad, 8);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
+    }
+
+    @Test
+    public void test23UnAmoSupremoNoHaceDanio() {
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
+        Unidad unidad = new AmoSupremo();
+        unidad.setEstado(new Operativa());
+
+        assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
+    }
+
+    @Test
+    public void test24UnDevoradorHaceElDanioEsperadoAUnaUnidadDeAire() {
+        Unidad otraUnidad = new Scout();
+        Unidad unidad = new Devorador();
+        unidad.setEstado(new Operativa());
+
+        atacarKVeces(unidad, otraUnidad, 16);
+
+        assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
+    }
+
+    @Test
+    public void test25UnDevoradorHaceElDanioEsperadoAUnaUnidadDeTierra() {
+        Unidad otraUnidad = new Zealot();
+        Unidad unidad = new Devorador();
+        unidad.setEstado(new Operativa());
+
+        assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
+    }
+
+    @Test
+    public void test26UnDevoradorHaceElDanioEsperadoAUnaEstructura() {
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        estructura.setEstado(new Operativa());
+        Unidad unidad = new Devorador();
+        unidad.setEstado(new Operativa());
+
+        assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
     }
 
     void atacarKVeces(Unidad unidad, Daniable entidad, int k) {

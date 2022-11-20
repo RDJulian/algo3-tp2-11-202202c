@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
@@ -31,11 +31,15 @@ public class Extractor extends Estructura implements ExtraeRecurso {
 
     @Override
     public void pasarTurnoOperativo() {
+        extraerRecurso();
+    }
+
+    @Override
+    public void extraerRecurso() {
         for (Zangano zangano : zanganos) {
             zangano.usarExtractor(this.gasVespeno, this.reservaGas, this);
         }
     }
-
 
     public void agregarZangano(Zangano zangano) {
         if (zanganos.size() >= 3) {
@@ -44,13 +48,8 @@ public class Extractor extends Estructura implements ExtraeRecurso {
         this.zanganos.add(zangano);
     }
 
-    //Creo este metodo para setear la reserva por ahora
-    public void setReserva(Reserva reserva) {
-        this.reservaGas = reserva;
-    }
-
     @Override
-    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+    public void construible(Construible requiereOtraEstructura) {
         requiereOtraEstructura.manejar(Extractor.class);
     }
 }

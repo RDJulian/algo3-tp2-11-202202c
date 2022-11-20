@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -32,7 +32,7 @@ public class Pilon extends Estructura implements Piso {
     }
 
     @Override
-    public void construible(ConstruibleSobreRango sobreRango, Posicion posicion) {
+    public void construible(Construible sobreRango, Posicion posicion) {
         this.estadoEstructura.operable();
         sobreRango.manejar(Pilon.class);
         if (fueraDeRango(posicion)) {
@@ -41,7 +41,7 @@ public class Pilon extends Estructura implements Piso {
     }
 
     @Override
-    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+    public void construible(Construible requiereOtraEstructura) {
         requiereOtraEstructura.manejar(Pilon.class);
     }
 }

@@ -12,7 +12,7 @@ public class CasoDeUso10Test {
     public void test01DaniarUnaEstructuraZergDeberiaRegenerarSuVidaAlPasarTurnos() {
         Estructura estructura = new Espiral(new Posicion(0, 0));
         pasarKTurnos(estructura, 10);
-        estructura.daniar(105);
+        estructura.daniar(105, 0);
 
         assertEquals(estructura.getVida(), 1195);
 
@@ -28,7 +28,7 @@ public class CasoDeUso10Test {
     @Test
     public void test02DaniarUnaEstructuraZergEnConstruccionDeberiaRegenerarSuVidaAlPasarTurnos() {
         Estructura estructura = new Espiral(new Posicion(0, 0));
-        estructura.daniar(200);
+        estructura.daniar(200, 0);
         pasarKTurnos(estructura, 10);
 
         assertEquals(estructura.getVida(), 1200);
@@ -38,7 +38,7 @@ public class CasoDeUso10Test {
     public void test03DestruirUnaEstructuraZergNoDeberiaRegenerarSuVidaAlPasarTurnos() {
         Estructura estructura = new Espiral(new Posicion(0, 0));
         pasarKTurnos(estructura, 10);
-        estructura.daniar(1300);
+        estructura.daniar(1300, 0);
 
         assertEquals(estructura.getVida(), 0);
 
@@ -50,7 +50,7 @@ public class CasoDeUso10Test {
     @Test
     public void test04DestruirUnaEstructuraZergEnConstruccionNoDeberiaRegenerarSuVidaAlPasarTurnos() {
         Estructura estructura = new Espiral(new Posicion(0, 0));
-        estructura.daniar(1300);
+        estructura.daniar(1300, 0);
 
         assertEquals(estructura.getVida(), 0);
 

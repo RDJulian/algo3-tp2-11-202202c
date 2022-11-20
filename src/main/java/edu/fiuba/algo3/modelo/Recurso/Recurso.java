@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRecurso;
+import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrectoException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
@@ -22,7 +22,7 @@ public abstract class Recurso {
         this.posicion = posicion;
     }
 
-    public abstract void construible(ConstruibleSobreRecurso sobreRecurso);
+    public abstract void construible(Construible sobreRecurso);
 
     public void extraerRecurso(int unidades, Reserva reserva, ExtraeRecurso extraeRecurso) {
         if (this.extraeRecurso != extraeRecurso) {

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
@@ -20,7 +20,7 @@ public class ReservaDeReproduccion extends Estructura {
     }
 
     @Override
-    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+    public void construible(Construible requiereOtraEstructura) {
         requiereOtraEstructura.manejar(ReservaDeReproduccion.class);
     }
 }

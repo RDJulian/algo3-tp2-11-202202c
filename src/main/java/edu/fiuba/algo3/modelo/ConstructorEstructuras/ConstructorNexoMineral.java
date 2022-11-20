@@ -16,7 +16,7 @@ public class ConstructorNexoMineral implements ConstructorEstructuras {
         piso.construible(new RangoPilon(), posicion);
         reservaMineral.construible(50);
         reservaGas.construible(0);
-        estructuraCorrelativa.construible(new NoRequiereOtra());
+        estructuraCorrelativa.construible(new NoRequiereEstructura());
 
         return new NexoMineral(posicion, recurso, reservaMineral);
     }

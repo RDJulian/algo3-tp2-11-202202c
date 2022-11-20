@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRango;
+import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.RangoPilon;
-import edu.fiuba.algo3.modelo.EstadoEstructura.Operativa;
+import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
@@ -16,7 +16,7 @@ public class CasoDeUso5Test {
 
     @Test
     public void test01NoSePuedeConstruirUnaEstructuraProtossFueraDelRangoDeUnPilon() {
-        ConstruibleSobreRango rangoPilon = new RangoPilon();
+        Construible rangoPilon = new RangoPilon();
         Pilon pilon = new Pilon(new Posicion(0, 0));
         pilon.setEstado(new Operativa());
         Posicion posicion = new Posicion(10, 10);
@@ -26,7 +26,7 @@ public class CasoDeUso5Test {
 
     @Test
     public void test02NoSePuedeConstruirUnaEstructuraZergFueraDelRangoDelMoho() {
-        ConstruibleSobreRango rangoMoho = new RangoMoho();
+        Construible rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
         Posicion posicion = new Posicion(10, 10);
 
@@ -35,7 +35,7 @@ public class CasoDeUso5Test {
 
     @Test
     public void test03SePuedeConstruirUnaEstructuraProtossEnElRangoDeUnPilon() {
-        ConstruibleSobreRango rangoPilon = new RangoPilon();
+        Construible rangoPilon = new RangoPilon();
         Pilon pilon = new Pilon(new Posicion(0, 0));
         pilon.setEstado(new Operativa());
         Posicion posicion = new Posicion(3, 3);
@@ -45,7 +45,7 @@ public class CasoDeUso5Test {
 
     @Test
     public void test04SePuedeConstruirUnaEstructuraZergEnElRangoDelMoho() {
-        ConstruibleSobreRango rangoMoho = new RangoMoho();
+        Construible rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
         Posicion posicion = new Posicion(5, 5);
 

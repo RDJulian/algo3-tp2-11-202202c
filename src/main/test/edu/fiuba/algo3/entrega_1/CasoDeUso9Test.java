@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.Operativa;
+import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.ConstructorEstructuras;
 
-import edu.fiuba.algo3.modelo.Construible.NoRequiereOtra;
+import edu.fiuba.algo3.modelo.Construible.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoPilon;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
@@ -18,7 +18,7 @@ public class ConstructorPilon implements ConstructorEstructuras {
         piso.construible(new RangoPilon(), posicion);
         reservaMineral.construible(100);
         reservaGas.construible(0);
-        estructuraCorrelativa.construible(new NoRequiereOtra());
+        estructuraCorrelativa.construible(new NoRequiereEstructura());
 
         return new Pilon(posicion);
     }

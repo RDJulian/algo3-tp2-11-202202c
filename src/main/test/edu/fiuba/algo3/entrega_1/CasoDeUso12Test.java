@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.Operativa;
+import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -15,7 +15,7 @@ public class CasoDeUso12Test {
         estructura.setEstado(new Operativa());
 
         pasarKTurnos(estructura, 8);
-        estructura.daniar(555);
+        estructura.daniar(555, 0);
 
         assertEquals(estructura.getVida(), 445);
         assertEquals(estructura.getDefensa(), 0);

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRango;
+import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
@@ -14,7 +14,7 @@ public class CasoDeUso6Test {
 
     @Test
     public void test01ElMohoSeExpandeCadaDosTurnosYSePuedeConstruirEnElLuegoDeExpandirse() {
-        ConstruibleSobreRango rangoMoho = new RangoMoho();
+        Construible rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
         Posicion posicion = new Posicion(6, 6);
 

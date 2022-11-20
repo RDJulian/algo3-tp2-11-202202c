@@ -10,16 +10,10 @@ public class Rango {
     }
 
     public boolean noIncluye(Posicion posicion) {
-        //REDO: Este metodo rompe encapsulamiento.
-        return !(posicion.getX() <= this.posicion.getX() + radio &
-                posicion.getX() >= this.posicion.getX() - radio &
-                posicion.getY() <= this.posicion.getY() + radio &
-                posicion.getY() >= this.posicion.getY() - radio);
+        return !(posicion.enRango(this.posicion, radio));
     }
 
     public void expandir() {
         this.radio += 1;
     } //Esto solo aplica al Moho.
-
-
 }

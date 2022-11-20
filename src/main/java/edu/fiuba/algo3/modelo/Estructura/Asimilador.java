@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -25,17 +25,16 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
 
     @Override
     public void pasarTurnoOperativo() {
-        gasVespeno.extraerRecurso(20, this.reservaGas, this);
-    }
-
-
-    //Creo este metodo para setear la reserva por ahora
-    public void setReserva(Reserva reserva) {
-        this.reservaGas = reserva;
+        extraerRecurso();
     }
 
     @Override
-    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+    public void extraerRecurso() {
+        gasVespeno.extraerRecurso(20, this.reservaGas, this);
+    }
+
+    @Override
+    public void construible(Construible requiereOtraEstructura) {
         requiereOtraEstructura.manejar(Asimilador.class);
     }
 }

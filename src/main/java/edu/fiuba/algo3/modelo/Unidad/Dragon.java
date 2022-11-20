@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidad;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 

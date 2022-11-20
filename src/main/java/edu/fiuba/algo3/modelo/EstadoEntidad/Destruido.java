@@ -1,12 +1,11 @@
-package edu.fiuba.algo3.modelo.EstadoEstructura;
+package edu.fiuba.algo3.modelo.EstadoEntidad;
 
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Estructura.Memento;
 import edu.fiuba.algo3.modelo.Excepciones.EstructuraDestruidaException;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public class Destruido implements EstadoEstructura {
+public class Destruido implements EstadoEntidad {
     @Override
     public void operable() {
         throw new EstructuraDestruidaException();
@@ -19,9 +18,5 @@ public class Destruido implements EstadoEstructura {
     @Override
     public void atacable() {
         throw new EstructuraDestruidaException();
-    }
-
-    @Override
-    public void cambiarEnergia(Memento estructura, Boolean energizado) {
     }
 }

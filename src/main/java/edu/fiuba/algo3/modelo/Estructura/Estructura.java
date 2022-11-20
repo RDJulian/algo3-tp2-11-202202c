@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.RequiereOtraEstructura;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEstructura;
-import edu.fiuba.algo3.modelo.Piso.Moho;
+import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Unidad.Daniable;
@@ -11,7 +10,7 @@ import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public abstract class Estructura implements Daniable {
     protected Posicion posicion;
-    protected EstadoEstructura estadoEstructura;
+    protected EstadoEntidad estadoEstructura;
     protected Vida vida;
     protected Defensa defensa;
 
@@ -24,7 +23,8 @@ public abstract class Estructura implements Daniable {
         this.estadoEstructura.operable();
     }
 
-    public void setEstado(EstadoEstructura estadoEstructura) {
+    //Este setter es indispensable por patron State.
+    public void setEstado(EstadoEntidad estadoEstructura) {
         this.estadoEstructura = estadoEstructura;
     }
 
@@ -33,17 +33,15 @@ public abstract class Estructura implements Daniable {
         this.estadoEstructura.pasarTurno(this, this.vida, this.defensa);
     }
 
+    //Segregar este metodo a una interfaz/Strategy, no todas hacen realmente algo al pasar turno.
     public abstract void pasarTurnoOperativo();
 
-    public void daniar(int danio) {
-        this.defensa.proteger(this, this.vida, danio);
+    @Override
+    public void daniar(int danioTierra, int danioAire) {
+        this.defensa.proteger(this, this.vida, danioTierra);
     }
 
-    public void expandible(Moho moho) {
-        moho.expandibleSobre(this.posicion);
-    }
-
-    public abstract void construible(RequiereOtraEstructura requiereOtraEstructura);
+    public abstract void construible(Construible requiereOtraEstructura);
 
     //Getters
     public int getVida() {

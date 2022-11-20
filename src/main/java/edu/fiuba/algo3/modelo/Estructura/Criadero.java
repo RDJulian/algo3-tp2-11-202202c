@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -41,7 +41,7 @@ public class Criadero extends Estructura {
 
 
     @Override
-    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+    public void construible(Construible requiereOtraEstructura) {
         requiereOtraEstructura.manejar(Criadero.class);
     }
 }

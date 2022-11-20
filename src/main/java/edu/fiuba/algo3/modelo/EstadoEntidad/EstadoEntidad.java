@@ -1,17 +1,15 @@
-package edu.fiuba.algo3.modelo.EstadoEstructura;
+package edu.fiuba.algo3.modelo.EstadoEntidad;
 
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Estructura.Memento;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public interface EstadoEstructura {
+public interface EstadoEntidad {
+    //El estado de una entidad determina como pasa el turno, si puede hacer
+    //lo que hace, si regenera o no su vida, y si es atacable.
     void operable();
 
     void pasarTurno(Estructura estructura, Vida vida, Defensa defensa);
 
     void atacable();
-
-    void cambiarEnergia(Memento estructura, Boolean energizado);
-
 }

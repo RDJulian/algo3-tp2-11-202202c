@@ -1,21 +1,20 @@
-package edu.fiuba.algo3.modelo.EstadoEstructura;
+package edu.fiuba.algo3.modelo.EstadoEntidad;
 
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Estructura.Memento;
 import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativaException;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public class EnConstruccion implements EstadoEstructura {
+public class EnConstruccion implements EstadoEntidad {
     private int tiempoParaOperar;
+
+    public EnConstruccion(int tiempoParaOperar) {
+        this.tiempoParaOperar = tiempoParaOperar;
+    }
 
     @Override
     public void operable() {
         throw new EstructuraNoOperativaException();
-    }
-
-    public EnConstruccion(int tiempoParaOperar) {
-        this.tiempoParaOperar = tiempoParaOperar;
     }
 
     @Override
@@ -30,13 +29,5 @@ public class EnConstruccion implements EstadoEstructura {
 
     @Override
     public void atacable() {
-    }
-
-    @Override
-    public void cambiarEnergia(Memento estructura, Boolean energizado) {
-        if (!energizado) {
-            estructura.guardarEstado();
-            estructura.setEstado(new SinEnergia());
-        }
     }
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidad;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEstructura;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
@@ -11,13 +11,13 @@ public abstract class Unidad implements Daniable {
     protected Defensa defensa;
     protected TipoUnidad tipoUnidad;
 
-    protected EstadoEstructura estadoEstructura;
+    protected EstadoEntidad estadoEstructura;
 
     protected int danioTierra;
     protected int danioAire;
 
     public void atacarEstructura(Estructura estructura) {
-        estructura.daniar(this.danioTierra);
+        estructura.daniar(this.danioTierra, this.danioAire);
     }
 
     public void atacarUnidad(Unidad otraUnidad) {
@@ -25,13 +25,14 @@ public abstract class Unidad implements Daniable {
     }
 
     //Deberia ser privado.
-    private void daniar(int danioAire, int danioTierra) {
+    @Override
+    public void daniar(int danioAire, int danioTierra) {
         this.estadoEstructura.atacable();
         int danioARecibir = this.tipoUnidad.recibirDanio(danioAire, danioTierra);
         this.defensa.proteger(this, this.vida, danioARecibir);
     }
 
-    public void setEstado(EstadoEstructura estadoEstructura) {
+    public void setEstado(EstadoEntidad estadoEstructura) {
         this.estadoEstructura = estadoEstructura;
     }
 }

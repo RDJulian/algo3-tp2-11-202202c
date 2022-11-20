@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.Operativa;
+import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -14,7 +14,7 @@ public class CasoDeUso11Test {
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         pasarKTurnos(estructura, 10);
-        estructura.daniar(135);
+        estructura.daniar(135, 0);
 
         assertEquals(estructura.getDefensa(), 465);
 
@@ -31,7 +31,7 @@ public class CasoDeUso11Test {
     public void test02DaniarUnaEstructuraProtossEnConstruccionDeberiaRegenerarSuEscudoAlPasarTurnos() {
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
-        estructura.daniar(200);
+        estructura.daniar(200, 0);
 
         pasarKTurnos(estructura, 10);
 
@@ -42,7 +42,7 @@ public class CasoDeUso11Test {
     public void test03DestruirUnaEstructuraProtossNoDeberiaRegenerarSuEscudoAlPasarTurnos() {
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
         pasarKTurnos(estructura, 10);
-        estructura.daniar(1200);
+        estructura.daniar(1200, 0);
 
         assertEquals(estructura.getDefensa(), 0);
 
@@ -54,7 +54,7 @@ public class CasoDeUso11Test {
     @Test
     public void test04DestruirUnaEstructuraProtossEnConstruccionNoDeberiaRegenerarSuEscudoAlPasarTurnos() {
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
-        estructura.daniar(1200);
+        estructura.daniar(1200, 0);
 
         assertEquals(estructura.getDefensa(), 0);
 

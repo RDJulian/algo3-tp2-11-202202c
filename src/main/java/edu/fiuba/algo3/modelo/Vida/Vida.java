@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Vida;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.Destruido;
+import edu.fiuba.algo3.modelo.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Unidad.Daniable;
 
 public abstract class Vida {

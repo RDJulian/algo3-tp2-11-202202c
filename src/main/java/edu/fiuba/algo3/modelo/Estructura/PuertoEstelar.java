@@ -1,22 +1,26 @@
 package edu.fiuba.algo3.modelo.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
-import edu.fiuba.algo3.modelo.EstadoEstructura.EstadoEstructura;
+import edu.fiuba.algo3.modelo.Energizado.ConEnergia;
+import edu.fiuba.algo3.modelo.Energizado.Energizado;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
 import java.util.Vector;
 
-public class PuertoEstelar extends Estructura implements Memento {
-    private EstadoEstructura memento;
+public class PuertoEstelar extends Estructura implements UsaMemento {
+    private EstadoEntidad memento;
+    private Energizado energizado;
 
     public PuertoEstelar(Posicion posicion) {
         super(posicion);
         this.estadoEstructura = new EnConstruccion(10);
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
+        this.energizado = new ConEnergia();
     }
 
     public boolean energizado(Vector<Pilon> pilones) {
@@ -38,8 +42,13 @@ public class PuertoEstelar extends Estructura implements Memento {
         this.estadoEstructura = this.memento;
     }
 
+    @Override
+    public void setEstado(Energizado energizado) {
+        this.energizado = energizado;
+    }
+
     public void setEstado(Vector<Pilon> pilones) {
-        this.estadoEstructura.cambiarEnergia(this, energizado(pilones));
+        this.energizado.cambiarEnergia(this, energizado(pilones));
     }
 
     @Override
@@ -47,7 +56,7 @@ public class PuertoEstelar extends Estructura implements Memento {
     }
 
     @Override
-    public void construible(RequiereOtraEstructura requiereOtraEstructura) {
+    public void construible(Construible requiereOtraEstructura) {
         requiereOtraEstructura.manejar(PuertoEstelar.class);
     }
 }

@@ -19,8 +19,9 @@ public class CasoDeUso7Test {
         Recurso mineral = new Mineral(new Posicion(0, 0));
         Zangano zangano = new Zangano();
 
-        mineral.ocupar(zangano);
-        zangano.extraerRecurso(mineral, reserva);
+        zangano.ocupar(mineral);
+        zangano.setReserva(reserva);
+        zangano.extraerRecurso();
 
         assertEquals(reserva.getRecurso(), 10);
     }

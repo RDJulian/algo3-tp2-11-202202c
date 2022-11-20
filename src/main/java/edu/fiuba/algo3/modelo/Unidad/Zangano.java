@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidad;
 
-import edu.fiuba.algo3.modelo.EstadoEstructura.EnConstruccion;
+import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Recurso.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class Zangano extends Unidad implements ExtraeRecurso {
+    Recurso mineral;
+    Reserva reservaMineral;
 
     public Zangano() {
         this.danioAire = 0;
@@ -22,16 +24,19 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         recurso.extraerRecurso(10, reserva, extractor);
     }
 
-    public void extraerRecurso(Recurso recurso, Reserva reserva) {
-        recurso.extraerRecurso(10, reserva, this);
+    public void extraerRecurso() {
+        this.mineral.extraerRecurso(10, this.reservaMineral, this);
     }
 
-    public void ocupar(Recurso mineral) { // No parece una buena solucion
+    public void ocupar(Recurso mineral) {
         mineral.ocupar(this);
+        this.mineral = mineral;
     }
 
-    @Override
-    public void setReserva(Reserva reserva) { // Puede servir
-
+    //Dejo este setter por el momento para no cambiar tanto los casos de uso,
+    //capaz como el Zangano es la unica unidad que extrae algun recurso, podria
+    //pedir desde el constructor una reservaMineral, como las estructuras.
+    public void setReserva(Reserva reservaMineral) {
+        this.reservaMineral = reservaMineral;
     }
 }

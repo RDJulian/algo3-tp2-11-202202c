@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.ConstructorEstructuras;
 
-import edu.fiuba.algo3.modelo.Construible.NoRequiereOtra;
+import edu.fiuba.algo3.modelo.Construible.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
 import edu.fiuba.algo3.modelo.Estructura.Estructura;
@@ -18,7 +18,7 @@ public class ConstructorReservaDeReproduccion implements ConstructorEstructuras 
         piso.construible(new RangoMoho(), posicion);
         reservaMineral.construible(150);
         reservaGas.construible(0);
-        estructuraCorrelativa.construible(new NoRequiereOtra());
+        estructuraCorrelativa.construible(new NoRequiereEstructura());
 
         return new ReservaDeReproduccion(posicion);
     }

@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrectoException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
-import edu.fiuba.algo3.modelo.Unidad.Zangano;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 
 public abstract class Recurso {
     //Estaria bueno probar que una estructura solo puede construirse si ademas esta en la

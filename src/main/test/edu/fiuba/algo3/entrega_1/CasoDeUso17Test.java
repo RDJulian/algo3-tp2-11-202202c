@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Construible.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Construible.RequiereGuarida;
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Construible.RequiereReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
-import edu.fiuba.algo3.modelo.Estructura.*;
-import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativaException;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +61,7 @@ public class CasoDeUso9Test {
         pilones.remove(0);
 
         puertoEstelar.setEstado(pilones);
-        assertThrows(EstructuraNoOperativaException.class, puertoEstelar::operable);
+        assertThrows(EntidadNoOperativaException.class, puertoEstelar::operable);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

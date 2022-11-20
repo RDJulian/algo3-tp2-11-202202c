@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo.EstadoEntidad;
 
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativaException;
+import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.Ejecutar;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
@@ -10,11 +11,11 @@ public class SinEnergia implements EstadoEntidad {
     //cuando no estan en el rango de un Pilon. Esto significa que su escudo no puede regenerarse.
     @Override
     public void operable() {
-        throw new EstructuraNoOperativaException();
+        throw new EntidadNoOperativaException();
     }
 
     @Override
-    public void pasarTurno(Estructura estructura, Vida vida, Defensa defensa) {
+    public void pasarTurno(Estructura estructura, Ejecutar accionAlPasarTurno, Vida vida, Defensa defensa) {
     }
 
     @Override

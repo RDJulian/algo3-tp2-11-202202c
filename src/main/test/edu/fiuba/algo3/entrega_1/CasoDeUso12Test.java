@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
-import edu.fiuba.algo3.modelo.Estructura.Acceso;
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso12Test {
     @Test
@@ -14,21 +15,16 @@ public class CasoDeUso12Test {
         Estructura estructura = new Acceso(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
 
-        pasarKTurnos(estructura, 8);
-        estructura.daniar(555, 0);
+        estructura.daniar(600, 0);
+        //0 E 400 V
 
-        assertEquals(estructura.getVida(), 445);
-        assertEquals(estructura.getDefensa(), 0);
+        pasarKTurnos(estructura, 50);
+        //500 E 400V
 
-        pasarKTurnos(estructura, 49);
+        estructura.daniar(900, 0);
+        //Si regenerase vida, aguantaria el golpe.
 
-        assertEquals(estructura.getVida(), 445);
-        assertEquals(estructura.getDefensa(), 490);
-
-        pasarKTurnos(estructura, 3);
-
-        assertEquals(estructura.getVida(), 445);
-        assertEquals(estructura.getDefensa(), 500);
+        assertThrows(EntidadDestruidaException.class, estructura::operable);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

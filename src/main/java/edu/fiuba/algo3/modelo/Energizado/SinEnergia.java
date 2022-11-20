@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Energizado;
 
-import edu.fiuba.algo3.modelo.Estructura.UsaMemento;
+import edu.fiuba.algo3.modelo.MementoEstructura.UsaMemento;
 
 public class SinEnergia implements Energizado {
     @Override

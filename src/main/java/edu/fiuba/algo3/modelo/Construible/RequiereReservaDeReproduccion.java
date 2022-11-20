@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Construible;
 
-import edu.fiuba.algo3.modelo.Estructura.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 
 public class RequiereReservaDeReproduccion implements Construible {

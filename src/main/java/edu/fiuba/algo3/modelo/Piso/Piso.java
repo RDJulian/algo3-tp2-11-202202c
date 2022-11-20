@@ -7,7 +7,6 @@ public interface Piso {
     boolean fueraDeRango(Posicion posicion);
 
     void construible(Construible sobreRango, Posicion posicion);
-
-    //No todas pasan turno.
+    
     void pasarTurno();
 }

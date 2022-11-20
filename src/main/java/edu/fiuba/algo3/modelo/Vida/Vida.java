@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Vida;
 
 import edu.fiuba.algo3.modelo.EstadoEntidad.Destruido;
-import edu.fiuba.algo3.modelo.Unidad.Daniable;
+import edu.fiuba.algo3.modelo.Entidad.Daniable;
 
 public abstract class Vida {
 
@@ -23,8 +23,4 @@ public abstract class Vida {
     }
 
     public abstract void regenerar();
-
-    public int getVida() {
-        return this.cantVida;
-    }
 }

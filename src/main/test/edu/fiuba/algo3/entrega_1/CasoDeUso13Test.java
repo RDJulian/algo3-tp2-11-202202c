@@ -2,8 +2,9 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
-import edu.fiuba.algo3.modelo.Estructura.*;
-import edu.fiuba.algo3.modelo.Excepciones.EstructuraDestruidaException;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class CasoDeUso13Test {
 
         criadero.daniar(600, 0);
 
-        assertThrows(EstructuraDestruidaException.class, criadero::operable);
+        assertThrows(EntidadDestruidaException.class, criadero::operable);
 
         assertDoesNotThrow(() -> nuevoMoho.construible(sobreMoho, new Posicion(-3, -3)));
 

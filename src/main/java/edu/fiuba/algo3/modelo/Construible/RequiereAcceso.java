@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Construible;
 
-import edu.fiuba.algo3.modelo.Estructura.Acceso;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 
 public class RequiereAcceso implements Construible {

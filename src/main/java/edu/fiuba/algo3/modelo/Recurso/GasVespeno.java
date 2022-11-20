@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRecurso;
+import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class GasVespeno extends Recurso {
@@ -14,7 +14,7 @@ public class GasVespeno extends Recurso {
     }
 
     @Override
-    public void construible(ConstruibleSobreRecurso sobreRecurso) {
+    public void construible(Construible sobreRecurso) {
         sobreRecurso.manejar(GasVespeno.class);
     }
 }

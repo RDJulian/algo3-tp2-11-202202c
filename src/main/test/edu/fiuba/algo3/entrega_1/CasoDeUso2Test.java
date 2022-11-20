@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Estructura.*;
-import edu.fiuba.algo3.modelo.Excepciones.EstructuraNoOperativaException;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
@@ -17,7 +17,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Criadero(new Posicion(0, 0));
         pasarKTurnos(estructura, 3);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -29,7 +29,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Acceso(new Posicion(0, 0));
         pasarKTurnos(estructura, 7);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -41,7 +41,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Asimilador(new Posicion(0, 0), new GasVespeno(), new Reserva());
         pasarKTurnos(estructura, 5);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -53,7 +53,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Espiral(new Posicion(0, 0));
         pasarKTurnos(estructura, 9);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -65,7 +65,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Extractor(new Posicion(0, 0), new GasVespeno(), new Reserva());
         pasarKTurnos(estructura, 5);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -77,7 +77,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Guarida(new Posicion(0, 0));
         pasarKTurnos(estructura, 11);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -89,7 +89,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new NexoMineral(new Posicion(0, 0), new Mineral(), new Reserva());
         pasarKTurnos(estructura, 3);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -101,7 +101,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new Pilon(new Posicion(0, 0));
         pasarKTurnos(estructura, 4);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -113,7 +113,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
         pasarKTurnos(estructura, 9);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 
@@ -125,7 +125,7 @@ public class CasoDeUso2Test {
         Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
         pasarKTurnos(estructura, 11);
 
-        assertThrows(EstructuraNoOperativaException.class, estructura::operable);
+        assertThrows(EntidadNoOperativaException.class, estructura::operable);
 
         estructura.pasarTurno();
 

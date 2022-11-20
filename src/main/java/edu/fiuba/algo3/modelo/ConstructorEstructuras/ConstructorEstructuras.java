@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.ConstructorEstructuras;
 
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -13,6 +13,6 @@ public interface ConstructorEstructuras {
     // Piso para ver si esta en el rango correcto, y si es el piso del equipo
     // Reservas para ver si tiene los recursos necesarios para pagar la construccion
     // Estructura para ver si cumple la correlatividad
-    // Los constructores concretos pueden decidir hacer sobrecarga para no pasar parametros innecesarios
+    // Se deberia codear constructores para inyectar dependecia y testear con mocks.
     Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Reserva reservaMineral, Reserva reservaGas, Estructura estructuraCorrelativa);
 }

@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Asimilador;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
-import edu.fiuba.algo3.modelo.Unidad.Zangano;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,8 +22,9 @@ public class CasoDeUso7Test {
         Recurso mineral = new Mineral(new Posicion(0, 0));
         Zangano zangano = new Zangano();
 
-        mineral.ocupar(zangano);
-        zangano.extraerRecurso(mineral, reserva);
+        zangano.ocupar(mineral);
+        zangano.setReserva(reserva);
+        zangano.extraerRecurso();
 
         assertEquals(reserva.getRecurso(), 10);
     }

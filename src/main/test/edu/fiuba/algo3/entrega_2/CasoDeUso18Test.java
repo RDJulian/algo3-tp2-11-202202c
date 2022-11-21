@@ -8,8 +8,8 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ public class CasoDeUso18Test {
     @Test
     public void test01UnZanganoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Zangano(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -31,7 +31,7 @@ public class CasoDeUso18Test {
     @Test
     public void test02UnZerlingHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Zerling(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -48,7 +48,7 @@ public class CasoDeUso18Test {
     @Test
     public void test03UnHidraliscoHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Hidralisco(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -65,7 +65,7 @@ public class CasoDeUso18Test {
     @Test
     public void test04UnMutaliscoHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Mutalisco(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -82,7 +82,7 @@ public class CasoDeUso18Test {
     @Test
     public void test05UnGuardianHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Guardian(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -99,7 +99,7 @@ public class CasoDeUso18Test {
     @Test
     public void test06UnZealotHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Zealot(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -116,7 +116,7 @@ public class CasoDeUso18Test {
     @Test
     public void test07UnDragonHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Dragon(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -133,7 +133,7 @@ public class CasoDeUso18Test {
     @Test
     public void test08UnScoutHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Scout(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -309,7 +309,7 @@ public class CasoDeUso18Test {
     @Test
     public void test23UnAmoSupremoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new AmoSupremo(new Posicion(0, 0));
         unidad.setEstado(new Operativa());
@@ -341,7 +341,7 @@ public class CasoDeUso18Test {
     @Test
     public void test26UnDevoradorHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
         estructura.setEstado(new Operativa());
         Unidad unidad = new Devorador(new Posicion(0, 0));
         unidad.setEstado(new Operativa());

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
@@ -18,37 +19,43 @@ public class CasoDeUso4Test {
     public void test01UnExtractorNoGeneraGasSinZanganos() {
         Posicion posicion = new Posicion(0, 0);
         GasVespeno gasVespeno = new GasVespeno();
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 0);
+        assertEquals(reservaGas.getRecurso(), 0);
     }
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
         Posicion posicion = new Posicion(0, 0);
         GasVespeno gasVespeno = new GasVespeno();
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
         extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 10);
+        assertEquals(reservaGas.getRecurso(), 10);
     }
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
         Posicion posicion = new Posicion(0, 0);
         GasVespeno gasVespeno = new GasVespeno();
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
@@ -56,15 +63,17 @@ public class CasoDeUso4Test {
         extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 20);
+        assertEquals(reservaGas.getRecurso(), 20);
     }
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
         Posicion posicion = new Posicion(0, 0);
         GasVespeno gasVespeno = new GasVespeno();
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
@@ -73,15 +82,17 @@ public class CasoDeUso4Test {
         extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 30);
+        assertEquals(reservaGas.getRecurso(), 30);
     }
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
         Posicion posicion = new Posicion(0, 0);
         GasVespeno gasVespeno = new GasVespeno();
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.agregarZangano(new Zangano(new Posicion(0, 0)));

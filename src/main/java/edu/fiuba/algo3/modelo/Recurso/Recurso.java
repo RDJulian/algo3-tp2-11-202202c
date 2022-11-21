@@ -2,11 +2,9 @@ package edu.fiuba.algo3.modelo.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.Construible;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
-import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrectoException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 
 public abstract class Recurso {
@@ -25,19 +23,9 @@ public abstract class Recurso {
 
     public abstract void construible(Construible sobreRecurso);
 
-    public void extraerRecurso(int unidades, Reserva reserva, ExtraeRecurso extraeRecurso) {
-        if (this.extraeRecurso != extraeRecurso) {
-            throw new ExtractorIncorrectoException();
-        }
-        int nuevasUnidades = this.unidades - unidades;
-        if (nuevasUnidades < 0) {
-            throw new RecursoVacioException();
-        }
-        this.unidades = nuevasUnidades;
-        reserva.agregarRecurso(unidades);
-    }
+    public abstract void extraerRecurso(int unidades, Raza raza, ExtraeRecurso extraeRecurso);
 
-    //Setter. Ver si hay mejor solucion. Revisar interfaces.
+    //Setter. Ver si hay mejor solucion.
     public void ocupar(ExtraeRecurso extraeRecurso) {
         this.extraeRecurso = extraeRecurso;
     }

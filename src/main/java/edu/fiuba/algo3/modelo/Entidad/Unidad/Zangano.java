@@ -7,14 +7,14 @@ import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Posicion.Rango;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class Zangano extends Unidad implements ExtraeRecurso {
-    Recurso mineral;
-    Reserva reservaMineral;
+    private Raza raza;
+    private Recurso mineral;
 
     public Zangano(Posicion posicion) { //Zangano no tiene ataque.
         super(posicion);
@@ -34,12 +34,13 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         throw new AtaqueNoValidoException();
     }
 
-    public void usarExtractor(Recurso recurso, Reserva reserva, ExtraeRecurso extractor) {
-        recurso.extraerRecurso(10, reserva, extractor);
+    //Redundante pasarle la misma raza.
+    public void usarExtractor(Recurso recurso, Raza raza, ExtraeRecurso extractor) {
+        recurso.extraerRecurso(10, raza, extractor);
     }
 
     public void extraerRecurso() {
-        this.mineral.extraerRecurso(10, this.reservaMineral, this);
+        this.mineral.extraerRecurso(10, this.raza, this);
     }
 
     public void ocupar(Recurso mineral) {
@@ -47,10 +48,8 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.mineral = mineral;
     }
 
-    //Dejo este setter por el momento para no cambiar tanto los casos de uso,
-    //capaz como el Zangano es la unica unidad que extrae algun recurso, podria
-    //pedir desde el constructor una reservaMineral, como las estructuras.
-    public void setReserva(Reserva reservaMineral) {
-        this.reservaMineral = reservaMineral;
+    //Dejo este setter por el momento para no tener que cambiar tanto los tests.
+    public void setRaza(Raza zerg) {
+        this.raza = zerg;
     }
 }

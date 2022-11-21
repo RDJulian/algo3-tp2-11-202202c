@@ -7,19 +7,19 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Espiral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 
 public class ConstructorEspiral implements ConstructorEstructuras {
     @Override
-    public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Reserva reservaMineral, Reserva reservaGas, Estructura estructuraCorrelativa) {
+    public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
         posicion.ocupable();
         recurso.construible(new NoSobreRecurso());
         piso.construible(new RangoMoho(), posicion);
-        reservaMineral.construible(150);
-        reservaGas.construible(100);
+        raza.construible(150, 100);
         estructuraCorrelativa.construible(new RequiereGuarida());
 
+        raza.gastarRecursos(150, 100);
         return new Espiral(posicion);
     }
 }

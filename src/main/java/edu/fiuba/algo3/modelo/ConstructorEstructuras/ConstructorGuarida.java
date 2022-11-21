@@ -7,19 +7,19 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Guarida;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 
 public class ConstructorGuarida implements ConstructorEstructuras {
     @Override
-    public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Reserva reservaMineral, Reserva reservaGas, Estructura estructuraCorrelativa) {
+    public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
         posicion.ocupable();
         recurso.construible(new NoSobreRecurso());
         piso.construible(new RangoMoho(), posicion);
-        reservaMineral.construible(200);
-        reservaGas.construible(100);
+        raza.construible(200, 100);
         estructuraCorrelativa.construible(new RequiereReservaDeReproduccion());
 
+        raza.gastarRecursos(200, 100);
         return new Guarida(posicion);
     }
 }

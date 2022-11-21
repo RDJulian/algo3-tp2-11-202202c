@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Estructura.Extractor;
-import edu.fiuba.algo3.modelo.Excepciones.ExtractorLleno;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
+import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
-import edu.fiuba.algo3.modelo.Trabajador.Zangano;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,84 +17,88 @@ public class CasoDeUso4Test {
 
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 0);
+        assertEquals(reservaGas.getRecurso(), 0);
     }
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 10);
+        assertEquals(reservaGas.getRecurso(), 10);
     }
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 20);
+        assertEquals(reservaGas.getRecurso(), 20);
     }
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        extractor.construible(gasVespeno);
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
-        assertEquals(reserva.getRecurso(), 30);
+        assertEquals(reservaGas.getRecurso(), 30);
     }
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Reserva reserva = new Reserva();
-        Extractor extractor = new Extractor();
-        extractor.setReserva(reserva);
-        pasarKTurnos(extractor, 6);
-        extractor.construible(gasVespeno);
-        
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno();
+        Reserva reservaMineral = new Reserva();
+        Reserva reservaGas = new Reserva();
+        Raza raza = new Raza(reservaMineral, reservaGas);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
-        assertThrows(ExtractorLleno.class, () -> extractor.agregarZangano(new Zangano()));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+
+        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(new Zangano(new Posicion(0, 0))));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {

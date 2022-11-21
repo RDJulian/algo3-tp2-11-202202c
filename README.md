@@ -1,6 +1,6 @@
-![tp2](https://github.com/RDJulian/algo3-tp2-13-202202c/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/RDJulian/algo3-tp2-13-202202c/branch/master/graph/badge.svg)](https://codecov.io/gh/RDJulian/algo3-tp2-13-202202c)
+![tp2](https://github.com/RDJulian/algo3-tp2-11-202202c/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/RDJulian/algo3-tp2-11-202202c/branch/master/graph/badge.svg)](https://codecov.io/gh/RDJulian/algo3-tp2-11-202202c)
 
-# TP2 Algoritmos 3: AlgoStar 
+# TP2 Algoritmos 3: AlgoStar
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
@@ -17,7 +17,9 @@ Corrector: **Joaquin Gomez**
 
 ## Aplicación
 
-La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/RDJulian/algo3-tp2-13-202202c/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
+La versión más reciente de la aplicación puede encontrarse en la
+pestaña [releases](https://github.com/RDJulian/algo3-tp2-11-202202c/releases/latest) y ejecutarse en Linux, Windows o
+Mac de esta forma:
 
 ```bash
 $ java -jar <archivo.jar>

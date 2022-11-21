@@ -1,13 +1,15 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleSobreRecurso;
-import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrecto;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoVacio;
+import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 
 public abstract class Recurso {
+    //Estaria bueno probar que una estructura solo puede construirse si ademas esta en la
+    //posicion del recurso.
     protected int unidades;
     protected Posicion posicion;
     protected ExtraeRecurso extraeRecurso;
@@ -19,23 +21,18 @@ public abstract class Recurso {
         this.posicion = posicion;
     }
 
-    public abstract void construible(ConstruibleSobreRecurso sobreRecurso);
+    public abstract void construible(Construible sobreRecurso);
 
-    public void extraerRecurso(int unidades, Reserva reserva, ExtraeRecurso extraeRecurso) {
-        if (this.extraeRecurso != extraeRecurso) {
-            throw new ExtractorIncorrecto();
-        }
-        int nuevasUnidades = this.unidades - unidades;
-        if (nuevasUnidades < 0) {
-            throw new RecursoVacio();
-        }
-        this.unidades = nuevasUnidades;
-        reserva.agregarRecurso(unidades);
+    public abstract void extraerRecurso(int unidades, Raza raza, ExtraeRecurso extraeRecurso);
+
+    //Setter. Ver si hay mejor solucion.
+    public void ocupar(ExtraeRecurso extraeRecurso) {
+        this.extraeRecurso = extraeRecurso;
     }
 
-    public void ocupable(ExtraeRecurso extraeRecurso) {
+    public void ocupar(Zangano zangano) {
         this.posicion.ocupable();
-        posicion.setEstadoPosicion(new Ocupada());
-        this.extraeRecurso = extraeRecurso;
+        this.extraeRecurso = zangano;
+        this.posicion.setEstadoPosicion(new Ocupada());
     }
 }

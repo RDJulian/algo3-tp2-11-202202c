@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Reserva;
 
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficiente;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 
 public class Reserva {
     private int unidades;
@@ -24,8 +24,15 @@ public class Reserva {
     public void gastarRecurso(int costoGas) {
         int nuevasUnidades = this.unidades - costoGas;
         if (nuevasUnidades < 0) {
-            throw new RecursoInsuficiente();
+            throw new RecursoInsuficienteException();
         }
         this.unidades = nuevasUnidades;
+    }
+
+    public void construible(int unidades) {
+        int nuevasUnidades = this.unidades - unidades;
+        if (nuevasUnidades < 0) {
+            throw new RecursoInsuficienteException();
+        }
     }
 }

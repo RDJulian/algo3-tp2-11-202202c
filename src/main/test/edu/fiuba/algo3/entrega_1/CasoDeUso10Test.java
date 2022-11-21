@@ -1,61 +1,67 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Estructura.Espiral;
-import edu.fiuba.algo3.modelo.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Espiral;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Posicion.Rango;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoDeUso10Test {
+    //La idea es hacer un poco de danio, luego regenerar, luego daniar hasta el punto de casi estar destruida.
+    //Si la vida no se regenerase correctamente, entonces la estructura estaria destruida y no seria operable.
     @Test
     public void test01DaniarUnaEstructuraZergDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral();
+        Rango rango = new Rango(new Posicion(0, 0), 1);
+        Estructura estructura = new Espiral(new Posicion(0, 0));
+        estructura.setEstado(new Operativa());
+        estructura.daniar(100, 0, rango);
+
         pasarKTurnos(estructura, 10);
-        estructura.daniar(105);
 
-        assertEquals(estructura.getVida(), 1195);
-
-        pasarKTurnos(estructura, 10);
-
-        assertEquals(estructura.getVida(), 1295);
-
-        estructura.pasarTurno();
-
-        assertEquals(estructura.getVida(), 1300);
+        estructura.daniar(1299, 0, rango);
+        assertDoesNotThrow(estructura::operable);
     }
 
     @Test
     public void test02DaniarUnaEstructuraZergEnConstruccionDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral();
-        estructura.daniar(200);
+        Rango rango = new Rango(new Posicion(0, 0), 1);
+        Estructura estructura = new Espiral(new Posicion(0, 0));
+        estructura.daniar(100, 0, rango);
         pasarKTurnos(estructura, 10);
 
-        assertEquals(estructura.getVida(), 1200);
+        estructura.daniar(1299, 0, rango);
+        assertDoesNotThrow(estructura::operable);
     }
 
     @Test
     public void test03DestruirUnaEstructuraZergNoDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral();
-        pasarKTurnos(estructura, 10);
-        estructura.daniar(1300);
+        Rango rango = new Rango(new Posicion(0, 0), 1);
+        Estructura estructura = new Espiral(new Posicion(0, 0));
+        estructura.setEstado(new Operativa());
+        estructura.daniar(1300, 0, rango);
 
-        assertEquals(estructura.getVida(), 0);
+        assertThrows(EntidadDestruidaException.class, estructura::operable);
 
         pasarKTurnos(estructura, 20);
 
-        assertEquals(estructura.getVida(), 0);
+        assertThrows(EntidadDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test04DestruirUnaEstructuraZergEnConstruccionNoDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral();
-        estructura.daniar(1300);
+        Rango rango = new Rango(new Posicion(0, 0), 1);
+        Estructura estructura = new Espiral(new Posicion(0, 0));
+        estructura.daniar(1300, 0, rango);
 
-        assertEquals(estructura.getVida(), 0);
+        assertThrows(EntidadDestruidaException.class, estructura::operable);
 
         pasarKTurnos(estructura, 20);
 
-        assertEquals(estructura.getVida(), 0);
+        assertThrows(EntidadDestruidaException.class, estructura::operable);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

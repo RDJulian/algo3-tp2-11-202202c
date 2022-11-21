@@ -3,9 +3,9 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +38,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test03AsimiladorNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Asimilador(new Posicion(0, 0), new GasVespeno(), new Reserva());
+        Estructura estructura = new Asimilador(new Posicion(0, 0), new GasVespeno(), new Raza());
         pasarKTurnos(estructura, 5);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -62,7 +62,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test05ExtractorNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Extractor(new Posicion(0, 0), new GasVespeno(), new Reserva());
+        Estructura estructura = new Extractor(new Posicion(0, 0), new GasVespeno(), new Raza());
         pasarKTurnos(estructura, 5);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -86,7 +86,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test07NexoMineralNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new NexoMineral(new Posicion(0, 0), new Mineral(), new Reserva());
+        Estructura estructura = new NexoMineral(new Posicion(0, 0), new Mineral(), new Raza());
         pasarKTurnos(estructura, 3);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);

@@ -5,10 +5,10 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ public class CasoDeUso16Test {
     public void test02UnaEstructuraNoSePuedeConstruirSobreUnVolcanConUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
         Recurso gasVespeno = new GasVespeno(posicion);
-        new Extractor(posicion, gasVespeno, new Reserva());
+        new Extractor(posicion, gasVespeno, new Raza());
 
         assertThrows(PosicionOcupadaException.class, posicion::ocupable);
     }
@@ -41,7 +41,7 @@ public class CasoDeUso16Test {
     public void test03UnNexoMineralNoSePuedeConstruirSiUnZanganoEstaExtrayendo() {
         Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new Mineral(posicion);
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(new Posicion(0, 0));
 
         zangano.ocupar(mineral);
 
@@ -53,9 +53,9 @@ public class CasoDeUso16Test {
     public void test04UnZanganoNoPuedeExtraerMineralSiUnNexoMineralEstaConstruido() {
         Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new Mineral(posicion);
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(new Posicion(0, 0));
 
-        new NexoMineral(posicion, mineral, new Reserva());
+        new NexoMineral(posicion, mineral, new Raza());
 
         assertThrows(PosicionOcupadaException.class, () -> zangano.ocupar(mineral));
     }

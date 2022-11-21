@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
@@ -30,9 +31,10 @@ public class CasoDeUso3Test {
         Recurso mineral = new Mineral();
         Reserva reservaGas = new Reserva(10000);
         Reserva reservaMineral = new Reserva(10000);
+        Raza raza = new Raza(reservaMineral, reservaGas);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, gasVespeno, pilon, reservaMineral, reservaGas, pilon));
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, mineral, pilon, reservaMineral, reservaGas, pilon));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, gasVespeno, pilon, raza, pilon));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, mineral, pilon, raza, pilon));
     }
 
     @Test
@@ -45,8 +47,9 @@ public class CasoDeUso3Test {
         Reserva reservaGas = new Reserva(10000);
         Reserva reservaMineral = new Reserva(10000);
         Estructura estructura = new Pilon(new Posicion(0, 0));
+        Raza raza = new Raza(reservaMineral, reservaGas);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, gasVespeno, moho, reservaMineral, reservaGas, estructura));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, gasVespeno, moho, raza, estructura));
     }
 
     @Test
@@ -59,7 +62,8 @@ public class CasoDeUso3Test {
         Recurso mineral = new Mineral();
         Reserva reservaGas = new Reserva(10000);
         Reserva reservaMineral = new Reserva(10000);
+        Raza raza = new Raza(reservaMineral, reservaGas);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, mineral, pilon, reservaMineral, reservaGas, pilon));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(otraPosicion, mineral, pilon, raza, pilon));
     }
 }

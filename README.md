@@ -4,9 +4,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-[Enlace al enunciado v1](https://campus.fi.uba.ar/pluginfile.php/239595/mod_assign/intro/%5BTP2%5D%20%5B2022%202C%5D%20-%20v1.pdf)
-
-[Enlace al enunciado v2](https://cdn.discordapp.com/attachments/1039308920570777643/1041001864113692722/TP2_2022_2C_-_v2.pdf)
+[Enlace al enunciado](https://cdn.discordapp.com/attachments/1039308920570777643/1043910977856479283/TP2_2022_2C_-_v3_FINAL.pdf)
 
 ## Grupo 11
 

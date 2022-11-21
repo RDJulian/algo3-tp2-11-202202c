@@ -32,4 +32,12 @@ public class Posicion {
     public void setEstadoPosicion(EstadoPosicion estadoPosicion) {
         this.estadoPosicion = estadoPosicion;
     }
+
+    public boolean esOpuesta(Posicion posicion) {
+        return posicion.esOpuesta(this.posicionX, this.posicionY);
+    }
+
+    private boolean esOpuesta(int posicionX, int posicionY) {
+        return (this.posicionX == -posicionX && this.posicionY == -posicionY);
+    }
 }

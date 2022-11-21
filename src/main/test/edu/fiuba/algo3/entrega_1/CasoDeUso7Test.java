@@ -20,7 +20,7 @@ public class CasoDeUso7Test {
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
         Reserva reserva = new Reserva();
         Recurso mineral = new Mineral(new Posicion(0, 0));
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(new Posicion(0, 0));
 
         zangano.ocupar(mineral);
         zangano.setReserva(reserva);
@@ -37,9 +37,9 @@ public class CasoDeUso7Test {
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 30);

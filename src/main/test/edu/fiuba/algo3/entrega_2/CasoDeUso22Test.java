@@ -19,7 +19,7 @@ public class CasoDeUso22Test {
     //Lo obviamos en este test por el momento por simplicidad.
     @Test
     public void test01UnAmoSupremoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Unidad unidad = new AmoSupremo();
+        Unidad unidad = new AmoSupremo(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -30,7 +30,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test02UnDevoradorSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Unidad unidad = new Devorador();
+        Unidad unidad = new Devorador(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -51,7 +51,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Dragon();
+        Unidad unidad = new Dragon(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -62,7 +62,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test04UnGuardianSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Unidad unidad = new Guardian();
+        Unidad unidad = new Guardian(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -82,7 +82,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Hidralisco();
+        Unidad unidad = new Hidralisco(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -102,7 +102,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Mutalisco();
+        Unidad unidad = new Mutalisco(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -122,7 +122,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Scout();
+        Unidad unidad = new Scout(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -142,7 +142,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Zangano();
+        Unidad unidad = new Zangano(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -162,7 +162,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Zealot();
+        Unidad unidad = new Zealot(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 
@@ -182,7 +182,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Zerling();
+        Unidad unidad = new Zerling(new Posicion(0, 0));
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 

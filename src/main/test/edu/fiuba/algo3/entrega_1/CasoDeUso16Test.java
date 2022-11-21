@@ -41,7 +41,7 @@ public class CasoDeUso16Test {
     public void test03UnNexoMineralNoSePuedeConstruirSiUnZanganoEstaExtrayendo() {
         Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new Mineral(posicion);
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(new Posicion(0, 0));
 
         zangano.ocupar(mineral);
 
@@ -53,7 +53,7 @@ public class CasoDeUso16Test {
     public void test04UnZanganoNoPuedeExtraerMineralSiUnNexoMineralEstaConstruido() {
         Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new Mineral(posicion);
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(new Posicion(0, 0));
 
         new NexoMineral(posicion, mineral, new Reserva());
 

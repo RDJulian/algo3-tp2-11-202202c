@@ -2,12 +2,17 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Entidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Posicion.Rango;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class Mutalisco extends Unidad {
-    public Mutalisco() {
+    public Mutalisco(Posicion posicion) {
+        super(posicion);
+        this.radioAtaque = 3;
+        this.rangoAtaque = new Rango(this.posicion, this.radioAtaque);
         this.danioAire = 9;
         this.danioTierra = 9;
         this.tipoUnidad = new UnidadAire();

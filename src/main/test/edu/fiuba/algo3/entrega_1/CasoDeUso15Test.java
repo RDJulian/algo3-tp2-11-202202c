@@ -35,8 +35,8 @@ public class CasoDeUso15Test { //Se deberia resumir o setear directamente los es
         Recurso mineral = new GasVespeno(new Posicion(0, 0));
         Extractor extractor = new Extractor(new Posicion(0, 0), mineral, new Reserva());
         pasarKTurnos(extractor, 6);
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
 
         pasarKTurnos(extractor, 249);
 

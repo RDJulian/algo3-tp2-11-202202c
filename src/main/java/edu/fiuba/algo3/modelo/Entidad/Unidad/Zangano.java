@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.Entidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Posicion.Rango;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
@@ -14,7 +16,10 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     Recurso mineral;
     Reserva reservaMineral;
 
-    public Zangano() { //Zangano no tiene ataque.
+    public Zangano(Posicion posicion) { //Zangano no tiene ataque.
+        super(posicion);
+        this.radioAtaque = 0;
+        this.rangoAtaque = new Rango(this.posicion, this.radioAtaque);
         this.danioAire = 0;
         this.danioTierra = 0;
         this.tipoUnidad = new UnidadTierra();

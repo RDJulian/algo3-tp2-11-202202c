@@ -37,7 +37,7 @@ public class CasoDeUso4Test {
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 10);
@@ -52,8 +52,8 @@ public class CasoDeUso4Test {
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 20);
@@ -68,9 +68,9 @@ public class CasoDeUso4Test {
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
         extractor.pasarTurno();
 
         assertEquals(reserva.getRecurso(), 30);
@@ -83,11 +83,11 @@ public class CasoDeUso4Test {
         Reserva reserva = new Reserva();
         Extractor extractor = new Extractor(posicion, gasVespeno, reserva);
 
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
-        extractor.agregarZangano(new Zangano());
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
 
-        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(new Zangano()));
+        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(new Zangano(new Posicion(0, 0))));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {

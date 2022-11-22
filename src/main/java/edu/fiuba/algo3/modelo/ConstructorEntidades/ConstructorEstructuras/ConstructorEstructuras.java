@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.ConstructorEstructuras;
+package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;

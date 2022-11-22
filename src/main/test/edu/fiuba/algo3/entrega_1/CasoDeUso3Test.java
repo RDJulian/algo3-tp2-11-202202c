@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.ConstructorEstructuras.ConstructorAcceso;
-import edu.fiuba.algo3.modelo.ConstructorEstructuras.ConstructorExtractor;
-import edu.fiuba.algo3.modelo.ConstructorEstructuras.ConstructorNexoMineral;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorAcceso;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorExtractor;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorNexoMineral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;

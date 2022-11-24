@@ -3,7 +3,6 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
-import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
@@ -29,14 +28,14 @@ public class CasoDeUso9Test {
         pilones.add(otroPilon);
 
         PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
-        puertoEstelar.setEstado(new Operativa());
+        pasarKTurnos(puertoEstelar, 10);
 
-        puertoEstelar.setEstado(pilones);
+        puertoEstelar.actualizarEstado(pilones);
         assertDoesNotThrow(puertoEstelar::operable);
 
         pilones.remove(0);
 
-        puertoEstelar.setEstado(pilones);
+        puertoEstelar.actualizarEstado(pilones);
         assertDoesNotThrow(puertoEstelar::operable);
     }
 
@@ -53,14 +52,14 @@ public class CasoDeUso9Test {
         pilones.add(otroPilon);
 
         PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
-        puertoEstelar.setEstado(new Operativa());
+        pasarKTurnos(puertoEstelar, 10);
 
-        puertoEstelar.setEstado(pilones);
+        puertoEstelar.actualizarEstado(pilones);
         assertDoesNotThrow(puertoEstelar::operable);
 
         pilones.remove(0);
 
-        puertoEstelar.setEstado(pilones);
+        puertoEstelar.actualizarEstado(pilones);
         assertThrows(EntidadNoOperativaException.class, puertoEstelar::operable);
     }
 

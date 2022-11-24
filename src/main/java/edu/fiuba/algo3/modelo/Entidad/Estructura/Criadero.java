@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.GenerarLarva;
-import edu.fiuba.algo3.modelo.Entidad.GeneraLarva;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.GenerarLarva;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -15,33 +14,36 @@ public class Criadero extends Estructura implements GeneraLarva {
     private int larvas;
 
     public Criadero(Posicion posicion) {
-        super(posicion);
-        this.estadoEstructura = new EnConstruccion(4);
-        this.larvas = 3;
+        this.posicion = posicion;
+        posicion.ocupar();
+
+        this.estadoEntidad = new EnConstruccion(4);
+        this.accionAlPasarTurno = new GenerarLarva(this);
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
-        this.accionAlPasarTurno = new GenerarLarva(this);
+
+        this.larvas = 3;
     }
 
-    //Este metodo es propio y unico de esta estructura. Capaz puede estar atado a la interfaz.
+    //Este metodo es propio y unico de esta estructura.
     public void usarLarva() {
-        this.estadoEstructura.operable();
-        if (this.larvas == 0) {
+        estadoEntidad.operable();
+        if (larvas == 0) {
             throw new CriaderoSinLarvasException();
         }
-        this.larvas -= 1;
+        larvas -= 1;
     }
 
     @Override
     public void generarLarva() {
-        if (this.larvas < 3) {
-            this.larvas += 1;
+        if (larvas < 3) {
+            larvas += 1;
         }
     }
 
     //Idem a arriba.
     public Piso generarMoho() {
-        return new Moho(this.posicion);
+        return new Moho(posicion);
     }
 
 

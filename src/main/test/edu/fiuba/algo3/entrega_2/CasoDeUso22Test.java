@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Construible.*;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.*;
-import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -44,9 +44,9 @@ public class CasoDeUso22Test {
         //Simulamos el comportamiento de un futuro constructor, que haria este chequeo.
         ConstruibleEstructura construible = new RequiereAcceso();
         Estructura estructura = new Acceso(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -75,9 +75,9 @@ public class CasoDeUso22Test {
     public void test05UnHidraliscoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         ConstruibleEstructura construible = new RequiereGuarida();
         Estructura estructura = new Guarida(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -95,9 +95,9 @@ public class CasoDeUso22Test {
     public void test06UnMutaliscoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         ConstruibleEstructura construible = new RequiereEspiral();
         Estructura estructura = new Espiral(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -115,9 +115,9 @@ public class CasoDeUso22Test {
     public void test07UnScoutSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         ConstruibleEstructura construible = new RequierePuertoEstelar();
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -135,9 +135,9 @@ public class CasoDeUso22Test {
     public void test08UnZanganoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         ConstruibleEstructura construible = new RequiereCriadero();
         Estructura estructura = new Criadero(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -155,9 +155,9 @@ public class CasoDeUso22Test {
     public void test09UnZealotSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         ConstruibleEstructura construible = new RequiereAcceso();
         Estructura estructura = new Acceso(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -175,9 +175,9 @@ public class CasoDeUso22Test {
     public void test10UnZerlingSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         ConstruibleEstructura construible = new RequiereReservaDeReproduccion();
         Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(otraEstructura, 12);
         estructura.construible(construible);
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
@@ -191,9 +191,9 @@ public class CasoDeUso22Test {
         assertDoesNotThrow(unidad::operable);
     }
 
-    public void pasarKTurnos(Unidad unidad, int k) {
+    public void pasarKTurnos(Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
-            unidad.pasarTurno();
+            entidad.pasarTurno();
         }
     }
 }

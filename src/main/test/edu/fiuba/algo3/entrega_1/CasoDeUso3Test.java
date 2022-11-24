@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.Constr
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorNexoMineral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -27,7 +26,7 @@ public class CasoDeUso3Test {
         Posicion posicion = new Posicion(0, 0);
         Posicion otraPosicion = new Posicion(1, 1);
         Pilon pilon = new Pilon(posicion);
-        pilon.setEstado(new Operativa());
+        pasarKTurnos(pilon, 5);
         Recurso gasVespeno = new GasVespeno();
         Recurso mineral = new Mineral();
         Reserva reservaGas = new Reserva(10000);
@@ -76,7 +75,7 @@ public class CasoDeUso3Test {
         Posicion posicion = new Posicion(0, 0);
         Posicion otraPosicion = new Posicion(1, 1);
         Pilon pilon = new Pilon(posicion);
-        pilon.setEstado(new Operativa());
+        pasarKTurnos(pilon, 5);
         Recurso mineral = new Mineral();
         Reserva reservaGas = new Reserva(10000);
         Reserva reservaMineral = new Reserva(10000);

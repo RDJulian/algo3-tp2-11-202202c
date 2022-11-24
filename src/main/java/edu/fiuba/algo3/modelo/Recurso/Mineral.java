@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrectoException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Construible.RequiereAcceso;
-import edu.fiuba.algo3.modelo.Construible.RequiereGuarida;
-import edu.fiuba.algo3.modelo.Construible.RequiereReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

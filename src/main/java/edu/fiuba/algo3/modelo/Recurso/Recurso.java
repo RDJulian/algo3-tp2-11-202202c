@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
-import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
@@ -33,6 +32,6 @@ public abstract class Recurso {
     public void ocupar(Zangano zangano) {
         this.posicion.ocupable();
         this.extraeRecurso = zangano;
-        this.posicion.setEstadoPosicion(new Ocupada());
+        this.posicion.ocupar();
     }
 }

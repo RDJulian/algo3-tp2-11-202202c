@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
@@ -17,7 +17,7 @@ public class CasoDeUso13Test {
     public void test01UnCriaderoSeConstruyeCreaMohoLuegoEsDestruidaPeroElMohoSigueEstando() {
         Rango rango = new Rango(new Posicion(0, 0), 1);
         Criadero criadero = new Criadero(new Posicion(0, 0));
-        Construible sobreMoho = new RangoMoho();
+        ConstruiblePiso sobreMoho = new RangoMoho();
 
         //Idealmente se ejecuta junto a la construccion.
         Piso nuevoMoho = criadero.generarMoho();

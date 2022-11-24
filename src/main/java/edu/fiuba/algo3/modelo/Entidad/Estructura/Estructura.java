@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.Ejecutar;
 import edu.fiuba.algo3.modelo.Entidad.Daniable;
 import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
@@ -29,7 +29,7 @@ public abstract class Estructura implements Daniable {
         this.estadoEstructura.operable();
     }
 
-    //Este setter es indispensable por patron State.
+    //Refactorizar. Lo dejo por el momento para los tests
     public void setEstado(EstadoEntidad estadoEstructura) {
         this.estadoEstructura = estadoEstructura;
     }
@@ -52,5 +52,5 @@ public abstract class Estructura implements Daniable {
     }
 
     //Construible deberia llamar a operable(), sino no tiene sentido que habilite!
-    public abstract void construible(Construible requiereOtraEstructura);
+    public abstract void construible(ConstruibleEstructura requiereOtraEstructura);
 }

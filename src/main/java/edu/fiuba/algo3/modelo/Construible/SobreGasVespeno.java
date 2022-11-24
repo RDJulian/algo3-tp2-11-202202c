@@ -2,12 +2,22 @@ package edu.fiuba.algo3.modelo.Construible;
 
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Recurso.Nada;
 
-public class SobreGasVespeno implements Construible {
+public class SobreGasVespeno implements ConstruibleRecurso {
     @Override
-    public void manejar(Class<?> recurso) {
-        if (recurso != GasVespeno.class) {
-            throw new ConstruccionNoValidaException();
-        }
+    public void visitar(GasVespeno recurso) {
+
+    }
+
+    @Override
+    public void visitar(Mineral recurso) {
+        throw new ConstruccionNoValidaException();
+    }
+
+    @Override
+    public void visitar(Nada recurso) {
+        throw new ConstruccionNoValidaException();
     }
 }

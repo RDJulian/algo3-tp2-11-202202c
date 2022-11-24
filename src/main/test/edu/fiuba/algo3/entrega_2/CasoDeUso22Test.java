@@ -42,7 +42,7 @@ public class CasoDeUso22Test {
     @Test
     public void test03UnDragonSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
         //Simulamos el comportamiento de un futuro constructor, que haria este chequeo.
-        Construible construible = new RequiereAcceso();
+        ConstruibleEstructura construible = new RequiereAcceso();
         Estructura estructura = new Acceso(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
@@ -73,7 +73,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test05UnHidraliscoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Construible construible = new RequiereGuarida();
+        ConstruibleEstructura construible = new RequiereGuarida();
         Estructura estructura = new Guarida(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
@@ -93,7 +93,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test06UnMutaliscoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Construible construible = new RequiereEspiral();
+        ConstruibleEstructura construible = new RequiereEspiral();
         Estructura estructura = new Espiral(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
@@ -113,7 +113,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test07UnScoutSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Construible construible = new RequierePuertoEstelar();
+        ConstruibleEstructura construible = new RequierePuertoEstelar();
         Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
@@ -133,7 +133,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test08UnZanganoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Construible construible = new RequiereCriadero();
+        ConstruibleEstructura construible = new RequiereCriadero();
         Estructura estructura = new Criadero(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
@@ -153,7 +153,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test09UnZealotSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Construible construible = new RequiereAcceso();
+        ConstruibleEstructura construible = new RequiereAcceso();
         Estructura estructura = new Acceso(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));
@@ -173,7 +173,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test10UnZerlingSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        Construible construible = new RequiereReservaDeReproduccion();
+        ConstruibleEstructura construible = new RequiereReservaDeReproduccion();
         Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
         estructura.setEstado(new Operativa());
         Estructura otraEstructura = new Pilon(new Posicion(0, 0));

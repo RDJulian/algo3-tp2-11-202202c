@@ -56,7 +56,8 @@ public class Acceso extends Estructura implements UsaMemento {
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Acceso.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

@@ -17,7 +17,8 @@ public class Espiral extends Estructura {
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Espiral.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

@@ -1,0 +1,16 @@
+package edu.fiuba.algo3.modelo.Recurso;
+
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
+import edu.fiuba.algo3.modelo.Raza.Raza;
+
+public class Nada extends Recurso{
+    @Override
+    public void construible(ConstruibleRecurso sobreRecurso) {
+        sobreRecurso.visitar(this);
+    }
+
+    @Override
+    public void extraerRecurso(int unidades, Raza raza, ExtraeRecurso extraeRecurso) {
+    }
+}

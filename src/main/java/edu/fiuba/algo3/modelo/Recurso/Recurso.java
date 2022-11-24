@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Posicion.Ocupada;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -21,7 +21,7 @@ public abstract class Recurso {
         this.posicion = posicion;
     }
 
-    public abstract void construible(Construible sobreRecurso);
+    public abstract void construible(ConstruibleRecurso sobreRecurso);
 
     public abstract void extraerRecurso(int unidades, Raza raza, ExtraeRecurso extraeRecurso);
 

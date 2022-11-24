@@ -31,7 +31,8 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Asimilador.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

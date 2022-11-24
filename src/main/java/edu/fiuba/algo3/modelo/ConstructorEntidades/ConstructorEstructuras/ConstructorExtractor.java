@@ -13,9 +13,10 @@ public class ConstructorExtractor implements ConstructorEstructuras {
     public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
         posicion.ocupable();
         recurso.construible(new SobreGasVespeno());
-        piso.construible(new RangoPilon(), posicion);
+        piso.construible(new RangoMoho(), posicion);
         raza.construible(100, 0);
-        estructuraCorrelativa.construible(new NoRequiereEstructura());
+        ConstruibleEstructura requiereEstructura = new NoRequiereEstructura();
+        requiereEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(100, 0);
         return new Extractor(posicion, recurso, raza);

@@ -17,7 +17,8 @@ public class Guarida extends Estructura {
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Guarida.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

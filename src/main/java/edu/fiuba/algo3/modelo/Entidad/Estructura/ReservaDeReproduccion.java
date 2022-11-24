@@ -18,7 +18,8 @@ public class ReservaDeReproduccion extends Estructura {
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(ReservaDeReproduccion.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

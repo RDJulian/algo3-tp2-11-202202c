@@ -31,16 +31,17 @@ public class Pilon extends Estructura implements Piso {
     }
 
     @Override
-    public void construible(Construible sobreRango, Posicion posicion) {
+    public void construible(ConstruiblePiso sobreRango, Posicion posicion) {
         this.estadoEstructura.operable();
-        sobreRango.manejar(Pilon.class);
+        sobreRango.visitar(this);
         if (fueraDeRango(posicion)) {
             throw new ConstruccionNoValidaException();
         }
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Pilon.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

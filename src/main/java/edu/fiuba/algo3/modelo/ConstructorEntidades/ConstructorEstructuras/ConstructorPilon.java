@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoPilon;
@@ -17,7 +18,8 @@ public class ConstructorPilon implements ConstructorEstructuras {
         recurso.construible(new NoSobreRecurso());
         piso.construible(new RangoPilon(), posicion);
         raza.construible(100, 0);
-        estructuraCorrelativa.construible(new NoRequiereEstructura());
+        ConstruibleEstructura requiereEstructura = new NoRequiereEstructura();
+        requiereEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(100, 0);
         return new Pilon(posicion);

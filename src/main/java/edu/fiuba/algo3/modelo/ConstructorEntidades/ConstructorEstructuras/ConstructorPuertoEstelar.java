@@ -15,7 +15,8 @@ public class ConstructorPuertoEstelar implements ConstructorEstructuras {
         recurso.construible(new NoSobreRecurso());
         piso.construible(new RangoPilon(), posicion);
         raza.construible(150, 150);
-        estructuraCorrelativa.construible(new RequiereAcceso());
+        ConstruibleEstructura requiereEstructura = new RequiereAcceso();
+        requiereEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(150, 150);
         return new PuertoEstelar(posicion);

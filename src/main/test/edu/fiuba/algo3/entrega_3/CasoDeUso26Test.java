@@ -19,6 +19,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorZangano();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Criadero(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -34,6 +35,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorAmoSupremo();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Criadero(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -49,6 +51,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorDevorador();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Criadero(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -64,6 +67,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorDragon();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Acceso(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -79,6 +83,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorGuardian();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Criadero(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -94,6 +99,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorHidralisco();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Guarida(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -109,6 +115,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorMutalisco();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Espiral(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -124,6 +131,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorZealot();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Acceso(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -139,6 +147,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorScout();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new PuertoEstelar(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -154,6 +163,7 @@ public class CasoDeUso26Test {
         ConstructorUnidades constructor = new ConstructorZerling();
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new ReservaDeReproduccion(posicion);
+        pasarKTurnos(estructuraNecesaria, 20);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -161,5 +171,10 @@ public class CasoDeUso26Test {
         zerg.recolectarMineral(1000);
 
         assertDoesNotThrow(()-> constructor.construir(posicion,zerg, estructuraNecesaria));
+    }
+    public void pasarKTurnos(Estructura estructura, int k) {
+        for (int i = 0; i < k; i++) {
+            estructura.pasarTurno();
+        }
     }
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrectoException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
@@ -30,7 +30,7 @@ public class Mineral extends Recurso {
     }
 
     @Override
-    public void construible(Construible sobreRecurso) {
-        sobreRecurso.manejar(GasVespeno.class);
+    public void construible(ConstruibleRecurso sobreRecurso) {
+        sobreRecurso.visitar(this);
     }
 }

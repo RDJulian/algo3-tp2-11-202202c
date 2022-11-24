@@ -15,7 +15,8 @@ public class ConstructorAsimilador implements ConstructorEstructuras {
         recurso.construible(new SobreGasVespeno());
         piso.construible(new RangoPilon(), posicion);
         raza.construible(100, 0);
-        estructuraCorrelativa.construible(new NoRequiereEstructura());
+        ConstruibleEstructura requiereEstructura = new NoRequiereEstructura();
+        requiereEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(100, 0);
         return new Asimilador(posicion, recurso, raza);

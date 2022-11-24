@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.RangoMoho;
@@ -17,8 +18,8 @@ public class ConstructorCriadero implements ConstructorEstructuras {
         recurso.construible(new NoSobreRecurso());
         piso.construible(new RangoMoho(), posicion);
         raza.construible(50, 0);
-        estructuraCorrelativa.construible(new NoRequiereEstructura());
-
+        ConstruibleEstructura requiereEstructura = new NoRequiereEstructura();
+        requiereEstructura.visitar(estructuraCorrelativa);
         raza.gastarRecursos(50, 0);
         return new Criadero(posicion);
     }

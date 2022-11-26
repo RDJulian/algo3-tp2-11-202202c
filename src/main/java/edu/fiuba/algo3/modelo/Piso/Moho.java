@@ -28,9 +28,11 @@ public class Moho implements Piso {
         }
     }
 
+    //Expansion del moho. Deberia conectarse con expandible o con las areas.
+    //expandible() podria hacer el chequeo tanto con la posicion como con el area.
     public void pasarTurno() {
-        this.turnos += 1;
-        if (this.turnos % 2 == 0) {
+        turnos += 1;
+        if (turnos % 2 == 0) {
             this.rango += 1;
         }
     }

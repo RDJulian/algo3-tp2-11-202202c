@@ -11,38 +11,44 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso11Test {
     @Test
     public void test01DaniarUnaEstructuraProtossDeberiaRegenerarSuEscudoAlPasarTurnos() {
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new PuertoEstelar(posicion);
         pasarKTurnos(estructura, 12);
-        estructura.daniar(100, 0, new Posicion(0, 0), 1);
+
+        estructura.daniar(100, 0, posicion, 1);
         //500 Escudo 600 Vida
 
         pasarKTurnos(estructura, 10);
-
         //600 E 600 V
 
-        estructura.daniar(1199, 0, new Posicion(0, 0), 1);
+        estructura.daniar(1199, 0, posicion, 1);
+
         assertDoesNotThrow(estructura::operable);
     }
 
     @Test
     public void test02DaniarUnaEstructuraProtossEnConstruccionDeberiaRegenerarSuEscudoAlPasarTurnos() {
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
-        estructura.daniar(100, 0, new Posicion(0, 0), 1);
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new PuertoEstelar(posicion);
+
+        estructura.daniar(100, 0, posicion, 1);
         //500 Escudo 600 Vida
 
         pasarKTurnos(estructura, 10);
-
         //600 E 600 V
 
-        estructura.daniar(1199, 0, new Posicion(0, 0), 1);
+        estructura.daniar(1199, 0, posicion, 1);
+
         assertDoesNotThrow(estructura::operable);
     }
 
     @Test
     public void test03DestruirUnaEstructuraProtossNoDeberiaRegenerarSuEscudoAlPasarTurnos() {
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new PuertoEstelar(posicion);
         pasarKTurnos(estructura, 12);
-        estructura.daniar(1200, 0, new Posicion(0, 0), 1);
+
+        estructura.daniar(1200, 0, posicion, 1);
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
@@ -53,8 +59,10 @@ public class CasoDeUso11Test {
 
     @Test
     public void test04DestruirUnaEstructuraProtossEnConstruccionNoDeberiaRegenerarSuEscudoAlPasarTurnos() {
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
-        estructura.daniar(1200, 0, new Posicion(0, 0), 1);
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new PuertoEstelar(posicion);
+
+        estructura.daniar(1200, 0, posicion, 1);
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 

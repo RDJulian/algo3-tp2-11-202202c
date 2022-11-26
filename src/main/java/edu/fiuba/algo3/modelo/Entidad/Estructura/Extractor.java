@@ -37,12 +37,13 @@ public class Extractor extends Estructura implements ExtraeRecurso {
     @Override
     public void extraerRecurso() {
         for (Zangano zangano : zanganos) {
-            zangano.usarExtractor(gasVespeno, raza, this);
+            zangano.usarExtractor(gasVespeno, this);
         }
     }
 
     //Este metodo es propio y unico de esta estructura.
     public void agregarZangano(Zangano zangano) {
+        estadoEntidad.operable();
         if (zanganos.size() >= 3) {
             throw new ExtractorLlenoException();
         }

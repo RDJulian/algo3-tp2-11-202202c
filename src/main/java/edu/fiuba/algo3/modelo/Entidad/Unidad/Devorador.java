@@ -10,13 +10,14 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class Devorador extends Unidad {
     public Devorador(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 5;
-        this.danioAire = 15;
-        this.danioTierra = 0;
-        this.tipoUnidad = new UnidadAire();
-        this.vida = new Regenerativa(200);
-        this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(4);
         this.accionAlPasarTurno = new Nada();
+        this.vida = new Regenerativa(200);
+        this.defensa = new SinEscudo();
+
+        this.tipoUnidad = new UnidadAire();
+        this.danioTierra = 0;
+        this.danioAire = 15;
+        this.rangoAtaque = 5;
     }
 }

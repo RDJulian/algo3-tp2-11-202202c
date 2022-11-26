@@ -11,16 +11,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso12Test {
     @Test
     public void test01DaniarUnaEstructuraProtossHastaQuitarleVidaDeberiaRegenerarSoloSuEscudoAlPasarTurnos() {
-        Estructura estructura = new Acceso(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new Acceso(posicion);
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(600, 0, new Posicion(0, 0), 1);
+        estructura.daniar(600, 0, posicion, 1);
         //0 E 400 V
 
         pasarKTurnos(estructura, 50);
         //500 E 400V
 
-        estructura.daniar(900, 0, new Posicion(0, 0), 1);
+        estructura.daniar(900, 0, posicion, 1);
         //Si regenerase vida, aguantaria el golpe.
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
@@ -31,5 +32,4 @@ public class CasoDeUso12Test {
             estructura.pasarTurno();
         }
     }
-
 }

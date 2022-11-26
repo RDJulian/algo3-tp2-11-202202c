@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
@@ -51,16 +52,16 @@ public class CasoDeUso9Test {
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
-        pasarKTurnos(puertoEstelar, 10);
+        Acceso acceso = new Acceso(new Posicion(3, 3));
+        pasarKTurnos(acceso, 8);
 
-        puertoEstelar.actualizarEstado(pilones);
-        assertDoesNotThrow(puertoEstelar::operable);
+        acceso.actualizarEstado(pilones);
+        assertDoesNotThrow(acceso::operable);
 
         pilones.remove(0);
 
-        puertoEstelar.actualizarEstado(pilones);
-        assertThrows(EntidadNoOperativaException.class, puertoEstelar::operable);
+        acceso.actualizarEstado(pilones);
+        assertThrows(EntidadNoOperativaException.class, acceso::operable);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

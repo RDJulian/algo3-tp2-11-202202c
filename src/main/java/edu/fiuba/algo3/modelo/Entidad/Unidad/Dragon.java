@@ -10,13 +10,14 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 public class Dragon extends Unidad {
     public Dragon(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 4;
-        this.danioAire = 20;
-        this.danioTierra = 20;
-        this.tipoUnidad = new UnidadTierra();
-        this.vida = new Normal(100);
-        this.defensa = new Escudo(80);
         this.estadoEntidad = new EnConstruccion(6);
         this.accionAlPasarTurno = new Nada();
+        this.vida = new Normal(100);
+        this.defensa = new Escudo(80);
+
+        this.tipoUnidad = new UnidadTierra();
+        this.danioTierra = 20;
+        this.danioAire = 20;
+        this.rangoAtaque = 4;
     }
 }

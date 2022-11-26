@@ -10,13 +10,14 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class Guardian extends Unidad {
     public Guardian(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 10;
-        this.danioAire = 0;
-        this.danioTierra = 25;
-        this.tipoUnidad = new UnidadAire();
-        this.vida = new Regenerativa(100);
-        this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(4);
         this.accionAlPasarTurno = new Nada();
+        this.vida = new Regenerativa(100);
+        this.defensa = new SinEscudo();
+
+        this.tipoUnidad = new UnidadAire();
+        this.danioTierra = 25;
+        this.danioAire = 0;
+        this.rangoAtaque = 10;
     }
 }

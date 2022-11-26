@@ -10,13 +10,14 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class Zerling extends Unidad {
     public Zerling(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 1;
-        this.danioAire = 0;
-        this.danioTierra = 4;
-        this.tipoUnidad = new UnidadTierra();
-        this.vida = new Regenerativa(35);
-        this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(2);
         this.accionAlPasarTurno = new Nada();
+        this.vida = new Regenerativa(35);
+        this.defensa = new SinEscudo();
+
+        this.tipoUnidad = new UnidadTierra();
+        this.danioTierra = 4;
+        this.danioAire = 0;
+        this.rangoAtaque = 1;
     }
 }

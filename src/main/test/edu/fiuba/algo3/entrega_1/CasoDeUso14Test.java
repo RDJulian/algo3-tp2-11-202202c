@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso14Test {
+    //Ver casos de colision entre pisos.
     @Test
     public void test01UnaEstructuraProtossNoSePuedeConstruirSobreMoho() {
         ConstruiblePiso rangoPilon = new RangoPilon();
@@ -34,6 +35,6 @@ public class CasoDeUso14Test {
     @Test
     public void test03ElMohoSePuedeExpandirseSobreUnaPosicionNoOcupada() {
         Moho moho = new Moho(new Posicion(0, 0));
-        assertDoesNotThrow(() -> moho.expandible(new Posicion(6, 7)));
+        assertDoesNotThrow(() -> moho.expandible(new Posicion(6, 6)));
     }
 }

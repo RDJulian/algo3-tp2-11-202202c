@@ -13,47 +13,58 @@ public class CasoDeUso10Test {
     //Si la vida no se regenerase correctamente, entonces la estructura estaria destruida y no seria operable.
     @Test
     public void test01DaniarUnaEstructuraZergDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new Espiral(posicion);
         pasarKTurnos(estructura, 12);
-        estructura.daniar(100, 0, new Posicion(0, 0), 1);
+
+        estructura.daniar(100, 0, posicion, 1);
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, new Posicion(0, 0), 1);
+        estructura.daniar(1299, 0, posicion, 1);
+
         assertDoesNotThrow(estructura::operable);
     }
 
     @Test
     public void test02DaniarUnaEstructuraZergEnConstruccionDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral(new Posicion(0, 0));
-        estructura.daniar(100, 0, new Posicion(0, 0), 1);
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new Espiral(posicion);
+
+        estructura.daniar(100, 0, posicion, 1);
+
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, new Posicion(0, 0), 1);
+        estructura.daniar(1299, 0, posicion, 1);
+        
         assertDoesNotThrow(estructura::operable);
     }
 
     @Test
     public void test03DestruirUnaEstructuraZergNoDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new Espiral(posicion);
         pasarKTurnos(estructura, 12);
-        estructura.daniar(1300, 0, new Posicion(0, 0), 1);
+
+        estructura.daniar(1300, 0, posicion, 1);
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
-        pasarKTurnos(estructura, 20);
+        estructura.pasarTurno();
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
     }
 
     @Test
     public void test04DestruirUnaEstructuraZergEnConstruccionNoDeberiaRegenerarSuVidaAlPasarTurnos() {
-        Estructura estructura = new Espiral(new Posicion(0, 0));
-        estructura.daniar(1300, 0, new Posicion(0, 0), 1);
+        Posicion posicion = new Posicion(0, 0);
+        Estructura estructura = new Espiral(posicion);
+
+        estructura.daniar(1300, 0, posicion, 1);
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
-        pasarKTurnos(estructura, 20);
+        estructura.pasarTurno();
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
     }

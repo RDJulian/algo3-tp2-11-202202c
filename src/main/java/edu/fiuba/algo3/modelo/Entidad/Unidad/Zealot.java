@@ -10,13 +10,14 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 public class Zealot extends Unidad {
     public Zealot(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 1;
-        this.danioAire = 0;
-        this.danioTierra = 8;
-        this.tipoUnidad = new UnidadTierra();
-        this.vida = new Normal(100);
-        this.defensa = new Escudo(60);
         this.estadoEntidad = new EnConstruccion(4);
         this.accionAlPasarTurno = new Nada();
+        this.vida = new Normal(100);
+        this.defensa = new Escudo(60);
+
+        this.tipoUnidad = new UnidadTierra();
+        this.danioTierra = 8;
+        this.danioAire = 0;
+        this.rangoAtaque = 1;
     }
 }

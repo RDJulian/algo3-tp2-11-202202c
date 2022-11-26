@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public abstract class Entidad {
+    //Resolver la posicion inicial de una Unidad. Puede ser la posicion de la estructura que habilita.
     protected Posicion posicion;
     protected EstadoEntidad estadoEntidad;
     protected Ejecutar accionAlPasarTurno;

@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 
 public class ConstructorAsimilador extends ConstructorEstructuras {
-    public ConstructorAsimilador(){
+    public ConstructorAsimilador() {
         this.construibleRecurso = new SobreGasVespeno();
         this.construiblePiso = new RangoPilon();
         this.construibleEstructura = new NoRequiereEstructura();
@@ -22,7 +22,7 @@ public class ConstructorAsimilador extends ConstructorEstructuras {
     @Override
     public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
         posicion.ocupable();
-        recurso.construible(construibleRecurso);
+        recurso.construible(construibleRecurso, posicion);
         piso.construible(construiblePiso, posicion);
         raza.construible(costoMineral, costoGas);
         construibleEstructura.visitar(estructuraCorrelativa);

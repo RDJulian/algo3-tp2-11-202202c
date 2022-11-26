@@ -9,29 +9,18 @@ public class Reserva {
         this.unidades = 0;
     }
 
-    public Reserva(int unidades) { // Utilitario.
-        this.unidades = unidades;
-    }
-
-    public int getRecurso() {
-        return this.unidades;
-    }
-
     public void agregarRecurso(int unidades) {
         this.unidades += unidades;
     }
 
-    public void gastarRecurso(int costoGas) {
-        int nuevasUnidades = this.unidades - costoGas;
-        if (nuevasUnidades < 0) {
-            throw new RecursoInsuficienteException();
-        }
-        this.unidades = nuevasUnidades;
+    //Pensar en un nombre mejor.
+    public void gastarRecurso(int unidades) {
+        construible(unidades);
+        this.unidades -= unidades;
     }
 
     public void construible(int unidades) {
-        int nuevasUnidades = this.unidades - unidades;
-        if (nuevasUnidades < 0) {
+        if (this.unidades - unidades < 0) {
             throw new RecursoInsuficienteException();
         }
     }

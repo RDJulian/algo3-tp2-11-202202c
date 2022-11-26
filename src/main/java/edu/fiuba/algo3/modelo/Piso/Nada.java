@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Piso;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class Nada implements Piso { //Se deberia usar para probar casos de fallo.
@@ -10,8 +10,8 @@ public class Nada implements Piso { //Se deberia usar para probar casos de fallo
     }
 
     @Override
-    public void construible(Construible sobreRango, Posicion posicion) {
-        sobreRango.manejar(Nada.class);
+    public void construible(ConstruiblePiso sobreRango, Posicion posicion) {
+        sobreRango.visitar(this);
     }
 
     @Override

@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Entidad.Daniable;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.*;
-import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
@@ -20,10 +19,12 @@ public class CasoDeUso18Test {
     @Test
     public void test01UnZanganoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Zangano(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Raza raza = new Raza();
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), raza);
+        Unidad unidad = new Zangano(posicion, raza);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
     }
@@ -31,10 +32,11 @@ public class CasoDeUso18Test {
     @Test
     public void test02UnZerlingHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Zerling(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Zerling(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 124);
 
@@ -48,10 +50,11 @@ public class CasoDeUso18Test {
     @Test
     public void test03UnHidraliscoHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Hidralisco(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Hidralisco(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 49);
 
@@ -65,10 +68,11 @@ public class CasoDeUso18Test {
     @Test
     public void test04UnMutaliscoHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Mutalisco(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Mutalisco(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 55);
 
@@ -82,10 +86,11 @@ public class CasoDeUso18Test {
     @Test
     public void test05UnGuardianHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Guardian(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Guardian(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 19);
 
@@ -99,10 +104,11 @@ public class CasoDeUso18Test {
     @Test
     public void test06UnZealotHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Zealot(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Zealot(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 62);
 
@@ -116,10 +122,11 @@ public class CasoDeUso18Test {
     @Test
     public void test07UnDragonHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Dragon(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Dragon(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 24);
 
@@ -133,10 +140,11 @@ public class CasoDeUso18Test {
     @Test
     public void test08UnScoutHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Scout(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Scout(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, estructura, 62);
 
@@ -151,7 +159,7 @@ public class CasoDeUso18Test {
     public void test09UnZerlingHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad unidad = new Zerling(new Posicion(0, 0));
         Unidad otraUnidad = new Zealot(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 39);
 
@@ -163,7 +171,7 @@ public class CasoDeUso18Test {
     public void test10UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot(new Posicion(0, 0));
         Unidad unidad = new Hidralisco(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 15);
 
@@ -175,7 +183,7 @@ public class CasoDeUso18Test {
     public void test11UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot(new Posicion(0, 0));
         Unidad unidad = new Mutalisco(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 17);
 
@@ -187,7 +195,7 @@ public class CasoDeUso18Test {
     public void test12UnGuardianHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot(new Posicion(0, 0));
         Unidad unidad = new Guardian(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 6);
 
@@ -199,7 +207,7 @@ public class CasoDeUso18Test {
     public void test13UnZealotHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zerling(new Posicion(0, 0));
         Unidad unidad = new Zealot(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 4);
 
@@ -211,7 +219,7 @@ public class CasoDeUso18Test {
     public void test14UnDragonHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zerling(new Posicion(0, 0));
         Unidad unidad = new Dragon(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 1);
 
@@ -223,7 +231,7 @@ public class CasoDeUso18Test {
     public void test15UnScoutHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zerling(new Posicion(0, 0));
         Unidad unidad = new Scout(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 4);
 
@@ -235,7 +243,7 @@ public class CasoDeUso18Test {
     public void test16UnZerlingHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad unidad = new Zerling(new Posicion(0, 0));
         Unidad otraUnidad = new Scout(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -244,7 +252,7 @@ public class CasoDeUso18Test {
     public void test17UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout(new Posicion(0, 0));
         Unidad unidad = new Hidralisco(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 24);
 
@@ -256,7 +264,7 @@ public class CasoDeUso18Test {
     public void test18UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout(new Posicion(0, 0));
         Unidad unidad = new Mutalisco(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 27);
 
@@ -268,7 +276,7 @@ public class CasoDeUso18Test {
     public void test19UnGuardianHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout(new Posicion(0, 0));
         Unidad unidad = new Guardian(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -277,7 +285,7 @@ public class CasoDeUso18Test {
     public void test20UnZealotHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Mutalisco(new Posicion(0, 0));
         Unidad unidad = new Zealot(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -286,7 +294,7 @@ public class CasoDeUso18Test {
     public void test21UnDragonHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Mutalisco(new Posicion(0, 0));
         Unidad unidad = new Dragon(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 5);
 
@@ -298,7 +306,7 @@ public class CasoDeUso18Test {
     public void test22UnScoutHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Mutalisco(new Posicion(0, 0));
         Unidad unidad = new Scout(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 8);
 
@@ -309,10 +317,11 @@ public class CasoDeUso18Test {
     @Test
     public void test23UnAmoSupremoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new AmoSupremo(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new AmoSupremo(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
     }
@@ -321,7 +330,7 @@ public class CasoDeUso18Test {
     public void test24UnDevoradorHaceElDanioEsperadoAUnaUnidadDeAire() {
         Unidad otraUnidad = new Scout(new Posicion(0, 0));
         Unidad unidad = new Devorador(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 16);
 
@@ -333,7 +342,7 @@ public class CasoDeUso18Test {
     public void test25UnDevoradorHaceElDanioEsperadoAUnaUnidadDeTierra() {
         Unidad otraUnidad = new Zealot(new Posicion(0, 0));
         Unidad unidad = new Devorador(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
     }
@@ -341,17 +350,24 @@ public class CasoDeUso18Test {
     @Test
     public void test26UnDevoradorHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        estructura.setEstado(new Operativa());
-        Unidad unidad = new Devorador(new Posicion(0, 0));
-        unidad.setEstado(new Operativa());
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Devorador(posicion);
+
+        pasarKTurnos(estructura, 12);
+        pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
     }
 
-    void atacarKVeces(Unidad unidad, Daniable entidad, int k) {
+    void atacarKVeces(Unidad unidad, Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacar(entidad);
+        }
+    }
+
+    public void pasarKTurnos(Entidad entidad, int k) {
+        for (int i = 0; i < k; i++) {
+            entidad.pasarTurno();
         }
     }
 }

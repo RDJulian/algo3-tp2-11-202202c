@@ -1,12 +1,11 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.Nada;
-import edu.fiuba.algo3.modelo.Energizado.ConEnergia;
-import edu.fiuba.algo3.modelo.Energizado.Energizado;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
-import edu.fiuba.algo3.modelo.MementoEstructura.UsaMemento;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.SinEnergia;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.Memento;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMemento;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
@@ -14,21 +13,24 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 import java.util.Vector;
 
 public class PuertoEstelar extends Estructura implements UsaMemento {
-    private EstadoEntidad memento;
-    private Energizado energizado;
+    private Memento memento;
+    private boolean energizado;
 
     public PuertoEstelar(Posicion posicion) {
-        super(posicion);
-        this.estadoEstructura = new EnConstruccion(10);
+        this.posicion = posicion;
+        posicion.ocupar();
+
+        this.estadoEntidad = new EnConstruccion(10);
+        this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
-        this.energizado = new ConEnergia();
-        this.accionAlPasarTurno = new Nada();
+
+        this.energizado = true;
     }
 
-    public boolean energizado(Vector<Pilon> pilones) {
+    private boolean energizado(Vector<Pilon> pilones) {
         for (Pilon pilon : pilones) {
-            if (!pilon.fueraDeRango(this.posicion)) {
+            if (!pilon.fueraDeRango(posicion)) {
                 return true;
             }
         }
@@ -37,26 +39,28 @@ public class PuertoEstelar extends Estructura implements UsaMemento {
 
     @Override
     public void guardarEstado() {
-        this.memento = this.estadoEstructura;
+        this.memento = new Memento(estadoEntidad);
     }
 
     @Override
     public void restaurarEstado() {
-        this.estadoEstructura = this.memento;
+        this.estadoEntidad = memento.restaurar();
     }
 
-    //Muchas sobrecargas. Puede cambiar el parametro, no necesariamente tiene que ser un vector.
+    public void actualizarEstado(Vector<Pilon> pilones) {
+        if (!energizado(pilones) && energizado) {
+            guardarEstado();
+            this.energizado = false;
+            this.estadoEntidad = new SinEnergia();
+        } else if (energizado(pilones) && !energizado) {
+            restaurarEstado();
+            this.energizado = true;
+        }
+    }
+
     @Override
-    public void setEstado(Energizado energizado) {
-        this.energizado = energizado;
-    }
-
-    public void setEstado(Vector<Pilon> pilones) {
-        this.energizado.cambiarEnergia(this, energizado(pilones));
-    }
-
-    @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(PuertoEstelar.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

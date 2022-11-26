@@ -1,46 +1,47 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.Nada;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
+import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Posicion.Rango;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
 public class Pilon extends Estructura implements Piso {
-    private Rango rango;
+    private int rango;
 
     public Pilon(Posicion posicion) {
-        super(posicion);
-        this.rango = new Rango(this.posicion, 3);
-        this.estadoEstructura = new EnConstruccion(5);
+        this.posicion = posicion;
+        posicion.ocupar();
+
+        this.estadoEntidad = new EnConstruccion(5);
+        this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
-        this.accionAlPasarTurno = new Nada();
+
+        this.rango = 3;
     }
 
-    //No esta tan bueno usar operable dos veces, pero lo dejo por si se accede directamente a fueraDeRango.
-    //No se deberia poder considerar el rango si no esta operativa.
     @Override
     public boolean fueraDeRango(Posicion posicion) {
-        this.estadoEstructura.operable();
-        return this.rango.noIncluye(posicion);
+        return !posicion.enRango(this.posicion, rango);
     }
 
     @Override
-    public void construible(Construible sobreRango, Posicion posicion) {
-        this.estadoEstructura.operable();
-        sobreRango.manejar(Pilon.class);
+    public void construible(ConstruiblePiso requierePiso, Posicion posicion) {
+        estadoEntidad.operable();
+        requierePiso.visitar(this);
         if (fueraDeRango(posicion)) {
             throw new ConstruccionNoValidaException();
         }
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Pilon.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

@@ -1,18 +1,24 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.RequierePuertoEstelar;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequierePuertoEstelar;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
-public class ConstructorScout implements ConstructorUnidades{
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa){
-        estructuraCorrelativa.construible(new RequierePuertoEstelar());
-        raza.construible(300, 150);
+public class ConstructorScout extends ConstructorUnidades {
+    public ConstructorScout() {
+        this.construibleEstructura = new RequierePuertoEstelar();
+        this.costoMineral = 300;
+        this.costoGas = 150;
+    }
 
-        raza.gastarRecursos(300,150);
-        return new Zangano(posicion);
+    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
+        construibleEstructura.visitar(estructuraCorrelativa);
+        raza.construible(costoMineral, costoGas);
+
+        raza.gastarRecursos(costoMineral, costoGas);
+        return new Scout(posicion);
     }
 }

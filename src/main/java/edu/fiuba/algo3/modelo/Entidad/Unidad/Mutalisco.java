@@ -1,24 +1,25 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.TipoUnidad.UnidadAire;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Posicion.Rango;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class Mutalisco extends Unidad {
     public Mutalisco(Posicion posicion) {
-        super(posicion);
-        this.radioAtaque = 3;
-        this.rangoAtaque = new Rango(this.posicion, this.radioAtaque);
-        this.danioAire = 9;
-        this.danioTierra = 9;
-        this.tipoUnidad = new UnidadAire();
+        this.posicion = posicion;
+        this.estadoEntidad = new EnConstruccion(7);
+        this.accionAlPasarTurno = new Nada();
         this.vida = new Regenerativa(120);
         this.defensa = new SinEscudo();
-        this.estadoEntidad = new EnConstruccion(7);
+
+        this.tipoUnidad = new UnidadAire();
+        this.danioTierra = 9;
+        this.danioAire = 9;
+        this.rangoAtaque = 3;
     }
 
     public void evolucionarAGuardian(Reserva reservaMineral, Reserva reservaGas) {

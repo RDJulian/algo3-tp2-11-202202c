@@ -1,22 +1,20 @@
 package edu.fiuba.algo3.modelo.Recurso;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorIncorrectoException;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionIncorrectaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public class GasVespeno extends Recurso {
-    public GasVespeno() {
-        this.unidades = 5000;
-    }
-
     public GasVespeno(Posicion posicion) {
-        super(posicion);
+        this.posicion = posicion;
         this.unidades = 5000;
     }
 
+    //Codigo muy similar.
     public void extraerRecurso(int unidades, Raza raza, ExtraeRecurso extraeRecurso) {
         if (this.extraeRecurso != extraeRecurso) {
             throw new ExtractorIncorrectoException();
@@ -30,7 +28,10 @@ public class GasVespeno extends Recurso {
     }
 
     @Override
-    public void construible(Construible sobreRecurso) {
-        sobreRecurso.manejar(GasVespeno.class);
+    public void construible(ConstruibleRecurso sobreRecurso, Posicion posicion) {
+        if (!this.posicion.es(posicion)) {
+            throw new PosicionIncorrectaException();
+        }
+        sobreRecurso.visitar(this);
     }
 }

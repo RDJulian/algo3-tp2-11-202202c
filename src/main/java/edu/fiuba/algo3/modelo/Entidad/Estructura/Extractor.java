@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.*;
-import edu.fiuba.algo3.modelo.EjecutarAlPasarTurno.ExtraerRecurso;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.ExtraerRecurso;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
@@ -20,35 +20,39 @@ public class Extractor extends Estructura implements ExtraeRecurso {
     private Raza raza;
 
     public Extractor(Posicion posicion, Recurso gasVespeno, Raza raza) {
-        super(posicion);
+        this.posicion = posicion;
+        posicion.ocupar();
         this.gasVespeno = gasVespeno;
         gasVespeno.ocupar(this);
         this.raza = raza;
-        this.estadoEstructura = new EnConstruccion(6);
-        this.zanganos = new Vector<>(0);
+
+        this.estadoEntidad = new EnConstruccion(6);
+        this.accionAlPasarTurno = new ExtraerRecurso(this);
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
-        this.accionAlPasarTurno = new ExtraerRecurso(this);
+
+        this.zanganos = new Vector<>(0);
     }
 
     @Override
     public void extraerRecurso() {
         for (Zangano zangano : zanganos) {
-            zangano.usarExtractor(this.gasVespeno, this.raza, this);
+            zangano.usarExtractor(gasVespeno, this);
         }
     }
 
-    //Este metodo es propio y unico de esta estructura, pero no tendria sentido juntarlo a ninguna interfaz
-    //por ahora.
+    //Este metodo es propio y unico de esta estructura.
     public void agregarZangano(Zangano zangano) {
+        estadoEntidad.operable();
         if (zanganos.size() >= 3) {
             throw new ExtractorLlenoException();
         }
-        this.zanganos.add(zangano);
+        zanganos.add(zangano);
     }
 
     @Override
-    public void construible(Construible requiereOtraEstructura) {
-        requiereOtraEstructura.manejar(Extractor.class);
+    public void construible(ConstruibleEstructura requiereOtraEstructura) {
+        requiereOtraEstructura.visitar(this);
+        operable();
     }
 }

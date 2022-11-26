@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
-import edu.fiuba.algo3.modelo.Construible.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
@@ -13,9 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso14Test {
+    //Ver casos de colision entre pisos.
     @Test
     public void test01UnaEstructuraProtossNoSePuedeConstruirSobreMoho() {
-        Construible rangoPilon = new RangoPilon();
+        ConstruiblePiso rangoPilon = new RangoPilon();
         Posicion posicion = new Posicion(0, 0);
         Moho moho = new Moho(posicion);
 
@@ -34,6 +35,6 @@ public class CasoDeUso14Test {
     @Test
     public void test03ElMohoSePuedeExpandirseSobreUnaPosicionNoOcupada() {
         Moho moho = new Moho(new Posicion(0, 0));
-        assertDoesNotThrow(() -> moho.expandible(new Posicion(6, 7)));
+        assertDoesNotThrow(() -> moho.expandible(new Posicion(6, 6)));
     }
 }

@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.Memento;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMemento;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
@@ -26,6 +27,7 @@ public class Acceso extends Estructura implements UsaMemento {
         this.defensa = new Escudo(500);
 
         this.energizado = true;
+        this.rolEnSuministro = new Neutral();
     }
 
     private boolean energizado(Vector<Pilon> pilones) {

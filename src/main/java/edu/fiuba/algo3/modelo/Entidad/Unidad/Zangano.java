@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Nada;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -28,6 +29,8 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.estadoEntidad = new EnConstruccion(1);
         this.accionAlPasarTurno = new ExtraerRecurso(this);
         this.mineral = new Nada();
+
+        this.rolEnSuministro = new Consumidor(1);
     }
 
     //Un Zangano no ataca, asi que directamente tira excepcion.

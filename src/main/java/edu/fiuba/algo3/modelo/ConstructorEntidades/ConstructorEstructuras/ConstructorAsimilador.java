@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Asimilador;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -17,6 +18,7 @@ public class ConstructorAsimilador extends ConstructorEstructuras {
         this.construibleEstructura = new NoRequiereEstructura();
         this.costoMineral = 100;
         this.costoGas = 0;
+        this.costoSuministro = 0;
     }
 
     @Override
@@ -24,10 +26,12 @@ public class ConstructorAsimilador extends ConstructorEstructuras {
         posicion.ocupable();
         recurso.construible(construibleRecurso);
         piso.construible(construiblePiso, posicion);
-        raza.construible(costoMineral, costoGas);
+        raza.construible(costoMineral, costoGas, costoSuministro);
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        return new Asimilador(posicion, recurso, raza);
+        Estructura construccion = new Asimilador(posicion, recurso, raza);
+        raza.registarEstructura(construccion);
+        return construccion;
     }
 }

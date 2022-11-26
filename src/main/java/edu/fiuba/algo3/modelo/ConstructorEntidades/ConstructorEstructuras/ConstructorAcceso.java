@@ -17,6 +17,7 @@ public class ConstructorAcceso extends ConstructorEstructuras {
         this.construibleEstructura = new NoRequiereEstructura();
         this.costoMineral = 150;
         this.costoGas = 0;
+        this.costoSuministro = 0;
     }
 
     @Override
@@ -24,10 +25,12 @@ public class ConstructorAcceso extends ConstructorEstructuras {
         posicion.ocupable();
         recurso.construible(construibleRecurso);
         piso.construible(construiblePiso, posicion);
-        raza.construible(costoMineral, costoGas);
+        raza.construible(costoMineral, costoGas, costoSuministro);
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        return new Acceso(posicion);
+        Estructura construccion = new Acceso(posicion);
+        raza.registarEstructura(construccion);
+        return construccion;
     }
 }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -19,6 +20,8 @@ public class Mutalisco extends Unidad {
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(7);
         this.accionAlPasarTurno = new Nada();
+
+        this.rolEnSuministro = new Consumidor(4);
     }
 
     public void evolucionarAGuardian(Reserva reservaMineral, Reserva reservaGas) {

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
@@ -18,5 +19,7 @@ public class Zealot extends Unidad {
         this.defensa = new Escudo(60);
         this.estadoEntidad = new EnConstruccion(4);
         this.accionAlPasarTurno = new Nada();
+
+        this.rolEnSuministro = new Consumidor(2);
     }
 }

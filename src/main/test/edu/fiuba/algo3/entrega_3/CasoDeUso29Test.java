@@ -1,13 +1,9 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorAcceso;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.*;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
@@ -66,7 +62,7 @@ public class CasoDeUso29Test {
 
     public void construirEstructuraKVeces(ConstructorEstructuras constructorEstructuras, Raza raza, int k) {
         for (int i = 0; i < k; i++) {
-            constructorEstructuras.construir(new Posicion(0,i),new edu.fiuba.algo3.modelo.Recurso.Nada(),new Moho(new Posicion(0,i)),raza, new Nada());
+            constructorEstructuras.construir(new Posicion(0,i),new edu.fiuba.algo3.modelo.Recurso.Nada(),new edu.fiuba.algo3.modelo.Piso.Nada(),raza, new Nada());
         }
     }
 

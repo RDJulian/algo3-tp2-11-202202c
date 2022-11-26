@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoNada;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Asimilador;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -14,7 +13,7 @@ import edu.fiuba.algo3.modelo.Recurso.Recurso;
 public class ConstructorAsimilador extends ConstructorEstructuras {
     public ConstructorAsimilador(){
         this.construibleRecurso = new SobreGasVespeno();
-        this.construiblePiso = new RangoPilon();
+        this.construiblePiso = new RangoNada();
         this.construibleEstructura = new NoRequiereEstructura();
         this.costoMineral = 100;
         this.costoGas = 0;

@@ -3,12 +3,9 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.*;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Nada;
-import edu.fiuba.algo3.modelo.Excepciones.JugadoresNoCompatiblesException;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
-import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
@@ -25,7 +22,7 @@ public class CasoDeUso30Test {
         zerg.recolectarMineral(13025);
         ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
         Posicion posicion = new Posicion(-1,-1);
-        Estructura criaderoNecesario = constructorCriadero.construir(posicion,new edu.fiuba.algo3.modelo.Recurso.Nada(), new Moho(posicion),zerg, new Nada());
+        Estructura criaderoNecesario = constructorCriadero.construir(posicion,new edu.fiuba.algo3.modelo.Recurso.Nada(), new edu.fiuba.algo3.modelo.Piso.Nada(),zerg, new Nada());
         pasarKTurnos(criaderoNecesario,4);
         ConstructorUnidades constructorZangano = new ConstructorZangano();
 
@@ -43,7 +40,7 @@ public class CasoDeUso30Test {
     }
 
     @Test
-    public void test02Entrenar51ZanganosConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
+    public void test02Entrenar51GuardianeConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
         Raza zerg = new Raza();
         zerg.recolectarMineral(10550);
         zerg.recolectarGas(5100);
@@ -72,7 +69,7 @@ public class CasoDeUso30Test {
 
     public void construirEstructuraKVeces(ConstructorEstructuras constructorEstructuras, Raza raza, int k) {
         for (int i = 0; i < k; i++) {
-            constructorEstructuras.construir(new Posicion(0,i),new edu.fiuba.algo3.modelo.Recurso.Nada(),new Moho(new Posicion(0,i)),raza, new Nada());
+            constructorEstructuras.construir(new Posicion(0,i),new edu.fiuba.algo3.modelo.Recurso.Nada(),new edu.fiuba.algo3.modelo.Piso.Nada(),raza, new Nada());
         }
     }
 

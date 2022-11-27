@@ -20,6 +20,7 @@ public abstract class Unidad implements Daniable {
     protected Posicion posicion;
     protected Rango rangoAtaque;
     protected int radioAtaque;
+    protected boolean invisible;
 
     public Unidad(Posicion posicion) {
         this.posicion = posicion;
@@ -43,7 +44,7 @@ public abstract class Unidad implements Daniable {
     @Override
     public void daniar(int danioTierra, int danioAire, Rango rangoAtaque) {
         this.estadoEntidad.atacable();
-        if (rangoAtaque.noIncluye(this.posicion)) {
+        if (rangoAtaque.noIncluye(this.posicion) || (this.invisible)) {
             throw new AtaqueNoValidoException();
         }
         int danioARecibir = this.tipoUnidad.recibirDanio(danioAire, danioTierra);

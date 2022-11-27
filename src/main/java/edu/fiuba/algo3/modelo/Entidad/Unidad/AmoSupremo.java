@@ -20,6 +20,7 @@ public class AmoSupremo extends Unidad {
         this.vida = new Regenerativa(200);
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(5);
+        this.invisible = true;
     }
 
     @Override

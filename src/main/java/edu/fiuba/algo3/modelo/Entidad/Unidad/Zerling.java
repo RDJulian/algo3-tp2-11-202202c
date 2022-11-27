@@ -18,5 +18,6 @@ public class Zerling extends Unidad {
         this.vida = new Regenerativa(35);
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(2);
+        this.invisible = false;
     }
 }

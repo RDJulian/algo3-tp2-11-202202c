@@ -18,5 +18,6 @@ public class Zealot extends Unidad {
         this.vida = new Normal(100);
         this.defensa = new Escudo(60);
         this.estadoEntidad = new EnConstruccion(4);
+        this.invisible = false;
     }
 }

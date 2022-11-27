@@ -18,5 +18,6 @@ public class Guardian extends Unidad {
         this.vida = new Regenerativa(100);
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(4);
+        this.invisible = false;
     }
 }

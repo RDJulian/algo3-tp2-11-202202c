@@ -18,5 +18,6 @@ public class Devorador extends Unidad {
         this.vida = new Regenerativa(200);
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(4);
+        this.invisible = true;
     }
 }

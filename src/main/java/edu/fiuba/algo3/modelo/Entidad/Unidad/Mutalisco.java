@@ -19,6 +19,7 @@ public class Mutalisco extends Unidad {
         this.vida = new Regenerativa(120);
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(7);
+        this.invisible = false;
     }
 
     public void evolucionarAGuardian(Reserva reservaMineral, Reserva reservaGas) {

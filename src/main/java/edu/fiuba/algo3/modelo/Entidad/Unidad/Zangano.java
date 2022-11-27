@@ -26,6 +26,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.vida = new Regenerativa(25);
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(1);
+        this.invisible = false;
     }
 
     //Un Zangano no ataca, asi que directamente tira excepcion.

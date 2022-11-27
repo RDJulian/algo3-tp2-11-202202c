@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo.Posicion;
 
 @SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class Posicion {
-    //A futuro pueden ser las Areas, y pueden ser singletons.
-    //Buscar mejor forma de resolver chequeos, y cambiar nombres.
+    //Plantear relacion con las Areas.
+    //Deberia implementar algun metodo que desocupe.
     private int posicionX;
     private int posicionY;
 
@@ -40,5 +40,13 @@ public class Posicion {
 
     public boolean esOpuesta(Posicion posicion) {
         return posicion.esOpuesta(this.posicionX, this.posicionY);
+    }
+
+    private boolean es(int posicionX, int posicionY) {
+        return (posicionX == this.posicionX && posicionY == this.posicionY);
+    }
+
+    public boolean es(Posicion posicion) {
+        return posicion.es(this.posicionX, this.posicionY);
     }
 }

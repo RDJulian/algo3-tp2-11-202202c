@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 import java.util.Vector;
 
 public class Juego {
-    //Esta clase seria la encargada de manejar los turnos.
+    //Esta clase podria ser la encargada de manejar los turnos.
     private Vector<Jugador> jugadores;
 
     public Juego() {
@@ -16,7 +16,7 @@ public class Juego {
     }
 
     //Las razas deberian ser singletons. No deberia haber mas de una instancia de ambas.
-    //Si se hace eso, esta comparacion se puede mantener sencilla. Color deberia ser clase a futuro.
+    //Si se hace eso, esta comparacion se puede mantener sencilla. Color podrian ser los de javafx.
     public void registrarJugadores(String unNombre, String unColor, Raza unaRaza,
                                    String otroNombre, String otroColor, Raza otraRaza) {
         if (unNombre.length() < 6 || otroNombre.length() < 6) {

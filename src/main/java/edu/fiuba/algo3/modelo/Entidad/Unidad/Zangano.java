@@ -18,43 +18,43 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     private Raza raza;
     private Recurso mineral;
 
-    public Zangano(Posicion posicion) { //Zangano no tiene ataque.
+    public Zangano(Posicion posicion, Raza raza) {
         this.posicion = posicion;
-        this.rangoAtaque = 0;
-        this.danioAire = 0;
-        this.danioTierra = 0;
-        this.tipoUnidad = new UnidadTierra();
-        this.vida = new Regenerativa(25);
-        this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(1);
         this.accionAlPasarTurno = new ExtraerRecurso(this);
+        this.vida = new Regenerativa(25);
+        this.defensa = new SinEscudo();
+
+        this.tipoUnidad = new UnidadTierra();
+        this.danioTierra = 0;
+        this.danioAire = 0;
+        this.rangoAtaque = 0;
+
+        this.raza = raza;
         this.mineral = new Nada();
 
         this.rolEnSuministro = new Consumidor(1);
     }
 
-    //Un Zangano no ataca, asi que directamente tira excepcion.
+    //Ver que hacer con esto. AmoSupremo resuelve igual.
     @Override
     public void atacar(Entidad entidad) {
         throw new AtaqueNoValidoException();
     }
 
     //Redundante pasarle la misma raza.
-    public void usarExtractor(Recurso recurso, Raza raza, ExtraeRecurso extractor) {
+    public void usarExtractor(Recurso recurso, ExtraeRecurso extractor) {
+        estadoEntidad.operable();
         recurso.extraerRecurso(10, raza, extractor);
     }
 
     public void extraerRecurso() {
-        this.mineral.extraerRecurso(10, this.raza, this);
+        mineral.extraerRecurso(10, raza, this);
     }
 
     public void ocupar(Recurso mineral) {
-        mineral.ocupar(this);
+        estadoEntidad.operable();
+        mineral.ocupar(this, posicion);
         this.mineral = mineral;
-    }
-
-    //Dejo este setter por el momento para no tener que cambiar tanto los tests.
-    public void setRaza(Raza zerg) {
-        this.raza = zerg;
     }
 }

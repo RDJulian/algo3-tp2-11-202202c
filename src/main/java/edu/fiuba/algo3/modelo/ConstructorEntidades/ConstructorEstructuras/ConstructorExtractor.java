@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 
 public class ConstructorExtractor extends ConstructorEstructuras {
-    public ConstructorExtractor(){
+    public ConstructorExtractor() {
         this.construibleRecurso = new SobreGasVespeno();
         this.construiblePiso = new RangoMoho();
         this.construibleEstructura = new NoRequiereEstructura();
@@ -24,7 +24,7 @@ public class ConstructorExtractor extends ConstructorEstructuras {
     @Override
     public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
         posicion.ocupable();
-        recurso.construible(construibleRecurso);
+        recurso.construible(construibleRecurso, posicion);
         piso.construible(construiblePiso, posicion);
         raza.construible(costoMineral, costoGas, costoSuministro);
         construibleEstructura.visitar(estructuraCorrelativa);

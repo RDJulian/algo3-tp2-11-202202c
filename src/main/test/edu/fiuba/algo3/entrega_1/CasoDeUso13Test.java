@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso13Test {
     @Test
     public void test01UnCriaderoSeConstruyeCreaMohoLuegoEsDestruidaPeroElMohoSigueEstando() {
-        Criadero criadero = new Criadero(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        Criadero criadero = new Criadero(posicion);
         ConstruiblePiso sobreMoho = new RangoMoho();
 
         //Idealmente se ejecuta junto a la construccion.
         Piso nuevoMoho = criadero.generarMoho();
-        pasarKTurnos(criadero, 4);
 
-        criadero.daniar(600, 0, new Posicion(0, 0), 1);
+        criadero.daniar(600, 0, posicion, 1);
 
         assertThrows(EntidadDestruidaException.class, criadero::operable);
 

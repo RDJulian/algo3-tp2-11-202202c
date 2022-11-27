@@ -7,13 +7,13 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso22Test {
-    //Se deberia hacer constructores para cada Unidad, asi se puede chequear tanto costo como correlativas.
     //No dice nada del AmoSupremo, por lo que asumimos que se genera en cualquier momento.
     //Ademas, asumimos que una unidad Zerg REQUIERE un criadero, porque los criaderos generan larvas.
     //Lo obviamos en este test por el momento por simplicidad.
@@ -142,7 +142,7 @@ public class CasoDeUso22Test {
 
         assertThrows(ConstruccionNoValidaException.class, () -> otraEstructura.construible(construible));
 
-        Unidad unidad = new Zangano(new Posicion(0, 0));
+        Unidad unidad = new Zangano(new Posicion(0, 0), new Raza());
 
         assertThrows(EntidadNoOperativaException.class, unidad::operable);
 

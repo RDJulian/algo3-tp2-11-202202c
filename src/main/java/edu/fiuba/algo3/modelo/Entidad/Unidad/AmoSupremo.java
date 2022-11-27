@@ -14,16 +14,16 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class AmoSupremo extends Unidad {
     public AmoSupremo(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 0;
-        this.danioAire = 0;
-        this.danioTierra = 0;
-        this.tipoUnidad = new UnidadAire();
-        this.vida = new Regenerativa(200);
-        this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(5);
         this.accionAlPasarTurno = new Nada();
-
         this.rolEnSuministro = new Proveedor();
+        this.vida = new Regenerativa(200);
+        this.defensa = new SinEscudo();
+
+        this.tipoUnidad = new UnidadAire();
+        this.danioTierra = 0;
+        this.danioAire = 0;
+        this.rangoAtaque = 0;
     }
 
     @Override

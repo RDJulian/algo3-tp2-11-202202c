@@ -19,8 +19,9 @@ public class CasoDeUso18Test {
     @Test
     public void test01UnZanganoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Zangano(new Posicion(0, 0));
+        Raza raza = new Raza();
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), raza);
+        Unidad unidad = new Zangano(posicion, raza);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -31,8 +32,8 @@ public class CasoDeUso18Test {
     @Test
     public void test02UnZerlingHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Zerling(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Zerling(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -49,8 +50,8 @@ public class CasoDeUso18Test {
     @Test
     public void test03UnHidraliscoHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Hidralisco(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Hidralisco(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -67,8 +68,8 @@ public class CasoDeUso18Test {
     @Test
     public void test04UnMutaliscoHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Mutalisco(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Mutalisco(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -85,8 +86,8 @@ public class CasoDeUso18Test {
     @Test
     public void test05UnGuardianHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Guardian(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Guardian(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -103,8 +104,8 @@ public class CasoDeUso18Test {
     @Test
     public void test06UnZealotHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Zealot(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Zealot(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -121,8 +122,8 @@ public class CasoDeUso18Test {
     @Test
     public void test07UnDragonHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Dragon(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Dragon(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -139,8 +140,8 @@ public class CasoDeUso18Test {
     @Test
     public void test08UnScoutHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Scout(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Scout(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -316,8 +317,8 @@ public class CasoDeUso18Test {
     @Test
     public void test23UnAmoSupremoNoHaceDanio() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new AmoSupremo(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new AmoSupremo(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -349,8 +350,8 @@ public class CasoDeUso18Test {
     @Test
     public void test26UnDevoradorHaceElDanioEsperadoAUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(), new Raza());
-        Unidad unidad = new Devorador(new Posicion(0, 0));
+        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Unidad unidad = new Devorador(posicion);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);

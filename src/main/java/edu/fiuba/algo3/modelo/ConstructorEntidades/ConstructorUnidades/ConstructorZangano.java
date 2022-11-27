@@ -9,18 +9,19 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public class ConstructorZangano extends ConstructorUnidades {
-    public ConstructorZangano(){
+    public ConstructorZangano() {
         this.construibleEstructura = new RequiereCriadero();
         this.costoMineral = 25;
         this.costoGas = 0;
         this.costoSuministro = 1;
     }
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa){
+
+    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
         construibleEstructura.visitar(estructuraCorrelativa);
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral,costoGas);
-        Unidad unidad = new Zangano(posicion);
+        Unidad unidad = new Zangano(posicion, raza);
         raza.registarUnidad(unidad);
         return unidad;
     }

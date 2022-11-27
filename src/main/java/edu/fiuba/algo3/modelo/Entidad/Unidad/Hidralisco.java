@@ -11,15 +11,15 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class Hidralisco extends Unidad {
     public Hidralisco(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = 4;
-        this.danioAire = 10;
-        this.danioTierra = 10;
-        this.tipoUnidad = new UnidadTierra();
-        this.vida = new Regenerativa(80);
-        this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(4);
         this.accionAlPasarTurno = new Nada();
-
         this.rolEnSuministro = new Consumidor(2);
+        this.vida = new Regenerativa(80);
+        this.defensa = new SinEscudo();
+
+        this.tipoUnidad = new UnidadTierra();
+        this.danioTierra = 10;
+        this.danioAire = 10;
+        this.rangoAtaque = 4;
     }
 }

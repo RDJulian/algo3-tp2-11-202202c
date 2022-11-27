@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Nada;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -31,6 +32,8 @@ public class Zangano extends Unidad implements ExtraeRecurso {
 
         this.raza = raza;
         this.mineral = new Nada();
+
+        this.rolEnSuministro = new Consumidor(1);
     }
 
     //Ver que hacer con esto. AmoSupremo resuelve igual.

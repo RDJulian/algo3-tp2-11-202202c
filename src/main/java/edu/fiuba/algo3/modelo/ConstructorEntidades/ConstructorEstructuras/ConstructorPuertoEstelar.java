@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -17,6 +18,7 @@ public class ConstructorPuertoEstelar extends ConstructorEstructuras {
         this.construibleEstructura = new RequiereAcceso();
         this.costoMineral = 150;
         this.costoGas = 150;
+        this.costoSuministro = 0;
     }
 
     @Override
@@ -24,10 +26,12 @@ public class ConstructorPuertoEstelar extends ConstructorEstructuras {
         posicion.ocupable();
         recurso.construible(construibleRecurso, posicion);
         piso.construible(construiblePiso, posicion);
-        raza.construible(costoMineral, costoGas);
+        raza.construible(costoMineral, costoGas, costoSuministro);
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        return new PuertoEstelar(posicion);
+        Estructura construccion = new PuertoEstelar(posicion);
+        raza.registarEstructura(construccion);
+        return construccion;
     }
 }

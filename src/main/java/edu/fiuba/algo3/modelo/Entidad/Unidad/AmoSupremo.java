@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -14,6 +16,7 @@ public class AmoSupremo extends Unidad {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(5);
         this.accionAlPasarTurno = new Nada();
+        this.rolEnSuministro = new Proveedor();
         this.vida = new Regenerativa(200);
         this.defensa = new SinEscudo();
 

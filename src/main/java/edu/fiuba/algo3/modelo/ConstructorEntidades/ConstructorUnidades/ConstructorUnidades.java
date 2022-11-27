@@ -10,5 +10,7 @@ public abstract class ConstructorUnidades {
     protected ConstruibleEstructura construibleEstructura;
     protected int costoMineral;
     protected int costoGas;
+    protected int costoSuministro;
+
     public abstract Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa);
 }

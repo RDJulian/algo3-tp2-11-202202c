@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.*;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
@@ -20,6 +22,11 @@ public class CasoDeUso26Test {
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Criadero(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
+
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -53,6 +60,11 @@ public class CasoDeUso26Test {
         Estructura estructuraNecesaria = new Criadero(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
 
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
+
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
         zerg.recolectarGas(1000);
@@ -68,6 +80,11 @@ public class CasoDeUso26Test {
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Acceso(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
+
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -85,6 +102,11 @@ public class CasoDeUso26Test {
         Estructura estructuraNecesaria = new Criadero(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
 
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
+
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
         zerg.recolectarGas(1000);
@@ -100,6 +122,11 @@ public class CasoDeUso26Test {
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Guarida(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
+
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -117,6 +144,11 @@ public class CasoDeUso26Test {
         Estructura estructuraNecesaria = new Espiral(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
 
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
+
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
         zerg.recolectarGas(1000);
@@ -132,6 +164,11 @@ public class CasoDeUso26Test {
         Posicion posicion = new Posicion(0,0);
         Estructura estructuraNecesaria = new Acceso(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
+
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
 
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
@@ -149,6 +186,11 @@ public class CasoDeUso26Test {
         Estructura estructuraNecesaria = new PuertoEstelar(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
 
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
+
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
         zerg.recolectarGas(1000);
@@ -165,6 +207,11 @@ public class CasoDeUso26Test {
         Estructura estructuraNecesaria = new ReservaDeReproduccion(posicion);
         pasarKTurnos(estructuraNecesaria, 20);
 
+        //Aumento la capacidad de suministro al maximo
+        zerg.recolectarMineral(8000);
+        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        construirEstructuraKVeces(constructorCriadero,zerg,40);
+
         assertThrows(RecursoInsuficienteException.class, ()-> constructor.construir(posicion,zerg, estructuraNecesaria));
 
         zerg.recolectarGas(1000);
@@ -175,6 +222,12 @@ public class CasoDeUso26Test {
     public void pasarKTurnos(Estructura estructura, int k) {
         for (int i = 0; i < k; i++) {
             estructura.pasarTurno();
+        }
+    }
+
+    public void construirEstructuraKVeces(ConstructorEstructuras constructorEstructuras, Raza raza, int k) {
+        for (int i = 0; i < k; i++) {
+            constructorEstructuras.construir(new Posicion(0,i),new edu.fiuba.algo3.modelo.Recurso.Nada(),new edu.fiuba.algo3.modelo.Piso.Nada(),raza, new Nada());
         }
     }
 }

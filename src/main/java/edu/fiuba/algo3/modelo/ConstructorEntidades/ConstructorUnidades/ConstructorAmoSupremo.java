@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -14,13 +15,16 @@ public class ConstructorAmoSupremo extends ConstructorUnidades {
         this.construibleEstructura = new NoRequiereEstructura();
         this.costoMineral = 50;
         this.costoGas = 0;
+        this.costoSuministro = 0;
     }
 
     public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
         construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas);
+        raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        return new AmoSupremo(posicion);
+        Unidad unidad = new AmoSupremo(posicion);
+        raza.registarUnidad(unidad);
+        return unidad;
     }
 }

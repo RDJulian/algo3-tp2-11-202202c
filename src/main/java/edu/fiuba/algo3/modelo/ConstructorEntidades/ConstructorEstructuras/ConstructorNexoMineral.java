@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoNada;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreMineral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
@@ -13,10 +13,11 @@ import edu.fiuba.algo3.modelo.Recurso.Recurso;
 public class ConstructorNexoMineral extends ConstructorEstructuras {
     public ConstructorNexoMineral() {
         this.construibleRecurso = new SobreMineral();
-        this.construiblePiso = new RangoPilon();
+        this.construiblePiso = new RangoNada();
         this.construibleEstructura = new NoRequiereEstructura();
         this.costoMineral = 50;
         this.costoGas = 0;
+        this.costoSuministro = 0;
     }
 
     @Override
@@ -24,10 +25,12 @@ public class ConstructorNexoMineral extends ConstructorEstructuras {
         posicion.ocupable();
         recurso.construible(construibleRecurso, posicion);
         piso.construible(construiblePiso, posicion);
-        raza.construible(costoMineral, costoGas);
+        raza.construible(costoMineral, costoGas, costoSuministro);
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        return new NexoMineral(posicion, recurso, raza);
+        Estructura construccion = new NexoMineral(posicion, recurso, raza);
+        raza.registarEstructura(construccion);
+        return construccion;
     }
 }

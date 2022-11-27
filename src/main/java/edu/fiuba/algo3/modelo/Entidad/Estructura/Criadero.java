@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -23,6 +25,8 @@ public class Criadero extends Estructura implements GeneraLarva {
         this.defensa = new SinEscudo();
 
         this.larvas = 3;
+
+        this.rolEnSuministro = new Proveedor();
     }
 
     //Este metodo es propio y unico de esta estructura.

@@ -98,7 +98,6 @@ public class CasoDeUso27Test {
 
         Unidad otraUnidad = new Scout(new Posicion(1, 0));
         otraUnidad.setEstado(new Operativa());
-
         assertThrows(AtaqueNoValidoException.class, () -> otraUnidad.atacar(unidad));
 
     }

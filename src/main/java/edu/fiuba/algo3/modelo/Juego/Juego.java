@@ -5,14 +5,14 @@ import edu.fiuba.algo3.modelo.Excepciones.NombreNoValidoException;
 import edu.fiuba.algo3.modelo.Juego.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Juego {
     //Esta clase podria ser la encargada de manejar los turnos.
-    private Vector<Jugador> jugadores;
+    private ArrayList<Jugador> jugadores;
 
     public Juego() {
-        this.jugadores = new Vector<>();
+        this.jugadores = new ArrayList<>();
     }
 
     //Las razas deberian ser singletons. No deberia haber mas de una instancia de ambas.

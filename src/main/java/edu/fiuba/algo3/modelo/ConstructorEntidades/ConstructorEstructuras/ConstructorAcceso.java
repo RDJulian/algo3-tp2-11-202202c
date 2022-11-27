@@ -29,8 +29,8 @@ public class ConstructorAcceso extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura construccion = new Acceso(posicion);
-        raza.registarEstructura(construccion);
-        return construccion;
+        Estructura estructura = new Acceso(posicion);
+        raza.registarEntidad(estructura);
+        return estructura;
     }
 }

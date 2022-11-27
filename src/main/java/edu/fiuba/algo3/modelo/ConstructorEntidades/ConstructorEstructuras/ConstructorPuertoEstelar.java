@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -30,8 +29,8 @@ public class ConstructorPuertoEstelar extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura construccion = new PuertoEstelar(posicion);
-        raza.registarEstructura(construccion);
-        return construccion;
+        Estructura estructura = new PuertoEstelar(posicion);
+        raza.registarEntidad(estructura);
+        return estructura;
     }
 }

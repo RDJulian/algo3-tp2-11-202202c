@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereCriadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -20,9 +19,9 @@ public class ConstructorZangano extends ConstructorUnidades {
         construibleEstructura.visitar(estructuraCorrelativa);
         raza.construible(costoMineral, costoGas, costoSuministro);
 
-        raza.gastarRecursos(costoMineral,costoGas);
+        raza.gastarRecursos(costoMineral, costoGas);
         Unidad unidad = new Zangano(posicion, raza);
-        raza.registarUnidad(unidad);
+        raza.registarEntidad(unidad);
         return unidad;
     }
 }

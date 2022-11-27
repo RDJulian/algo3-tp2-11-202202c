@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Espiral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -30,8 +29,8 @@ public class ConstructorExtractor extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura construccion = new Extractor(posicion, recurso, raza);
-        raza.registarEstructura(construccion);
-        return construccion;
+        Estructura estructura = new Extractor(posicion, recurso, raza);
+        raza.registarEntidad(estructura);
+        return estructura;
     }
 }

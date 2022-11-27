@@ -1,10 +1,11 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
-import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.*;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Nada;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -19,63 +20,59 @@ public class CasoDeUso30Test {
     @Test
     public void test01Entrenar201ZanganosConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
         Raza zerg = new Raza();
-        zerg.recolectarMineral(13025);
-        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
-        Posicion posicion = new Posicion(-1,-1);
-        Estructura criaderoNecesario = constructorCriadero.construir(posicion,new edu.fiuba.algo3.modelo.Recurso.Nada(), new edu.fiuba.algo3.modelo.Piso.Nada(),zerg, new Nada());
-        pasarKTurnos(criaderoNecesario,4);
+        zerg.recolectarMineral(25);
+        Estructura criaderoNecesario = new Criadero(new Posicion(0, 0));
+        pasarKTurnos(criaderoNecesario, 4);
+        agregarKEntidades(criaderoNecesario, zerg, 40);
+
+        Zangano zangano = new Zangano(new Posicion(0, 0), zerg);
         ConstructorUnidades constructorZangano = new ConstructorZangano();
 
-        construirEstructuraKVeces(constructorCriadero,zerg,39);
-        construirUnidadKVeces(constructorZangano,zerg,criaderoNecesario,199);
+        agregarKEntidades(zangano, zerg, 199);
 
         assertEquals(1, zerg.suministroRestante());
 
-        construirUnidadKVeces(constructorZangano,zerg,criaderoNecesario,1);
+        agregarKEntidades(zangano, zerg, 1);
 
         assertEquals(0, zerg.suministroRestante());
 
-        assertThrows(SuministroInsuficienteException.class, () -> construirUnidadKVeces(constructorZangano,zerg,criaderoNecesario,1));
+        assertThrows(SuministroInsuficienteException.class, () -> constructorZangano.construir(new Posicion(0, 0), zerg, criaderoNecesario));
 
     }
 
     @Test
     public void test02Entrenar51GuardianeConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
         Raza zerg = new Raza();
-        zerg.recolectarMineral(10550);
-        zerg.recolectarGas(5100);
-        ConstructorEstructuras constructorCriadero = new ConstructorCriadero();
+        zerg.recolectarMineral(50);
+        zerg.recolectarGas(100);
+        Estructura criadero = new Criadero(new Posicion(0, 0));
+        pasarKTurnos(criadero, 4);
+        agregarKEntidades(criadero, zerg, 40);
+
+        Guardian guardian = new Guardian(new Posicion(0, 0));
         ConstructorUnidades constructorGuardian = new ConstructorGuardian();
 
-        construirEstructuraKVeces(constructorCriadero,zerg,40);
-        construirUnidadKVeces(constructorGuardian,zerg,new Nada(),49);
+        agregarKEntidades(guardian, zerg, 49);
 
         assertEquals(4, zerg.suministroRestante());
 
-        construirUnidadKVeces(constructorGuardian,zerg,new Nada(),1);
+        agregarKEntidades(guardian, zerg, 1);
 
         assertEquals(0, zerg.suministroRestante());
 
-        assertThrows(SuministroInsuficienteException.class, () -> construirUnidadKVeces(constructorGuardian,zerg,new Nada(),1));
+        assertThrows(SuministroInsuficienteException.class, () -> constructorGuardian.construir(new Posicion(0, 0), zerg, criadero));
 
     }
 
-
-    public void construirUnidadKVeces(ConstructorUnidades constructorUnidades, Raza raza, Estructura estructuraNecesaria, int k) {
+    public void pasarKTurnos(Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
-            constructorUnidades.construir(new Posicion(i,0),raza, estructuraNecesaria);
+            entidad.pasarTurno();
         }
     }
 
-    public void construirEstructuraKVeces(ConstructorEstructuras constructorEstructuras, Raza raza, int k) {
+    public void agregarKEntidades(Entidad entidad, Raza zerg, int k) {
         for (int i = 0; i < k; i++) {
-            constructorEstructuras.construir(new Posicion(0,i),new edu.fiuba.algo3.modelo.Recurso.Nada(),new edu.fiuba.algo3.modelo.Piso.Nada(),raza, new Nada());
-        }
-    }
-
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
+            zerg.registarEntidad(entidad);
         }
     }
 }

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Espiral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;
@@ -30,8 +29,8 @@ public class ConstructorEspiral extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura construccion = new Espiral(posicion);
-        raza.registarEstructura(construccion);
-        return construccion;
+        Estructura estructura = new Espiral(posicion);
+        raza.registarEntidad(estructura);
+        return estructura;
     }
 }

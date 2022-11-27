@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Acceso extends Estructura implements UsaMemento {
     private Memento memento;
@@ -30,7 +30,7 @@ public class Acceso extends Estructura implements UsaMemento {
         this.rolEnSuministro = new Neutral();
     }
 
-    private boolean energizado(Vector<Pilon> pilones) {
+    private boolean energizado(ArrayList<Pilon> pilones) {
         for (Pilon pilon : pilones) {
             if (!pilon.fueraDeRango(posicion)) {
                 return true;
@@ -49,7 +49,7 @@ public class Acceso extends Estructura implements UsaMemento {
         this.estadoEntidad = memento.restaurar();
     }
 
-    public void actualizarEstado(Vector<Pilon> pilones) {
+    public void actualizarEstado(ArrayList<Pilon> pilones) {
         if (!energizado(pilones) && energizado) {
             guardarEstado();
             this.energizado = false;

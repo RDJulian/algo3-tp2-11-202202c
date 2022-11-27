@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,7 +24,7 @@ public class CasoDeUso9Test {
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
 
-        Vector<Pilon> pilones = new Vector<>();
+        ArrayList<Pilon> pilones = new ArrayList<>();
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
@@ -48,7 +48,7 @@ public class CasoDeUso9Test {
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
 
-        Vector<Pilon> pilones = new Vector<>();
+        ArrayList<Pilon> pilones = new ArrayList<>();
         pilones.add(unPilon);
         pilones.add(otroPilon);
 

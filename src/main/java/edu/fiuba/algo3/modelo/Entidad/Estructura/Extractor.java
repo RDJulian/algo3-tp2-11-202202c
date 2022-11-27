@@ -13,10 +13,10 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Extractor extends Estructura implements ExtraeRecurso {
-    private Vector<Zangano> zanganos;
+    private ArrayList<Zangano> zanganos;
     private Recurso gasVespeno;
     private Raza raza;
 
@@ -32,7 +32,7 @@ public class Extractor extends Estructura implements ExtraeRecurso {
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
 
-        this.zanganos = new Vector<>(0);
+        this.zanganos = new ArrayList<>(0);
         this.rolEnSuministro = new Neutral();
     }
 

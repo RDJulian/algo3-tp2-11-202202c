@@ -28,11 +28,11 @@ public abstract class Entidad {
 
     public abstract void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque);
 
-
-    public int afectarSuministro(int suministroActual){
-        return rolEnSuministro.afectarSuministro(suministroActual);
+    public int afectarSuministro(int suministroActual) {
+        return rolEnSuministro.afectarSuministro(suministroActual, estadoEntidad);
     }
 
+    //Solucion que funciona por el momento. Puede cambiar en el futuro.
     public void destruir() {
         this.rolEnSuministro = new Neutral();
         this.estadoEntidad = new Destruido();

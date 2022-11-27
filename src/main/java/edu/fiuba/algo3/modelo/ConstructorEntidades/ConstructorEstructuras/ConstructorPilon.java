@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoNada;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
@@ -13,7 +13,7 @@ import edu.fiuba.algo3.modelo.Recurso.Recurso;
 public class ConstructorPilon extends ConstructorEstructuras {
     public ConstructorPilon() {
         this.construibleRecurso = new NoSobreRecurso();
-        this.construiblePiso = new RangoNada();
+        this.construiblePiso = new RangoPilon();
         this.construibleEstructura = new NoRequiereEstructura();
         this.costoMineral = 100;
         this.costoGas = 0;
@@ -29,8 +29,8 @@ public class ConstructorPilon extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura construccion = new Pilon(posicion);
-        raza.registarEstructura(construccion);
-        return construccion;
+        Estructura estructura = new Pilon(posicion);
+        raza.registarEntidad(estructura);
+        return estructura;
     }
 }

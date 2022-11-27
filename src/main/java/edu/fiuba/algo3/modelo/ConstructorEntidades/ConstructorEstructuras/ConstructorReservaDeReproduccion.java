@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstruc
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -30,8 +29,8 @@ public class ConstructorReservaDeReproduccion extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura construccion = new ReservaDeReproduccion(posicion);
-        raza.registarEstructura(construccion);
-        return construccion;
+        Estructura estructura = new ReservaDeReproduccion(posicion);
+        raza.registarEntidad(estructura);
+        return estructura;
     }
 }

@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereEspiral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Hidralisco;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Mutalisco;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -22,7 +21,7 @@ public class ConstructorMutalisco extends ConstructorUnidades {
 
         raza.gastarRecursos(costoMineral, costoGas);
         Unidad unidad = new Mutalisco(posicion);
-        raza.registarUnidad(unidad);
+        raza.registarEntidad(unidad);
         return unidad;
     }
 }

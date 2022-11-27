@@ -3,7 +3,6 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -27,11 +26,5 @@ public class CasoDeUso13Test {
 
         assertDoesNotThrow(() -> nuevoMoho.construible(sobreMoho, new Posicion(-3, -3)));
 
-    }
-
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
     }
 }

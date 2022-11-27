@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Zealot;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zerling;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -22,7 +21,7 @@ public class ConstructorZerling extends ConstructorUnidades {
 
         raza.gastarRecursos(costoMineral, costoGas);
         Unidad unidad = new Zerling(posicion);
-        raza.registarUnidad(unidad);
+        raza.registarEntidad(unidad);
         return unidad;
     }
 }

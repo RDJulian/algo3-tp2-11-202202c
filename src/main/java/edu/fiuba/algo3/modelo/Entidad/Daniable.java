@@ -8,4 +8,6 @@ public interface Daniable { //Se puede potencialmente borrar si se usa una clase
 
     //Como daniar puede llevar a cambiar de estado, tambien se pide setEstado().
     void setEstado(EstadoEntidad estado);
+
+    boolean estasDestruido();
 }

@@ -8,6 +8,7 @@ public abstract class Vida {
     protected int limite;
     protected int cantVida;
 
+
     public Vida(int cantVida) {
         this.cantVida = cantVida;
         this.limite = cantVida;
@@ -18,6 +19,7 @@ public abstract class Vida {
         if (nuevaVida <= 0) {
             nuevaVida = 0;
             daniable.setEstado(new Destruido());
+            System.out.println("Pase por vida y le puse destruido");
         }
         this.cantVida = nuevaVida;
     }

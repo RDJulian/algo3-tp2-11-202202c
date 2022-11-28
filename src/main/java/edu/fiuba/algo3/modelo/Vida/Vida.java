@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Vida;
 
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zealot;
 import edu.fiuba.algo3.modelo.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.Daniable;
 
@@ -19,7 +20,16 @@ public abstract class Vida {
         if (nuevaVida <= 0) {
             nuevaVida = 0;
             daniable.setEstado(new Destruido());
-            System.out.println("Pase por vida y le puse destruido");
+        }
+        this.cantVida = nuevaVida;
+    }
+
+    public void daniar(Daniable daniable, int danio, Zealot unidadAtacante) {
+        int nuevaVida = cantVida - danio;
+        if (nuevaVida <= 0) {
+            nuevaVida = 0;
+            daniable.setEstado(new Destruido());
+            unidadAtacante.sumarBaja();
         }
         this.cantVida = nuevaVida;
     }

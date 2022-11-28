@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.Posicion.Rango;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
+import java.util.Vector;
+
 public class Zealot extends Unidad {
 
     protected int contadorDeBajas;
@@ -28,19 +30,21 @@ public class Zealot extends Unidad {
     @Override
     public void atacar(Daniable daniable) {
         this.estadoEntidad.operable();
-        System.out.println("Pase Por el ataque del Zealot");
-        daniable.daniar(this.danioTierra, this.danioAire, this.rangoAtaque);
-        if(daniable.estasDestruido()) {
-            System.out.println("Puse al Zealot invisible");
-            this.invisible = true;
-            //this.sumarBaja();
-        }
+        daniable.daniar(this.danioTierra, this.danioAire, this.rangoAtaque, this);
     }
 
     public void sumarBaja (){
         contadorDeBajas = contadorDeBajas + 1;
         if (contadorDeBajas >= 3){
             this.invisible = true;
+        }
+    }
+
+    public void revisarInvisibilidad(Vector<AmoSupremo> amosSupremos){
+        for (AmoSupremo amoSupremo : amosSupremos){
+            if(!amoSupremo.fueraDeRango(this.posicion)){
+                this.invisible = false;
+            }
         }
     }
 

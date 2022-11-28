@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Daniable;
 import edu.fiuba.algo3.modelo.Entidad.TipoUnidad.TipoUnidad;
-import edu.fiuba.algo3.modelo.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -40,7 +39,6 @@ public abstract class Unidad implements Daniable {
     public void atacar(Daniable daniable) {
         this.estadoEntidad.operable();
         daniable.daniar(this.danioTierra, this.danioAire, this.rangoAtaque);
-        System.out.println("Por acá no tengo que pasar");
     }
 
     @Override
@@ -67,9 +65,13 @@ public abstract class Unidad implements Daniable {
         this.estadoEntidad = estadoEstructura;
     }
 
-    public boolean estasDestruido(){
-        EstadoEntidad estadoDestruido = new Destruido();
-        System.out.println("Pase por el estas muerto");
-        return this.estadoEntidad.equals(estadoDestruido);
+    @Override
+    public void daniar(int danioTierra, int danioAire, Rango rango, Zealot unidadAtacante) {
+        this.estadoEntidad.atacable();
+        if (rangoAtaque.noIncluye(this.posicion) || (this.invisible)) {
+            throw new AtaqueNoValidoException();
+        }
+        int danioARecibir = this.tipoUnidad.recibirDanio(danioAire, danioTierra);
+        this.defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
     }
 }

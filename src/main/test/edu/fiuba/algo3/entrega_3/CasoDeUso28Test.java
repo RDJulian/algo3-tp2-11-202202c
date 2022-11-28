@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
 
+import java.util.Vector;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -57,16 +59,15 @@ public class CasoDeUso28Test {
         unidad5.setEstado(new Operativa());
 
         atacarKVeces(unidad, unidad2, 5);
-        //atacarKVeces(unidad, unidad3, 5);
-        //atacarKVeces(unidad, unidad4, 5);
+        atacarKVeces(unidad, unidad3, 5);
+        atacarKVeces(unidad, unidad4, 5);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad5.atacar(unidad));
-        //assertDoesNotThrow(() -> unidad5.atacar(unidad));
     }
 
     @Test
     public void test03UnZealotMataATresUnidadesSeVuelveInvisibleYPuedeSerAtacado(){
-        Unidad unidad = new Zealot(new Posicion(0,0));
+        Zealot unidad = new Zealot(new Posicion(0,0));
         unidad.setEstado(new Operativa());
 
         Unidad unidad2 = new Zerling(new Posicion(0,1));
@@ -81,12 +82,17 @@ public class CasoDeUso28Test {
         Unidad unidad5 = new Hidralisco(new Posicion(1, 1));
         unidad5.setEstado(new Operativa());
 
-        Unidad unidad6 = new AmoSupremo(new Posicion(1, 0));
+        AmoSupremo unidad6 = new AmoSupremo(new Posicion(1, 0));
         unidad6.setEstado(new Operativa());
+
+        Vector<AmoSupremo> AmosSupremos = new Vector<>();
+        AmosSupremos.add(unidad6);
 
         atacarKVeces(unidad, unidad2, 5);
         atacarKVeces(unidad, unidad3, 5);
         atacarKVeces(unidad, unidad4, 5);
+
+        unidad.revisarInvisibilidad(AmosSupremos);
 
         assertDoesNotThrow(() -> unidad5.atacar(unidad));
     }
@@ -111,7 +117,7 @@ public class CasoDeUso28Test {
         assertDoesNotThrow(() -> unidad3.atacar(unidad));
     }
 
-    /*@Test
+    @Test
     public void test05UnZealotMataADosUnidadedYDestruyeUnaEstructuraSeConvienrteEnInvisibleYNoPuedeSerAtacado(){
         Unidad unidad = new Zealot(new Posicion(0,0));
         unidad.setEstado(new Operativa());
@@ -133,12 +139,11 @@ public class CasoDeUso28Test {
         atacarKVeces(unidad, espiral, 125);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad4.atacar(unidad));
-        //assertDoesNotThrow(() -> unidad5.atacar(unidad));
-    }*/
+    }
 
     @Test
     public void test06UnZealotMataADosUnidadesYUnaEstructuraSeVuelveInvisibleYPuedeSerAtacado(){
-        Unidad unidad = new Zealot(new Posicion(0,0));
+        Zealot unidad = new Zealot(new Posicion(0,0));
         unidad.setEstado(new Operativa());
 
         Unidad unidad2 = new Zerling(new Posicion(0,1));
@@ -153,12 +158,17 @@ public class CasoDeUso28Test {
         Unidad unidad4 = new Hidralisco(new Posicion(1, 1));
         unidad4.setEstado(new Operativa());
 
-        Unidad unidad5 = new AmoSupremo(new Posicion(1, 0));
+        AmoSupremo unidad5 = new AmoSupremo(new Posicion(1, 0));
         unidad5.setEstado(new Operativa());
+
+        Vector<AmoSupremo> AmosSupremos = new Vector<>();
+        AmosSupremos.add(unidad5);
 
         atacarKVeces(unidad, unidad2, 5);
         atacarKVeces(unidad, unidad3, 5);
-        atacarKVeces(unidad, espiral, 5);
+        atacarKVeces(unidad, espiral, 125);
+
+        unidad.revisarInvisibilidad(AmosSupremos);
 
         assertDoesNotThrow(() -> unidad4.atacar(unidad));
     }

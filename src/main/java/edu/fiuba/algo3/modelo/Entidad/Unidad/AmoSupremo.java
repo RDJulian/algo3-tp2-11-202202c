@@ -10,6 +10,10 @@ import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class AmoSupremo extends Unidad {
+
+    protected int radioDeDeteccion;
+    protected Rango rangoDeDeteccion;
+
     public AmoSupremo(Posicion posicion) {
         super(posicion);
         this.radioAtaque = 0;
@@ -21,10 +25,16 @@ public class AmoSupremo extends Unidad {
         this.defensa = new SinEscudo();
         this.estadoEntidad = new EnConstruccion(5);
         this.invisible = true;
+        this.radioDeDeteccion = 4;
+        this.rangoDeDeteccion = new Rango(this.posicion, this.radioDeDeteccion);
     }
 
     @Override
     public void atacar(Daniable daniable) {
         throw new AtaqueNoValidoException();
+    }
+
+    public boolean fueraDeRango(Posicion posicion){
+        return this.rangoDeDeteccion.noIncluye(posicion);
     }
 }

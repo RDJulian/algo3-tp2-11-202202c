@@ -21,5 +21,6 @@ public class Devorador extends Unidad {
         this.danioTierra = 0;
         this.danioAire = 15;
         this.rangoAtaque = 5;
+        this.invisible = true;
     }
 }

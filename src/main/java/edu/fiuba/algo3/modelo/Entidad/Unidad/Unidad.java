@@ -12,6 +12,7 @@ public abstract class Unidad extends Entidad {
     protected int danioTierra;
     protected int danioAire;
     protected int rangoAtaque;
+    protected boolean invisible;
 
 
     //Segregar en una interfaz Atacante.
@@ -37,5 +38,15 @@ public abstract class Unidad extends Entidad {
     public void moverse(Area area) {
         estadoEntidad.operable();
         area.mover(this, tipoUnidad);
+    }
+
+    @Override
+    public void daniar(int danioTierra, int danioAire, Rango rango, Zealot unidadAtacante) {
+        this.estadoEntidad.atacable();
+        if (rangoAtaque.noIncluye(this.posicion) || (this.invisible)) {
+            throw new AtaqueNoValidoException();
+        }
+        int danioARecibir = this.tipoUnidad.recibirDanio(danioAire, danioTierra);
+        this.defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
     }
 }

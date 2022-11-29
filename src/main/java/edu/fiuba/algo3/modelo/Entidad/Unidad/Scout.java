@@ -21,5 +21,6 @@ public class Scout extends Unidad {
         this.danioTierra = 8;
         this.danioAire = 14;
         this.rangoAtaque = 4;
+        this.invisible = false;
     }
 }

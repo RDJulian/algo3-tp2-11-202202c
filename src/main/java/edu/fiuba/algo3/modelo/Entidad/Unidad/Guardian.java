@@ -21,5 +21,6 @@ public class Guardian extends Unidad {
         this.danioTierra = 25;
         this.danioAire = 0;
         this.rangoAtaque = 10;
+        this.invisible = false;
     }
 }

@@ -22,6 +22,7 @@ public class Mutalisco extends Unidad {
         this.danioTierra = 9;
         this.danioAire = 9;
         this.rangoAtaque = 3;
+        this.invisible = false;
     }
 
     public void evolucionarAGuardian(Reserva reservaMineral, Reserva reservaGas) {

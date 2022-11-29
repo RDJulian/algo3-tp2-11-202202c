@@ -21,5 +21,6 @@ public class Hidralisco extends Unidad {
         this.danioTierra = 10;
         this.danioAire = 10;
         this.rangoAtaque = 4;
+        this.invisible = false;
     }
 }

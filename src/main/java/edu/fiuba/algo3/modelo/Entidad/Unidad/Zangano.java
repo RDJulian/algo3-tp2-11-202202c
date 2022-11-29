@@ -29,6 +29,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.danioTierra = 0;
         this.danioAire = 0;
         this.rangoAtaque = 0;
+        this.invisible = false;
 
         this.raza = raza;
         this.mineral = new Nada();

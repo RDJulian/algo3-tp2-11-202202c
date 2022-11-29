@@ -18,25 +18,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso15Test { //Se deberia resumir o setear directamente los estados para ahorrar lineas de codigo.
     @Test
     public void test01ElMineralSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Recurso mineral = new Mineral(new Posicion(0, 0));
-        NexoMineral nexoMineral = new NexoMineral(new Posicion(0, 0), mineral, new Raza());
-
+        Posicion posicion = new Posicion(0, 0);
+        Recurso mineral = new Mineral(posicion);
+        NexoMineral nexoMineral = new NexoMineral(posicion, mineral, new Raza());
         pasarKTurnos(nexoMineral, 4);
 
         pasarKTurnos(nexoMineral, 99);
 
         assertDoesNotThrow(nexoMineral::pasarTurno);
-
         assertThrows(RecursoVacioException.class, nexoMineral::pasarTurno);
     }
 
     @Test
     public void test02ElGasVespenoSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Recurso mineral = new GasVespeno(new Posicion(0, 0));
-        Extractor extractor = new Extractor(new Posicion(0, 0), mineral, new Raza());
+        Posicion posicion = new Posicion(0, 0);
+        Raza raza = new Raza();
+        Recurso mineral = new GasVespeno(posicion);
+        Extractor extractor = new Extractor(posicion, mineral, raza);
         pasarKTurnos(extractor, 6);
-        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
-        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
+
+        Zangano zangano = new Zangano(posicion, raza);
+        zangano.pasarTurno();
+        extractor.agregarZangano(zangano);
+        extractor.agregarZangano(zangano);
 
         pasarKTurnos(extractor, 249);
 

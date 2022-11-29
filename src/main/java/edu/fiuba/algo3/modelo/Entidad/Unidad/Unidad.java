@@ -1,66 +1,57 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Entidad.Daniable;
-import edu.fiuba.algo3.modelo.Entidad.TipoUnidad.TipoUnidad;
-import edu.fiuba.algo3.modelo.EstadoEntidad.EstadoEntidad;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Posicion.Rango;
-import edu.fiuba.algo3.modelo.Vida.Defensa;
-import edu.fiuba.algo3.modelo.Vida.Vida;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 
-public abstract class Unidad implements Daniable {
-    protected Vida vida;
-    protected Defensa defensa;
+public abstract class Unidad extends Entidad {
+    //Ver que hacer con esto, no todos implementan
     protected TipoUnidad tipoUnidad;
-    protected EstadoEntidad estadoEntidad;
     protected int danioTierra;
     protected int danioAire;
-    protected Posicion posicion;
-    protected Rango rangoAtaque;
-    protected int radioAtaque;
+    protected int rangoAtaque;
+    protected boolean invisible;
+    protected int contadorDeBajas;
 
-    public Unidad(Posicion posicion) {
-        this.posicion = posicion;
-    }
 
-    public void operable() {
-        this.estadoEntidad.operable();
-    }
-
-    public void pasarTurno() {
-        this.estadoEntidad.pasarTurno(this, this.vida, this.defensa);
-    }
-
-    //Por el momento una sola unidad no ataca, porque no tiene danio. Ademas, solo las Unidades atacan.
-    //No amerita segregar la interfaz, se hace override de este metodo y directamente se lanza excepcion.
-    public void atacar(Daniable daniable) {
-        this.estadoEntidad.operable();
-        daniable.daniar(this.danioTierra, this.danioAire, this.rangoAtaque);
+    //Segregar en una interfaz Atacante.
+    public void atacar(Entidad entidad) {
+        estadoEntidad.operable();
+        entidad.daniar(danioTierra, danioAire, posicion, rangoAtaque, this);
     }
 
     @Override
-    public void daniar(int danioTierra, int danioAire, Rango rangoAtaque) {
-        this.estadoEntidad.atacable();
-        if (rangoAtaque.noIncluye(this.posicion)) {
+    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, Unidad unidadAtacante) {
+        estadoEntidad.atacable();
+        if (!posicion.enRango(posicionAtacante, rangoAtaque) || invisible) {
             throw new AtaqueNoValidoException();
         }
-        int danioARecibir = this.tipoUnidad.recibirDanio(danioAire, danioTierra);
-        this.defensa.proteger(this, this.vida, danioARecibir);
+        int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
+        defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
     }
 
+    //Deberia ser private.
     public void moverse(Posicion posicion) {
         this.posicion = posicion;
-        this.rangoAtaque = new Rango(posicion, this.radioAtaque);
     }
 
     public void moverse(Area area) {
-        this.estadoEntidad.operable();
-        area.mover(this, this.tipoUnidad);
+        estadoEntidad.operable();
+        area.mover(this, tipoUnidad);
     }
 
-    public void setEstado(EstadoEntidad estadoEstructura) {
-        this.estadoEntidad = estadoEstructura;
+    public void sumarBaja() {
+        contadorDeBajas = contadorDeBajas + 1;
+    }
+
+    @Override
+    public void destruir() {
+        this.estadoEntidad = new Destruido();
+        this.rolEnSuministro = new Neutral();
+        raza.destruirEntidad(this);
     }
 }

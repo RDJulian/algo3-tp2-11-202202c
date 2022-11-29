@@ -1,14 +1,15 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
-import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,50 +19,50 @@ public class CasoDeUso9Test {
 
     @Test
     public void test01UnaEstructuraProtossSigueActivaSiSeDestruyeUnPilonPeroEstaEnCercaniaDeOtro() {
-        Pilon unPilon = new Pilon(new Posicion(0, 0));
-        Pilon otroPilon = new Pilon(new Posicion(6, 6));
+        Pilon unPilon = new Pilon(new Posicion(0, 0), new Raza());
+        Pilon otroPilon = new Pilon(new Posicion(6, 6), new Raza());
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
 
-        Vector<Pilon> pilones = new Vector<>();
+        ArrayList<Pilon> pilones = new ArrayList<>();
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
-        puertoEstelar.setEstado(new Operativa());
+        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3), new Raza());
+        pasarKTurnos(puertoEstelar, 10);
 
-        puertoEstelar.setEstado(pilones);
+        puertoEstelar.actualizarEstado(pilones);
         assertDoesNotThrow(puertoEstelar::operable);
 
         pilones.remove(0);
 
-        puertoEstelar.setEstado(pilones);
+        puertoEstelar.actualizarEstado(pilones);
         assertDoesNotThrow(puertoEstelar::operable);
     }
 
     @Test
     public void test02UnaEstructuraProtossQuedaInactivaSiSeDestruyeUnPilonYNoEstaEnCercaniaDeOtro() {
-        Pilon unPilon = new Pilon(new Posicion(0, 0));
-        Pilon otroPilon = new Pilon(new Posicion(7, 7));
+        Pilon unPilon = new Pilon(new Posicion(0, 0), new Raza());
+        Pilon otroPilon = new Pilon(new Posicion(7, 7), new Raza());
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
 
-        Vector<Pilon> pilones = new Vector<>();
+        ArrayList<Pilon> pilones = new ArrayList<>();
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
-        puertoEstelar.setEstado(new Operativa());
+        Acceso acceso = new Acceso(new Posicion(3, 3), new Raza());
+        pasarKTurnos(acceso, 8);
 
-        puertoEstelar.setEstado(pilones);
-        assertDoesNotThrow(puertoEstelar::operable);
+        acceso.actualizarEstado(pilones);
+        assertDoesNotThrow(acceso::operable);
 
         pilones.remove(0);
 
-        puertoEstelar.setEstado(pilones);
-        assertThrows(EntidadNoOperativaException.class, puertoEstelar::operable);
+        acceso.actualizarEstado(pilones);
+        assertThrows(EntidadNoOperativaException.class, acceso::operable);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

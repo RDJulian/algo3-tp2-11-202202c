@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.modelo.Juego.Jugador;
 
-import edu.fiuba.algo3.modelo.Raza.Raza;
-
 public class Jugador {
+    //Ver que responsabilidad tendria esta clase. Sino, los datos deberian estar en otro lado.
+    //Por el momento es una clase anemica.
     private String nombre;
     private String color;
-    private Raza raza;
 
-    public Jugador(String nombre, String color, Raza raza) {
+    public Jugador(String nombre, String color) {
         this.nombre = nombre;
         this.color = color;
-        this.raza = raza;
     }
 }

@@ -4,12 +4,12 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Asimilador;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
 
@@ -19,73 +19,66 @@ public class CasoDeUso7Test {
 
     @Test
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
-        Reserva reservaMineral = new Reserva();
-        Reserva reservaGas = new Reserva();
-        Raza raza = new Raza(reservaMineral, reservaGas);
-        Recurso mineral = new Mineral(new Posicion(0, 0));
-        Zangano zangano = new Zangano(new Posicion(0, 0));
+        Raza raza = new Raza();
+        Posicion posicion = new Posicion(0, 0);
+        Recurso mineral = new Mineral(posicion);
+        Zangano zangano = new Zangano(posicion, raza);
 
+        zangano.pasarTurno();
         zangano.ocupar(mineral);
-        zangano.setRaza(raza);
-        zangano.extraerRecurso();
+        zangano.pasarTurno();
 
-        assertEquals(reservaMineral.getRecurso(), 10);
+        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(11, 0));
+        assertDoesNotThrow(() -> raza.gastarRecursos(10, 0));
     }
 
     @Test
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
-        Reserva reservaMineral = new Reserva();
-        Reserva reservaGas = new Reserva();
-        Raza raza = new Raza(reservaMineral, reservaGas);
-        GasVespeno gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Extractor extractor = new Extractor(new Posicion(0, 0), gasVespeno, raza);
+        Raza raza = new Raza();
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno(posicion);
+        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
 
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
-        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
-        extractor.agregarZangano(new Zangano(new Posicion(0, 0)));
-        extractor.pasarTurno();
-
-        assertEquals(reservaGas.getRecurso(), 30);
+        Zangano zangano = new Zangano(posicion, raza);
+        zangano.pasarTurno();
+        extractor.agregarZangano(zangano);
 
         extractor.pasarTurno();
 
-        assertEquals(reservaGas.getRecurso(), 60);
+        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(0, 11));
+        assertDoesNotThrow(() -> raza.gastarRecursos(0, 10));
     }
 
     @Test
-    public void test03NexoMineralObtieneMineralCorrectamenteParaLosZerg() {
-        Reserva reservaMineral = new Reserva();
-        Reserva reservaGas = new Reserva();
-        Raza raza = new Raza(reservaMineral, reservaGas);
-        Recurso mineral = new Mineral(new Posicion(0, 0));
-        NexoMineral nexoMineral = new NexoMineral(new Posicion(0, 0), mineral, raza);
+    public void test03NexoMineralObtieneMineralCorrectamenteParaLosProtoss() {
+        Raza raza = new Raza();
+        Posicion posicion = new Posicion(0, 0);
+        Mineral mineral = new Mineral(posicion);
+        NexoMineral nexoMineral = new NexoMineral(posicion, mineral, raza);
 
-        pasarKTurnos(nexoMineral, 5);
-
-        assertEquals(reservaMineral.getRecurso(), 20);
+        pasarKTurnos(nexoMineral, 4);
 
         nexoMineral.pasarTurno();
 
-        assertEquals(reservaMineral.getRecurso(), 40);
+        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(21, 0));
+        assertDoesNotThrow(() -> raza.gastarRecursos(20, 0));
     }
 
     @Test
-    public void test04AsimiladorObtieneGasCorrectamenteParaLosZerg() {
-        Reserva reservaMineral = new Reserva();
-        Reserva reservaGas = new Reserva();
-        Raza raza = new Raza(reservaMineral, reservaGas);
-        Recurso gasVespeno = new GasVespeno(new Posicion(0, 0));
-        Asimilador asimilador = new Asimilador(new Posicion(0, 0), gasVespeno, raza);
+    public void test04AsimiladorObtieneGasCorrectamenteParaLosProtoss() {
+        Raza raza = new Raza();
+        Posicion posicion = new Posicion(0, 0);
+        GasVespeno gasVespeno = new GasVespeno(posicion);
+        Asimilador asimilador = new Asimilador(posicion, gasVespeno, raza);
 
-        pasarKTurnos(asimilador, 7);
-
-        assertEquals(reservaGas.getRecurso(), 20);
+        pasarKTurnos(asimilador, 6);
 
         asimilador.pasarTurno();
 
-        assertEquals(reservaGas.getRecurso(), 40);
+        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(0, 21));
+        assertDoesNotThrow(() -> raza.gastarRecursos(0, 20));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {

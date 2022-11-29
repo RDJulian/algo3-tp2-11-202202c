@@ -11,12 +11,12 @@ public class Base {
     }
 
     public void opuesta(Base otraBase) {
-        otraBase.esOpuesta(this.posicion);
-    }
-
-    private void esOpuesta(Posicion posicion) {
-        if (!posicion.esOpuesta(this.posicion)) {
+        if (!otraBase.esOpuesta(posicion)) {
             throw new BaseNoOpuestaException();
         }
+    }
+
+    private boolean esOpuesta(Posicion posicion) {
+        return posicion.esOpuesta(this.posicion);
     }
 }

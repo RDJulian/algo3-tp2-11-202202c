@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EstadoEntidad.Operativa;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 
@@ -14,8 +14,8 @@ public class CasoDeUso1Test {
 
     @Test
     public void test01CriaderoSeIniciaConTresLarvas() {
-        Criadero estructura = new Criadero(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        Criadero estructura = new Criadero(new Posicion(0, 0), new Raza());
+        pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
         assertThrows(CriaderoSinLarvasException.class, estructura::usarLarva);
@@ -23,8 +23,8 @@ public class CasoDeUso1Test {
 
     @Test
     public void test02CriaderoSeIniciaConTresLarvasYNoPuedeSuperarTres() {
-        Criadero estructura = new Criadero(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        Criadero estructura = new Criadero(new Posicion(0, 0), new Raza());
+        pasarKTurnos(estructura, 4);
         estructura.pasarTurno();
         operarKVeces(estructura, 3);
 
@@ -33,8 +33,8 @@ public class CasoDeUso1Test {
 
     @Test
     public void test03CriaderoSeIniciaConTresLarvasSeUsanTresPasaElTurnoYSeGeneraUna() {
-        Criadero estructura = new Criadero(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        Criadero estructura = new Criadero(new Posicion(0, 0), new Raza());
+        pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
         estructura.pasarTurno();
@@ -45,8 +45,8 @@ public class CasoDeUso1Test {
 
     @Test
     public void test04CriaderoSeIniciaConTresLarvasSeUsanTresPasanTurnosYSeGeneranDos() {
-        Criadero estructura = new Criadero(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        Criadero estructura = new Criadero(new Posicion(0, 0), new Raza());
+        pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
         pasarKTurnos(estructura, 2);
@@ -57,8 +57,8 @@ public class CasoDeUso1Test {
 
     @Test
     public void test05CriaderoSeIniciaConTresLarvasSeUsanTresPasanTurnosYSeGeneranTres() {
-        Criadero estructura = new Criadero(new Posicion(0, 0));
-        estructura.setEstado(new Operativa());
+        Criadero estructura = new Criadero(new Posicion(0, 0), new Raza());
+        pasarKTurnos(estructura, 4);
         operarKVeces(estructura, 3);
 
         pasarKTurnos(estructura, 3);

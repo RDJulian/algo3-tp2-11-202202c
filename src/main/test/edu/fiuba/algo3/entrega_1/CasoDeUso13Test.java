@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.Construible;
-import edu.fiuba.algo3.modelo.Construible.RangoMoho;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Posicion.Rango;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,25 +15,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso13Test {
     @Test
     public void test01UnCriaderoSeConstruyeCreaMohoLuegoEsDestruidaPeroElMohoSigueEstando() {
-        Rango rango = new Rango(new Posicion(0, 0), 1);
-        Criadero criadero = new Criadero(new Posicion(0, 0));
-        Construible sobreMoho = new RangoMoho();
+        Posicion posicion = new Posicion(0, 0);
+        Criadero criadero = new Criadero(posicion, new Raza());
+        ConstruiblePiso sobreMoho = new RangoMoho();
 
         //Idealmente se ejecuta junto a la construccion.
         Piso nuevoMoho = criadero.generarMoho();
-        pasarKTurnos(criadero, 4);
 
-        criadero.daniar(600, 0, rango);
+        criadero.daniar(600, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, criadero::operable);
 
         assertDoesNotThrow(() -> nuevoMoho.construible(sobreMoho, new Posicion(-3, -3)));
 
-    }
-
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
     }
 }

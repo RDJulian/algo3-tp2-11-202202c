@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.RequiereAcceso;
-import edu.fiuba.algo3.modelo.Construible.RequiereGuarida;
-import edu.fiuba.algo3.modelo.Construible.Construible;
-import edu.fiuba.algo3.modelo.Construible.RequiereReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -15,9 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso17Test {
     @Test
     public void test01GuaridaNecesitaUnaReservaDeReproduccionParaPoderConstruirse() {
-        Construible requiereReservaDeReproduccion = new RequiereReservaDeReproduccion();
-        Estructura reservaDeReproduccion = new ReservaDeReproduccion(new Posicion(0, 0));
-        Estructura criadero = new Criadero(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        ConstruibleEstructura requiereReservaDeReproduccion = new RequiereReservaDeReproduccion();
+
+        Estructura reservaDeReproduccion = new ReservaDeReproduccion(posicion, new Raza());
+        Estructura criadero = new Criadero(posicion, new Raza());
+        pasarKTurnos(reservaDeReproduccion, 100);
+        pasarKTurnos(criadero, 100);
 
         assertThrows(ConstruccionNoValidaException.class, () -> criadero.construible(requiereReservaDeReproduccion));
         assertDoesNotThrow(() -> reservaDeReproduccion.construible(requiereReservaDeReproduccion));
@@ -25,9 +30,13 @@ public class CasoDeUso17Test {
 
     @Test
     public void test02EspiralNecesitaUnaGuaridaParaPoderConstruirse() {
-        Construible requiereGuarida = new RequiereGuarida();
-        Estructura criadero = new Criadero(new Posicion(0, 0));
-        Estructura guarida = new Guarida(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        ConstruibleEstructura requiereGuarida = new RequiereGuarida();
+
+        Estructura criadero = new Criadero(posicion, new Raza());
+        Estructura guarida = new Guarida(posicion, new Raza());
+        pasarKTurnos(guarida, 100);
+        pasarKTurnos(criadero, 100);
 
         assertThrows(ConstruccionNoValidaException.class, () -> criadero.construible(requiereGuarida));
         assertDoesNotThrow(() -> guarida.construible(requiereGuarida));
@@ -35,11 +44,21 @@ public class CasoDeUso17Test {
 
     @Test
     public void test03PuertoEstelarNecesitaUnAccesoParaPoderConstruirse() {
-        Construible requiereAcceso = new RequiereAcceso();
-        Estructura nexoMineral = new Pilon(new Posicion(0, 0));
-        Estructura acceso = new Acceso(new Posicion(0, 0));
+        Posicion posicion = new Posicion(0, 0);
+        ConstruibleEstructura requiereAcceso = new RequiereAcceso();
 
-        assertThrows(ConstruccionNoValidaException.class, () -> nexoMineral.construible(requiereAcceso));
+        Estructura pilon = new Pilon(posicion, new Raza());
+        Estructura acceso = new Acceso(posicion, new Raza());
+        pasarKTurnos(acceso, 100);
+        pasarKTurnos(pilon, 100);
+
+        assertThrows(ConstruccionNoValidaException.class, () -> pilon.construible(requiereAcceso));
         assertDoesNotThrow(() -> acceso.construible(requiereAcceso));
+    }
+
+    public void pasarKTurnos(Estructura estructura, int k) {
+        for (int i = 0; i < k; i++) {
+            estructura.pasarTurno();
+        }
     }
 }

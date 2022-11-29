@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo.Posicion;
 
+@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class Posicion {
-    //A futuro pueden ser las Areas, y pueden ser singletons.
-    //Buscar mejor forma de resolver chequeos, y cambiar nombres.
+    //Plantear relacion con las Areas.
+    //Deberia implementar algun metodo que desocupe.
     private int posicionX;
     private int posicionY;
 
@@ -12,6 +13,14 @@ public class Posicion {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.estadoPosicion = new Desocupada();
+    }
+
+    public void ocupable() {
+        estadoPosicion.ocupable();
+    }
+
+    public void ocupar() {
+        this.estadoPosicion = new Ocupada();
     }
 
     private boolean enRango(int posicionX, int posicionY, int radio) {
@@ -25,19 +34,19 @@ public class Posicion {
         return (posicion.enRango(this.posicionX, this.posicionY, radio));
     }
 
-    public void ocupable() {
-        estadoPosicion.ocupable();
-    }
-
-    public void setEstadoPosicion(EstadoPosicion estadoPosicion) {
-        this.estadoPosicion = estadoPosicion;
+    private boolean esOpuesta(int posicionX, int posicionY) {
+        return (this.posicionX == -posicionX && this.posicionY == -posicionY);
     }
 
     public boolean esOpuesta(Posicion posicion) {
         return posicion.esOpuesta(this.posicionX, this.posicionY);
     }
 
-    private boolean esOpuesta(int posicionX, int posicionY) {
-        return (this.posicionX == -posicionX && this.posicionY == -posicionY);
+    private boolean es(int posicionX, int posicionY) {
+        return (posicionX == this.posicionX && posicionY == this.posicionY);
+    }
+
+    public boolean es(Posicion posicion) {
+        return posicion.es(this.posicionX, this.posicionY);
     }
 }

@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Mutalisco;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class CasoDeUso21Test {
         Reserva reservaMineral = new Reserva();
         Reserva reservaGas = new Reserva();
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0));
+        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
         assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarAGuardian(reservaMineral, reservaGas));
 
         reservaMineral.agregarRecurso(1000);
@@ -29,7 +30,7 @@ public class CasoDeUso21Test {
         Reserva reservaMineral = new Reserva();
         Reserva reservaGas = new Reserva();
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0));
+        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
         assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
 
         reservaMineral.agregarRecurso(1000);

@@ -29,7 +29,7 @@ public class ConstructorGuarida extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new Guarida(posicion);
+        Estructura estructura = new Guarida(posicion, raza);
         raza.registarEntidad(estructura);
         return estructura;
     }

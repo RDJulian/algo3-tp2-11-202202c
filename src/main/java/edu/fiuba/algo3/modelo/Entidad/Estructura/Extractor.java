@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class Extractor extends Estructura implements ExtraeRecurso {
     private ArrayList<Zangano> zanganos;
     private Recurso gasVespeno;
-    private Raza raza;
 
     public Extractor(Posicion posicion, Recurso gasVespeno, Raza raza) {
         this.posicion = posicion;

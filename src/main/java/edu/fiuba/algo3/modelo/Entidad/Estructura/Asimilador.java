@@ -13,7 +13,6 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 
 public class Asimilador extends Estructura implements ExtraeRecurso {
     private Recurso gasVespeno;
-    private Raza raza;
 
     public Asimilador(Posicion posicion, Recurso gasVespeno, Raza raza) {
         this.posicion = posicion;

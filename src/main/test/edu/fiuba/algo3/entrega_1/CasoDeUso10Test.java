@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,14 +16,14 @@ public class CasoDeUso10Test {
     @Test
     public void test01DaniarUnaEstructuraZergDeberiaRegenerarSuVidaAlPasarTurnos() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Espiral(posicion);
+        Estructura estructura = new Espiral(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion));
+        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion));
+        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -30,13 +31,13 @@ public class CasoDeUso10Test {
     @Test
     public void test02DaniarUnaEstructuraZergEnConstruccionDeberiaRegenerarSuVidaAlPasarTurnos() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Espiral(posicion);
+        Estructura estructura = new Espiral(posicion, new Raza());
 
-        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion));
+        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion));
+        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -44,10 +45,10 @@ public class CasoDeUso10Test {
     @Test
     public void test03DestruirUnaEstructuraZergNoDeberiaRegenerarSuVidaAlPasarTurnos() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Espiral(posicion);
+        Estructura estructura = new Espiral(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion));
+        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
@@ -59,9 +60,9 @@ public class CasoDeUso10Test {
     @Test
     public void test04DestruirUnaEstructuraZergEnConstruccionNoDeberiaRegenerarSuVidaAlPasarTurnos() {
         Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Espiral(posicion);
+        Estructura estructura = new Espiral(posicion, new Raza());
 
-        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion));
+        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 

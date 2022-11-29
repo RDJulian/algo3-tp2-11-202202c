@@ -20,7 +20,7 @@ public class ConstructorMutalisco extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Mutalisco(posicion);
+        Unidad unidad = new Mutalisco(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

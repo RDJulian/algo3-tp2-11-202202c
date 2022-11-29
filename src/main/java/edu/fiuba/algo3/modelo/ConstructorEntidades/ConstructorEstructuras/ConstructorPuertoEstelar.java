@@ -29,7 +29,7 @@ public class ConstructorPuertoEstelar extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new PuertoEstelar(posicion);
+        Estructura estructura = new PuertoEstelar(posicion, raza);
         raza.registarEntidad(estructura);
         return estructura;
     }

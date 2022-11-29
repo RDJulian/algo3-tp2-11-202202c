@@ -29,7 +29,7 @@ public class ConstructorPilon extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new Pilon(posicion);
+        Estructura estructura = new Pilon(posicion, raza);
         raza.registarEntidad(estructura);
         return estructura;
     }

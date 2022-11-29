@@ -15,7 +15,6 @@ import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 public class Zangano extends Unidad implements ExtraeRecurso {
-    private Raza raza;
     private Recurso mineral;
 
     public Zangano(Posicion posicion, Raza raza) {

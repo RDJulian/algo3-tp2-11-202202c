@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class CasoDeUso9Test {
 
     @Test
     public void test01UnaEstructuraProtossSigueActivaSiSeDestruyeUnPilonPeroEstaEnCercaniaDeOtro() {
-        Pilon unPilon = new Pilon(new Posicion(0, 0));
-        Pilon otroPilon = new Pilon(new Posicion(6, 6));
+        Pilon unPilon = new Pilon(new Posicion(0, 0), new Raza());
+        Pilon otroPilon = new Pilon(new Posicion(6, 6), new Raza());
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
@@ -28,7 +29,7 @@ public class CasoDeUso9Test {
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3));
+        PuertoEstelar puertoEstelar = new PuertoEstelar(new Posicion(3, 3), new Raza());
         pasarKTurnos(puertoEstelar, 10);
 
         puertoEstelar.actualizarEstado(pilones);
@@ -42,8 +43,8 @@ public class CasoDeUso9Test {
 
     @Test
     public void test02UnaEstructuraProtossQuedaInactivaSiSeDestruyeUnPilonYNoEstaEnCercaniaDeOtro() {
-        Pilon unPilon = new Pilon(new Posicion(0, 0));
-        Pilon otroPilon = new Pilon(new Posicion(7, 7));
+        Pilon unPilon = new Pilon(new Posicion(0, 0), new Raza());
+        Pilon otroPilon = new Pilon(new Posicion(7, 7), new Raza());
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
@@ -52,7 +53,7 @@ public class CasoDeUso9Test {
         pilones.add(unPilon);
         pilones.add(otroPilon);
 
-        Acceso acceso = new Acceso(new Posicion(3, 3));
+        Acceso acceso = new Acceso(new Posicion(3, 3), new Raza());
         pasarKTurnos(acceso, 8);
 
         acceso.actualizarEstado(pilones);

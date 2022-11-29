@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo.Raza;
 
 import edu.fiuba.algo3.modelo.Asentamiento.Asentamiento;
-import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 
 public class Raza {
@@ -46,7 +47,24 @@ public class Raza {
         return this.asentamiento.suministroRestante();
     }
 
-    public void registarEntidad(Entidad entidad) {
+    public void registarEntidad(Estructura entidad) {
         asentamiento.registrarEntidad(entidad);
+    }
+
+    public void registarEntidad(Unidad entidad) {
+        asentamiento.registrarEntidad(entidad);
+    }
+
+    public void destruirEntidad(Estructura entidad) {
+        asentamiento.destruirEntidad(entidad);
+    }
+
+    public void destruirEntidad(Unidad entidad) {
+        asentamiento.destruirEntidad(entidad);
+    }
+
+
+    public boolean sinEstructuras() {
+        return asentamiento.sinEstructuras();
     }
 }

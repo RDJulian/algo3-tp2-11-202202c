@@ -59,7 +59,7 @@ public class CasoDeUso31Test {
         Raza protoss = new Raza();
         ConstructorEstructuras constructor = new ConstructorPilon();
         protoss.recolectarMineral(600);
-        Pilon pilon = new Pilon(new Posicion(-1, -1));
+        Pilon pilon = new Pilon(new Posicion(-1, -1), new Raza());
         pasarKTurnos(pilon, 5);
 
         Posicion posicion1 = new Posicion(0, 0);

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -21,7 +22,7 @@ public class CasoDeUso30Test {
     public void test01Entrenar201ZanganosConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
         Raza zerg = new Raza();
         zerg.recolectarMineral(25);
-        Estructura criaderoNecesario = new Criadero(new Posicion(0, 0));
+        Estructura criaderoNecesario = new Criadero(new Posicion(0, 0), new Raza());
         pasarKTurnos(criaderoNecesario, 4);
         agregarKEntidades(criaderoNecesario, zerg, 40);
 
@@ -45,11 +46,11 @@ public class CasoDeUso30Test {
         Raza zerg = new Raza();
         zerg.recolectarMineral(50);
         zerg.recolectarGas(100);
-        Estructura criadero = new Criadero(new Posicion(0, 0));
+        Estructura criadero = new Criadero(new Posicion(0, 0), new Raza());
         pasarKTurnos(criadero, 4);
         agregarKEntidades(criadero, zerg, 40);
 
-        Guardian guardian = new Guardian(new Posicion(0, 0));
+        Guardian guardian = new Guardian(new Posicion(0, 0), new Raza());
         ConstructorUnidades constructorGuardian = new ConstructorGuardian();
 
         agregarKEntidades(guardian, zerg, 49);
@@ -70,7 +71,13 @@ public class CasoDeUso30Test {
         }
     }
 
-    public void agregarKEntidades(Entidad entidad, Raza zerg, int k) {
+    public void agregarKEntidades(Estructura entidad, Raza zerg, int k) {
+        for (int i = 0; i < k; i++) {
+            zerg.registarEntidad(entidad);
+        }
+    }
+
+    public void agregarKEntidades(Unidad entidad, Raza zerg, int k) {
         for (int i = 0; i < k; i++) {
             zerg.registarEntidad(entidad);
         }

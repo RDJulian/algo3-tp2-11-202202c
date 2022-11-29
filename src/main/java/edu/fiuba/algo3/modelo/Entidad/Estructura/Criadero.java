@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
@@ -14,7 +15,7 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class Criadero extends Estructura implements GeneraLarva {
     private int larvas;
 
-    public Criadero(Posicion posicion) {
+    public Criadero(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         posicion.ocupar();
 
@@ -22,6 +23,7 @@ public class Criadero extends Estructura implements GeneraLarva {
         this.accionAlPasarTurno = new GenerarLarva(this);
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
+        this.raza = raza;
 
         this.larvas = 3;
 

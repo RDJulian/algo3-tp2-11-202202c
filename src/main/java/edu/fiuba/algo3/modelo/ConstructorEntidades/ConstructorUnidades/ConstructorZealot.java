@@ -20,7 +20,7 @@ public class ConstructorZealot extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Zealot(posicion);
+        Unidad unidad = new Zealot(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

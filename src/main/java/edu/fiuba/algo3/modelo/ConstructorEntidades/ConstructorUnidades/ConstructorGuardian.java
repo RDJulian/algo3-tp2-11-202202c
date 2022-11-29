@@ -20,7 +20,7 @@ public class ConstructorGuardian extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Guardian(posicion);
+        Unidad unidad = new Guardian(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

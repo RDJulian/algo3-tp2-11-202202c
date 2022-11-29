@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -26,7 +27,7 @@ public class CasoDeUso14Test {
     @Test
     public void test02ElMohoNoPuedeExpandirseSobreUnaPosicionConEdificacion() {
         Posicion posicion = new Posicion(6, 6);
-        new PuertoEstelar(posicion);
+        new PuertoEstelar(posicion, new Raza());
 
         Moho moho = new Moho(new Posicion(0, 0));
         assertThrows(PosicionOcupadaException.class, () -> moho.expandible(posicion));

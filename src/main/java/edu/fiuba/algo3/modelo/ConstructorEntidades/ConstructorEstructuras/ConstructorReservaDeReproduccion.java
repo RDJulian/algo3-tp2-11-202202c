@@ -29,7 +29,7 @@ public class ConstructorReservaDeReproduccion extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new ReservaDeReproduccion(posicion);
+        Estructura estructura = new ReservaDeReproduccion(posicion, raza);
         raza.registarEntidad(estructura);
         return estructura;
     }

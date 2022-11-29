@@ -14,7 +14,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Criadero(new Posicion(0, 0));
+        Estructura estructura = new Criadero(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 3);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -26,7 +26,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test02AccesoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Acceso(new Posicion(0, 0));
+        Estructura estructura = new Acceso(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 7);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -51,7 +51,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test04EspiralNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Espiral(new Posicion(0, 0));
+        Estructura estructura = new Espiral(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 9);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -76,7 +76,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test06GuaridaNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Guarida(new Posicion(0, 0));
+        Estructura estructura = new Guarida(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 11);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -101,7 +101,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test08PilonNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Pilon(new Posicion(0, 0));
+        Estructura estructura = new Pilon(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 4);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -113,7 +113,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test09PuertoEstelarNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0));
+        Estructura estructura = new PuertoEstelar(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 9);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -125,7 +125,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test10ReservaDeReproduccionNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0));
+        Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0), new Raza());
         pasarKTurnos(estructura, 11);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);

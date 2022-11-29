@@ -29,7 +29,7 @@ public class ConstructorCriadero extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new Criadero(posicion);
+        Estructura estructura = new Criadero(posicion, raza);
         raza.registarEntidad(estructura);
         return estructura;
     }

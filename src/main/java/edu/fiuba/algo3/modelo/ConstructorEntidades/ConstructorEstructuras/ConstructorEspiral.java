@@ -29,7 +29,7 @@ public class ConstructorEspiral extends ConstructorEstructuras {
         construibleEstructura.visitar(estructuraCorrelativa);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new Espiral(posicion);
+        Estructura estructura = new Espiral(posicion, raza);
         raza.registarEntidad(estructura);
         return estructura;
     }

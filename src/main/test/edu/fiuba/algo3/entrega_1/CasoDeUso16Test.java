@@ -20,7 +20,7 @@ public class CasoDeUso16Test {
     @Test
     public void test01UnaEstructuraNoSePuedeConstruirSobreOtra() {
         Posicion posicion = new Posicion(0, 0);
-        new Criadero(posicion);
+        new Criadero(posicion, new Raza());
         assertThrows(PosicionOcupadaException.class, posicion::ocupable);
     }
 

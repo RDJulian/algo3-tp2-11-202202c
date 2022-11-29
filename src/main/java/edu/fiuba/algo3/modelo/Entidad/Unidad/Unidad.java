@@ -2,9 +2,11 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 
 public abstract class Unidad extends Entidad {
     //Ver que hacer con esto, no todos implementan
@@ -44,5 +46,12 @@ public abstract class Unidad extends Entidad {
 
     public void sumarBaja() {
         contadorDeBajas = contadorDeBajas + 1;
+    }
+
+    @Override
+    public void destruir() {
+        this.estadoEntidad = new Destruido();
+        this.rolEnSuministro = new Neutral();
+        raza.destruirEntidad(this);
     }
 }

@@ -20,7 +20,7 @@ public class ConstructorDragon extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Dragon(posicion);
+        Unidad unidad = new Dragon(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

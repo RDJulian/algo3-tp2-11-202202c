@@ -20,7 +20,7 @@ public class ConstructorZerling extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Zerling(posicion);
+        Unidad unidad = new Zerling(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

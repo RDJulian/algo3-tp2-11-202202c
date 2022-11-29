@@ -13,7 +13,6 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 
 public class NexoMineral extends Estructura implements ExtraeRecurso {
     private Recurso mineral;
-    private Raza raza;
 
     public NexoMineral(Posicion posicion, Recurso mineral, Raza raza) {
         this.posicion = posicion;

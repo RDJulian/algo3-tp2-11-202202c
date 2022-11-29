@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -21,9 +22,9 @@ public class CasoDeUso23Test {
     @Test
     public void test01UnaUnidadNoPuedeAtacarAOtraSiEstaFueraDelRangoLuegoSeMueveYLaPuedeAtacar() {
         Area area = new AreaTierra(new Posicion(10, 10));
-        Unidad guardian = new Guardian(new Posicion(0, 0));
+        Unidad guardian = new Guardian(new Posicion(0, 0), new Raza());
         pasarKTurnos(guardian, 12);
-        Unidad dragon = new Dragon(new Posicion(11, 11));
+        Unidad dragon = new Dragon(new Posicion(11, 11), new Raza());
 
         assertThrows(AtaqueNoValidoException.class, () -> guardian.atacar(dragon));
 
@@ -38,9 +39,9 @@ public class CasoDeUso23Test {
     @Test
     public void test02UnaUnidadNoPuedeAtacarAUnaEstructuraSiEstaFueraDelRangoLuegoSeMueveYLaPuedeAtacar() {
         Area area = new AreaTierra(new Posicion(10, 10));
-        Unidad guardian = new Guardian(new Posicion(0, 0));
+        Unidad guardian = new Guardian(new Posicion(0, 0), new Raza());
         pasarKTurnos(guardian, 12);
-        Estructura estructura = new Pilon(new Posicion(11, 11));
+        Estructura estructura = new Pilon(new Posicion(11, 11), new Raza());
 
         assertThrows(AtaqueNoValidoException.class, () -> guardian.atacar(estructura));
 

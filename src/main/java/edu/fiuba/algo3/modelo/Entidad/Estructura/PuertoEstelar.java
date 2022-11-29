@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.SinEnergia;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.Memento;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMemento;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
@@ -17,7 +18,7 @@ public class PuertoEstelar extends Estructura implements UsaMemento {
     private Memento memento;
     private boolean energizado;
 
-    public PuertoEstelar(Posicion posicion) {
+    public PuertoEstelar(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         posicion.ocupar();
 
@@ -25,6 +26,7 @@ public class PuertoEstelar extends Estructura implements UsaMemento {
         this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
+        this.raza = raza;
 
         this.energizado = true;
 

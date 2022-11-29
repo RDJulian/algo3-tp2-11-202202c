@@ -22,7 +22,7 @@ public class ConstructorAmoSupremo extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new AmoSupremo(posicion);
+        Unidad unidad = new AmoSupremo(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

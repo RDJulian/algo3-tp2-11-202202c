@@ -20,7 +20,7 @@ public class ConstructorHidralisco extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Hidralisco(posicion);
+        Unidad unidad = new Hidralisco(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

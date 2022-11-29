@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class Juego {
     //Esta clase podria ser la encargada de manejar los turnos.
     private ArrayList<Jugador> jugadores;
+    private Raza razaJugadorUno;
+    private Raza razaJugadorDos;
 
     public Juego() {
         this.jugadores = new ArrayList<>();
@@ -29,7 +31,14 @@ public class Juego {
             throw new JugadoresNoCompatiblesException();
         }
 
-        jugadores.add(new Jugador(unNombre, unColor, unaRaza));
-        jugadores.add(new Jugador(otroNombre, otroColor, otraRaza));
+        jugadores.add(new Jugador(unNombre, unColor));
+        jugadores.add(new Jugador(otroNombre, otroColor));
+
+        this.razaJugadorUno = unaRaza;
+        this.razaJugadorDos = otraRaza;
+    }
+
+    public boolean terminarJuego() {
+        return razaJugadorUno.sinEstructuras() || razaJugadorDos.sinEstructuras();
     }
 }

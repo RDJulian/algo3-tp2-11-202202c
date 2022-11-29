@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
@@ -14,7 +15,7 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 public class Pilon extends Estructura implements Piso {
     private int rango;
 
-    public Pilon(Posicion posicion) {
+    public Pilon(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         posicion.ocupar();
 
@@ -22,6 +23,7 @@ public class Pilon extends Estructura implements Piso {
         this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
+        this.raza = raza;
 
         this.rango = 3;
 

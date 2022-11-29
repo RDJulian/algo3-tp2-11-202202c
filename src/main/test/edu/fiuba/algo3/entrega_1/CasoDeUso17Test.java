@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaD
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -18,8 +19,8 @@ public class CasoDeUso17Test {
         Posicion posicion = new Posicion(0, 0);
         ConstruibleEstructura requiereReservaDeReproduccion = new RequiereReservaDeReproduccion();
 
-        Estructura reservaDeReproduccion = new ReservaDeReproduccion(posicion);
-        Estructura criadero = new Criadero(posicion);
+        Estructura reservaDeReproduccion = new ReservaDeReproduccion(posicion, new Raza());
+        Estructura criadero = new Criadero(posicion, new Raza());
         pasarKTurnos(reservaDeReproduccion, 100);
         pasarKTurnos(criadero, 100);
 
@@ -32,8 +33,8 @@ public class CasoDeUso17Test {
         Posicion posicion = new Posicion(0, 0);
         ConstruibleEstructura requiereGuarida = new RequiereGuarida();
 
-        Estructura criadero = new Criadero(posicion);
-        Estructura guarida = new Guarida(posicion);
+        Estructura criadero = new Criadero(posicion, new Raza());
+        Estructura guarida = new Guarida(posicion, new Raza());
         pasarKTurnos(guarida, 100);
         pasarKTurnos(criadero, 100);
 
@@ -45,9 +46,9 @@ public class CasoDeUso17Test {
     public void test03PuertoEstelarNecesitaUnAccesoParaPoderConstruirse() {
         Posicion posicion = new Posicion(0, 0);
         ConstruibleEstructura requiereAcceso = new RequiereAcceso();
-        
-        Estructura pilon = new Pilon(posicion);
-        Estructura acceso = new Acceso(posicion);
+
+        Estructura pilon = new Pilon(posicion, new Raza());
+        Estructura acceso = new Acceso(posicion, new Raza());
         pasarKTurnos(acceso, 100);
         pasarKTurnos(pilon, 100);
 

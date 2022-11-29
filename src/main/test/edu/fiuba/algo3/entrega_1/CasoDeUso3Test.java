@@ -23,7 +23,7 @@ public class CasoDeUso3Test {
         ConstructorAcceso constructor = new ConstructorAcceso();
         Posicion posicion = new Posicion(0, 0);
 
-        Pilon pilon = new Pilon(new Posicion(1, 1));
+        Pilon pilon = new Pilon(new Posicion(1, 1), new Raza());
         pasarKTurnos(pilon, 5);
 
         Recurso gasVespeno = new GasVespeno(posicion);
@@ -42,7 +42,7 @@ public class CasoDeUso3Test {
         ConstructorAsimilador constructor = new ConstructorAsimilador();
         Posicion posicion = new Posicion(0, 0);
 
-        Pilon pilon = new Pilon(new Posicion(1, 1));
+        Pilon pilon = new Pilon(new Posicion(1, 1), new Raza());
         pasarKTurnos(pilon, 5);
 
         Recurso gasVespeno = new GasVespeno(posicion);
@@ -59,7 +59,7 @@ public class CasoDeUso3Test {
         ConstructorExtractor constructor = new ConstructorExtractor();
         Posicion posicion = new Posicion(0, 0);
 
-        Pilon pilon = new Pilon(new Posicion(1, 1));
+        Pilon pilon = new Pilon(new Posicion(1, 1), new Raza());
         pasarKTurnos(pilon, 5);
 
         Moho moho = new Moho(new Posicion(2, 2));
@@ -78,7 +78,7 @@ public class CasoDeUso3Test {
         ConstructorNexoMineral constructor = new ConstructorNexoMineral();
         Posicion posicion = new Posicion(0, 0);
 
-        Pilon pilon = new Pilon(new Posicion(1, 1));
+        Pilon pilon = new Pilon(new Posicion(1, 1), new Raza());
         pasarKTurnos(pilon, 5);
 
         Recurso mineral = new Mineral(posicion);

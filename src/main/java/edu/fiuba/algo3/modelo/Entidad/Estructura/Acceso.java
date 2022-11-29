@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.Memento;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMemento;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
@@ -17,7 +18,7 @@ public class Acceso extends Estructura implements UsaMemento {
     private Memento memento;
     private boolean energizado;
 
-    public Acceso(Posicion posicion) {
+    public Acceso(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         posicion.ocupar();
 
@@ -25,6 +26,7 @@ public class Acceso extends Estructura implements UsaMemento {
         this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(500);
         this.defensa = new Escudo(500);
+        this.raza = raza;
 
         this.energizado = true;
         this.rolEnSuministro = new Neutral();

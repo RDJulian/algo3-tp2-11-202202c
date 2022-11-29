@@ -20,7 +20,7 @@ public class ConstructorScout extends ConstructorUnidades {
         raza.construible(costoMineral, costoGas, costoSuministro);
 
         raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Scout(posicion);
+        Unidad unidad = new Scout(posicion, raza);
         raza.registarEntidad(unidad);
         return unidad;
     }

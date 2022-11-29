@@ -22,5 +22,6 @@ public class Dragon extends Unidad {
         this.danioAire = 20;
         this.rangoAtaque = 4;
         this.invisible = false;
+        this.contadorDeBajas = 0;
     }
 }

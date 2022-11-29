@@ -8,12 +8,9 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Zealot extends Unidad {
-
-    protected int contadorDeBajas;
-
     public Zealot(Posicion posicion) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(4);
@@ -30,25 +27,20 @@ public class Zealot extends Unidad {
         this.contadorDeBajas = 0;
     }
 
-    @Override
-    public void atacar(Daniable daniable) {
-        this.estadoEntidad.operable();
-        daniable.daniar(this.danioTierra, this.danioAire, this.rangoAtaque, this);
-    }
-
-    public void sumarBaja (){
-        contadorDeBajas = contadorDeBajas + 1;
-        if (contadorDeBajas >= 3){
-            this.invisible = true;
-        }
-    }
-
-    public void revisarInvisibilidad(Vector<AmoSupremo> amosSupremos){
-        for (AmoSupremo amoSupremo : amosSupremos){
-            if(!amoSupremo.fueraDeRango(this.posicion)){
+    //Revisar esta solucion. No contempla el caso en el que vuelva a la invisibilidad. Pensar supuesto.
+    public void revisarInvisibilidad(ArrayList<AmoSupremo> amosSupremos) {
+        for (AmoSupremo amoSupremo : amosSupremos) {
+            if (!amoSupremo.fueraDeRango(this.posicion)) {
                 this.invisible = false;
             }
         }
     }
 
+    @Override
+    public void sumarBaja() {
+        contadorDeBajas = contadorDeBajas + 1;
+        if (contadorDeBajas >= 3) {
+            this.invisible = true;
+        }
+    }
 }

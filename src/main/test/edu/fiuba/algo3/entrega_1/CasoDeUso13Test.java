@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -20,7 +21,7 @@ public class CasoDeUso13Test {
         //Idealmente se ejecuta junto a la construccion.
         Piso nuevoMoho = criadero.generarMoho();
 
-        criadero.daniar(600, 0, posicion, 1);
+        criadero.daniar(600, 0, posicion, 1, new Guardian(posicion));
 
         assertThrows(EntidadDestruidaException.class, criadero::operable);
 

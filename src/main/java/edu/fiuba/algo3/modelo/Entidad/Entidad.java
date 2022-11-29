@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Ejecutar;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoEntidad;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
@@ -26,7 +27,7 @@ public abstract class Entidad {
         this.estadoEntidad = estadoEntidad.pasarTurno(accionAlPasarTurno, vida, defensa);
     }
 
-    public abstract void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque);
+    public abstract void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, Unidad unidadAtacante);
 
     public int afectarSuministro(int suministroActual) {
         return rolEnSuministro.afectarSuministro(suministroActual, estadoEntidad);

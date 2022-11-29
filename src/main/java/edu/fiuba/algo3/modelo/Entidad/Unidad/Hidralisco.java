@@ -22,5 +22,6 @@ public class Hidralisco extends Unidad {
         this.danioAire = 10;
         this.rangoAtaque = 4;
         this.invisible = false;
+        this.contadorDeBajas = 0;
     }
 }

@@ -13,7 +13,6 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class AmoSupremo extends Unidad {
 
     protected int radioDeDeteccion;
-    protected Rango rangoDeDeteccion;
 
     public AmoSupremo(Posicion posicion) {
         this.posicion = posicion;
@@ -28,6 +27,8 @@ public class AmoSupremo extends Unidad {
         this.danioAire = 0;
         this.rangoAtaque = 0;
         this.invisible = true;
+        this.contadorDeBajas = 0;
+        
         this.radioDeDeteccion = 4;
     }
 
@@ -36,7 +37,7 @@ public class AmoSupremo extends Unidad {
         throw new AtaqueNoValidoException();
     }
 
-    public boolean fueraDeRango(Posicion posicion){
-        return this.rangoDeDeteccion.noIncluye(posicion);
+    public boolean fueraDeRango(Posicion posicion) {
+        return !posicion.enRango(this.posicion, radioDeDeteccion);
     }
 }

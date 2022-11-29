@@ -13,24 +13,26 @@ public abstract class Unidad extends Entidad {
     protected int danioAire;
     protected int rangoAtaque;
     protected boolean invisible;
+    protected int contadorDeBajas;
 
 
     //Segregar en una interfaz Atacante.
     public void atacar(Entidad entidad) {
         estadoEntidad.operable();
-        entidad.daniar(danioTierra, danioAire, posicion, rangoAtaque);
+        entidad.daniar(danioTierra, danioAire, posicion, rangoAtaque, this);
     }
 
     @Override
-    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque) {
+    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, Unidad unidadAtacante) {
         estadoEntidad.atacable();
-        if (!posicion.enRango(posicionAtacante, rangoAtaque)) {
+        if (!posicion.enRango(posicionAtacante, rangoAtaque) || invisible) {
             throw new AtaqueNoValidoException();
         }
         int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
-        defensa.proteger(this, vida, danioARecibir);
+        defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
     }
 
+    //Deberia ser private.
     public void moverse(Posicion posicion) {
         this.posicion = posicion;
     }
@@ -40,13 +42,7 @@ public abstract class Unidad extends Entidad {
         area.mover(this, tipoUnidad);
     }
 
-    @Override
-    public void daniar(int danioTierra, int danioAire, Rango rango, Zealot unidadAtacante) {
-        this.estadoEntidad.atacable();
-        if (rangoAtaque.noIncluye(this.posicion) || (this.invisible)) {
-            throw new AtaqueNoValidoException();
-        }
-        int danioARecibir = this.tipoUnidad.recibirDanio(danioAire, danioTierra);
-        this.defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
+    public void sumarBaja() {
+        contadorDeBajas = contadorDeBajas + 1;
     }
 }

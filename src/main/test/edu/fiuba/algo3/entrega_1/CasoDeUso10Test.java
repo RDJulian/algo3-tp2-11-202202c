@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Espiral;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import org.junit.jupiter.api.Test;
@@ -17,11 +18,11 @@ public class CasoDeUso10Test {
         Estructura estructura = new Espiral(posicion);
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(100, 0, posicion, 1);
+        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion));
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, posicion, 1);
+        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -31,12 +32,12 @@ public class CasoDeUso10Test {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new Espiral(posicion);
 
-        estructura.daniar(100, 0, posicion, 1);
+        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion));
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, posicion, 1);
-        
+        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion));
+
         assertDoesNotThrow(estructura::operable);
     }
 
@@ -46,7 +47,7 @@ public class CasoDeUso10Test {
         Estructura estructura = new Espiral(posicion);
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(1300, 0, posicion, 1);
+        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
@@ -60,7 +61,7 @@ public class CasoDeUso10Test {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new Espiral(posicion);
 
-        estructura.daniar(1300, 0, posicion, 1);
+        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 

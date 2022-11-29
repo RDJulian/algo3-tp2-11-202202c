@@ -22,5 +22,6 @@ public class Zerling extends Unidad {
         this.danioAire = 0;
         this.rangoAtaque = 1;
         this.invisible = false;
+        this.contadorDeBajas = 0;
     }
 }

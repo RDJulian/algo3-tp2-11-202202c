@@ -22,6 +22,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(1);
         this.accionAlPasarTurno = new ExtraerRecurso(this);
+        this.rolEnSuministro = new Consumidor(1);
         this.vida = new Regenerativa(25);
         this.defensa = new SinEscudo();
 
@@ -30,11 +31,12 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.danioAire = 0;
         this.rangoAtaque = 0;
         this.invisible = false;
+        this.contadorDeBajas = 0;
 
         this.raza = raza;
         this.mineral = new Nada();
 
-        this.rolEnSuministro = new Consumidor(1);
+
     }
 
     //Ver que hacer con esto. AmoSupremo resuelve igual.

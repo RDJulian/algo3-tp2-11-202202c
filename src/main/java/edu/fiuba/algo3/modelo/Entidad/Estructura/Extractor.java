@@ -26,13 +26,12 @@ public class Extractor extends Estructura implements ExtraeRecurso {
         gasVespeno.ocupar(this);
         this.raza = raza;
 
-        this.estadoEntidad = new EnConstruccion(6);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 6);
         this.accionAlPasarTurno = new ExtraerRecurso(this);
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
 
         this.zanganos = new ArrayList<>(0);
-        this.rolEnSuministro = new Neutral();
     }
 
     @Override

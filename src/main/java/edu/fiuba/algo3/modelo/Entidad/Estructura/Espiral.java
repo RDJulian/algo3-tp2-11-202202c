@@ -14,13 +14,11 @@ public class Espiral extends Estructura {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(10);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 10);
         this.accionAlPasarTurno = new Nada();
         this.vida = new Regenerativa(1300);
         this.defensa = new SinEscudo();
         this.raza = raza;
-
-        this.rolEnSuministro = new Neutral();
     }
 
     @Override

@@ -21,12 +21,10 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
         mineral.ocupar(this);
         this.raza = raza;
 
-        this.estadoEntidad = new EnConstruccion(4);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 4);
         this.accionAlPasarTurno = new ExtraerRecurso(this);
         this.vida = new Normal(250);
         this.defensa = new Escudo(250);
-
-        this.rolEnSuministro = new Neutral();
     }
 
     public void extraerRecurso() {

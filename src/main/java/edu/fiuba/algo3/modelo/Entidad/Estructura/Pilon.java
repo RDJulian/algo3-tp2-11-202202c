@@ -19,15 +19,13 @@ public class Pilon extends Estructura implements Piso {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(5);
+        this.estadoEntidad = new EnConstruccion(new Proveedor(), 5);
         this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
         this.raza = raza;
 
         this.rango = 3;
-
-        this.rolEnSuministro = new Proveedor();
     }
 
     @Override

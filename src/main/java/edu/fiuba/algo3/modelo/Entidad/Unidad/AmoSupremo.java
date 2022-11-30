@@ -17,9 +17,8 @@ public class AmoSupremo extends Unidad {
 
     public AmoSupremo(Posicion posicion, Raza raza) {
         this.posicion = posicion;
-        this.estadoEntidad = new EnConstruccion(5);
+        this.estadoEntidad = new EnConstruccion(new Proveedor(), 5);
         this.accionAlPasarTurno = new Nada();
-        this.rolEnSuministro = new Proveedor();
         this.vida = new Regenerativa(200);
         this.defensa = new SinEscudo();
         this.raza = raza;
@@ -32,6 +31,11 @@ public class AmoSupremo extends Unidad {
         this.contadorDeBajas = 0;
 
         this.radioDeDeteccion = 4;
+    }
+
+    @Override
+    public int afectarSuministro(int suministro) {
+        return estadoEntidad.afectarSuministro(suministro);
     }
 
     @Override

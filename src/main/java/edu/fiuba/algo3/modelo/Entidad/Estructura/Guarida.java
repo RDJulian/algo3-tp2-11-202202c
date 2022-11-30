@@ -14,13 +14,11 @@ public class Guarida extends Estructura {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(12);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 12);
         this.accionAlPasarTurno = new Nada();
         this.vida = new Regenerativa(1250);
         this.defensa = new SinEscudo();
         this.raza = raza;
-
-        this.rolEnSuministro = new Neutral();
     }
 
     @Override

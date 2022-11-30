@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoEntidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
@@ -16,7 +15,6 @@ public abstract class Entidad {
     protected Ejecutar accionAlPasarTurno;
     protected Vida vida;
     protected Defensa defensa;
-    protected RolEnSuministro rolEnSuministro;
     protected Raza raza;
 
     public void operable() {
@@ -29,9 +27,7 @@ public abstract class Entidad {
 
     public abstract void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, Unidad unidadAtacante);
 
-    public int afectarSuministro(int suministroActual) {
-        return rolEnSuministro.afectarSuministro(suministroActual, estadoEntidad);
-    }
+    public abstract int afectarSuministro(int suministroActual);
 
     //Solucion que funciona por el momento. Puede cambiar en el futuro.
     public abstract void destruir();

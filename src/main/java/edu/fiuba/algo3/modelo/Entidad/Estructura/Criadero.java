@@ -19,15 +19,13 @@ public class Criadero extends Estructura implements GeneraLarva {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(4);
+        this.estadoEntidad = new EnConstruccion(new Proveedor(), 4);
         this.accionAlPasarTurno = new GenerarLarva(this);
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
         this.raza = raza;
 
         this.larvas = 3;
-
-        this.rolEnSuministro = new Proveedor();
     }
 
     //Este metodo es propio y unico de esta estructura.

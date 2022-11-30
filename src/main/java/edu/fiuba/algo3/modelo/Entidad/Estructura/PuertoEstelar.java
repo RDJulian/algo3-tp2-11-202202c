@@ -22,15 +22,13 @@ public class PuertoEstelar extends Estructura implements UsaMemento {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(10);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 10);
         this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
         this.raza = raza;
 
         this.energizado = true;
-
-        this.rolEnSuministro = new Neutral();
     }
 
     private boolean energizado(ArrayList<Pilon> pilones) {

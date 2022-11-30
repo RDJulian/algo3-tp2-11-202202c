@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 
 public abstract class Unidad extends Entidad {
     //Ver que hacer con esto, no todos implementan
@@ -16,6 +17,7 @@ public abstract class Unidad extends Entidad {
     protected int rangoAtaque;
     protected boolean invisible;
     protected int contadorDeBajas;
+    protected RolEnSuministro rolEnSuministro;
 
 
     //Segregar en una interfaz Atacante.
@@ -46,6 +48,11 @@ public abstract class Unidad extends Entidad {
 
     public void sumarBaja() {
         contadorDeBajas = contadorDeBajas + 1;
+    }
+
+    @Override
+    public int afectarSuministro(int suministro) {
+        return rolEnSuministro.afectarSuministro(suministro);
     }
 
     @Override

@@ -22,14 +22,13 @@ public class Acceso extends Estructura implements UsaMemento {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(8);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 8);
         this.accionAlPasarTurno = new Nada();
         this.vida = new Normal(500);
         this.defensa = new Escudo(500);
         this.raza = raza;
 
         this.energizado = true;
-        this.rolEnSuministro = new Neutral();
     }
 
     private boolean energizado(ArrayList<Pilon> pilones) {

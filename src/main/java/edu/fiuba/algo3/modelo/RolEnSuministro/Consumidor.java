@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.RolEnSuministro;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoEntidad;
-
 public class Consumidor extends RolEnSuministro {
 
     private int suministroAConsumir;
@@ -11,7 +9,7 @@ public class Consumidor extends RolEnSuministro {
     }
 
     @Override
-    public int afectarSuministro(int suministroActual, EstadoEntidad estadoEntidad) {
+    public int afectarSuministro(int suministroActual) {
         return suministroActual - suministroAConsumir;
     }
 }

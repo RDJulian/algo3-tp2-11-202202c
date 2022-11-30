@@ -21,12 +21,10 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
         gasVespeno.ocupar(this);
         this.raza = raza;
 
-        this.estadoEntidad = new EnConstruccion(6);
+        this.estadoEntidad = new EnConstruccion(new Neutral(), 6);
         this.accionAlPasarTurno = new ExtraerRecurso(this);
         this.vida = new Normal(450);
         this.defensa = new Escudo(450);
-
-        this.rolEnSuministro = new Neutral();
     }
 
     @Override

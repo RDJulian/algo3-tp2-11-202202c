@@ -6,10 +6,15 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public class EnConstruccion implements EstadoEntidad {
+public class EnConstruccion extends EstadoEntidad {
     private int tiempoParaOperar;
 
     public EnConstruccion(int tiempoParaOperar) {
+        this.tiempoParaOperar = tiempoParaOperar;
+    }
+
+    public EnConstruccion(RolEnSuministro rol, int tiempoParaOperar) {
+        super(rol);
         this.tiempoParaOperar = tiempoParaOperar;
     }
 
@@ -24,7 +29,7 @@ public class EnConstruccion implements EstadoEntidad {
         defensa.regenerar();
         tiempoParaOperar -= 1;
         if (tiempoParaOperar == 0) {
-            return new Operativa();
+            return new Operativa(rol);
         }
         return this;
     }
@@ -34,7 +39,7 @@ public class EnConstruccion implements EstadoEntidad {
     }
 
     @Override
-    public boolean visitar(RolEnSuministro rol) {
-        return rol.visitar(this);
+    public int afectarSuministro(int suministro) {
+        return suministro;
     }
 }

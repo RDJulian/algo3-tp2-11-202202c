@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad;
 
+import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
@@ -16,6 +17,11 @@ public class SinEnergia extends EstadoEntidad {
 
     @Override
     public EstadoEntidad pasarTurno(Vida vida, Defensa defensa) {
+        return this;
+    }
+
+    @Override
+    public EstadoEntidad pasarTurno(Vida vida, Defensa defensa, AccionAlPasarTurno entidad) {
         return this;
     }
 

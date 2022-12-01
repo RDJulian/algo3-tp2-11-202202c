@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;

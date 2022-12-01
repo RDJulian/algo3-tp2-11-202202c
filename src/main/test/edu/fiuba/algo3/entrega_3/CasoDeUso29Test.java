@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

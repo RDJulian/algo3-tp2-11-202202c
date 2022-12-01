@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

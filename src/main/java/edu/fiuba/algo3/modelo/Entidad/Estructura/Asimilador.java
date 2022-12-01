@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Asimilador extends Estructura implements ExtraeRecurso {
+public class Asimilador extends Estructura implements ExtraeRecurso, AccionAlPasarTurno {
     private Recurso gasVespeno;
 
     public Asimilador(Posicion posicion, Recurso gasVespeno, Raza raza) {
@@ -28,18 +28,6 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
     }
 
     @Override
-    public void pasarTurno() {
-        try {
-            operable();
-        } catch (EntidadNoOperativaException exception) {
-            this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-            return;
-        }
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        extraerRecurso();
-    }
-
-    @Override
     public void extraerRecurso() {
         gasVespeno.extraerRecurso(20, this.raza, this);
     }
@@ -48,5 +36,15 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
         operable();
+    }
+
+    @Override
+    public void ejecutarAccion() {
+        extraerRecurso();
+    }
+
+    @Override
+    public void pasarTurno() {
+        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
     }
 }

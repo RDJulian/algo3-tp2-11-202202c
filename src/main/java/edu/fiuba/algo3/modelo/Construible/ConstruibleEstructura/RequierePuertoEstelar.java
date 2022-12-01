@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 
 public class RequierePuertoEstelar implements ConstruibleEstructura {
@@ -8,7 +9,7 @@ public class RequierePuertoEstelar implements ConstruibleEstructura {
     public void visitar(Estructura estructura) {
         estructura.construible(this);
     }
-    
+
     @Override
     public void visitar(Acceso estructura) {
         throw new ConstruccionNoValidaException();

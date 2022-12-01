@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -11,7 +12,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class NexoMineral extends Estructura implements ExtraeRecurso {
+public class NexoMineral extends Estructura implements ExtraeRecurso, AccionAlPasarTurno {
     private Recurso mineral;
 
     public NexoMineral(Posicion posicion, Recurso mineral, Raza raza) {
@@ -27,18 +28,6 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
         this.defensa = new Escudo(250);
     }
 
-    @Override
-    public void pasarTurno() {
-        try {
-            operable();
-        } catch (EntidadNoOperativaException exception) {
-            this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-            return;
-        }
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        extraerRecurso();
-    }
-
     public void extraerRecurso() {
         mineral.extraerRecurso(20, raza, this); //Asumimos 20.
     }
@@ -47,5 +36,15 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
         operable();
+    }
+
+    @Override
+    public void ejecutarAccion() {
+        extraerRecurso();
+    }
+
+    @Override
+    public void pasarTurno() {
+        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
     }
 }

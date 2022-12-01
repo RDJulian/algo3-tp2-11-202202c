@@ -1,9 +1,11 @@
-package edu.fiuba.algo3.modelo.Entidad.Estructura;
+package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.GeneraLarva;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -12,8 +14,8 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Criadero extends Estructura implements GeneraLarva {
-    private int larvas;
+public class Criadero extends Estructura implements GeneraLarva, AccionAlPasarTurno {
+    private Larvas larvas;
 
     public Criadero(Posicion posicion, Raza raza) {
         this.posicion = posicion;
@@ -24,36 +26,18 @@ public class Criadero extends Estructura implements GeneraLarva {
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
         this.raza = raza;
-
-        this.larvas = 3;
-    }
-
-    @Override
-    public void pasarTurno() {
-        try {
-            operable();
-        } catch (EntidadNoOperativaException exception) {
-            this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-            return;
-        }
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        generarLarva();
+        this.larvas = new Larvas();
     }
 
     //Este metodo es propio y unico de esta estructura.
     public void usarLarva() {
         estadoEntidad.operable();
-        if (larvas == 0) {
-            throw new CriaderoSinLarvasException();
-        }
-        larvas -= 1;
+        larvas.usarLarva();
     }
 
     @Override
     public void generarLarva() {
-        if (larvas < 3) {
-            larvas += 1;
-        }
+        larvas.generarLarva();
     }
 
     //Idem a arriba.
@@ -66,5 +50,15 @@ public class Criadero extends Estructura implements GeneraLarva {
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
         operable();
+    }
+
+    @Override
+    public void ejecutarAccion() {
+        generarLarva();
+    }
+
+    @Override
+    public void pasarTurno() {
+        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
     }
 }

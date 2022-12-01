@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 
 public interface ConstruibleEstructura {
     void visitar(Estructura estructura);

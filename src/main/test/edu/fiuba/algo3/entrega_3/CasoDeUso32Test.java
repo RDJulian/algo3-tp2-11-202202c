@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Mutalisco;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;

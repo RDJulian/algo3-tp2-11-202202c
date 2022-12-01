@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;

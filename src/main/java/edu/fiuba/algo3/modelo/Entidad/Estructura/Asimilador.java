@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.ExtraerRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -21,10 +21,22 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
         gasVespeno.ocupar(this);
         this.raza = raza;
 
-        this.estadoEntidad = new EnConstruccion(new Neutral(), 6);
-        this.accionAlPasarTurno = new ExtraerRecurso(this);
+        this.estadoEntidad = new EnConstruccion(6);
+        this.rolEnSuministro = new Neutral();
         this.vida = new Normal(450);
         this.defensa = new Escudo(450);
+    }
+
+    @Override
+    public void pasarTurno() {
+        try {
+            operable();
+        } catch (EntidadNoOperativaException exception) {
+            this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            return;
+        }
+        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        extraerRecurso();
     }
 
     @Override

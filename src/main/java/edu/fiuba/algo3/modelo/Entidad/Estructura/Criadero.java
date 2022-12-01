@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.GenerarLarva;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -19,13 +19,25 @@ public class Criadero extends Estructura implements GeneraLarva {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(new Proveedor(), 4);
-        this.accionAlPasarTurno = new GenerarLarva(this);
+        this.estadoEntidad = new EnConstruccion(4);
+        this.rolEnSuministro = new Proveedor();
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
         this.raza = raza;
 
         this.larvas = 3;
+    }
+
+    @Override
+    public void pasarTurno() {
+        try {
+            operable();
+        } catch (EntidadNoOperativaException exception) {
+            this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            return;
+        }
+        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        generarLarva();
     }
 
     //Este metodo es propio y unico de esta estructura.

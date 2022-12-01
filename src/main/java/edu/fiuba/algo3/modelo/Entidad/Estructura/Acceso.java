@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.SinEnergia;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.Memento;
@@ -22,8 +21,8 @@ public class Acceso extends Estructura implements UsaMemento {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(new Neutral(), 8);
-        this.accionAlPasarTurno = new Nada();
+        this.estadoEntidad = new EnConstruccion(8);
+        this.rolEnSuministro = new Neutral();
         this.vida = new Normal(500);
         this.defensa = new Escudo(500);
         this.raza = raza;

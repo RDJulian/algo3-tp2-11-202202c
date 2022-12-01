@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.ExtraerRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Nada;
@@ -20,7 +20,6 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     public Zangano(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(1);
-        this.accionAlPasarTurno = new ExtraerRecurso(this);
         this.rolEnSuministro = new Consumidor(1);
         this.vida = new Regenerativa(25);
         this.defensa = new SinEscudo();
@@ -42,6 +41,18 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     @Override
     public void atacar(Entidad entidad) {
         throw new AtaqueNoValidoException();
+    }
+
+    @Override
+    public void pasarTurno() {
+        try {
+            operable();
+        } catch (EntidadNoOperativaException exception) {
+            this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            return;
+        }
+        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        extraerRecurso();
     }
 
     //Redundante pasarle la misma raza.

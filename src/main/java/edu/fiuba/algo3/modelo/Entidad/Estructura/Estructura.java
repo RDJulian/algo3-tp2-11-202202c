@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 
 public abstract class Estructura extends Entidad {
     @Override
@@ -20,13 +21,7 @@ public abstract class Estructura extends Entidad {
     public abstract void construible(ConstruibleEstructura requiereOtraEstructura);
 
     @Override
-    public void destruir() {
-        this.estadoEntidad = new Destruido();
-        raza.destruirEntidad(this);
-    }
-
-    @Override
     public int afectarSuministro(int suministro) {
-        return estadoEntidad.afectarSuministro(suministro);
+        return estadoEntidad.afectarSuministro(rolEnSuministro, suministro);
     }
 }

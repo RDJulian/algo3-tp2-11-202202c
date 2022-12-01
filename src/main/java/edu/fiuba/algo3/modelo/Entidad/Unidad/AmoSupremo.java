@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
@@ -17,8 +16,8 @@ public class AmoSupremo extends Unidad {
 
     public AmoSupremo(Posicion posicion, Raza raza) {
         this.posicion = posicion;
-        this.estadoEntidad = new EnConstruccion(new Proveedor(), 5);
-        this.accionAlPasarTurno = new Nada();
+        this.estadoEntidad = new EnConstruccion(5);
+        this.rolEnSuministro = new Proveedor();
         this.vida = new Regenerativa(200);
         this.defensa = new SinEscudo();
         this.raza = raza;
@@ -35,7 +34,7 @@ public class AmoSupremo extends Unidad {
 
     @Override
     public int afectarSuministro(int suministro) {
-        return estadoEntidad.afectarSuministro(suministro);
+        return estadoEntidad.afectarSuministro(rolEnSuministro, suministro);
     }
 
     @Override

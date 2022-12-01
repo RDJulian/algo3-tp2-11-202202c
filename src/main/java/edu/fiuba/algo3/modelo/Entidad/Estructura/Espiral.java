@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -14,8 +13,8 @@ public class Espiral extends Estructura {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(new Neutral(), 10);
-        this.accionAlPasarTurno = new Nada();
+        this.estadoEntidad = new EnConstruccion(10);
+        this.rolEnSuministro = new Neutral();
         this.vida = new Regenerativa(1300);
         this.defensa = new SinEscudo();
         this.raza = raza;

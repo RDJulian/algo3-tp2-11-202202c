@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -15,8 +14,8 @@ public class ReservaDeReproduccion extends Estructura {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(new Neutral(), 12);
-        this.accionAlPasarTurno = new Nada();
+        this.estadoEntidad = new EnConstruccion(12);
+        this.rolEnSuministro = new Neutral();
         this.vida = new Regenerativa(1000);
         this.defensa = new SinEscudo();
         this.raza = raza;

@@ -17,7 +17,6 @@ public abstract class Unidad extends Entidad {
     protected int rangoAtaque;
     protected boolean invisible;
     protected int contadorDeBajas;
-    protected RolEnSuministro rolEnSuministro;
 
 
     //Segregar en una interfaz Atacante.
@@ -53,12 +52,5 @@ public abstract class Unidad extends Entidad {
     @Override
     public int afectarSuministro(int suministro) {
         return rolEnSuministro.afectarSuministro(suministro);
-    }
-
-    @Override
-    public void destruir() {
-        this.estadoEntidad = new Destruido();
-        this.rolEnSuministro = new Neutral();
-        raza.destruirEntidad(this);
     }
 }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Ejecutar;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
@@ -13,23 +12,18 @@ public class EnConstruccion extends EstadoEntidad {
         this.tiempoParaOperar = tiempoParaOperar;
     }
 
-    public EnConstruccion(RolEnSuministro rol, int tiempoParaOperar) {
-        super(rol);
-        this.tiempoParaOperar = tiempoParaOperar;
-    }
-
     @Override
     public void operable() {
         throw new EntidadNoOperativaException();
     }
 
     @Override
-    public EstadoEntidad pasarTurno(Ejecutar accionAlPasarTurno, Vida vida, Defensa defensa) {
+    public EstadoEntidad pasarTurno(Vida vida, Defensa defensa) {
         vida.regenerar();
         defensa.regenerar();
         tiempoParaOperar -= 1;
         if (tiempoParaOperar == 0) {
-            return new Operativa(rol);
+            return new Operativa();
         }
         return this;
     }
@@ -39,7 +33,7 @@ public class EnConstruccion extends EstadoEntidad {
     }
 
     @Override
-    public int afectarSuministro(int suministro) {
+    public int afectarSuministro(RolEnSuministro rol, int suministro) {
         return suministro;
     }
 }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EjecutarAlPasarTurno.Nada;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -14,7 +13,6 @@ public class Mutalisco extends Unidad {
     public Mutalisco(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(7);
-        this.accionAlPasarTurno = new Nada();
         this.rolEnSuministro = new Consumidor(4);
         this.vida = new Regenerativa(120);
         this.defensa = new SinEscudo();

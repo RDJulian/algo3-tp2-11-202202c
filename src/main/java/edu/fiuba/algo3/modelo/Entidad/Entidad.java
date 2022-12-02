@@ -18,7 +18,8 @@ public abstract class Entidad {
     protected Defensa defensa;
     protected Raza raza;
 
-    //Este operable solo deberia ser llamado desde una estructura a su estado.
+    //Este metodo solo debe ser llamado desde afuera para testear. Los demas llamados a
+    //operable() deberian dirigirse al metodo de EstadoEntidad.
     public void operable() {
         this.estadoEntidad.operable();
     }

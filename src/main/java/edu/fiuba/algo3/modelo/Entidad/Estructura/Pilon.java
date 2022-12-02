@@ -44,6 +44,6 @@ public class Pilon extends Estructura implements Piso {
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        operable();
+        estadoEntidad.operable();
     }
 }

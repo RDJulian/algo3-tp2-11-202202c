@@ -23,6 +23,6 @@ public class Espiral extends Estructura {
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        operable();
+        estadoEntidad.operable();
     }
 }

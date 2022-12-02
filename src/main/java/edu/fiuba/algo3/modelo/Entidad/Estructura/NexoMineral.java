@@ -34,7 +34,7 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        operable();
+        estadoEntidad.operable();
     }
 
     @Override

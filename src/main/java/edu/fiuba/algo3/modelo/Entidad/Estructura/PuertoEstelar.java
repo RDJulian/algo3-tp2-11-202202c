@@ -13,10 +13,7 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 
 import java.util.ArrayList;
 
-public class PuertoEstelar extends Estructura implements UsaMemento {
-    private Memento memento;
-    private boolean energizado;
-
+public class PuertoEstelar extends EstructuraEnergizada {
     public PuertoEstelar(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         posicion.ocupar();
@@ -27,42 +24,12 @@ public class PuertoEstelar extends Estructura implements UsaMemento {
         this.defensa = new Escudo(600);
         this.raza = raza;
 
-        this.energizado = true;
-    }
-
-    private boolean energizado(ArrayList<Pilon> pilones) {
-        for (Pilon pilon : pilones) {
-            if (!pilon.fueraDeRango(posicion)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void guardarEstado() {
-        this.memento = new Memento(estadoEntidad);
-    }
-
-    @Override
-    public void restaurarEstado() {
-        this.estadoEntidad = memento.restaurar();
-    }
-
-    public void actualizarEstado(ArrayList<Pilon> pilones) {
-        if (!energizado(pilones) && energizado) {
-            guardarEstado();
-            this.energizado = false;
-            this.estadoEntidad = new SinEnergia();
-        } else if (energizado(pilones) && !energizado) {
-            restaurarEstado();
-            this.energizado = true;
-        }
+        this.energia = new Energia();
     }
 
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        operable();
+        estadoEntidad.operable();
     }
 }

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Excepciones.BaseNoOpuestaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class Base {
+    //Ver como enganchar esta clase con lo demas o si siquiera deberia existir.
     private Posicion posicion;
 
     public Base(Posicion posicion) {

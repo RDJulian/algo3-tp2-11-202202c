@@ -48,7 +48,7 @@ public class Criadero extends Estructura implements GeneraLarva {
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        operable();
+        estadoEntidad.operable();
     }
 
     @Override

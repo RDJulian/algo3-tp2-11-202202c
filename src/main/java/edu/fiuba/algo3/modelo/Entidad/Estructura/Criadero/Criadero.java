@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.GeneraLarva;
-import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -14,7 +13,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Criadero extends Estructura implements GeneraLarva, AccionAlPasarTurno {
+public class Criadero extends Estructura implements GeneraLarva {
     private Larvas larvas;
 
     public Criadero(Posicion posicion, Raza raza) {
@@ -53,12 +52,13 @@ public class Criadero extends Estructura implements GeneraLarva, AccionAlPasarTu
     }
 
     @Override
-    public void ejecutarAccion() {
-        generarLarva();
-    }
-
-    @Override
     public void pasarTurno() {
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
+        try {
+            estadoEntidad.operable();
+            generarLarva();
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        } catch (EntidadNoOperativaException exception) {
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        }
     }
 }

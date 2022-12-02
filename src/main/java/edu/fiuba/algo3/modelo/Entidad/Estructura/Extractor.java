@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
@@ -16,7 +15,7 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
 import java.util.ArrayList;
 
-public class Extractor extends Estructura implements ExtraeRecurso, AccionAlPasarTurno {
+public class Extractor extends Estructura implements ExtraeRecurso {
     private ArrayList<Zangano> zanganos;
     private Recurso gasVespeno;
 
@@ -58,12 +57,13 @@ public class Extractor extends Estructura implements ExtraeRecurso, AccionAlPasa
     }
 
     @Override
-    public void ejecutarAccion() {
-        extraerRecurso();
-    }
-
-    @Override
     public void pasarTurno() {
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
+        try {
+            estadoEntidad.operable();
+            extraerRecurso();
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        } catch (EntidadNoOperativaException exception) {
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        }
     }
 }

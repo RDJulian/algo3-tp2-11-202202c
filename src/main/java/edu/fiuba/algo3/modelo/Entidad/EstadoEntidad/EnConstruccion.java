@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad;
 
-import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
@@ -20,17 +19,6 @@ public class EnConstruccion extends EstadoEntidad {
 
     @Override
     public EstadoEntidad pasarTurno(Vida vida, Defensa defensa) {
-        vida.regenerar();
-        defensa.regenerar();
-        tiempoParaOperar -= 1;
-        if (tiempoParaOperar == 0) {
-            return new Operativa();
-        }
-        return this;
-    }
-
-    @Override
-    public EstadoEntidad pasarTurno(Vida vida, Defensa defensa, AccionAlPasarTurno entidad) {
         vida.regenerar();
         defensa.regenerar();
         tiempoParaOperar -= 1;

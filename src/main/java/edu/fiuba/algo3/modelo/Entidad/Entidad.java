@@ -18,6 +18,7 @@ public abstract class Entidad {
     protected Defensa defensa;
     protected Raza raza;
 
+    //Este operable solo deberia ser llamado desde una estructura a su estado.
     public void operable() {
         this.estadoEntidad.operable();
     }

@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Nada;
@@ -14,7 +14,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Zangano extends Unidad implements ExtraeRecurso, AccionAlPasarTurno {
+public class Zangano extends Unidad implements ExtraeRecurso {
     private Recurso mineral;
 
     public Zangano(Posicion posicion, Raza raza) {
@@ -60,12 +60,13 @@ public class Zangano extends Unidad implements ExtraeRecurso, AccionAlPasarTurno
     }
 
     @Override
-    public void ejecutarAccion() {
-        extraerRecurso();
-    }
-
-    @Override
     public void pasarTurno() {
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
+        try {
+            estadoEntidad.operable();
+            extraerRecurso();
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        } catch (EntidadNoOperativaException exception) {
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        }
     }
 }

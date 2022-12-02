@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.AccionAlPasarTurno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Asimilador extends Estructura implements ExtraeRecurso, AccionAlPasarTurno {
+public class Asimilador extends Estructura implements ExtraeRecurso {
     private Recurso gasVespeno;
 
     public Asimilador(Posicion posicion, Recurso gasVespeno, Raza raza) {
@@ -39,12 +39,13 @@ public class Asimilador extends Estructura implements ExtraeRecurso, AccionAlPas
     }
 
     @Override
-    public void ejecutarAccion() {
-        extraerRecurso();
-    }
-
-    @Override
     public void pasarTurno() {
-        this.estadoEntidad = estadoEntidad.pasarTurno(vida, defensa, this);
+        try {
+            estadoEntidad.operable();
+            extraerRecurso();
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        } catch (EntidadNoOperativaException exception) {
+            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+        }
     }
 }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

@@ -25,25 +25,14 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.defensa = new SinEscudo();
 
         this.tipoUnidad = new UnidadTierra();
-        this.danioTierra = 0;
-        this.danioAire = 0;
-        this.rangoAtaque = 0;
         this.invisible = false;
-        this.contadorDeBajas = 0;
 
         this.raza = raza;
         this.mineral = new Nada();
 
 
     }
-
-    //Ver que hacer con esto. AmoSupremo resuelve igual.
-    @Override
-    public void atacar(Entidad entidad) {
-        throw new AtaqueNoValidoException();
-    }
-
-    //Redundante pasarle la misma raza.
+    
     public void usarExtractor(Recurso recurso, ExtraeRecurso extractor) {
         estadoEntidad.operable();
         recurso.extraerRecurso(10, raza, extractor);

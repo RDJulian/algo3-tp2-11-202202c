@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso28Test {
 
-    void atacarKVeces(Unidad unidad, Entidad entidad, int k) {
+    void atacarKVeces(UnidadAtacante unidad, Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacar(entidad);
         }
@@ -30,16 +30,16 @@ public class CasoDeUso28Test {
 
     @Test
     public void test01UnZealotMataADosUnidadesYPuedeSerAtacado() {
-        Unidad unidad = new Zealot(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Zealot(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad unidad2 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad2 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad2, 10);
 
-        Unidad unidad3 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad3 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad3, 10);
 
-        Unidad unidad4 = new Hidralisco(new Posicion(1, 1), new Raza());
+        UnidadAtacante unidad4 = new Hidralisco(new Posicion(1, 1), new Raza());
         pasarKTurnos(unidad4, 10);
 
         atacarKVeces(unidad, unidad2, 5);
@@ -50,19 +50,19 @@ public class CasoDeUso28Test {
 
     @Test
     public void test02UnZealotMataATresUnidadesSeVuelveInvisibleYNoPuedeSerAtacado() {
-        Unidad unidad = new Zealot(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Zealot(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad unidad2 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad2 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad2, 10);
 
-        Unidad unidad3 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad3 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad3, 10);
 
-        Unidad unidad4 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad4 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad4, 10);
 
-        Unidad unidad5 = new Hidralisco(new Posicion(1, 1), new Raza());
+        UnidadAtacante unidad5 = new Hidralisco(new Posicion(1, 1), new Raza());
         pasarKTurnos(unidad5, 10);
 
         atacarKVeces(unidad, unidad2, 5);
@@ -77,16 +77,16 @@ public class CasoDeUso28Test {
         Zealot unidad = new Zealot(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad unidad2 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad2 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad2, 10);
 
-        Unidad unidad3 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad3 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad3, 10);
 
-        Unidad unidad4 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad4 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad4, 10);
 
-        Unidad unidad5 = new Hidralisco(new Posicion(1, 1), new Raza());
+        UnidadAtacante unidad5 = new Hidralisco(new Posicion(1, 1), new Raza());
         pasarKTurnos(unidad5, 10);
 
         AmoSupremo unidad6 = new AmoSupremo(new Posicion(1, 0), new Raza());
@@ -106,16 +106,16 @@ public class CasoDeUso28Test {
 
     @Test
     public void test04UnZealotMataAUnaUnidadYDestruyeUnaEstructuraYPuedeSerAtacado() {
-        Unidad unidad = new Zealot(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Zealot(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad unidad2 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad2 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad2, 10);
 
         Estructura espiral = new ReservaDeReproduccion(new Posicion(0, 1), new Raza());
         pasarKTurnos(espiral, 12);
 
-        Unidad unidad3 = new Hidralisco(new Posicion(1, 1), new Raza());
+        UnidadAtacante unidad3 = new Hidralisco(new Posicion(1, 1), new Raza());
         pasarKTurnos(unidad3, 10);
 
         atacarKVeces(unidad, unidad2, 5);
@@ -126,19 +126,19 @@ public class CasoDeUso28Test {
 
     @Test
     public void test05UnZealotMataADosUnidadedYDestruyeUnaEstructuraSeConvienrteEnInvisibleYNoPuedeSerAtacado() {
-        Unidad unidad = new Zealot(new Posicion(0, 0), new Raza());
+        Zealot unidad = new Zealot(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad unidad2 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad2 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad2, 10);
 
-        Unidad unidad3 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad3 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad3, 10);
 
         Estructura espiral = new ReservaDeReproduccion(new Posicion(0, 1), new Raza());
         pasarKTurnos(espiral, 10);
 
-        Unidad unidad4 = new Hidralisco(new Posicion(1, 1), new Raza());
+        UnidadAtacante unidad4 = new Hidralisco(new Posicion(1, 1), new Raza());
         pasarKTurnos(unidad4, 10);
 
         atacarKVeces(unidad, unidad2, 5);
@@ -153,16 +153,16 @@ public class CasoDeUso28Test {
         Zealot unidad = new Zealot(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad unidad2 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad2 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad2, 10);
 
-        Unidad unidad3 = new Zerling(new Posicion(0, 1), new Raza());
+        UnidadAtacante unidad3 = new Zerling(new Posicion(0, 1), new Raza());
         pasarKTurnos(unidad3, 10);
 
         Estructura espiral = new ReservaDeReproduccion(new Posicion(0, 1), new Raza());
         pasarKTurnos(espiral, 10);
 
-        Unidad unidad4 = new Hidralisco(new Posicion(1, 1), new Raza());
+        UnidadAtacante unidad4 = new Hidralisco(new Posicion(1, 1), new Raza());
         pasarKTurnos(unidad4, 10);
 
         AmoSupremo unidad5 = new AmoSupremo(new Posicion(1, 0), new Raza());

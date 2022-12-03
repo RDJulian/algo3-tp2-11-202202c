@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Hidralisco extends Unidad {
+public class Hidralisco extends UnidadAtacante {
     public Hidralisco(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(4);

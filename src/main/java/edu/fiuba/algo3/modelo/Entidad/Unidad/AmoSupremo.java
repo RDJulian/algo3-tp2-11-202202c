@@ -23,11 +23,7 @@ public class AmoSupremo extends Unidad {
         this.raza = raza;
 
         this.tipoUnidad = new UnidadAire();
-        this.danioTierra = 0;
-        this.danioAire = 0;
-        this.rangoAtaque = 0;
         this.invisible = true;
-        this.contadorDeBajas = 0;
 
         this.radioDeDeteccion = 4;
     }
@@ -35,11 +31,6 @@ public class AmoSupremo extends Unidad {
     @Override
     public int afectarSuministro(int suministro) {
         return estadoEntidad.afectarSuministro(rolEnSuministro, suministro);
-    }
-
-    @Override
-    public void atacar(Entidad entidad) {
-        throw new AtaqueNoValidoException();
     }
 
     public boolean fueraDeRango(Posicion posicion) {

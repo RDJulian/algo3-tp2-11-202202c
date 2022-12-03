@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 
 public class NoRequiereEstructura implements ConstruibleEstructura {
     @Override

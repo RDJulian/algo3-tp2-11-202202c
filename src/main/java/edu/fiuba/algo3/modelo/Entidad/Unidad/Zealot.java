@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Vida.Normal;
 
 import java.util.ArrayList;
 
-public class Zealot extends Unidad {
+public class Zealot extends UnidadAtacante {
     public Zealot(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(4);

@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstruc
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;

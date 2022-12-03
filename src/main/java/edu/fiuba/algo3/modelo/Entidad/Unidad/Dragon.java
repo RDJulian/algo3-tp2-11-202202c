@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Dragon extends Unidad {
+public class Dragon extends UnidadAtacante {
     public Dragon(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(6);

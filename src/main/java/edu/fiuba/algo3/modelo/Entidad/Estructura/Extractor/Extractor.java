@@ -1,7 +1,8 @@
-package edu.fiuba.algo3.modelo.Entidad.Estructura;
+package edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -16,7 +17,7 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 import java.util.ArrayList;
 
 public class Extractor extends Estructura implements ExtraeRecurso {
-    private ArrayList<Zangano> zanganos;
+    private Zanganos zanganos;
     private Recurso gasVespeno;
 
     public Extractor(Posicion posicion, Recurso gasVespeno, Raza raza) {
@@ -31,23 +32,17 @@ public class Extractor extends Estructura implements ExtraeRecurso {
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
 
-        this.zanganos = new ArrayList<>(0);
+        this.zanganos = new Zanganos();
     }
 
     @Override
     public void extraerRecurso() {
-        for (Zangano zangano : zanganos) {
-            zangano.usarExtractor(gasVespeno, this);
-        }
+        zanganos.extraerRecurso(gasVespeno, this);
     }
 
-    //Este metodo es propio y unico de esta estructura.
     public void agregarZangano(Zangano zangano) {
         estadoEntidad.operable();
-        if (zanganos.size() >= 3) {
-            throw new ExtractorLlenoException();
-        }
-        zanganos.add(zangano);
+        zanganos.agregarZangano(zangano);
     }
 
     @Override

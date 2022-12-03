@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Mutalisco extends Unidad {
+public class Mutalisco extends UnidadAtacante {
     public Mutalisco(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(7);

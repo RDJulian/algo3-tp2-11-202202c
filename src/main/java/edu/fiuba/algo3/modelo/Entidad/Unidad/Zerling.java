@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Zerling extends Unidad {
+public class Zerling extends UnidadAtacante {
     public Zerling(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(2);

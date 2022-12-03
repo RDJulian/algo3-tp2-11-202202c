@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso27Test {
 
-    void atacarKVeces(Unidad unidad, Entidad entidad) {
+    void atacarKVeces(UnidadAtacante unidad, Entidad entidad) {
         for (int i = 0; i < 16; i++) {
             unidad.atacar(entidad);
         }
@@ -46,7 +46,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test03UnDevoradorAtacaAUnaUnidadVoladoraHastaMatarla() {
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
         Unidad otraUnidad = new Scout(new Posicion(1, 1), new Raza());
@@ -60,7 +60,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test04UnDevoradorAtacaAUnaUnidadDeTierra() {
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
         Unidad otraUnidad = new Dragon(new Posicion(1, 1), new Raza());
@@ -71,7 +71,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test05UnDevoradorAtacaAUnEdificio() {
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
         Posicion posicion = new Posicion(1, 1);
@@ -83,7 +83,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test06UnDevoradorAtacaAUnaUnidadFueraDeRango() {
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
         Unidad otraUnidad = new Scout(new Posicion(7, 7), new Raza());
@@ -95,10 +95,10 @@ public class CasoDeUso27Test {
 
     @Test
     public void test07UnDevoradorEsAtacadoPeroEsInvisible() {
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Scout(new Posicion(1, 0), new Raza());
+        UnidadAtacante otraUnidad = new Scout(new Posicion(1, 0), new Raza());
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> otraUnidad.atacar(unidad));

@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-public class Scout extends Unidad {
+public class Scout extends UnidadAtacante {
     public Scout(Posicion posicion, Raza raza) {
         this.posicion = posicion;
         this.estadoEntidad = new EnConstruccion(9);

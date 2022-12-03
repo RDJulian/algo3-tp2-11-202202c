@@ -10,23 +10,15 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 
 public abstract class Unidad extends Entidad {
-    //Ver que hacer con esto, no todos implementan
     protected TipoUnidad tipoUnidad;
-    protected int danioTierra;
-    protected int danioAire;
-    protected int rangoAtaque;
     protected boolean invisible;
-    protected int contadorDeBajas;
 
-
-    //Segregar en una interfaz Atacante.
     public void atacar(Entidad entidad) {
-        estadoEntidad.operable();
-        entidad.daniar(danioTierra, danioAire, posicion, rangoAtaque, this);
+        throw new AtaqueNoValidoException();
     }
 
     @Override
-    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, Unidad unidadAtacante) {
+    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, UnidadAtacante unidadAtacante) {
         estadoEntidad.atacable();
         if (!posicion.enRango(posicionAtacante, rangoAtaque) || invisible) {
             throw new AtaqueNoValidoException();
@@ -35,7 +27,6 @@ public abstract class Unidad extends Entidad {
         defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
     }
 
-    //Deberia ser private.
     public void moverse(Posicion posicion) {
         this.posicion = posicion;
     }
@@ -43,10 +34,6 @@ public abstract class Unidad extends Entidad {
     public void moverse(Area area) {
         estadoEntidad.operable();
         area.mover(this, tipoUnidad);
-    }
-
-    public void sumarBaja() {
-        contadorDeBajas = contadorDeBajas + 1;
     }
 
     @Override

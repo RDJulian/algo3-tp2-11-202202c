@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Invisible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
@@ -16,7 +16,8 @@ public class AmoSupremo extends Unidad {
 
     public AmoSupremo(Posicion posicion, Raza raza) {
         this.posicion = posicion;
-        this.estadoEntidad = new EnConstruccion(5);
+        this.estadoOperativo = new EnConstruccion(5);
+        this.estadoInvisibilidad = new Invisible();
         this.rolEnSuministro = new Proveedor();
         this.vida = new Regenerativa(200);
         this.defensa = new SinEscudo();
@@ -30,7 +31,7 @@ public class AmoSupremo extends Unidad {
 
     @Override
     public int afectarSuministro(int suministro) {
-        return estadoEntidad.afectarSuministro(rolEnSuministro, suministro);
+        return estadoOperativo.afectarSuministro(rolEnSuministro, suministro);
     }
 
     public boolean fueraDeRango(Posicion posicion) {

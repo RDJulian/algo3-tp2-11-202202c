@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoEntidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
-public class Memento {
+public class MementoOperativo {
     //Forzado a retornar el snapshot si es la estructura la que actualiza su estado.
-    private EstadoEntidad snapshot;
+    private EstadoOperativo snapshot;
 
-    public Memento(EstadoEntidad snapshot) {
+    public MementoOperativo(EstadoOperativo snapshot) {
         this.snapshot = snapshot;
     }
 
-    public EstadoEntidad restaurar() {
+    public EstadoOperativo restaurar() {
         return this.snapshot;
     }
 }

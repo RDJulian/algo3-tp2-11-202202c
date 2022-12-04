@@ -2,15 +2,13 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
-import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 
 public abstract class Unidad extends Entidad {
     protected TipoUnidad tipoUnidad;
+    //Sacar
     protected boolean invisible;
 
     public void atacar(Entidad entidad) {
@@ -19,8 +17,9 @@ public abstract class Unidad extends Entidad {
 
     @Override
     public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, UnidadAtacante unidadAtacante) {
-        estadoEntidad.atacable();
-        if (!posicion.enRango(posicionAtacante, rangoAtaque) || invisible) {
+        estadoOperativo.atacable();
+        estadoInvisibilidad.atacable();
+        if (!posicion.enRango(posicionAtacante, rangoAtaque)) {
             throw new AtaqueNoValidoException();
         }
         int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
@@ -32,7 +31,7 @@ public abstract class Unidad extends Entidad {
     }
 
     public void moverse(Area area) {
-        estadoEntidad.operable();
+        estadoOperativo.operable();
         area.mover(this, tipoUnidad);
     }
 

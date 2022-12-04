@@ -10,7 +10,7 @@ public abstract class UnidadAtacante extends Unidad {
 
     @Override
     public void atacar(Entidad entidad) {
-        estadoEntidad.operable();
+        estadoOperativo.operable();
         entidad.daniar(danioTierra, danioAire, posicion, rangoAtaque, this);
     }
 

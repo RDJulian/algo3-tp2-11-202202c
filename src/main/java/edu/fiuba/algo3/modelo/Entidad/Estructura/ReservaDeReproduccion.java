@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
@@ -14,7 +15,8 @@ public class ReservaDeReproduccion extends Estructura {
         this.posicion = posicion;
         posicion.ocupar();
 
-        this.estadoEntidad = new EnConstruccion(12);
+        this.estadoOperativo = new EnConstruccion(12);
+        this.estadoInvisibilidad = new Visible();
         this.rolEnSuministro = new Neutral();
         this.vida = new Regenerativa(1000);
         this.defensa = new SinEscudo();
@@ -24,6 +26,6 @@ public class ReservaDeReproduccion extends Estructura {
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        estadoEntidad.operable();
+        estadoOperativo.operable();
     }
 }

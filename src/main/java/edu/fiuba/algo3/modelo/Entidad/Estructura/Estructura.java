@@ -2,17 +2,15 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadAtacante;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 
 public abstract class Estructura extends Entidad {
     @Override
     public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, UnidadAtacante unidadAtacante) {
-        estadoEntidad.atacable();
+        estadoOperativo.atacable();
+        estadoInvisibilidad.atacable();
         if (danioTierra == 0 || !posicion.enRango(posicionAtacante, rangoAtaque)) {
             throw new AtaqueNoValidoException();
         }
@@ -23,6 +21,6 @@ public abstract class Estructura extends Entidad {
 
     @Override
     public int afectarSuministro(int suministro) {
-        return estadoEntidad.afectarSuministro(rolEnSuministro, suministro);
+        return estadoOperativo.afectarSuministro(rolEnSuministro, suministro);
     }
 }

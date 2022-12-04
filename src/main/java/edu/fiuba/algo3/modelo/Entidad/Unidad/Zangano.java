@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -19,7 +18,8 @@ public class Zangano extends Unidad implements ExtraeRecurso {
 
     public Zangano(Posicion posicion, Raza raza) {
         this.posicion = posicion;
-        this.estadoEntidad = new EnConstruccion(1);
+        this.estadoOperativo = new EnConstruccion(1);
+        this.estadoInvisibilidad = new Visible();
         this.rolEnSuministro = new Consumidor(1);
         this.vida = new Regenerativa(25);
         this.defensa = new SinEscudo();
@@ -32,9 +32,9 @@ public class Zangano extends Unidad implements ExtraeRecurso {
 
 
     }
-    
+
     public void usarExtractor(Recurso recurso, ExtraeRecurso extractor) {
-        estadoEntidad.operable();
+        estadoOperativo.operable();
         recurso.extraerRecurso(10, raza, extractor);
     }
 
@@ -43,7 +43,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     }
 
     public void ocupar(Recurso mineral) {
-        estadoEntidad.operable();
+        estadoOperativo.operable();
         mineral.ocupar(this, posicion);
         this.mineral = mineral;
     }
@@ -51,11 +51,11 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     @Override
     public void pasarTurno() {
         try {
-            estadoEntidad.operable();
+            estadoOperativo.operable();
             extraerRecurso();
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
         } catch (EntidadNoOperativaException exception) {
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
         }
     }
 }

@@ -99,7 +99,7 @@ public class CasoDeUso28Test {
         atacarKVeces(unidad, unidad3, 5);
         atacarKVeces(unidad, unidad4, 5);
 
-        unidad.revisarInvisibilidad(AmosSupremos);
+        unidad.actualizarEstado(AmosSupremos);
 
         assertDoesNotThrow(() -> unidad5.atacar(unidad));
     }
@@ -175,7 +175,7 @@ public class CasoDeUso28Test {
         atacarKVeces(unidad, unidad3, 5);
         atacarKVeces(unidad, espiral, 125);
 
-        unidad.revisarInvisibilidad(AmosSupremos);
+        unidad.actualizarEstado(AmosSupremos);
 
         assertDoesNotThrow(() -> unidad4.atacar(unidad));
     }

@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
-public class EnConstruccion extends EstadoEntidad {
+public class EnConstruccion implements EstadoOperativo {
     private int tiempoParaOperar;
 
     public EnConstruccion(int tiempoParaOperar) {
@@ -18,7 +18,7 @@ public class EnConstruccion extends EstadoEntidad {
     }
 
     @Override
-    public EstadoEntidad pasarTurno(Vida vida, Defensa defensa) {
+    public EstadoOperativo pasarTurno(Vida vida, Defensa defensa) {
         vida.regenerar();
         defensa.regenerar();
         tiempoParaOperar -= 1;

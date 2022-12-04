@@ -2,9 +2,9 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
-import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -13,8 +13,6 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
-
-import java.util.ArrayList;
 
 public class Extractor extends Estructura implements ExtraeRecurso {
     private Zanganos zanganos;
@@ -27,7 +25,8 @@ public class Extractor extends Estructura implements ExtraeRecurso {
         gasVespeno.ocupar(this);
         this.raza = raza;
 
-        this.estadoEntidad = new EnConstruccion(6);
+        this.estadoOperativo = new EnConstruccion(6);
+        this.estadoInvisibilidad = new Visible();
         this.rolEnSuministro = new Neutral();
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
@@ -41,24 +40,24 @@ public class Extractor extends Estructura implements ExtraeRecurso {
     }
 
     public void agregarZangano(Zangano zangano) {
-        estadoEntidad.operable();
+        estadoOperativo.operable();
         zanganos.agregarZangano(zangano);
     }
 
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
-        estadoEntidad.operable();
+        estadoOperativo.operable();
     }
 
     @Override
     public void pasarTurno() {
         try {
-            estadoEntidad.operable();
+            estadoOperativo.operable();
             extraerRecurso();
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
         } catch (EntidadNoOperativaException exception) {
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
+            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
         }
     }
 }

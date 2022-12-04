@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -12,7 +13,8 @@ import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 public class Mutalisco extends UnidadAtacante {
     public Mutalisco(Posicion posicion, Raza raza) {
         this.posicion = posicion;
-        this.estadoEntidad = new EnConstruccion(7);
+        this.estadoOperativo = new EnConstruccion(7);
+        this.estadoInvisibilidad = new Visible();
         this.rolEnSuministro = new Consumidor(4);
         this.vida = new Regenerativa(120);
         this.defensa = new SinEscudo();

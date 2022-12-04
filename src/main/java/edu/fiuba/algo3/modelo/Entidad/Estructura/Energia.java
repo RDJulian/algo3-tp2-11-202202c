@@ -1,15 +1,19 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.SinEnergia;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoOperativo;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoOperativo;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 import java.util.ArrayList;
 
 public class Energia {
+    private UsaMementoOperativo originador;
+    protected MementoOperativo memento;
     private boolean energizado;
 
-    public Energia() {
+    public Energia(UsaMementoOperativo originador) {
         energizado = true;
+        this.originador = originador;
     }
 
     private boolean energizado(ArrayList<Pilon> pilones, Posicion posicion) {
@@ -21,12 +25,12 @@ public class Energia {
         return false;
     }
 
-    public void actualizarEstado(ArrayList<Pilon> pilones, Posicion posicion, EstructuraEnergizada estructura) {
+    public void actualizarEstado(ArrayList<Pilon> pilones, Posicion posicion) {
         if (!energizado(pilones, posicion) && energizado) {
-            estructura.guardarEstado();
+            memento = originador.guardarEstado();
             this.energizado = false;
         } else if (energizado(pilones, posicion) && !energizado) {
-            estructura.restaurarEstado();
+            originador.restaurarEstado(memento);
             this.energizado = true;
         }
     }

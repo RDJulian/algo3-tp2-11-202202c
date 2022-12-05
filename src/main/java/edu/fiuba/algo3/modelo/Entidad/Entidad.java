@@ -3,10 +3,11 @@ package edu.fiuba.algo3.modelo.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadAtacante;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
@@ -15,7 +16,7 @@ public abstract class Entidad {
     protected Posicion posicion;
     protected EstadoOperativo estadoOperativo;
     protected EstadoInvisibilidad estadoInvisibilidad;
-    protected RolEnSuministro rolEnSuministro;
+    protected AfectaSuministro afectaSuministro;
     protected Vida vida;
     protected Defensa defensa;
     protected Raza raza;
@@ -28,7 +29,12 @@ public abstract class Entidad {
         this.estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
     }
 
-    public abstract void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, UnidadAtacante unidadAtacante);
+    //Para testear.
+    public void daniar(int danio, Unidad unidadAtacante) {
+        defensa.proteger(this, vida, danio, unidadAtacante);
+    }
+
+    public abstract void recibirAtaque(Ataque ataque, Unidad unidadAtacante);
 
     public abstract int afectarSuministro(int suministroActual);
 

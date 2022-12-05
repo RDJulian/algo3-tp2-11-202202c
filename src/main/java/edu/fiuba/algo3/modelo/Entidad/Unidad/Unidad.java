@@ -2,28 +2,28 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public abstract class Unidad extends Entidad {
+    protected int contadorDeBajas;
     protected TipoUnidad tipoUnidad;
-    //Sacar
-    protected boolean invisible;
+    protected Ataque ataque;
 
     public void atacar(Entidad entidad) {
-        throw new AtaqueNoValidoException();
+        estadoOperativo.operable();
+        ataque.atacar(entidad, posicion);
     }
 
     @Override
-    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, UnidadAtacante unidadAtacante) {
+    public void recibirAtaque(Ataque ataque, Unidad unidadAtacante) {
         estadoOperativo.atacable();
         estadoInvisibilidad.atacable();
-        if (!posicion.enRango(posicionAtacante, rangoAtaque)) {
-            throw new AtaqueNoValidoException();
-        }
-        int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
-        defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
+        int danioARecibir = ataque.calcularDanio(tipoUnidad, posicion);
+        daniar(danioARecibir, unidadAtacante);
     }
 
     public void moverse(Posicion posicion) {
@@ -37,6 +37,10 @@ public abstract class Unidad extends Entidad {
 
     @Override
     public int afectarSuministro(int suministro) {
-        return rolEnSuministro.afectarSuministro(suministro);
+        return afectaSuministro.afectarSuministro(suministro);
+    }
+
+    public void sumarBaja() {
+        contadorDeBajas += 1;
     }
 }

@@ -19,20 +19,20 @@ public class Invisibilidad {
         this.originador = originador;
     }
 
-    public boolean invisible(ArrayList<AmoSupremo> amosSupremos, Posicion posicion) {
-        for (AmoSupremo amoSupremo : amosSupremos) {
-            if (!amoSupremo.fueraDeRango(posicion)) {
+    public boolean invisible(ArrayList<RevelaEntidades> reveladores, Posicion posicion) {
+        for (RevelaEntidades revelador : reveladores) {
+            if (!revelador.fueraDeRango(posicion)) {
                 return false;
             }
         }
         return true;
     }
 
-    public void actualizarEstado(ArrayList<AmoSupremo> amosSupremos, Posicion posicion) {
-        if (!invisible(amosSupremos, posicion) && invisible) {
+    public void actualizarEstado(ArrayList<RevelaEntidades> reveladores, Posicion posicion) {
+        if (!invisible(reveladores, posicion) && invisible) {
             memento = originador.guardarEstado();
             this.invisible = false;
-        } else if (invisible(amosSupremos, posicion) && !invisible) {
+        } else if (invisible(reveladores, posicion) && !invisible) {
             originador.restaurarEstado(memento);
             this.invisible = true;
         }

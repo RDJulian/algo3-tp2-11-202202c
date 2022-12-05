@@ -22,7 +22,7 @@ public class CasoDeUso13Test {
         //Idealmente se ejecuta junto a la construccion.
         Piso nuevoMoho = criadero.generarMoho();
 
-        criadero.daniar(600, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        criadero.daniar(600, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, criadero::operable);
 

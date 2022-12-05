@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -16,7 +16,7 @@ public class Espiral extends Estructura {
 
         this.estadoOperativo = new EnConstruccion(10);
         this.estadoInvisibilidad = new Visible();
-        this.rolEnSuministro = new Neutral();
+        this.afectaSuministro = new NoAfecta();
         this.vida = new Regenerativa(1300);
         this.defensa = new SinEscudo();
         this.raza = raza;

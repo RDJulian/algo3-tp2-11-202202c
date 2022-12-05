@@ -2,19 +2,27 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.GeneraLarva;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
-public class Criadero extends Estructura implements GeneraLarva {
+import java.util.ArrayList;
+
+public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvisibilidad {
+    private Invisibilidad invisibilidad;
     private Larvas larvas;
 
     public Criadero(Posicion posicion, Raza raza) {
@@ -22,12 +30,13 @@ public class Criadero extends Estructura implements GeneraLarva {
         posicion.ocupar();
 
         this.estadoOperativo = new EnConstruccion(4);
-        this.estadoInvisibilidad = new Visible();
-        this.rolEnSuministro = new Proveedor();
+        this.estadoInvisibilidad = new Invisible();
+        this.afectaSuministro = new Proveedor();
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
         this.raza = raza;
         this.larvas = new Larvas();
+        this.invisibilidad = new Invisibilidad(this);
     }
 
     public void usarLarva() {
@@ -61,5 +70,22 @@ public class Criadero extends Estructura implements GeneraLarva {
         } catch (EntidadNoOperativaException exception) {
             estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
         }
+    }
+
+    @Override
+    public MementoInvisibilidad guardarEstado() {
+        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidad);
+        this.estadoInvisibilidad = new Visible();
+        return snapshot;
+    }
+
+    @Override
+    public void restaurarEstado(MementoInvisibilidad snapshot) {
+        this.estadoInvisibilidad = snapshot.restaurar();
+    }
+
+    @Override
+    public void actualizarEstado(ArrayList<RevelaEntidades> reveladores) {
+        invisibilidad.actualizarEstado(reveladores, posicion);
     }
 }

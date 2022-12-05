@@ -17,13 +17,13 @@ public class CasoDeUso11Test {
         Estructura estructura = new PuertoEstelar(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(100, new Guardian(posicion, new Raza()));
         //500 Escudo 600 Vida
 
         pasarKTurnos(estructura, 10);
         //600 E 600 V
 
-        estructura.daniar(1199, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1199, new Guardian(posicion, new Raza()));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -33,13 +33,13 @@ public class CasoDeUso11Test {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new PuertoEstelar(posicion, new Raza());
 
-        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(100, new Guardian(posicion, new Raza()));
         //500 Escudo 600 Vida
 
         pasarKTurnos(estructura, 10);
         //600 E 600 V
 
-        estructura.daniar(1199, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1199, new Guardian(posicion, new Raza()));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -50,7 +50,7 @@ public class CasoDeUso11Test {
         Estructura estructura = new PuertoEstelar(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(1200, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1200, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
@@ -64,7 +64,7 @@ public class CasoDeUso11Test {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new PuertoEstelar(posicion, new Raza());
 
-        estructura.daniar(1200, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1200, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 

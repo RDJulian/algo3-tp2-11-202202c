@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
@@ -24,7 +24,7 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
 
         this.estadoOperativo = new EnConstruccion(4);
         this.estadoInvisibilidad = new Visible();
-        this.rolEnSuministro = new Neutral();
+        this.afectaSuministro = new NoAfecta();
         this.vida = new Normal(250);
         this.defensa = new Escudo(250);
     }

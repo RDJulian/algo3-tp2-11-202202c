@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Proveedor;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
@@ -21,7 +21,7 @@ public class Pilon extends Estructura implements Piso {
 
         this.estadoOperativo = new EnConstruccion(5);
         this.estadoInvisibilidad = new Visible();
-        this.rolEnSuministro = new Proveedor();
+        this.afectaSuministro = new Proveedor();
         this.vida = new Normal(300);
         this.defensa = new Escudo(300);
         this.raza = raza;

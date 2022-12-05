@@ -19,11 +19,11 @@ public class CasoDeUso10Test {
         Estructura estructura = new Espiral(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(100, new Guardian(posicion, new Raza()));
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1299, new Guardian(posicion, new Raza()));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -33,11 +33,11 @@ public class CasoDeUso10Test {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new Espiral(posicion, new Raza());
 
-        estructura.daniar(100, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(100, new Guardian(posicion, new Raza()));
 
         pasarKTurnos(estructura, 10);
 
-        estructura.daniar(1299, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1299, new Guardian(posicion, new Raza()));
 
         assertDoesNotThrow(estructura::operable);
     }
@@ -48,7 +48,7 @@ public class CasoDeUso10Test {
         Estructura estructura = new Espiral(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1300, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 
@@ -62,7 +62,7 @@ public class CasoDeUso10Test {
         Posicion posicion = new Posicion(0, 0);
         Estructura estructura = new Espiral(posicion, new Raza());
 
-        estructura.daniar(1300, 0, posicion, 1, new Guardian(posicion, new Raza()));
+        estructura.daniar(1300, new Guardian(posicion, new Raza()));
 
         assertThrows(EntidadDestruidaException.class, estructura::operable);
 

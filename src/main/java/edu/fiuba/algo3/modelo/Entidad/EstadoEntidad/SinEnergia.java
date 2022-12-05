@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad;
 
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
-import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
@@ -24,7 +24,7 @@ public class SinEnergia implements EstadoOperativo {
     }
 
     @Override
-    public int afectarSuministro(RolEnSuministro rol, int suministro) {
+    public int afectarSuministro(AfectaSuministro rol, int suministro) {
         return suministro;
     }
 }

@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.modelo.RolEnSuministro;
+package edu.fiuba.algo3.modelo.Entidad.Suministro;
 
-public class Neutral extends RolEnSuministro {
+public class NoAfecta extends AfectaSuministro {
     @Override
     public int afectarSuministro(int suministroActual) {
         return suministroActual;

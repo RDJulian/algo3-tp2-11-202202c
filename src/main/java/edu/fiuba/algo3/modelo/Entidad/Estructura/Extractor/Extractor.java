@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -27,7 +27,7 @@ public class Extractor extends Estructura implements ExtraeRecurso {
 
         this.estadoOperativo = new EnConstruccion(6);
         this.estadoInvisibilidad = new Visible();
-        this.rolEnSuministro = new Neutral();
+        this.afectaSuministro = new NoAfecta();
         this.vida = new Regenerativa(750);
         this.defensa = new SinEscudo();
 

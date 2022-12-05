@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.modelo.RolEnSuministro;
+package edu.fiuba.algo3.modelo.Entidad.Suministro;
 
-public class Consumidor extends RolEnSuministro {
+public class Consumidor extends AfectaSuministro {
 
     private int suministroAConsumir;
 

@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoOperat
 import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoOperativo;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
@@ -23,7 +23,7 @@ public class PuertoEstelar extends Estructura implements UsaMementoOperativo {
 
         this.estadoOperativo = new EnConstruccion(10);
         this.estadoInvisibilidad = new Visible();
-        this.rolEnSuministro = new Neutral();
+        this.afectaSuministro = new NoAfecta();
         this.vida = new Normal(600);
         this.defensa = new Escudo(600);
         this.raza = raza;
@@ -43,13 +43,14 @@ public class PuertoEstelar extends Estructura implements UsaMementoOperativo {
         this.estadoOperativo = snapshot.restaurar();
     }
 
-    public void actualizarEstado(ArrayList<Pilon> pilones) {
-        energia.actualizarEstado(pilones, posicion);
-    }
-
     @Override
     public void construible(ConstruibleEstructura requiereOtraEstructura) {
         requiereOtraEstructura.visitar(this);
         estadoOperativo.operable();
+    }
+
+    @Override
+    public void actualizarEstado(ArrayList<Pilon> pilones) {
+        energia.actualizarEstado(pilones, posicion);
     }
 }

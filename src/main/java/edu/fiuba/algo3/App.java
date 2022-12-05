@@ -17,7 +17,7 @@ public class App extends Application {
 
         stage.setTitle("AlgoCraft");
 
-        ContenedorGanador contenedorGanador = new ContenedorGanador();
+        ContenedorGanador contenedorGanador = new ContenedorGanador(stage);
         Scene ecsenaGanador = new Scene (contenedorGanador, 640, 480);
 
         ContenedorJugadores contenedorJugadores =  new ContenedorJugadores(stage, ecsenaGanador);
@@ -27,7 +27,6 @@ public class App extends Application {
         Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 640, 480);
 
         stage.setScene(escenaBienvenidos);
-
 
         stage.show();
 

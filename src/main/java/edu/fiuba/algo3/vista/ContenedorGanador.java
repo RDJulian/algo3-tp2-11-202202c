@@ -1,4 +1,8 @@
 package edu.fiuba.algo3.vista;
 
-public class ContenedorGanador {
+import javafx.scene.layout.VBox;
+
+public class ContenedorGanador extends VBox {
+
+
 }

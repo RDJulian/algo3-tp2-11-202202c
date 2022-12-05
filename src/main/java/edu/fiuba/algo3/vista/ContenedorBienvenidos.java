@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controladores.BotonSalirEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ public class ContenedorBienvenidos extends VBox {
 
         super();
 
+        // Configuraciones del Layout
         this.stage = stage;
         this.setAlignment (Pos.CENTER);
         this.setSpacing (20);
@@ -25,6 +27,7 @@ public class ContenedorBienvenidos extends VBox {
         //BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         //this.setBackground(new Background(imagenDeFondo));
 
+        // Controladores
         Button botonComenzarJuego = new Button();
         botonComenzarJuego.setText("Comenzar Juego!");
 
@@ -33,6 +36,10 @@ public class ContenedorBienvenidos extends VBox {
 
         Label etiqueta = new Label();
         etiqueta.setText("Bienvenidos a AlgoStar");
+
+        //Eventos
+        BotonSalirEventHandler botonSalirEventHandler = new BotonSalirEventHandler();
+        botonDeSalir.setOnAction(botonSalirEventHandler);
 
         this.getChildren().addAll(etiqueta, botonComenzarJuego, botonDeSalir);
     }

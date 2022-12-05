@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controladores.BotonCambiarEscenaEventHandler;
 import edu.fiuba.algo3.controladores.BotonSalirEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ public class ContenedorBienvenidos extends VBox {
 
     Stage stage;
 
-    public ContenedorBienvenidos (Stage stage, Scene EscenaJugadores){
+    public ContenedorBienvenidos (Stage stage, Scene escenaJugadores){
 
         super();
 
@@ -23,9 +24,9 @@ public class ContenedorBienvenidos extends VBox {
         this.setAlignment (Pos.CENTER);
         this.setSpacing (20);
         this.setPadding(new Insets(25));
-        //Image imagen = new Image("/Assets/fondo Bienvenida.jpg");
-        //BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        //this.setBackground(new Background(imagenDeFondo));
+        Image imagen = new Image("file:src/main/java/edu/fiuba/algo3/vista/Assets/fondoBienvenida.png");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        this.setBackground(new Background(imagenDeFondo));
 
         // Controladores
         Button botonComenzarJuego = new Button();
@@ -37,11 +38,16 @@ public class ContenedorBienvenidos extends VBox {
         Label etiqueta = new Label();
         etiqueta.setText("Bienvenidos a AlgoStar");
 
+        this.getChildren().addAll(etiqueta, botonComenzarJuego, botonDeSalir);
+
         //Eventos
         BotonSalirEventHandler botonSalirEventHandler = new BotonSalirEventHandler();
         botonDeSalir.setOnAction(botonSalirEventHandler);
 
-        this.getChildren().addAll(etiqueta, botonComenzarJuego, botonDeSalir);
+        BotonCambiarEscenaEventHandler botonCambiarEscenaEventHandler = new BotonCambiarEscenaEventHandler(stage, escenaJugadores);
+        botonComenzarJuego.setOnAction(botonCambiarEscenaEventHandler);
+
+
     }
 
 }

@@ -17,8 +17,8 @@ public class BotonCambiarEscenaEventHandler implements EventHandler<ActionEvent>
     @Override
     public void handle (ActionEvent actionEvent){
         stage.setScene(proximaEscena);
-        stage.setFullScreenExitHint("");
-        stage.setFullScreen(true);
+        //stage.setFullScreenExitHint("");
+        //stage.setFullScreen(true);
     }
 
 }

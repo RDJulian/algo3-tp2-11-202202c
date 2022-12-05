@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.vista.ContenedorBienvenidos;
+import edu.fiuba.algo3.vista.ContenedorGanador;
 import edu.fiuba.algo3.vista.ContenedorJugadores;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,7 +17,10 @@ public class App extends Application {
 
         stage.setTitle("AlgoCraft");
 
-        ContenedorJugadores contenedorJugadores =  new ContenedorJugadores();
+        ContenedorGanador contenedorGanador = new ContenedorGanador();
+        Scene ecsenaGanador = new Scene (contenedorGanador, 640, 480);
+
+        ContenedorJugadores contenedorJugadores =  new ContenedorJugadores(stage, ecsenaGanador);
         Scene escenaJugadores = new Scene (contenedorJugadores, 640, 480);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos (stage, escenaJugadores);

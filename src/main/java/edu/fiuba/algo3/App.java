@@ -17,17 +17,21 @@ public class App extends Application {
 
         stage.setTitle("AlgoCraft");
 
+        String javaVersion = SystemInfo.javaVersion();
+        String javafxVersion = SystemInfo.javafxVersion();
+
         ContenedorGanador contenedorGanador = new ContenedorGanador(stage);
-        Scene ecsenaGanador = new Scene (contenedorGanador, 640, 480);
+        Scene ecsenaGanador = new Scene (contenedorGanador, 740, 580);
 
         ContenedorJugadores contenedorJugadores =  new ContenedorJugadores(stage, ecsenaGanador);
         Scene escenaJugadores = new Scene (contenedorJugadores, 640, 480);
 
-        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos (stage, escenaJugadores);
-        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 640, 480);
+        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos (stage, escenaJugadores, javaVersion, javafxVersion);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos);
 
         stage.setScene(escenaBienvenidos);
 
+        stage.setFullScreen(true);
         stage.show();
 
     }

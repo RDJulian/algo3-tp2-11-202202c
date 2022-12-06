@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad;
+package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad;
 
 public class Visible implements EstadoInvisibilidad {
     @Override

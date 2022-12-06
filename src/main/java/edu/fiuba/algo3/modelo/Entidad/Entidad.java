@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.Destruido;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
@@ -12,7 +12,6 @@ import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public abstract class Entidad {
-    //Resolver la posicion inicial de una Unidad. Puede ser la posicion de la estructura que habilita.
     protected Posicion posicion;
     protected EstadoOperativo estadoOperativo;
     protected EstadoInvisibilidad estadoInvisibilidad;

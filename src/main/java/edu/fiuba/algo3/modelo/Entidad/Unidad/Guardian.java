@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;

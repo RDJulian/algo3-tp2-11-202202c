@@ -28,4 +28,12 @@ public class Ataca extends Ataque {
         this.posicionAtacante = posicionAtacante;
         entidad.recibirAtaque(this, unidadAtacante);
     }
+
+    @Override
+    public int calcularDanio(Posicion posicion) {
+        if (!posicion.enRango(posicionAtacante, rangoAtaque) || danioTierra == 0) {
+            throw new AtaqueNoValidoException();
+        }
+        return danioTierra;
+    }
 }

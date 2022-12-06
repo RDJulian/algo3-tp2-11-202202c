@@ -13,7 +13,7 @@ public abstract class Estructura extends Entidad {
     public void recibirAtaque(Ataque ataque, Unidad unidadAtacante) {
         estadoOperativo.atacable();
         estadoInvisibilidad.atacable();
-        int danioARecibir = ataque.calcularDanio(new UnidadTierra(), posicion);
+        int danioARecibir = ataque.calcularDanio(posicion);
         daniar(danioARecibir, unidadAtacante);
     }
 

@@ -1,15 +1,14 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Invisible;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.GeneraLarva;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoInvisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.RevelaEntidades;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;

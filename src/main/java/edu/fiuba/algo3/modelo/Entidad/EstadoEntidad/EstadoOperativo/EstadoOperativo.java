@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad;
+package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;

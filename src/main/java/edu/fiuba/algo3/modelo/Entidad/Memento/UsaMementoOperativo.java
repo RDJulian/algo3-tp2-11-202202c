@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura;
+package edu.fiuba.algo3.modelo.Entidad.Memento;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 

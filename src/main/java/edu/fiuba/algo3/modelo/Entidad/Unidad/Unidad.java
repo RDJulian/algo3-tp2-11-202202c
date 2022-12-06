@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Posicion.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public abstract class Unidad extends Entidad {
@@ -27,12 +25,8 @@ public abstract class Unidad extends Entidad {
     }
 
     public void moverse(Posicion posicion) {
+        posicion.movible(tipoUnidad);
         this.posicion = posicion;
-    }
-
-    public void moverse(Area area) {
-        estadoOperativo.operable();
-        area.mover(this, tipoUnidad);
     }
 
     @Override

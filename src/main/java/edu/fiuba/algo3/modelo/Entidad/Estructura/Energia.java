@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoOperativo;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoOperativo;
+import edu.fiuba.algo3.modelo.Entidad.Memento.MementoOperativo;
+import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoOperativo;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 import java.util.ArrayList;

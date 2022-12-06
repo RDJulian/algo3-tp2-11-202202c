@@ -1,15 +1,21 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad;
 
-import edu.fiuba.algo3.modelo.Area.AreaEspacial;
-import edu.fiuba.algo3.modelo.Area.AreaTierra;
+import edu.fiuba.algo3.modelo.Posicion.Area.AreaEspacial;
+import edu.fiuba.algo3.modelo.Posicion.Area.AreaTierra;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class UnidadTierra implements TipoUnidad {
+
     @Override
-    public void visitar(AreaTierra area){}
+    public void movible(AreaTierra area) {
+
+    }
+
     @Override
-    public void visitar(AreaEspacial area){
+    public void movible(AreaEspacial area) {
         throw new MovimientoNoValidoException();
     }
 

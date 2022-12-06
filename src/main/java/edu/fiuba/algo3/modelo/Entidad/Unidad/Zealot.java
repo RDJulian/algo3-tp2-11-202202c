@@ -1,14 +1,13 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Invisible;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoInvisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;

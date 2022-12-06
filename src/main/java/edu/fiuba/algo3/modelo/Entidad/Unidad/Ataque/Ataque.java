@@ -15,4 +15,6 @@ public abstract class Ataque {
     public abstract int calcularDanio(TipoUnidad tipoUnidad, Posicion posicionObjetivo);
 
     public abstract void atacar(Entidad entidad, Posicion posicionAtacante);
+
+    public abstract int calcularDanio(Posicion posicion);
 }

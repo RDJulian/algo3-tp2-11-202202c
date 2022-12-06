@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoInvisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.MementoOperativo;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoInvisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura.UsaMementoOperativo;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
+import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 import java.util.ArrayList;

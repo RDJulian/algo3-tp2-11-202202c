@@ -3,7 +3,7 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Entidad.RevelaEntidades;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.*;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

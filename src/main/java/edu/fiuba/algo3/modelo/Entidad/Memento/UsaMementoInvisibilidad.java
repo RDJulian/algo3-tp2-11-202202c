@@ -1,7 +1,6 @@
-package edu.fiuba.algo3.modelo.Entidad.Estructura.MementoEstructura;
+package edu.fiuba.algo3.modelo.Entidad.Memento;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.Entidad.RevelaEntidades;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 
 import java.util.ArrayList;
 

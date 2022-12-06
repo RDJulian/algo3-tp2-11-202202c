@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.modelo.Posicion;
 
+import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
+import edu.fiuba.algo3.modelo.Posicion.Area.Area;
+import edu.fiuba.algo3.modelo.Posicion.Area.AreaTierra;
+
 @SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class Posicion {
     //Plantear relacion con las Areas.
@@ -7,12 +11,25 @@ public class Posicion {
     private int posicionX;
     private int posicionY;
 
+    private Area area;
     private EstadoPosicion estadoPosicion;
+
+    public Posicion(int posicionX, int posicionY, Area area) {
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+        this.estadoPosicion = new Desocupada();
+        this.area = area;
+    }
 
     public Posicion(int posicionX, int posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.estadoPosicion = new Desocupada();
+        this.area = new AreaTierra();
+    }
+
+    public void movible(TipoUnidad tipoUnidad) {
+        area.movible(tipoUnidad);
     }
 
     public void ocupable() {

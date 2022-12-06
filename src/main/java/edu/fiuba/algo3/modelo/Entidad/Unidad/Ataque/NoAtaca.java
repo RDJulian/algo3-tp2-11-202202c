@@ -15,4 +15,9 @@ public class NoAtaca extends Ataque {
     public void atacar(Entidad entidad, Posicion posicionAtacante) {
         throw new AtaqueNoValidoException();
     }
+
+    @Override
+    public int calcularDanio(Posicion posicion) {
+        return 0;
+    }
 }

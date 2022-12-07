@@ -21,17 +21,17 @@ public class App extends Application {
         String javafxVersion = SystemInfo.javafxVersion();
 
         ContenedorGanador contenedorGanador = new ContenedorGanador(stage);
-        Scene ecsenaGanador = new Scene (contenedorGanador, 740, 580);
+        Scene ecsenaGanador = new Scene (contenedorGanador, 1700, 900);
 
         ContenedorJugadores contenedorJugadores =  new ContenedorJugadores(stage, ecsenaGanador);
-        Scene escenaJugadores = new Scene (contenedorJugadores, 640, 480);
+        Scene escenaJugadores = new Scene (contenedorJugadores, 1700, 900);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos (stage, escenaJugadores, javaVersion, javafxVersion);
-        Scene escenaBienvenidos = new Scene(contenedorBienvenidos);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1700, 900);
 
         stage.setScene(escenaBienvenidos);
 
-        stage.setFullScreen(true);
+        //stage.setFullScreen(true);
         stage.show();
 
     }

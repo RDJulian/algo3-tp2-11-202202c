@@ -5,4 +5,8 @@ public class VistaArea {
     private VistaTerreno vistaTerreno;
 
 
+    public VistaArea(VistaTerreno vistaTerreno, VistaEntidad vistaEntidad) {
+        this.vistaTerreno = vistaTerreno;
+        this.vistaEntidad = vistaEntidad;
+    }
 }

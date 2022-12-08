@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
+import edu.fiuba.algo3.modelo.Entidad.Comando.Atacar;
+import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
+import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueUnidad;
 import edu.fiuba.algo3.modelo.Posicion.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
@@ -12,21 +15,18 @@ public abstract class Unidad extends Entidad {
     protected Ataque ataque;
 
     public void atacar(Entidad entidad) {
-        estadoOperativo.operable();
-        ataque.atacar(entidad, posicion);
+        estadoOperativo.operable(new Atacar(ataque, entidad, posicion));
     }
 
     @Override
-    public void recibirAtaque(Ataque ataque, Unidad unidadAtacante) {
-        estadoOperativo.atacable();
-        estadoInvisibilidad.atacable();
-        int danioARecibir = ataque.calcularDanio(tipoUnidad, posicion);
-        daniar(danioARecibir, unidadAtacante);
+    public void recibirAtaque(Ataque ataque, Unidad atacante) {
+        Comando recibirAtaque = new RecibirAtaqueUnidad(this, ataque, tipoUnidad, posicion, atacante);
+        estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
     }
 
+    //Cambiar.
     public void moverse(Posicion posicion) {
-        posicion.movible(tipoUnidad);
-        this.posicion = posicion;
+        this.posicion = posicion.movible(tipoUnidad);
     }
 
     @Override

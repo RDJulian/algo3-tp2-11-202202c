@@ -43,11 +43,6 @@ public class PuertoEstelar extends Estructura implements UsaMementoOperativo {
         this.estadoOperativo = snapshot.restaurar();
     }
 
-    @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoOperativo.operable();
-    }
 
     @Override
     public void actualizarEstado(ArrayList<Pilon> pilones) {

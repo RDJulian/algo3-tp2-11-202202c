@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.Comando.GenerarLarva;
+import edu.fiuba.algo3.modelo.Entidad.Comando.UsarExtractor;
+import edu.fiuba.algo3.modelo.Entidad.Comando.UsarLarva;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
@@ -39,8 +42,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
     }
 
     public void usarLarva() {
-        estadoOperativo.operable();
-        larvas.usarLarva();
+        estadoOperativo.operable(new UsarLarva(larvas));
     }
 
     @Override
@@ -48,27 +50,13 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         larvas.generarLarva();
     }
 
-    //Idem a arriba.
     public Piso generarMoho() {
         return new Moho(posicion);
     }
 
-
-    @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoOperativo.operable();
-    }
-
     @Override
     public void pasarTurno() {
-        try {
-            estadoOperativo.operable();
-            generarLarva();
-            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
-        } catch (EntidadNoOperativaException exception) {
-            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
-        }
+        estadoOperativo.pasarTurno(vida, defensa, new GenerarLarva(this));
     }
 
     @Override

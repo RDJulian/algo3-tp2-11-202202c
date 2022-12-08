@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
@@ -17,9 +18,8 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
 
     public NexoMineral(Posicion posicion, Recurso mineral, Raza raza) {
         this.posicion = posicion;
-        posicion.ocupar();
         this.mineral = mineral;
-        mineral.ocupar(this);
+        mineral.ocupar(this, posicion);
         this.raza = raza;
 
         this.estadoOperativo = new EnConstruccion(4);
@@ -29,24 +29,13 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
         this.defensa = new Escudo(250);
     }
 
+    @Override
     public void extraerRecurso() {
         mineral.extraerRecurso(20, raza, this); //Asumimos 20.
     }
 
     @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoOperativo.operable();
-    }
-
-    @Override
     public void pasarTurno() {
-        try {
-            estadoOperativo.operable();
-            extraerRecurso();
-            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
-        } catch (EntidadNoOperativaException exception) {
-            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
-        }
+        estadoOperativo.pasarTurno(vida, defensa, new ExtraerRecurso(this));
     }
 }

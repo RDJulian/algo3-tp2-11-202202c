@@ -7,15 +7,9 @@ import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public class UnidadTierra implements TipoUnidad {
-
+public class UnidadTierra extends TipoUnidad {
     @Override
-    public void movible(AreaTierra area) {
-
-    }
-
-    @Override
-    public void movible(AreaEspacial area) {
+    public Posicion movible(AreaEspacial area, Posicion posicion) {
         throw new MovimientoNoValidoException();
     }
 

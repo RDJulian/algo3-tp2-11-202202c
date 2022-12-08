@@ -34,18 +34,8 @@ public class Pilon extends Estructura implements Piso {
         return !posicion.enRango(this.posicion, rango);
     }
 
+    //Rehacer.
     @Override
     public void construible(ConstruiblePiso requierePiso, Posicion posicion) {
-        estadoOperativo.operable();
-        requierePiso.visitar(this);
-        if (fueraDeRango(posicion)) {
-            throw new ConstruccionNoValidaException();
-        }
-    }
-
-    @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoOperativo.operable();
     }
 }

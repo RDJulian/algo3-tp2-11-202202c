@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public class AreaTierra extends Area {
     @Override
-    public void movible(TipoUnidad tipoUnidad) {
-        tipoUnidad.movible(this);
+    public Posicion movible(TipoUnidad tipoUnidad, Posicion posicion) {
+        return tipoUnidad.movible(posicion);
     }
 }

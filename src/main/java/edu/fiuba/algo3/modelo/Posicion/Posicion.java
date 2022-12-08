@@ -6,11 +6,8 @@ import edu.fiuba.algo3.modelo.Posicion.Area.AreaTierra;
 
 @SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class Posicion {
-    //Plantear relacion con las Areas.
-    //Deberia implementar algun metodo que desocupe.
     private int posicionX;
     private int posicionY;
-
     private Area area;
     private EstadoPosicion estadoPosicion;
 
@@ -28,16 +25,16 @@ public class Posicion {
         this.area = new AreaTierra();
     }
 
-    public void movible(TipoUnidad tipoUnidad) {
-        area.movible(tipoUnidad);
-    }
-
-    public void ocupable() {
-        estadoPosicion.ocupable();
+    public Posicion movible(TipoUnidad tipoUnidad) {
+        return area.movible(tipoUnidad, this);
     }
 
     public void ocupar() {
-        this.estadoPosicion = new Ocupada();
+        this.estadoPosicion = estadoPosicion.ocupar();
+    }
+
+    public void desocupar() {
+        this.estadoPosicion = new Desocupada();
     }
 
     private boolean enRango(int posicionX, int posicionY, int radio) {

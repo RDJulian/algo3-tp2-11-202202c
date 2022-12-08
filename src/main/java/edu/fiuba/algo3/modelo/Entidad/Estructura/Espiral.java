@@ -21,10 +21,4 @@ public class Espiral extends Estructura {
         this.defensa = new SinEscudo();
         this.raza = raza;
     }
-
-    @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoOperativo.operable();
-    }
 }

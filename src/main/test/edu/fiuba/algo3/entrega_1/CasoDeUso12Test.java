@@ -17,16 +17,16 @@ public class CasoDeUso12Test {
         Estructura estructura = new Acceso(posicion, new Raza());
         pasarKTurnos(estructura, 12);
 
-        estructura.daniar(600, new Guardian(posicion, new Raza()));
+        estructura.daniar(600);
         //0 E 400 V
 
         pasarKTurnos(estructura, 50);
         //500 E 400V
 
-        estructura.daniar(900, new Guardian(posicion, new Raza()));
+        estructura.daniar(900);
         //Si regenerase vida, aguantaria el golpe.
 
-        assertThrows(EntidadDestruidaException.class, estructura::operable);
+        assertThrows(EntidadDestruidaException.class, () -> estructura.operable());
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

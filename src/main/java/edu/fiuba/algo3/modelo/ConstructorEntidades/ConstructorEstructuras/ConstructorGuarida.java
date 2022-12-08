@@ -21,8 +21,7 @@ public class ConstructorGuarida extends ConstructorEstructuras {
     }
 
     @Override
-    public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
-        posicion.ocupable();
+    public void construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
         recurso.construible(construibleRecurso, posicion);
         piso.construible(construiblePiso, posicion);
         raza.construible(costoMineral, costoGas, costoSuministro);
@@ -31,6 +30,5 @@ public class ConstructorGuarida extends ConstructorEstructuras {
         raza.gastarRecursos(costoMineral, costoGas);
         Estructura estructura = new Guarida(posicion, raza);
         raza.registarEntidad(estructura);
-        return estructura;
     }
 }

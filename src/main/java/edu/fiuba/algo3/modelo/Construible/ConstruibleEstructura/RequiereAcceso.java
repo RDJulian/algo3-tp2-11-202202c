@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 public class RequiereAcceso implements ConstruibleEstructura {
     @Override
     public void visitar(Estructura estructura) {
-        estructura.construible(this);
+
     }
 
     @Override

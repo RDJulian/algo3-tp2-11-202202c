@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorGuarida;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
@@ -17,44 +19,45 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso17Test {
     @Test
     public void test01GuaridaNecesitaUnaReservaDeReproduccionParaPoderConstruirse() {
+        ConstructorEstructuras constructor = new ConstructorGuarida();
         Posicion posicion = new Posicion(0, 0);
-        ConstruibleEstructura requiereReservaDeReproduccion = new RequiereReservaDeReproduccion();
+        Raza raza = new Raza();
 
-        Estructura reservaDeReproduccion = new ReservaDeReproduccion(posicion, new Raza());
-        Estructura criadero = new Criadero(posicion, new Raza());
+        Estructura reservaDeReproduccion = new ReservaDeReproduccion(posicion, raza);
+        Estructura criadero = new Criadero(posicion, raza);
         pasarKTurnos(reservaDeReproduccion, 100);
         pasarKTurnos(criadero, 100);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> criadero.construible(requiereReservaDeReproduccion));
-        assertDoesNotThrow(() -> reservaDeReproduccion.construible(requiereReservaDeReproduccion));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir());
+        assertDoesNotThrow(() -> constructor.construir());
     }
 
     @Test
     public void test02EspiralNecesitaUnaGuaridaParaPoderConstruirse() {
         Posicion posicion = new Posicion(0, 0);
-        ConstruibleEstructura requiereGuarida = new RequiereGuarida();
+        Raza raza = new Raza();
 
-        Estructura criadero = new Criadero(posicion, new Raza());
-        Estructura guarida = new Guarida(posicion, new Raza());
+        Estructura guarida = new Guarida(posicion, raza);
+        Estructura criadero = new Criadero(posicion, raza);
         pasarKTurnos(guarida, 100);
         pasarKTurnos(criadero, 100);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> criadero.construible(requiereGuarida));
-        assertDoesNotThrow(() -> guarida.construible(requiereGuarida));
+        assertThrows(ConstruccionNoValidaException.class, () -> new Espiral(posicion, raza, criadero));
+        assertDoesNotThrow(() -> new Espiral(posicion, raza, guarida));
     }
 
     @Test
     public void test03PuertoEstelarNecesitaUnAccesoParaPoderConstruirse() {
         Posicion posicion = new Posicion(0, 0);
-        ConstruibleEstructura requiereAcceso = new RequiereAcceso();
+        Raza raza = new Raza();
 
-        Estructura pilon = new Pilon(posicion, new Raza());
-        Estructura acceso = new Acceso(posicion, new Raza());
+        Estructura acceso = new Acceso(posicion, raza);
+        Estructura criadero = new Criadero(posicion, raza);
         pasarKTurnos(acceso, 100);
-        pasarKTurnos(pilon, 100);
+        pasarKTurnos(criadero, 100);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> pilon.construible(requiereAcceso));
-        assertDoesNotThrow(() -> acceso.construible(requiereAcceso));
+        assertThrows(ConstruccionNoValidaException.class, () -> new Guarida(posicion, raza, criadero));
+        assertDoesNotThrow(() -> new Guarida(posicion, raza, acceso));
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

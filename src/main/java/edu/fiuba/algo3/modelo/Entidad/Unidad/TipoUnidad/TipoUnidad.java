@@ -5,10 +5,12 @@ import edu.fiuba.algo3.modelo.Posicion.Area.AreaTierra;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public interface TipoUnidad {
-    void movible(AreaTierra area);
+public abstract class TipoUnidad {
+    public Posicion movible(Posicion posicion) {
+        return posicion;
+    }
 
-    void movible(AreaEspacial area);
+    public abstract Posicion movible(AreaEspacial area, Posicion posicion);
 
-    int recibirDanio(int danioAire, int danioTierra);
+    public abstract int recibirDanio(int danioAire, int danioTierra);
 }

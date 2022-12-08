@@ -29,6 +29,7 @@ public class Scout extends Unidad implements RevelaEntidades {
         this.radioDeDeteccion = 4;
     }
 
+    @Override
     public boolean fueraDeRango(Posicion posicion) {
         return !posicion.enRango(this.posicion, radioDeDeteccion);
     }

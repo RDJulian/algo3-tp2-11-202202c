@@ -41,6 +41,7 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
         return estadoOperativo.afectarSuministro(afectaSuministro, suministro);
     }
 
+    @Override
     public boolean fueraDeRango(Posicion posicion) {
         return !posicion.enRango(this.posicion, radioDeDeteccion);
     }

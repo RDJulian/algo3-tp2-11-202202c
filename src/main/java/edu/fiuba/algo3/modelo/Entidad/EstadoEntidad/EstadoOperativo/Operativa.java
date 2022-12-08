@@ -1,24 +1,26 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
+import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public class Operativa implements EstadoOperativo {
     @Override
-    public void operable() {
-
+    public void operable(Comando comando) {
+        comando.ejecutar();
     }
 
     @Override
-    public EstadoOperativo pasarTurno(Vida vida, Defensa defensa) {
+    public EstadoOperativo pasarTurno(Vida vida, Defensa defensa, Comando comando) {
         vida.regenerar();
         defensa.regenerar();
         return this;
     }
 
     @Override
-    public void atacable() {
+    public void atacable(Comando comando) {
+        comando.ejecutar();
     }
 
     @Override

@@ -29,10 +29,22 @@ public class Mutalisco extends Unidad {
     public void evolucionarAGuardian(Reserva reservaMineral, Reserva reservaGas) {
         reservaMineral.construible(50);
         reservaGas.construible(100);
+
+        reservaMineral.gastarRecurso(50);
+        reservaGas.gastarRecurso(100);
+
+        raza.registarEntidad(new Guardian(posicion, raza));
+        destruir();
     }
 
     public void evolucionarADevorador(Reserva reservaMineral, Reserva reservaGas) {
         reservaMineral.construible(150);
         reservaGas.construible(50);
+
+        reservaMineral.gastarRecurso(150);
+        reservaGas.gastarRecurso(50);
+
+        raza.registarEntidad(new Devorador(posicion, raza));
+        destruir();
     }
 }

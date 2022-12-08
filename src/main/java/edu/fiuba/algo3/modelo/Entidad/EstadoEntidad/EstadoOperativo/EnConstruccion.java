@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
+import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
@@ -13,12 +14,12 @@ public class EnConstruccion implements EstadoOperativo {
     }
 
     @Override
-    public void operable() {
+    public void operable(Comando comando) {
         throw new EntidadNoOperativaException();
     }
 
     @Override
-    public EstadoOperativo pasarTurno(Vida vida, Defensa defensa) {
+    public EstadoOperativo pasarTurno(Vida vida, Defensa defensa, Comando comando) {
         vida.regenerar();
         defensa.regenerar();
         tiempoParaOperar -= 1;
@@ -29,7 +30,8 @@ public class EnConstruccion implements EstadoOperativo {
     }
 
     @Override
-    public void atacable() {
+    public void atacable(Comando comando) {
+        comando.ejecutar();
     }
 
     @Override

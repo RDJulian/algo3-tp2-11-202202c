@@ -6,17 +6,10 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public class UnidadAire implements TipoUnidad {
-    //Una unidad de aire puede moverse libremente.
-
+public class UnidadAire extends TipoUnidad {
     @Override
-    public void movible(AreaTierra area) {
-
-    }
-
-    @Override
-    public void movible(AreaEspacial area) {
-
+    public Posicion movible(AreaEspacial area, Posicion posicion) {
+        return posicion;
     }
 
     @Override

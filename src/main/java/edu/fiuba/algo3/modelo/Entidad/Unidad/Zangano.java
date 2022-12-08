@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
+import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Comando.OcuparMineral;
+import edu.fiuba.algo3.modelo.Entidad.Comando.UsarExtractor;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.NoAtaca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
@@ -30,33 +33,24 @@ public class Zangano extends Unidad implements ExtraeRecurso {
 
         this.raza = raza;
         this.mineral = new Nada();
-
-
     }
 
     public void usarExtractor(Recurso recurso, ExtraeRecurso extractor) {
-        estadoOperativo.operable();
-        recurso.extraerRecurso(10, raza, extractor);
+        estadoOperativo.operable(new UsarExtractor(recurso, raza, extractor));
     }
 
     public void extraerRecurso() {
         mineral.extraerRecurso(10, raza, this);
     }
 
+    //Ver que hacer con la segunda linea.
     public void ocupar(Recurso mineral) {
-        estadoOperativo.operable();
-        mineral.ocupar(this, posicion);
+        estadoOperativo.operable(new OcuparMineral(this, mineral, posicion));
         this.mineral = mineral;
     }
 
     @Override
     public void pasarTurno() {
-        try {
-            estadoOperativo.operable();
-            extraerRecurso();
-            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
-        } catch (EntidadNoOperativaException exception) {
-            estadoOperativo = estadoOperativo.pasarTurno(vida, defensa);
-        }
+        estadoOperativo.pasarTurno(vida, defensa, new ExtraerRecurso(this));
     }
 }

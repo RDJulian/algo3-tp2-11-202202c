@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 public class RequierePuertoEstelar implements ConstruibleEstructura {
     @Override
     public void visitar(Estructura estructura) {
-        estructura.construible(this);
     }
 
     @Override

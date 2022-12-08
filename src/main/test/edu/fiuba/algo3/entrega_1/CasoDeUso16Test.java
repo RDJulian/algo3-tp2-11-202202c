@@ -21,7 +21,7 @@ public class CasoDeUso16Test {
     public void test01UnaEstructuraNoSePuedeConstruirSobreOtra() {
         Posicion posicion = new Posicion(0, 0);
         new Criadero(posicion, new Raza());
-        assertThrows(PosicionOcupadaException.class, posicion::ocupable);
+        assertThrows(PosicionOcupadaException.class, posicion::ocupar);
     }
 
     //Es similar al caso de arriba, no es el GasVespeno el que deba responder si su posicion esta ocupada o no.
@@ -32,7 +32,7 @@ public class CasoDeUso16Test {
         Recurso gasVespeno = new GasVespeno(posicion);
         new Extractor(posicion, gasVespeno, new Raza());
 
-        assertThrows(PosicionOcupadaException.class, posicion::ocupable);
+        assertThrows(PosicionOcupadaException.class, posicion::ocupar);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class CasoDeUso16Test {
         zangano.pasarTurno();
         zangano.ocupar(mineral);
 
-        assertThrows(PosicionOcupadaException.class, posicion::ocupable);
+        assertThrows(PosicionOcupadaException.class, posicion::ocupar);
     }
 
     //Suponemos que no puede ni siquiera ir a esa posicion/ocupar ese mineral porque esta el Nexo.

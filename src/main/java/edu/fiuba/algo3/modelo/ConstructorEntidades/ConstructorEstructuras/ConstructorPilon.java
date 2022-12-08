@@ -22,7 +22,6 @@ public class ConstructorPilon extends ConstructorEstructuras {
 
     @Override
     public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
-        posicion.ocupable();
         recurso.construible(construibleRecurso, posicion);
         piso.construible(construiblePiso, posicion);
         raza.construible(costoMineral, costoGas, costoSuministro);

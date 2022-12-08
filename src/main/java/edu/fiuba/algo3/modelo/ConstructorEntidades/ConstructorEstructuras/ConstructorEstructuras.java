@@ -18,5 +18,5 @@ public abstract class ConstructorEstructuras {
     protected int costoGas;
     protected int costoSuministro;
 
-    public abstract Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa);
+    public abstract void construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa);
 }

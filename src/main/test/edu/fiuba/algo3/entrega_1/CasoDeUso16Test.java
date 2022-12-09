@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Recurso.Nada;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
@@ -15,36 +16,34 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso16Test {
-    //La forma en que se resuelve estos casos no esta tan buena.
     //Supuesto, engloba al caso de uso.
     @Test
     public void test01UnaEstructuraNoSePuedeConstruirSobreOtra() {
         Posicion posicion = new Posicion(0, 0);
-        new Criadero(posicion, new Raza());
-        assertThrows(PosicionOcupadaException.class, posicion::ocupar);
+        new Criadero(posicion, new Raza(), new Nada());
+        assertThrows(PosicionOcupadaException.class, () -> new Criadero(posicion, new Raza(), new Nada()));
     }
 
-    //Es similar al caso de arriba, no es el GasVespeno el que deba responder si su posicion esta ocupada o no.
-    //Una estructura automaticamente no es construible si la posicion esta ocupada.
     @Test
     public void test02UnaEstructuraNoSePuedeConstruirSobreUnVolcanConUnaEstructura() {
         Posicion posicion = new Posicion(0, 0);
         Recurso gasVespeno = new GasVespeno(posicion);
-        new Extractor(posicion, gasVespeno, new Raza());
+        new Extractor(posicion, new Raza(), gasVespeno);
 
-        assertThrows(PosicionOcupadaException.class, posicion::ocupar);
+        assertThrows(PosicionOcupadaException.class, () -> new Extractor(posicion, new Raza(), gasVespeno));
     }
 
     @Test
     public void test03UnNexoMineralNoSePuedeConstruirSiUnZanganoEstaExtrayendo() {
         Posicion posicion = new Posicion(0, 0);
+        posicion.energizar();
         Recurso mineral = new Mineral(posicion);
-        Zangano zangano = new Zangano(posicion, new Raza());
+        Zangano zangano = new Zangano();
 
         zangano.pasarTurno();
-        zangano.ocupar(mineral);
+        zangano.moverse(posicion);
 
-        assertThrows(PosicionOcupadaException.class, posicion::ocupar);
+        assertThrows(PosicionOcupadaException.class, () -> new NexoMineral(posicion, new Raza(), mineral));
     }
 
     //Suponemos que no puede ni siquiera ir a esa posicion/ocupar ese mineral porque esta el Nexo.
@@ -52,11 +51,11 @@ public class CasoDeUso16Test {
     public void test04UnZanganoNoPuedeExtraerMineralSiUnNexoMineralEstaConstruido() {
         Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new Mineral(posicion);
-        Zangano zangano = new Zangano(posicion, new Raza());
+        Zangano zangano = new Zangano();
 
         zangano.pasarTurno();
-        new NexoMineral(posicion, mineral, new Raza());
+        new NexoMineral(posicion, new Raza(), mineral);
 
-        assertThrows(PosicionOcupadaException.class, () -> zangano.ocupar(mineral));
+        assertThrows(PosicionOcupadaException.class, () -> zangano.moverse(posicion));
     }
 }

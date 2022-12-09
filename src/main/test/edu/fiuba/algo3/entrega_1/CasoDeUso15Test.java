@@ -15,12 +15,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CasoDeUso15Test { //Se deberia resumir o setear directamente los estados para ahorrar lineas de codigo.
+public class CasoDeUso15Test {
     @Test
     public void test01ElMineralSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
+        Raza raza = new Raza();
         Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new Mineral(posicion);
-        NexoMineral nexoMineral = new NexoMineral(posicion, mineral, new Raza());
+        NexoMineral nexoMineral = new NexoMineral(posicion, raza, mineral);
         pasarKTurnos(nexoMineral, 4);
 
         pasarKTurnos(nexoMineral, 99);
@@ -31,13 +32,13 @@ public class CasoDeUso15Test { //Se deberia resumir o setear directamente los es
 
     @Test
     public void test02ElGasVespenoSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Posicion posicion = new Posicion(0, 0);
         Raza raza = new Raza();
+        Posicion posicion = new Posicion(0, 0);
         Recurso mineral = new GasVespeno(posicion);
-        Extractor extractor = new Extractor(posicion, mineral, raza);
+        Extractor extractor = new Extractor(posicion, raza, mineral);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(posicion, raza);
+        Zangano zangano = new Zangano();
         zangano.pasarTurno();
         extractor.agregarZangano(zangano);
         extractor.agregarZangano(zangano);
@@ -45,7 +46,6 @@ public class CasoDeUso15Test { //Se deberia resumir o setear directamente los es
         pasarKTurnos(extractor, 249);
 
         assertDoesNotThrow(extractor::pasarTurno);
-
         assertThrows(RecursoVacioException.class, extractor::pasarTurno);
     }
 

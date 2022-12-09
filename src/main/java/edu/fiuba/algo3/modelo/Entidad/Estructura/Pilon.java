@@ -44,6 +44,7 @@ public class Pilon extends Estructura implements Piso {
 
         //Instanciacion de clases especificas a esta entidad
         this.rango = 3;
+        posicion.energizar();
 
         raza.registarEntidad(this);
     }
@@ -59,11 +60,14 @@ public class Pilon extends Estructura implements Piso {
 
         //Instanciacion de clases especificas a esta entidad
         this.rango = 3;
+        posicion.energizar();
     }
 
     @Override
-    public boolean fueraDeRango(Posicion posicion) {
-        return !posicion.enRango(this.posicion, rango);
+    public void actualizarPosicionEnRango(Posicion posicion) {
+        if (posicion.enRango(this.posicion, rango)) {
+            posicion.energizar();
+        }
     }
 
     @Override

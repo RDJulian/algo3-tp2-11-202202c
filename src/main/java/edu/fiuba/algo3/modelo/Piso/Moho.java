@@ -7,31 +7,28 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 public class Moho implements Piso {
     private int turnos;
     private int rango;
-
     private Posicion posicion;
 
     public Moho(Posicion posicion) {
         this.rango = 5;
         this.turnos = 0;
         this.posicion = posicion;
+
+        posicion.cubrirConMoho();
     }
 
-    public boolean fueraDeRango(Posicion posicion) {
-        return !posicion.enRango(this.posicion, rango);
+    //Llamar este metodo luego de pasar turno para todas las posiciones. La idea es que se actualicen todas.
+    @Override
+    public void actualizarPosicionEnRango(Posicion posicion) {
+        if (posicion.enRango(this.posicion, rango)) {
+            posicion.cubrirConMoho();
+        }
     }
 
-    //Replantear este funcionamiento.
-    //Expansion del moho. Deberia conectarse con expandible o con las areas.
-    //expandible() podria hacer el chequeo tanto con la posicion como con el area.
     public void pasarTurno() {
         turnos += 1;
         if (turnos % 2 == 0) {
             this.rango += 1;
         }
-    }
-
-    //Replantear solucion.
-    public void expandible(Posicion posicion) {
-
     }
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
@@ -9,13 +10,30 @@ import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Recurso.Nada;
 import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CasoDeUso27Test {
+
+    public ArrayList<Estructura> estructuraMockeadaParaTestear() {
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
+
+        return estructuras;
+    }
 
     void atacarKVeces(Unidad unidad, Entidad entidad) {
         for (int i = 0; i < 16; i++) {
@@ -28,8 +46,8 @@ public class CasoDeUso27Test {
         Reserva reservaGas = new Reserva();
         Reserva reservaMineral = new Reserva();
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
-        assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
+        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza(), estructuraMockeadaParaTestear());
+        assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarADevorador());
     }
 
     @Test
@@ -39,9 +57,9 @@ public class CasoDeUso27Test {
         reservaGas.agregarRecurso(1000);
         reservaMineral.agregarRecurso(1000);
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
+        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza(), estructuraMockeadaParaTestear());
 
-        assertDoesNotThrow(() -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
+        assertDoesNotThrow(() -> mutalisco.evolucionarADevorador());
     }
 
     @Test
@@ -49,7 +67,7 @@ public class CasoDeUso27Test {
         Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Scout(new Posicion(1, 1), new Raza());
+        Unidad otraUnidad = new Scout(new Posicion(1, 1), new Raza(), estructuraMockeadaParaTestear());
         pasarKTurnos(otraUnidad, 10);
 
         atacarKVeces(unidad, otraUnidad);
@@ -63,7 +81,7 @@ public class CasoDeUso27Test {
         Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Dragon(new Posicion(1, 1), new Raza());
+        Unidad otraUnidad = new Dragon(new Posicion(1, 1), new Raza(), estructuraMockeadaParaTestear());
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -75,7 +93,7 @@ public class CasoDeUso27Test {
         pasarKTurnos(unidad, 10);
 
         Posicion posicion = new Posicion(1, 1);
-        Estructura estructura = new Acceso(posicion, new Raza());
+        Estructura estructura = new Acceso(posicion, new Raza(), new Nada());
         pasarKTurnos(estructura, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
@@ -86,7 +104,7 @@ public class CasoDeUso27Test {
         Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Scout(new Posicion(7, 7), new Raza());
+        Unidad otraUnidad = new Scout(new Posicion(7, 7), new Raza(), estructuraMockeadaParaTestear());
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -98,7 +116,7 @@ public class CasoDeUso27Test {
         Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Scout(new Posicion(1, 0), new Raza());
+        Unidad otraUnidad = new Scout(new Posicion(1, 0), new Raza(), estructuraMockeadaParaTestear());
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> otraUnidad.atacar(unidad));

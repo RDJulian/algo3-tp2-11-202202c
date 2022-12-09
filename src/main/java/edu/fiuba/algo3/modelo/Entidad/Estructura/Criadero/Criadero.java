@@ -94,7 +94,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
 
     @Override
     public void pasarTurno() {
-        estadoOperativo.pasarTurno(vida, defensa, new GenerarLarva(this));
+        estadoOperativo = estadoOperativo.pasarTurno(vida, defensa, new GenerarLarva(this));
     }
 
     @Override

@@ -4,5 +4,5 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public interface Piso {
-    boolean fueraDeRango(Posicion posicion);
+    void actualizarPosicionEnRango(Posicion posicion);
 }

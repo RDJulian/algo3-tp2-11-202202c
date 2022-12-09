@@ -15,6 +15,7 @@ public class Operativa implements EstadoOperativo {
     public EstadoOperativo pasarTurno(Vida vida, Defensa defensa, Comando comando) {
         vida.regenerar();
         defensa.regenerar();
+        comando.ejecutar();
         return this;
     }
 

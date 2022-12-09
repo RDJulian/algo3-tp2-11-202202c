@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
@@ -15,21 +17,35 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CasoDeUso3Test {
     @Test
     public void test01EstructuraNoSePuedeConstruirSobreRecursoSiNoEsUnaDeLasEstructurasCorrectas() {
         Raza raza = new Raza();
-        ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorAcceso(new ArrayList<>(), raza));
-        constructores.add(new ConstructorCriadero(new ArrayList<>(), raza));
-        constructores.add(new ConstructorEspiral(new ArrayList<>(), raza));
-        constructores.add(new ConstructorGuarida(new ArrayList<>(), raza));
-        constructores.add(new ConstructorPilon(new ArrayList<>(), raza));
-        constructores.add(new ConstructorPuertoEstelar(new ArrayList<>(), raza));
-        constructores.add(new ConstructorReservaDeReproduccion(new ArrayList<>(), raza));
 
-        Posicion posicion = new Posicion(0, 0);
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
+
+        ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
+        constructores.add(new ConstructorAcceso(estructuras, raza));
+        constructores.add(new ConstructorCriadero(estructuras, raza));
+        constructores.add(new ConstructorEspiral(estructuras, raza));
+        constructores.add(new ConstructorGuarida(estructuras, raza));
+        constructores.add(new ConstructorPilon(estructuras, raza));
+        constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
+        constructores.add(new ConstructorReservaDeReproduccion(estructuras, raza));
+
+        //Se mockea la posicion para no depender del tipo de piso.
+        Posicion posicion = mock(Posicion.class);
+        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+
         Recurso gasVespeno = new GasVespeno(posicion);
         Recurso mineral = new Mineral(posicion);
 
@@ -47,7 +63,10 @@ public class CasoDeUso3Test {
         Raza raza = new Raza();
         ConstructorEstructuras constructor = new ConstructorAsimilador(new ArrayList<>(), raza);
 
-        Posicion posicion = new Posicion(0, 0);
+        //Se mockea la posicion para no depender del tipo de piso.
+        Posicion posicion = mock(Posicion.class);
+        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+
         Recurso gasVespeno = new GasVespeno(posicion);
         Recurso mineral = new Mineral(posicion);
 
@@ -63,7 +82,10 @@ public class CasoDeUso3Test {
         Raza raza = new Raza();
         ConstructorEstructuras constructor = new ConstructorExtractor(new ArrayList<>(), raza);
 
-        Posicion posicion = new Posicion(0, 0);
+        //Se mockea la posicion para no depender del tipo de piso.
+        Posicion posicion = mock(Posicion.class);
+        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+
         Recurso gasVespeno = new GasVespeno(posicion);
         Recurso mineral = new Mineral(posicion);
 
@@ -79,7 +101,10 @@ public class CasoDeUso3Test {
         Raza raza = new Raza();
         ConstructorEstructuras constructor = new ConstructorNexoMineral(new ArrayList<>(), raza);
 
-        Posicion posicion = new Posicion(0, 0);
+        //Se mockea la posicion para no depender del tipo de piso.
+        Posicion posicion = mock(Posicion.class);
+        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        
         Recurso gasVespeno = new GasVespeno(posicion);
         Recurso mineral = new Mineral(posicion);
 

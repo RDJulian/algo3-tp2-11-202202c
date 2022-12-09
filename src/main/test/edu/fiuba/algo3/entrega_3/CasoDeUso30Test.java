@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.*;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
@@ -10,24 +11,40 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Recurso.Nada;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CasoDeUso30Test {
 
+    public ArrayList<Estructura> estructuraMockeadaParaTestear() {
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
+
+        return estructuras;
+    }
 
     @Test
     public void test01Entrenar201ZanganosConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
         Raza zerg = new Raza();
         zerg.recolectarMineral(25);
-        Estructura criaderoNecesario = new Criadero(new Posicion(0, 0), new Raza());
+        Estructura criaderoNecesario = new Criadero(new Posicion(0, 0), new Raza(), new Nada());
         pasarKTurnos(criaderoNecesario, 4);
         agregarKEntidades(criaderoNecesario, zerg, 40);
 
-        Zangano zangano = new Zangano(new Posicion(0, 0), zerg);
-        ConstructorUnidades constructorZangano = new ConstructorZangano();
+        Zangano zangano = new Zangano(new Posicion(0, 0), zerg, estructuraMockeadaParaTestear());
+        ConstructorUnidades constructorZangano = new ConstructorZangano(new ArrayList<>(), zerg);
 
         agregarKEntidades(zangano, zerg, 199);
 
@@ -37,7 +54,7 @@ public class CasoDeUso30Test {
 
         assertEquals(0, zerg.suministroRestante());
 
-        assertThrows(SuministroInsuficienteException.class, () -> constructorZangano.construir(new Posicion(0, 0), zerg, criaderoNecesario));
+        assertThrows(SuministroInsuficienteException.class, () -> constructorZangano.construir(new Posicion(0, 0)));
 
     }
 
@@ -46,12 +63,12 @@ public class CasoDeUso30Test {
         Raza zerg = new Raza();
         zerg.recolectarMineral(50);
         zerg.recolectarGas(100);
-        Estructura criadero = new Criadero(new Posicion(0, 0), new Raza());
+        Estructura criadero = new Criadero(new Posicion(0, 0), new Raza(), new Nada());
         pasarKTurnos(criadero, 4);
         agregarKEntidades(criadero, zerg, 40);
 
         Guardian guardian = new Guardian(new Posicion(0, 0), new Raza());
-        ConstructorUnidades constructorGuardian = new ConstructorGuardian();
+        ConstructorUnidades constructorGuardian = new ConstructorGuardian(new ArrayList<>(), zerg);
 
         agregarKEntidades(guardian, zerg, 49);
 
@@ -61,7 +78,7 @@ public class CasoDeUso30Test {
 
         assertEquals(0, zerg.suministroRestante());
 
-        assertThrows(SuministroInsuficienteException.class, () -> constructorGuardian.construir(new Posicion(0, 0), zerg, criadero));
+        assertThrows(SuministroInsuficienteException.class, () -> constructorGuardian.construir(new Posicion(0, 0)));
 
     }
 

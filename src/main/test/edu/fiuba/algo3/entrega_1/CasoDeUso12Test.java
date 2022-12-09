@@ -13,8 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso12Test {
     @Test
     public void test01DaniarUnaEstructuraProtossHastaQuitarleVidaDeberiaRegenerarSoloSuEscudoAlPasarTurnos() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Acceso(posicion, new Raza());
+        Estructura estructura = new Acceso();
         pasarKTurnos(estructura, 12);
 
         estructura.daniar(600);

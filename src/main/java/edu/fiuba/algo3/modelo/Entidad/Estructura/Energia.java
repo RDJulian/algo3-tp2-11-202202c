@@ -17,22 +17,12 @@ public class Energia {
         this.originador = originador;
     }
 
+    //Esta solucion ya no es valida porque las posiciones tienen un estado. Ver como relacionar con eso
     private boolean energizado(ArrayList<Pilon> pilones, Posicion posicion) {
-        for (Pilon pilon : pilones) {
-            if (!pilon.fueraDeRango(posicion)) {
-                return true;
-            }
-        }
-        return false;
+        return true;
     }
 
     public void actualizarEstado(ArrayList<Pilon> pilones, Posicion posicion) {
-        if (!energizado(pilones, posicion) && energizado) {
-            memento = originador.guardarEstado();
-            this.energizado = false;
-        } else if (energizado(pilones, posicion) && !energizado) {
-            originador.restaurarEstado(memento);
-            this.energizado = true;
-        }
+
     }
 }

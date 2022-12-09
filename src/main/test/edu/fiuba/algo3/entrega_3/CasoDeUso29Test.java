@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Recurso.Nada;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +18,7 @@ public class CasoDeUso29Test {
     @Test
     public void test01ConstruirMasDe40CriaderosNoDeberiaAumentarLaCapacidadDeSuministro() {
         Raza zerg = new Raza();
-        Criadero criadero = new Criadero(new Posicion(0, 0), new Raza());
+        Criadero criadero = new Criadero(new Posicion(0, 0), new Raza(), new Nada());
         pasarKTurnos(criadero, 4);
 
         agregarKEntidades(criadero, zerg, 39);

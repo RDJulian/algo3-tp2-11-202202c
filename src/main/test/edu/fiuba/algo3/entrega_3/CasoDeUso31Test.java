@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorPilon;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorAmoSupremo;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorUnidades;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
@@ -10,7 +12,12 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Recurso.Nada;
+import net.bytebuddy.agent.ByteBuddyAgent;
 import org.junit.jupiter.api.Test;
+
+import javax.lang.model.type.ArrayType;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,20 +27,19 @@ public class CasoDeUso31Test {
     @Test
     public void test01DestruirCriaderosDeberiaDisminuirLaCapacidadDeSuministroEn5() {
         Raza zerg = new Raza();
-        ConstructorEstructuras constructor = new ConstructorCriadero();
+        ConstructorEstructuras constructor = new ConstructorCriadero(new ArrayList<>(), zerg);
         zerg.recolectarMineral(600);
-        Moho moho = new Moho(new Posicion(0, -1));
 
         Posicion posicion1 = new Posicion(0, 0);
-        Estructura criadero1 = constructor.construir(posicion1, new edu.fiuba.algo3.modelo.Recurso.Nada(), moho, zerg, new Nada());
+        Estructura criadero1 = constructor.construir(posicion1, new Nada());
         pasarKTurnos(criadero1, 4);
 
         Posicion posicion2 = new Posicion(0, 1);
-        Estructura criadero2 = constructor.construir(posicion2, new edu.fiuba.algo3.modelo.Recurso.Nada(), moho, zerg, new Nada());
+        Estructura criadero2 = constructor.construir(posicion2, new Nada());
         pasarKTurnos(criadero2, 4);
 
         Posicion posicion3 = new Posicion(0, 2);
-        Estructura criadero3 = constructor.construir(posicion3, new edu.fiuba.algo3.modelo.Recurso.Nada(), moho, zerg, new Nada());
+        Estructura criadero3 = constructor.construir(posicion3, new Nada());
         pasarKTurnos(criadero3, 4);
 
         assertEquals(15, zerg.suministroRestante());
@@ -54,21 +60,19 @@ public class CasoDeUso31Test {
     @Test
     public void test02DestruirPilonesDeberiaDisminuirLaCapacidadDeSuministroEn5() {
         Raza protoss = new Raza();
-        ConstructorEstructuras constructor = new ConstructorPilon();
+        ConstructorEstructuras constructor = new ConstructorPilon(new ArrayList<>(), protoss);
         protoss.recolectarMineral(600);
-        Pilon pilon = new Pilon(new Posicion(-1, -1), new Raza());
-        pasarKTurnos(pilon, 5);
 
         Posicion posicion1 = new Posicion(0, 0);
-        Estructura pilon1 = constructor.construir(posicion1, new edu.fiuba.algo3.modelo.Recurso.Nada(), pilon, protoss, new Nada());
+        Estructura pilon1 = constructor.construir(posicion1, new Nada());
         pasarKTurnos(pilon1, 5);
 
         Posicion posicion2 = new Posicion(0, 1);
-        Estructura pilon2 = constructor.construir(posicion2, new edu.fiuba.algo3.modelo.Recurso.Nada(), pilon, protoss, new Nada());
+        Estructura pilon2 = constructor.construir(posicion2, new Nada());
         pasarKTurnos(pilon2, 5);
 
         Posicion posicion3 = new Posicion(0, 2);
-        Estructura pilon3 = constructor.construir(posicion3, new edu.fiuba.algo3.modelo.Recurso.Nada(), pilon, protoss, new Nada());
+        Estructura pilon3 = constructor.construir(posicion3, new Nada());
         pasarKTurnos(pilon3, 5);
 
         assertEquals(15, protoss.suministroRestante());
@@ -89,19 +93,19 @@ public class CasoDeUso31Test {
     @Test
     public void test03MatarAmosSupremosDeberiaDisminuirLaCapacidadDeSuministroEn5() {
         Raza zerg = new Raza();
-        ConstructorUnidades constructor = new ConstructorAmoSupremo();
+        ConstructorUnidades constructor = new ConstructorAmoSupremo(new ArrayList<>(), zerg);
         zerg.recolectarMineral(150);
 
         Posicion posicion1 = new Posicion(0, 0);
-        Unidad amo1 = constructor.construir(posicion1, zerg, new Nada());
+        Unidad amo1 = constructor.construir(posicion1);
         pasarKTurnos(amo1, 5);
 
         Posicion posicion2 = new Posicion(0, 1);
-        Unidad amo2 = constructor.construir(posicion2, zerg, new Nada());
+        Unidad amo2 = constructor.construir(posicion2);
         pasarKTurnos(amo2, 5);
 
         Posicion posicion3 = new Posicion(0, 2);
-        Unidad amo3 = constructor.construir(posicion3, zerg, new Nada());
+        Unidad amo3 = constructor.construir(posicion3);
         pasarKTurnos(amo3, 5);
 
         assertEquals(15, zerg.suministroRestante());

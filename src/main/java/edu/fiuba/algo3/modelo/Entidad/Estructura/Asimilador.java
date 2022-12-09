@@ -67,7 +67,7 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
 
     @Override
     public void pasarTurno() {
-        estadoOperativo.pasarTurno(vida, defensa, new ExtraerRecurso(this));
+        estadoOperativo = estadoOperativo.pasarTurno(vida, defensa, new ExtraerRecurso(this));
     }
 
     @Override

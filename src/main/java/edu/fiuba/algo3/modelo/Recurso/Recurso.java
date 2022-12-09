@@ -12,7 +12,7 @@ public abstract class Recurso {
     protected Posicion posicion;
     protected ExtraeRecurso extraeRecurso;
 
-    public abstract void construible(ConstruibleRecurso sobreRecurso, Posicion posicion);
+    public abstract boolean construible(ConstruibleRecurso sobreRecurso, Posicion posicion);
 
     public abstract void extraerRecurso(int unidades, Raza raza, ExtraeRecurso extraeRecurso);
 

@@ -20,14 +20,6 @@ public class Moho implements Piso {
         return !posicion.enRango(this.posicion, rango);
     }
 
-    @Override
-    public void construible(ConstruiblePiso sobreRango, Posicion posicion) {
-        sobreRango.visitar(this);
-        if (fueraDeRango(posicion)) {
-            throw new ConstruccionNoValidaException();
-        }
-    }
-
     //Replantear este funcionamiento.
     //Expansion del moho. Deberia conectarse con expandible o con las areas.
     //expandible() podria hacer el chequeo tanto con la posicion como con el area.

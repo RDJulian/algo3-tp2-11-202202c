@@ -28,14 +28,6 @@ public class Raza {
         reservaMineral.agregarRecurso(unidades);
     }
 
-    public void construible(int costoMineral, int costoGas, int costoSuministro) {
-        this.reservaMineral.construible(costoMineral);
-        this.reservaGas.construible(costoGas);
-        if (suministroRestante() < costoSuministro) {
-            throw new SuministroInsuficienteException();
-        }
-    }
-
     public int suministroRestante() {
         int suministroTotal = 0;
         suministroTotal = asentamientoEstructuras.suministroRestante(suministroTotal);

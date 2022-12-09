@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
@@ -17,7 +16,6 @@ public class CasoDeUso5Test {
 
     @Test
     public void test01NoSePuedeConstruirUnaEstructuraProtossFueraDelRangoDeUnPilon() {
-        ConstruiblePiso rangoPilon = new RangoPilon();
         Pilon pilon = new Pilon(new Posicion(0, 0), new Raza());
         pasarKTurnos(pilon, 5);
         Posicion posicion = new Posicion(10, 10);
@@ -27,7 +25,6 @@ public class CasoDeUso5Test {
 
     @Test
     public void test02NoSePuedeConstruirUnaEstructuraZergFueraDelRangoDelMoho() {
-        ConstruiblePiso rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
         Posicion posicion = new Posicion(10, 10);
 
@@ -36,7 +33,6 @@ public class CasoDeUso5Test {
 
     @Test
     public void test03SePuedeConstruirUnaEstructuraProtossEnElRangoDeUnPilon() {
-        ConstruiblePiso rangoPilon = new RangoPilon();
         Pilon pilon = new Pilon(new Posicion(0, 0), new Raza());
         pasarKTurnos(pilon, 5);
         Posicion posicion = new Posicion(3, 3);
@@ -46,7 +42,6 @@ public class CasoDeUso5Test {
 
     @Test
     public void test04SePuedeConstruirUnaEstructuraZergEnElRangoDelMoho() {
-        ConstruiblePiso rangoMoho = new RangoMoho();
         Moho moho = new Moho(new Posicion(0, 0));
         Posicion posicion = new Posicion(5, 5);
 

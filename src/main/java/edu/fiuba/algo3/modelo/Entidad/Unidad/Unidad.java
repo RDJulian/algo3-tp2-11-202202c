@@ -10,9 +10,10 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
 public abstract class Unidad extends Entidad {
-    protected int contadorDeBajas;
     protected TipoUnidad tipoUnidad;
+
     protected Ataque ataque;
+    protected int contadorDeBajas;
 
     public void atacar(Entidad entidad) {
         estadoOperativo.operable(new Atacar(ataque, entidad, posicion));

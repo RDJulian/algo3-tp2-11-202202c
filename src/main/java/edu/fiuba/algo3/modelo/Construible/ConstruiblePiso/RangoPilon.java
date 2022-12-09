@@ -1,23 +1,28 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruiblePiso;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Piso.Nada;
+import edu.fiuba.algo3.modelo.Piso.Piso;
+import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.Nada;
+import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.TieneMoho;
+import edu.fiuba.algo3.modelo.Posicion.Posicion;
 
-public class RangoPilon implements ConstruiblePiso {
+import java.util.ArrayList;
+
+public class RangoPilon extends ConstruiblePiso {
     @Override
-    public void visitar(Pilon piso) {
-
+    public boolean visitar(Nada nada) {
+        return false;
     }
 
     @Override
-    public void visitar(Moho piso) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(TieneEnergiaPilon tieneEnergiaPilon) {
+        return true;
     }
 
     @Override
-    public void visitar(Nada piso) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(TieneMoho tieneMoho) {
+        return false;
     }
 }

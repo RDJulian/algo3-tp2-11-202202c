@@ -1,27 +1,27 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
+import java.util.ArrayList;
+
 public class ConstructorGuardian extends ConstructorUnidades {
-    public ConstructorGuardian() {
-        this.construibleEstructura = new NoRequiereEstructura();
-        this.costoMineral = 50;
-        this.costoGas = 100;
-        this.costoSuministro = 4;
+    static private ConstructorUnidades instancia;
+
+    public ConstructorGuardian(ArrayList<Estructura> estructuras, Raza raza) {
+        super(estructuras, raza);
+        instancia = this;
     }
 
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
-        construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas, costoSuministro);
+    public static ConstructorUnidades obtenerInstancia() {
+        return instancia;
+    }
 
-        raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Guardian(posicion, raza);
-        raza.registarEntidad(unidad);
-        return unidad;
+    public Unidad construir(Posicion posicion) {
+        return new Guardian(posicion, raza);
     }
 }

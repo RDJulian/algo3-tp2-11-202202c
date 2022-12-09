@@ -13,10 +13,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoDeUso2Test {
-
     @Test
     public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Criadero(new Posicion(0, 0), new Raza());
+        Estructura estructura = new Criadero();
         pasarKTurnos(estructura, 3);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -28,7 +27,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test02AccesoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Acceso(new Posicion(0, 0), new Raza());
+        Estructura estructura = new Acceso();
         pasarKTurnos(estructura, 7);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -40,8 +39,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test03AsimiladorNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Asimilador(posicion, new GasVespeno(posicion), new Raza());
+        Estructura estructura = new Asimilador();
         pasarKTurnos(estructura, 5);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -53,7 +51,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test04EspiralNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Espiral(new Posicion(0, 0), new Raza());
+        Estructura estructura = new Espiral();
         pasarKTurnos(estructura, 9);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -65,8 +63,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test05ExtractorNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new Extractor(posicion, new GasVespeno(posicion), new Raza());
+        Estructura estructura = new Extractor();
         pasarKTurnos(estructura, 5);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -78,7 +75,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test06GuaridaNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Guarida(new Posicion(0, 0), new Raza());
+        Estructura estructura = new Guarida();
         pasarKTurnos(estructura, 11);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -90,8 +87,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test07NexoMineralNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
+        Estructura estructura = new NexoMineral();
         pasarKTurnos(estructura, 3);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -103,7 +99,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test08PilonNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new Pilon(new Posicion(0, 0), new Raza());
+        Estructura estructura = new Pilon();
         pasarKTurnos(estructura, 4);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -115,7 +111,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test09PuertoEstelarNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new PuertoEstelar(new Posicion(0, 0), new Raza());
+        Estructura estructura = new PuertoEstelar();
         pasarKTurnos(estructura, 9);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);
@@ -127,7 +123,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void test10ReservaDeReproduccionNoEstaOperativoMientrasSeEncuentraEnConstruccion() {
-        Estructura estructura = new ReservaDeReproduccion(new Posicion(0, 0), new Raza());
+        Estructura estructura = new ReservaDeReproduccion();
         pasarKTurnos(estructura, 11);
 
         assertThrows(EntidadNoOperativaException.class, estructura::operable);

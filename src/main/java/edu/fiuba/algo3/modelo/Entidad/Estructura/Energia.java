@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoOperativo;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;

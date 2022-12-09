@@ -1,15 +1,20 @@
 package edu.fiuba.algo3.modelo.Posicion;
 
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Posicion.Area.Area;
 import edu.fiuba.algo3.modelo.Posicion.Area.AreaTierra;
+import edu.fiuba.algo3.modelo.Posicion.EstadoOcupado.Desocupada;
+import edu.fiuba.algo3.modelo.Posicion.EstadoOcupado.EstadoPosicion;
+import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.EstadoPiso;
 
-@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class Posicion {
     private int posicionX;
     private int posicionY;
     private Area area;
     private EstadoPosicion estadoPosicion;
+
+    private EstadoPiso estadoPiso;
 
     public Posicion(int posicionX, int posicionY, Area area) {
         this.posicionX = posicionX;
@@ -29,8 +34,13 @@ public class Posicion {
         return area.movible(tipoUnidad, this);
     }
 
-    public void ocupar() {
+    public Posicion ocupar() {
         this.estadoPosicion = estadoPosicion.ocupar();
+        return this;
+    }
+
+    public boolean construible(ConstruiblePiso construiblePiso) {
+        return estadoPiso.construible(construiblePiso);
     }
 
     public void desocupar() {

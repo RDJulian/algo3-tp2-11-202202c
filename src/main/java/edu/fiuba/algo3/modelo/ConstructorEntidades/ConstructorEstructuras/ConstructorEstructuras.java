@@ -9,14 +9,17 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 
-public abstract class ConstructorEstructuras {
-    // Inicialmente Factory Method, pero hace mas cosas.
-    protected ConstruibleRecurso construibleRecurso;
-    protected ConstruiblePiso construiblePiso;
-    protected ConstruibleEstructura construibleEstructura;
-    protected int costoMineral;
-    protected int costoGas;
-    protected int costoSuministro;
+import java.util.ArrayList;
 
-    public abstract void construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa);
+public abstract class ConstructorEstructuras {
+    //Factory Method.
+    protected ArrayList<Estructura> estructuras;
+    protected Raza raza;
+
+    public ConstructorEstructuras(ArrayList<Estructura> estructuras, Raza raza) {
+        this.estructuras = estructuras;
+        this.raza = raza;
+    }
+
+    public abstract Estructura construir(Posicion posicion, Recurso recurso);
 }

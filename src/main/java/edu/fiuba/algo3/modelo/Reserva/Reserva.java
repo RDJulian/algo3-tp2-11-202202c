@@ -13,15 +13,17 @@ public class Reserva {
         this.unidades += unidades;
     }
 
-    //Pensar en un nombre mejor.
     public void gastarRecurso(int unidades) {
-        construible(unidades);
+        if (!construible(unidades)) {
+            throw new RecursoInsuficienteException();
+        }
         this.unidades -= unidades;
     }
 
-    public void construible(int unidades) {
+    private boolean construible(int unidades) {
         if (this.unidades - unidades < 0) {
-            throw new RecursoInsuficienteException();
+            return false;
         }
+        return true;
     }
 }

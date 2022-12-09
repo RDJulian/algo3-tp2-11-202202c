@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueUnidad;
@@ -22,4 +23,6 @@ public abstract class Estructura extends Entidad {
     public int afectarSuministro(int suministro) {
         return estadoOperativo.afectarSuministro(afectaSuministro, suministro);
     }
+
+    public abstract boolean construible(ConstruibleEstructura construibleEstructura);
 }

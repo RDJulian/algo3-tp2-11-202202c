@@ -7,8 +7,8 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public class Nada extends Recurso {
     @Override
-    public void construible(ConstruibleRecurso sobreRecurso, Posicion posicion) {
-        sobreRecurso.visitar(this);
+    public boolean construible(ConstruibleRecurso construibleRecurso, Posicion posicion) {
+        return construibleRecurso.visitar(this) && posicion.es(this.posicion);
     }
 
     @Override

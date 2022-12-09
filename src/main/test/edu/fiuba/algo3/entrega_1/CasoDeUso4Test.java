@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorExtractor;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
@@ -9,6 +10,8 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +23,7 @@ public class CasoDeUso4Test {
         GasVespeno gasVespeno = new GasVespeno(posicion);
         Raza raza = new Raza();
 
-        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
+        Extractor extractor = new Extractor(posicion, raza, gasVespeno);
         pasarKTurnos(extractor, 6);
 
         extractor.pasarTurno();
@@ -34,10 +37,10 @@ public class CasoDeUso4Test {
         GasVespeno gasVespeno = new GasVespeno(posicion);
         Raza raza = new Raza();
 
-        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
+        Extractor extractor = new Extractor(posicion, raza, gasVespeno);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(posicion, raza);
+        Zangano zangano = new Zangano();
         zangano.pasarTurno();
         extractor.agregarZangano(zangano);
         extractor.pasarTurno();
@@ -52,10 +55,10 @@ public class CasoDeUso4Test {
         GasVespeno gasVespeno = new GasVespeno(posicion);
         Raza raza = new Raza();
 
-        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
+        Extractor extractor = new Extractor(posicion, raza, gasVespeno);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(posicion, raza);
+        Zangano zangano = new Zangano();
         zangano.pasarTurno();
         extractor.agregarZangano(zangano);
         extractor.agregarZangano(zangano);
@@ -71,10 +74,10 @@ public class CasoDeUso4Test {
         GasVespeno gasVespeno = new GasVespeno(posicion);
         Raza raza = new Raza();
 
-        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
+        Extractor extractor = new Extractor(posicion, raza, gasVespeno);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(posicion, raza);
+        Zangano zangano = new Zangano();
         zangano.pasarTurno();
         extractor.agregarZangano(zangano);
         extractor.agregarZangano(zangano);
@@ -91,14 +94,16 @@ public class CasoDeUso4Test {
         GasVespeno gasVespeno = new GasVespeno(posicion);
         Raza raza = new Raza();
 
-        Extractor extractor = new Extractor(posicion, gasVespeno, raza);
+        Extractor extractor = new Extractor(posicion, raza, gasVespeno);
         pasarKTurnos(extractor, 6);
 
-        extractor.agregarZangano(new Zangano(posicion, raza));
-        extractor.agregarZangano(new Zangano(posicion, raza));
-        extractor.agregarZangano(new Zangano(posicion, raza));
+        Zangano zangano = new Zangano();
+        zangano.pasarTurno();
+        extractor.agregarZangano(zangano);
+        extractor.agregarZangano(zangano);
+        extractor.agregarZangano(zangano);
 
-        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(new Zangano(posicion, raza)));
+        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(zangano));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {

@@ -15,13 +15,15 @@ import edu.fiuba.algo3.modelo.Vida.Defensa;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public abstract class Entidad {
+    protected Raza raza;
     protected Posicion posicion;
+    protected Vida vida;
+    protected Defensa defensa;
+
     protected EstadoOperativo estadoOperativo;
     protected EstadoInvisibilidad estadoInvisibilidad;
     protected AfectaSuministro afectaSuministro;
-    protected Vida vida;
-    protected Defensa defensa;
-    protected Raza raza;
+
 
     public void pasarTurno() {
         this.estadoOperativo = estadoOperativo.pasarTurno(vida, defensa, new Nada());

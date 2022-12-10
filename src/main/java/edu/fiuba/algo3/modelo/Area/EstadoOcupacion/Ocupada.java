@@ -1,0 +1,10 @@
+package edu.fiuba.algo3.modelo.Area.EstadoOcupacion;
+
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
+
+public class Ocupada implements EstadoOcupacion {
+    @Override
+    public EstadoOcupacion ocupar() {
+        throw new PosicionOcupadaException();
+    }
+}

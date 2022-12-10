@@ -5,12 +5,10 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstru
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -30,26 +28,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorAcceso(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -61,26 +55,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -92,26 +82,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorEspiral(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -123,26 +109,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorGuarida(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -154,26 +136,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -185,26 +163,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorPilon(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -216,26 +190,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorPuertoEstelar(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -247,26 +217,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorReservaDeReproduccion(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -278,26 +244,22 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorCriadero(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
@@ -309,25 +271,21 @@ public class CasoDeUso8Test {
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
         ConstructorEstructuras constructor = new ConstructorExtractor(estructuras, raza);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea el area porque no afecta en nada en este test.
+        Area area = mock(Area.class);
+        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(posicion, recursoMock));
+        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 }

@@ -1,12 +1,18 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Asimilador;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
@@ -26,20 +32,11 @@ public class CasoDeUso7Test {
     @Test
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
         Raza raza = new Raza();
-        Posicion posicion = new Posicion(0, 0);
-        Recurso mineral = new Mineral(posicion);
+        Recurso recurso = new Mineral();
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new EstadoPisoNull(), recurso);
 
-        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
-        Estructura estructuraMock = mock(Estructura.class);
-        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
-        ArrayList<Estructura> estructuras = new ArrayList<>();
-        estructuras.add(estructuraMock);
-
-        Zangano zangano = new Zangano(posicion, raza, estructuras);
+        Zangano zangano = new Zangano(raza, area);
         zangano.pasarTurno();
-
-        zangano.ocupar(mineral);
         zangano.pasarTurno();
 
         assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(11, 0));
@@ -49,14 +46,15 @@ public class CasoDeUso7Test {
     @Test
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
         Raza raza = new Raza();
-        Posicion posicion = new Posicion(0, 0);
-        Recurso recurso = new GasVespeno(posicion);
+        raza.recolectarMineral(100);
+        Recurso recurso = new GasVespeno();
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), recurso);
 
-        Extractor extractor = new Extractor(posicion, raza, recurso);
+        Extractor extractor = new Extractor(area, raza);
 
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(raza);
         zangano.pasarTurno();
 
         extractor.agregarZangano(zangano);
@@ -69,10 +67,11 @@ public class CasoDeUso7Test {
     @Test
     public void test03NexoMineralObtieneMineralCorrectamenteParaLosProtoss() {
         Raza raza = new Raza();
-        Posicion posicion = new Posicion(0, 0);
-        Recurso recurso = new Mineral(posicion);
+        raza.recolectarMineral(50);
+        Recurso recurso = new Mineral();
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), recurso);
 
-        NexoMineral nexoMineral = new NexoMineral(posicion, raza, recurso);
+        NexoMineral nexoMineral = new NexoMineral(area, raza);
 
         pasarKTurnos(nexoMineral, 4);
 
@@ -85,10 +84,11 @@ public class CasoDeUso7Test {
     @Test
     public void test04AsimiladorObtieneGasCorrectamenteParaLosProtoss() {
         Raza raza = new Raza();
-        Posicion posicion = new Posicion(0, 0);
-        Recurso recurso = new GasVespeno(posicion);
+        raza.recolectarMineral(100);
+        Recurso recurso = new GasVespeno();
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), recurso);
 
-        Asimilador asimilador = new Asimilador(posicion, raza, recurso);
+        Asimilador asimilador = new Asimilador(area, raza);
 
         pasarKTurnos(asimilador, 6);
 

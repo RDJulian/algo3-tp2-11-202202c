@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
@@ -14,9 +15,9 @@ public class Zanganos {
         this.zanganos = new ArrayList<>();
     }
 
-    public void extraerRecurso(Recurso gasVespeno, Extractor extractor) {
+    public void extraerRecurso(Area area) {
         for (Zangano zangano : zanganos) {
-            zangano.usarExtractor(gasVespeno, extractor);
+            zangano.usarExtractor(area);
         }
     }
 

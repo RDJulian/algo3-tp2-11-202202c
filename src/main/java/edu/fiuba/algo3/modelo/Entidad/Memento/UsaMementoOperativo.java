@@ -11,5 +11,5 @@ public interface UsaMementoOperativo {
 
     void restaurarEstado(MementoOperativo snapshot);
 
-    void actualizarEstado(ArrayList<Pilon> pilones);
+    void actualizarEstado();
 }

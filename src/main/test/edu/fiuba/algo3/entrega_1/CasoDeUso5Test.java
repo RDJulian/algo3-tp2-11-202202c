@@ -1,18 +1,21 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.EstadoOcupacion;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Posicion.Area.AreaTierra;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Nada;
+import edu.fiuba.algo3.modelo.Recurso.RecursoNull;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import org.junit.jupiter.api.Test;
 
@@ -24,28 +27,28 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CasoDeUso5Test {
-
     @Test
     public void test01NoSePuedeConstruirUnaEstructuraProtossFueraDelRangoDeUnPilon() {
-        //Se crea una posicion y se energiza manualmente.
-        Posicion posicionEnergizada = new Posicion(0, 0);
-        posicionEnergizada.energizar();
-        
+        //Se crea un area y se energiza manualmente.
+        Area areaEnergizada = new Area(0, 0);
+        areaEnergizada.energizar();
+
         Raza raza = new Raza();
         raza.recolectarMineral(10000);
         raza.recolectarGas(10000);
 
-        //Se podria pasar por el constructor aca.
-        Pilon pilon = new Pilon(posicionEnergizada, raza, new Nada());
+        Pilon pilon = new Pilon(areaEnergizada, raza);
         pasarKTurnos(pilon, 5);
 
-        Posicion posicion = new Posicion(4, 4);
-        posicion.actualizarEstado(pilon);
+        //Se mockea el area para no depender de lo que no se prueba.
+        Recurso recurso = mock(Recurso.class);
+        when(recurso.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        Area area = new Area(new Coordenada(4, 4), new AreaTierra(), new Desocupada(), new EstadoPisoNull(), recurso);
+        area.actualizarEstado(pilon);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
@@ -56,30 +59,30 @@ public class CasoDeUso5Test {
         constructores.add(new ConstructorAcceso(estructuras, raza));
         constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
         for (ConstructorEstructuras constructor : constructores) {
-            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, recursoMock));
+            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
         }
     }
 
     @Test
     public void test02NoSePuedeConstruirUnaEstructuraZergFueraDelRangoDelMoho() {
         //Se crea moho.
-        Moho moho = new Moho(new Posicion(0, 0));
-        Posicion posicion = new Posicion(6, 6);
-        posicion.actualizarEstado(moho);
+        Area areaConMoho = new Area(0, 0);
+        Moho moho = new Moho(areaConMoho);
 
         Raza raza = new Raza();
         raza.recolectarMineral(10000);
         raza.recolectarGas(10000);
 
+        //Se mockea el area para no depender de lo que no se prueba.
+        Recurso recurso = mock(Recurso.class);
+        when(recurso.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        Area area = new Area(new Coordenada(6, 6), new AreaTierra(), new Desocupada(), new EstadoPisoNull(), recurso);
+        area.actualizarEstado(moho);
+
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
@@ -90,36 +93,35 @@ public class CasoDeUso5Test {
         constructores.add(new ConstructorGuarida(estructuras, raza));
         constructores.add(new ConstructorEspiral(estructuras, raza));
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
         for (ConstructorEstructuras constructor : constructores) {
-            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, recursoMock));
+            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
         }
     }
 
     @Test
     public void test03SePuedeConstruirUnaEstructuraProtossEnElRangoDeUnPilon() {
-        //Se crea una posicion y se energiza manualmente.
-        Posicion posicionEnergizada = new Posicion(0, 0);
-        posicionEnergizada.energizar();
+        //Se crea un area y se energiza manualmente.
+        Area areaEnergizada = new Area(0, 0);
+        areaEnergizada.energizar();
 
         Raza raza = new Raza();
         raza.recolectarMineral(10000);
         raza.recolectarGas(10000);
 
-        //Se podria pasar por el constructor aca.
-        Pilon pilon = new Pilon(posicionEnergizada, raza, new Nada());
+        Pilon pilon = new Pilon(areaEnergizada, raza);
         pasarKTurnos(pilon, 5);
 
-        Posicion posicion = new Posicion(3, 3);
-        posicion.actualizarEstado(pilon);
+        //Se mockea el area para no depender de lo que no se prueba.
+        Recurso recurso = mock(Recurso.class);
+        when(recurso.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        EstadoOcupacion estadoOcupacionMock = mock(EstadoOcupacion.class);
+        when(estadoOcupacionMock.ocupar()).thenReturn(estadoOcupacionMock);
+        Area area = new Area(new Coordenada(3, 3), new AreaTierra(), estadoOcupacionMock, new EstadoPisoNull(), recurso);
+        area.actualizarEstado(pilon);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
@@ -130,30 +132,32 @@ public class CasoDeUso5Test {
         constructores.add(new ConstructorAcceso(estructuras, raza));
         constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
         for (ConstructorEstructuras constructor : constructores) {
-            assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+            assertDoesNotThrow(() -> constructor.construir(area));
         }
     }
 
     @Test
     public void test04SePuedeConstruirUnaEstructuraZergEnElRangoDelMoho() {
         //Se crea moho.
-        Moho moho = new Moho(new Posicion(0, 0));
-        Posicion posicion = new Posicion(5, 5);
-        posicion.actualizarEstado(moho);
+        Area areaConMoho = new Area(0, 0);
+        Moho moho = new Moho(areaConMoho);
 
         Raza raza = new Raza();
         raza.recolectarMineral(10000);
         raza.recolectarGas(10000);
 
+        //Se mockea el area para no depender de lo que no se prueba.
+        Recurso recurso = mock(Recurso.class);
+        when(recurso.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        EstadoOcupacion estadoOcupacionMock = mock(EstadoOcupacion.class);
+        when(estadoOcupacionMock.ocupar()).thenReturn(estadoOcupacionMock);
+        Area area = new Area(new Coordenada(5, 5), new AreaTierra(), estadoOcupacionMock, new EstadoPisoNull(), recurso);
+        area.actualizarEstado(moho);
+
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
@@ -164,12 +168,8 @@ public class CasoDeUso5Test {
         constructores.add(new ConstructorGuarida(estructuras, raza));
         constructores.add(new ConstructorEspiral(estructuras, raza));
 
-        //Mockeo un recurso para no depender de esa condicion.
-        Recurso recursoMock = mock(Recurso.class);
-        when(recursoMock.construible(any(ConstruibleRecurso.class), posicion)).thenReturn(true);
-
         for (ConstructorEstructuras constructor : constructores) {
-            assertDoesNotThrow(() -> constructor.construir(posicion, recursoMock));
+            assertDoesNotThrow(() -> constructor.construir(area));
         }
     }
 

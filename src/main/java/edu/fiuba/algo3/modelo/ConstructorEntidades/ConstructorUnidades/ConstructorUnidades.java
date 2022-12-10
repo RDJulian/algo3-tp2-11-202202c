@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class ConstructorUnidades {
@@ -18,5 +16,5 @@ public abstract class ConstructorUnidades {
         this.raza = raza;
     }
 
-    public abstract Unidad construir(Posicion posicion);
+    public abstract Unidad construir(Area area);
 }

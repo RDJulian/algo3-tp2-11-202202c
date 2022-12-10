@@ -2,39 +2,34 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreMineral;
 import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
-import java.util.ArrayList;
-
 public class NexoMineral extends Estructura implements ExtraeRecurso {
-    private Recurso recurso;
-
-    public NexoMineral(Posicion posicion, Raza raza, Recurso recurso) {
+    public NexoMineral(Area area, Raza raza) {
         //Chequeos
         this.raza = raza;
         raza.gastarRecursos(50, 0);
-        this.posicion = posicion.ocupar();
 
-        boolean construible = new SobreMineral().construible(recurso, posicion)
-                && new RangoPilon().construible(posicion);
+
+        boolean construible = new SobreMineral().construible(area)
+                && new RangoPilon().construible(area);
 
         if (!construible) {
             throw new ConstruccionNoValidaException();
         }
-
+        this.area = area.ocupar();
         //Instanciacion de clases comunes
         this.vida = new Normal(250);
         this.defensa = new Escudo(250);
@@ -42,9 +37,6 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
         this.estadoOperativo = new EnConstruccion(4);
         this.estadoInvisibilidad = new Visible();
         this.afectaSuministro = new NoAfecta();
-
-        //Instanciacion de clases especificas a esta entidad
-        this.recurso = recurso;
 
         raza.registarEntidad(this);
     }
@@ -61,7 +53,7 @@ public class NexoMineral extends Estructura implements ExtraeRecurso {
 
     @Override
     public void extraerRecurso() {
-        recurso.extraerRecurso(20, raza, this); //Asumimos 20.
+        area.extraerRecurso(20, raza); //Asumimos 20.
     }
 
     @Override

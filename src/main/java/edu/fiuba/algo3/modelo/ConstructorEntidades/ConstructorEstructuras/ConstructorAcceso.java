@@ -2,9 +2,8 @@ package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 
 import java.util.ArrayList;
 
@@ -14,7 +13,7 @@ public class ConstructorAcceso extends ConstructorEstructuras {
     }
 
     @Override
-    public Estructura construir(Posicion posicion, Recurso recurso) {
-        return new Acceso(posicion, raza, recurso);
+    public Estructura construir(Area area) {
+        return new Acceso(area, raza);
     }
 }

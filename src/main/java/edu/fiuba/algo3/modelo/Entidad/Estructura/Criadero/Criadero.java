@@ -2,31 +2,24 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Comando.GenerarLarva;
-import edu.fiuba.algo3.modelo.Entidad.Comando.UsarExtractor;
 import edu.fiuba.algo3.modelo.Entidad.Comando.UsarLarva;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Vida.Escudo;
-import edu.fiuba.algo3.modelo.Vida.Normal;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -36,19 +29,20 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
     private Larvas larvas;
     private Invisibilidad invisibilidad;
 
-    public Criadero(Posicion posicion, Raza raza, Recurso recurso) {
+    public Criadero(Area area, Raza raza) {
         //Chequeos
         this.raza = raza;
         raza.gastarRecursos(200, 0);
-        this.posicion = posicion.ocupar();
 
-        boolean construible = new NoSobreRecurso().construible(recurso, posicion)
-                && new RangoMoho().construible(posicion);
+
+        boolean construible = new NoSobreRecurso().construible(area)
+                && new RangoMoho().construible(area);
 
         if (!construible) {
             throw new ConstruccionNoValidaException();
         }
 
+        this.area = area.ocupar();
         //Instanciacion de clases comunes
         this.vida = new Regenerativa(500);
         this.defensa = new SinEscudo();
@@ -60,6 +54,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         //Instanciacion de clases especificas a esta entidad
         this.larvas = new Larvas();
         this.invisibilidad = new Invisibilidad(this);
+
 
         raza.registarEntidad(this);
     }
@@ -89,7 +84,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
     }
 
     public Piso generarMoho() {
-        return new Moho(posicion);
+        return new Moho(area);
     }
 
     @Override
@@ -111,7 +106,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
 
     @Override
     public void actualizarEstado(ArrayList<RevelaEntidades> reveladores) {
-        invisibilidad.actualizarEstado(reveladores, posicion);
+        invisibilidad.actualizarEstado(reveladores, area);
     }
 
     @Override

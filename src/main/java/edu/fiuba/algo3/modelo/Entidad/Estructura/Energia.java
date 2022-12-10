@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoOperativo;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 import java.util.ArrayList;
 
@@ -17,12 +16,7 @@ public class Energia {
         this.originador = originador;
     }
 
-    //Esta solucion ya no es valida porque las posiciones tienen un estado. Ver como relacionar con eso
-    private boolean energizado(ArrayList<Pilon> pilones, Posicion posicion) {
-        return true;
-    }
-
-    public void actualizarEstado(ArrayList<Pilon> pilones, Posicion posicion) {
+    public void actualizarEstado(Area area) {
 
     }
 }

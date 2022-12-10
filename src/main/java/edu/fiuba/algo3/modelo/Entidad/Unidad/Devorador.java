@@ -2,18 +2,15 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.NoAtaca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -22,11 +19,11 @@ import java.util.ArrayList;
 public class Devorador extends Unidad implements UsaMementoInvisibilidad {
     private Invisibilidad invisibilidad;
 
-    public Devorador(Posicion posicion, Raza raza) {
+    public Devorador(Area area, Raza raza) {
         //Chequeos
         this.raza = raza;
         raza.gastarRecursos(50, 0);
-        this.posicion = posicion.ocupar();
+        this.area = area.ocupar();
 
         //Instanciacion de clases comunes
         this.vida = new Regenerativa(200);
@@ -60,6 +57,6 @@ public class Devorador extends Unidad implements UsaMementoInvisibilidad {
 
     @Override
     public void actualizarEstado(ArrayList<RevelaEntidades> reveladores) {
-        invisibilidad.actualizarEstado(reveladores, posicion);
+        invisibilidad.actualizarEstado(reveladores, area);
     }
 }

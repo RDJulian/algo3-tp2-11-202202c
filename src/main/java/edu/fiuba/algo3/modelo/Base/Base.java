@@ -1,23 +1,23 @@
 package edu.fiuba.algo3.modelo.Base;
 
 import edu.fiuba.algo3.modelo.Excepciones.BaseNoOpuestaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 public class Base {
     //Ver como enganchar esta clase con lo demas o si siquiera deberia existir.
-    private Posicion posicion;
+    private Area area;
 
-    public Base(Posicion posicion) {
-        this.posicion = posicion;
+    public Base(Area area) {
+        this.area = area;
     }
 
     public void opuesta(Base otraBase) {
-        if (!otraBase.esOpuesta(posicion)) {
+        if (!otraBase.esOpuesta(area)) {
             throw new BaseNoOpuestaException();
         }
     }
 
-    private boolean esOpuesta(Posicion posicion) {
-        return posicion.esOpuesta(this.posicion);
+    private boolean esOpuesta(Area area) {
+        return area.esOpuesta(this.area);
     }
 }

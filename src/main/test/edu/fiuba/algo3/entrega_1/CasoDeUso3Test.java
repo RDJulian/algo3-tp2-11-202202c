@@ -1,13 +1,17 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.EstadoOcupacion;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPiso;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
@@ -24,12 +28,12 @@ import static org.mockito.Mockito.when;
 public class CasoDeUso3Test {
     @Test
     public void test01EstructuraNoSePuedeConstruirSobreRecursoSiNoEsUnaDeLasEstructurasCorrectas() {
-        Raza raza = new Raza();
+        //Se mockea la raza para no depender de los costos.
+        Raza raza = mock(Raza.class);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
-
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
@@ -42,82 +46,84 @@ public class CasoDeUso3Test {
         constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
         constructores.add(new ConstructorReservaDeReproduccion(estructuras, raza));
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
-
-        Recurso gasVespeno = new GasVespeno(posicion);
-        Recurso mineral = new Mineral(posicion);
-
-        raza.recolectarMineral(10000);
-        raza.recolectarGas(10000);
+        //Se mockea el area para no depender de lo que no se prueba.
+        EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
+        when(estadoPisoMock.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        Area areaConMineral = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new Mineral());
+        Area areaConGasVespeno = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new GasVespeno());
 
         for (ConstructorEstructuras constructor : constructores) {
-            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, gasVespeno));
-            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, mineral));
+            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(areaConMineral));
+            assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(areaConGasVespeno));
         }
     }
 
     @Test
     public void test02AsimiladorSePuedeConstruirSobreElGasVespeno() {
-        Raza raza = new Raza();
-        ConstructorEstructuras constructor = new ConstructorAsimilador(new ArrayList<>(), raza);
+        //Se mockea la raza para no depender de los costos.
+        Raza raza = mock(Raza.class);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
 
-        Recurso gasVespeno = new GasVespeno(posicion);
-        Recurso mineral = new Mineral(posicion);
+        ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, raza);
 
-        raza.recolectarMineral(1000);
-        raza.recolectarGas(1000);
+        //Se mockea el area para no depender de lo que no se prueba.
+        EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
+        when(estadoPisoMock.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        Area areaConMineral = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new Mineral());
+        Area areaConGasVespeno = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new GasVespeno());
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, gasVespeno));
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, mineral));
+        assertDoesNotThrow(() -> constructor.construir(areaConGasVespeno));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(areaConMineral));
     }
 
     @Test
     public void test03ExtractorSePuedeConstruirSobreElGasVespeno() {
-        Raza raza = new Raza();
-        ConstructorEstructuras constructor = new ConstructorExtractor(new ArrayList<>(), raza);
+        //Se mockea la raza para no depender de los costos.
+        Raza raza = mock(Raza.class);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
 
-        Recurso gasVespeno = new GasVespeno(posicion);
-        Recurso mineral = new Mineral(posicion);
+        ConstructorEstructuras constructor = new ConstructorExtractor(estructuras, raza);
 
-        raza.recolectarMineral(1000);
-        raza.recolectarGas(1000);
+        //Se mockea el area para no depender de lo que no se prueba.
+        EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
+        when(estadoPisoMock.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        Area areaConMineral = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new Mineral());
+        Area areaConGasVespeno = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new GasVespeno());
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, gasVespeno));
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, mineral));
+        assertDoesNotThrow(() -> constructor.construir(areaConGasVespeno));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(areaConMineral));
     }
 
     @Test
     public void test04NexoMineralSePuedeConstruirSobreMineral() {
-        Raza raza = new Raza();
-        ConstructorEstructuras constructor = new ConstructorNexoMineral(new ArrayList<>(), raza);
+        //Se mockea la raza para no depender de los costos.
+        Raza raza = mock(Raza.class);
 
-        //Se mockea la posicion para no depender del tipo de piso.
-        Posicion posicion = mock(Posicion.class);
-        when(posicion.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        
-        Recurso gasVespeno = new GasVespeno(posicion);
-        Recurso mineral = new Mineral(posicion);
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
 
-        raza.recolectarMineral(1000);
-        raza.recolectarGas(1000);
+        ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, raza);
 
-        assertDoesNotThrow(() -> constructor.construir(posicion, mineral));
-        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(posicion, gasVespeno));
-    }
+        //Se mockea el area para no depender de lo que no se prueba.
+        EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
+        when(estadoPisoMock.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        Area areaConMineral = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new Mineral());
+        Area areaConGasVespeno = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new GasVespeno());
 
-    public void pasarKTurnos(Estructura estructura, int k) {
-        for (int i = 0; i < k; i++) {
-            estructura.pasarTurno();
-        }
+        assertDoesNotThrow(() -> constructor.construir(areaConMineral));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(areaConGasVespeno));
     }
 }

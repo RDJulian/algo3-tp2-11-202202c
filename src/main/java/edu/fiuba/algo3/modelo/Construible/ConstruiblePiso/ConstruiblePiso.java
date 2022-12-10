@@ -1,21 +1,16 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruiblePiso;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.Nada;
-import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.TieneEnergiaPilon;
-import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.TieneMoho;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 public abstract class ConstruiblePiso {
-    public boolean construible(Posicion posicion) {
-        return posicion.construible(this);
+    public boolean construible(Area area) {
+        return area.construible(this);
     }
 
-    public abstract boolean visitar(Nada nada);
+    public abstract boolean visitar(EstadoPisoNull estadoPisoNull);
 
     public abstract boolean visitar(TieneEnergiaPilon tieneEnergiaPilon);
 

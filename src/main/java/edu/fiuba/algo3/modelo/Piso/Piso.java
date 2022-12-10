@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.Piso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 public interface Piso {
-    void actualizarPosicionEnRango(Posicion posicion);
+    void actualizarPosicionEnRango(Area area);
 }

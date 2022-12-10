@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 import java.util.ArrayList;
 
@@ -17,20 +17,20 @@ public class Invisibilidad {
         this.originador = originador;
     }
 
-    public boolean invisible(ArrayList<RevelaEntidades> reveladores, Posicion posicion) {
+    public boolean invisible(ArrayList<RevelaEntidades> reveladores, Area area) {
         for (RevelaEntidades revelador : reveladores) {
-            if (!revelador.fueraDeRango(posicion)) {
+            if (!revelador.fueraDeRango(area)) {
                 return false;
             }
         }
         return true;
     }
 
-    public void actualizarEstado(ArrayList<RevelaEntidades> reveladores, Posicion posicion) {
-        if (!invisible(reveladores, posicion) && invisible) {
+    public void actualizarEstado(ArrayList<RevelaEntidades> reveladores, Area area) {
+        if (!invisible(reveladores, area) && invisible) {
             memento = originador.guardarEstado();
             this.invisible = false;
-        } else if (invisible(reveladores, posicion) && !invisible) {
+        } else if (invisible(reveladores, area) && !invisible) {
             originador.restaurarEstado(memento);
             this.invisible = true;
         }

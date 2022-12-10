@@ -1,27 +1,25 @@
 package edu.fiuba.algo3.modelo.Piso;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 public class Moho implements Piso {
     private int turnos;
     private int rango;
-    private Posicion posicion;
+    private Area area;
 
-    public Moho(Posicion posicion) {
+    public Moho(Area area) {
         this.rango = 5;
         this.turnos = 0;
-        this.posicion = posicion;
+        this.area = area;
 
-        posicion.cubrirConMoho();
+        area.cubrirConMoho();
     }
 
     //Llamar este metodo luego de pasar turno para todas las posiciones. La idea es que se actualicen todas.
     @Override
-    public void actualizarPosicionEnRango(Posicion posicion) {
-        if (posicion.enRango(this.posicion, rango)) {
-            posicion.cubrirConMoho();
+    public void actualizarPosicionEnRango(Area area) {
+        if (area.enRango(this.area, rango)) {
+            area.cubrirConMoho();
         }
     }
 

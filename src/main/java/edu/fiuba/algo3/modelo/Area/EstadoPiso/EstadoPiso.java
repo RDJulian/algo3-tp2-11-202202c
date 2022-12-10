@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Posicion.EstadoPiso;
+package edu.fiuba.algo3.modelo.Area.EstadoPiso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 

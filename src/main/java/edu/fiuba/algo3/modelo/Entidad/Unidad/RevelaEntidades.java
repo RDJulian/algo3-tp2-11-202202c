@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 public interface RevelaEntidades {
-    boolean fueraDeRango(Posicion posicion);
+    boolean fueraDeRango(Area area);
 }

@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruiblePiso;
 
-import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.Nada;
-import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.TieneEnergiaPilon;
-import edu.fiuba.algo3.modelo.Posicion.EstadoPiso.TieneMoho;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
 
 public class RangoMoho extends ConstruiblePiso {
     @Override
-    public boolean visitar(Nada nada) {
+    public boolean visitar(EstadoPisoNull estadoPisoNull) {
         return false;
     }
 

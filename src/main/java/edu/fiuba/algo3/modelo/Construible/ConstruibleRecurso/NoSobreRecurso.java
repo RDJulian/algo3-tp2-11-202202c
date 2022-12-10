@@ -1,13 +1,8 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
 
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Recurso.Nada;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Recurso.RecursoNull;
 
 public class NoSobreRecurso extends ConstruibleRecurso {
     @Override
@@ -21,7 +16,7 @@ public class NoSobreRecurso extends ConstruibleRecurso {
     }
 
     @Override
-    public boolean visitar(Nada nada) {
+    public boolean visitar(RecursoNull recursoNull) {
         return true;
     }
 }

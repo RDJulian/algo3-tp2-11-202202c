@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Entidad;
 
-import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Comando.Nada;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidad;
@@ -8,7 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperat
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadNull;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Vida.Defensa;
@@ -16,7 +15,7 @@ import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public abstract class Entidad {
     protected Raza raza;
-    protected Posicion posicion;
+    protected Area area;
     protected Vida vida;
     protected Defensa defensa;
 

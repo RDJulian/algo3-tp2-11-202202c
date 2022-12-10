@@ -9,10 +9,10 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoOperativo;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Vida.Escudo;
 import edu.fiuba.algo3.modelo.Vida.Normal;
 
@@ -21,19 +21,20 @@ import java.util.ArrayList;
 public class Acceso extends Estructura implements UsaMementoOperativo {
     private Energia energia;
 
-    public Acceso(Posicion posicion, Raza raza, Recurso recurso) {
+    public Acceso(Area area, Raza raza) {
         //Chequeos
         this.raza = raza;
         raza.gastarRecursos(150, 0);
-        this.posicion = posicion.ocupar();
 
-        boolean construible = new NoSobreRecurso().construible(recurso, posicion)
-                && new RangoPilon().construible(posicion);
+
+        boolean construible = new NoSobreRecurso().construible(area)
+                && new RangoPilon().construible(area);
 
         if (!construible) {
             throw new ConstruccionNoValidaException();
         }
 
+        this.area = area.ocupar();
         //Instanciacion de clases comunes
         this.vida = new Normal(500);
         this.defensa = new Escudo(500);
@@ -75,8 +76,8 @@ public class Acceso extends Estructura implements UsaMementoOperativo {
 
 
     @Override
-    public void actualizarEstado(ArrayList<Pilon> pilones) {
-        energia.actualizarEstado(pilones, posicion);
+    public void actualizarEstado() {
+        energia.actualizarEstado(area);
     }
 
     @Override

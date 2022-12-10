@@ -8,17 +8,12 @@ import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.NoAtaca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
-import edu.fiuba.algo3.modelo.Vida.Escudo;
-import edu.fiuba.algo3.modelo.Vida.Normal;
 import edu.fiuba.algo3.modelo.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Vida.SinEscudo;
 
@@ -27,11 +22,11 @@ import java.util.ArrayList;
 public class Zealot extends Unidad implements UsaMementoInvisibilidad {
     private Invisibilidad invisibilidad;
 
-    public Zealot(Posicion posicion, Raza raza, ArrayList<Estructura> estructuras) {
+    public Zealot(Area area, Raza raza, ArrayList<Estructura> estructuras) {
         //Chequeos
         this.raza = raza;
         raza.gastarRecursos(50, 0);
-        this.posicion = posicion.ocupar();
+        this.area = area.ocupar();
 
         boolean construible = new RequiereAcceso().construible(estructuras);
         if (!construible) {
@@ -79,6 +74,6 @@ public class Zealot extends Unidad implements UsaMementoInvisibilidad {
 
     @Override
     public void actualizarEstado(ArrayList<RevelaEntidades> reveladores) {
-        invisibilidad.actualizarEstado(reveladores, posicion);
+        invisibilidad.actualizarEstado(reveladores, area);
     }
 }

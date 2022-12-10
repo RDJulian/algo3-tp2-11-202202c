@@ -3,8 +3,8 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Area.Coordenada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.EstadoOcupacion;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPiso;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
-import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
@@ -15,8 +15,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.RecursoNull;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -33,9 +32,8 @@ public class CasoDeUso5Test {
         Area areaEnergizada = new Area(0, 0);
         areaEnergizada.energizar();
 
-        Raza raza = new Raza();
-        raza.recolectarMineral(10000);
-        raza.recolectarGas(10000);
+        //Mockeo la raza para no depender de recursos.
+        Raza raza = mock(Raza.class);
 
         Pilon pilon = new Pilon(areaEnergizada, raza);
         pasarKTurnos(pilon, 5);
@@ -70,9 +68,8 @@ public class CasoDeUso5Test {
         Area areaConMoho = new Area(0, 0);
         Moho moho = new Moho(areaConMoho);
 
-        Raza raza = new Raza();
-        raza.recolectarMineral(10000);
-        raza.recolectarGas(10000);
+        //Mockeo la raza para no depender de recursos.
+        Raza raza = mock(Raza.class);
 
         //Se mockea el area para no depender de lo que no se prueba.
         Recurso recurso = mock(Recurso.class);
@@ -104,9 +101,8 @@ public class CasoDeUso5Test {
         Area areaEnergizada = new Area(0, 0);
         areaEnergizada.energizar();
 
-        Raza raza = new Raza();
-        raza.recolectarMineral(10000);
-        raza.recolectarGas(10000);
+        //Mockeo la raza para no depender de recursos.
+        Raza raza = mock(Raza.class);
 
         Pilon pilon = new Pilon(areaEnergizada, raza);
         pasarKTurnos(pilon, 5);
@@ -114,8 +110,10 @@ public class CasoDeUso5Test {
         //Se mockea el area para no depender de lo que no se prueba.
         Recurso recurso = mock(Recurso.class);
         when(recurso.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+
         EstadoOcupacion estadoOcupacionMock = mock(EstadoOcupacion.class);
         when(estadoOcupacionMock.ocupar()).thenReturn(estadoOcupacionMock);
+
         Area area = new Area(new Coordenada(3, 3), new AreaTierra(), estadoOcupacionMock, new EstadoPisoNull(), recurso);
         area.actualizarEstado(pilon);
 
@@ -143,15 +141,17 @@ public class CasoDeUso5Test {
         Area areaConMoho = new Area(0, 0);
         Moho moho = new Moho(areaConMoho);
 
-        Raza raza = new Raza();
-        raza.recolectarMineral(10000);
-        raza.recolectarGas(10000);
+        //Mockeo la raza para no depender de recursos.
+        Raza raza = mock(Raza.class);
 
         //Se mockea el area para no depender de lo que no se prueba.
         Recurso recurso = mock(Recurso.class);
         when(recurso.construible(any(ConstruibleRecurso.class))).thenReturn(true);
-        EstadoOcupacion estadoOcupacionMock = mock(EstadoOcupacion.class);
+
+        EstadoOcupacion estadoOcupacionMock = mock(Desocupada.class);
         when(estadoOcupacionMock.ocupar()).thenReturn(estadoOcupacionMock);
+        when(estadoOcupacionMock.ejecutar(any(EstadoPiso.class))).thenCallRealMethod();
+
         Area area = new Area(new Coordenada(5, 5), new AreaTierra(), estadoOcupacionMock, new EstadoPisoNull(), recurso);
         area.actualizarEstado(moho);
 

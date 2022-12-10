@@ -4,20 +4,18 @@ import edu.fiuba.algo3.modelo.Area.Coordenada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 public class CasoDeUso4Test {
     //Ver como resolver el tema de que una sola entidad puede ocupar un area.

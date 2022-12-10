@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
 
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Recurso.RecursoNull;
+import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
 
 public abstract class ConstruibleRecurso {
     public boolean construible(Area area) {

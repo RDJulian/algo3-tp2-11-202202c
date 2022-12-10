@@ -4,17 +4,18 @@ import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.EstadoEnergia;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.TipoArea.TipoArea;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.EstadoOcupacion;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPiso;
-import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
-import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Recurso.RecursoNull;
+import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
+
+import java.util.ArrayList;
 
 public class Area {
     private Coordenada coordenada;
@@ -65,15 +66,26 @@ public class Area {
     }
 
     public void energizar() {
-        this.estadoPiso = new TieneEnergiaPilon();
+        this.estadoPiso = estadoPiso.energizar();
     }
 
     public void cubrirConMoho() {
-        this.estadoPiso = new TieneMoho();
+        this.estadoPiso = estadoOcupacion.ejecutar(estadoPiso);
+    }
+
+    public EstadoEnergia energizar(EstadoEnergia estadoEnergia) {
+        return estadoPiso.energizar(estadoEnergia);
     }
 
     public void actualizarEstado(Piso piso) {
         piso.actualizarPosicionEnRango(this);
+    }
+
+    public void actualizarEstado(ArrayList<Piso> pisos) {
+        this.estadoPiso = estadoPiso.limpiar();
+        for (Piso piso : pisos) {
+            piso.actualizarPosicionEnRango(this);
+        }
     }
 
     //Se delega a la coordenada este comportamiento. Se necesitan dos metodos para evitar romper Tell, don't ask.

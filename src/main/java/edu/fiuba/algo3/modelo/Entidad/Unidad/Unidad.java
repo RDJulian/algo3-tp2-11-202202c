@@ -25,7 +25,9 @@ public abstract class Unidad extends Entidad {
 
     //Cambiar.
     public void moverse(Area area) {
+        Area areaAnterior = this.area;
         this.area = area.movible(tipoUnidad);
+        areaAnterior.desocupar();
     }
 
     @Override

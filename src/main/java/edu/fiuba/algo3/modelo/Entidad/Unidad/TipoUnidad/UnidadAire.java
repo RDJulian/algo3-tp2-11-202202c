@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Area.Area;
 public class UnidadAire extends TipoUnidad {
     @Override
     public Area movible(AreaEspacial area, Area posicion) {
-        return posicion;
+        return posicion.ocupar();
     }
 
     @Override

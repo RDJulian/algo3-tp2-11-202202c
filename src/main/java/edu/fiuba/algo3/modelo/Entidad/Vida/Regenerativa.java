@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Vida;
+package edu.fiuba.algo3.modelo.Entidad.Vida;
 
 public class Regenerativa extends Vida {
 

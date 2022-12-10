@@ -9,12 +9,10 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Vida.Escudo;
-import edu.fiuba.algo3.modelo.Vida.Normal;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Escudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Normal;
 
 public class Asimilador extends Estructura implements ExtraeRecurso {
 
@@ -50,6 +48,7 @@ public class Asimilador extends Estructura implements ExtraeRecurso {
         this.estadoOperativo = new EnConstruccion(6);
         this.estadoInvisibilidad = new Visible();
         this.afectaSuministro = new NoAfecta();
+        this.raza = new Raza();
     }
 
     @Override

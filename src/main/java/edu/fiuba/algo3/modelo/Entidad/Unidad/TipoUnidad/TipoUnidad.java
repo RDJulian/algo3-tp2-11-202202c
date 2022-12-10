@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Area.Area;
 
 public abstract class TipoUnidad {
     public Area movible(Area area) {
-        return area;
+        return area.ocupar();
     }
 
     public abstract Area movible(AreaEspacial area, Area posicion);

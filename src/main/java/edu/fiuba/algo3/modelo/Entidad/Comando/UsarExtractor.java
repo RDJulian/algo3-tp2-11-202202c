@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Comando;
 
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 
 public class UsarExtractor implements Comando {
     private Area area;

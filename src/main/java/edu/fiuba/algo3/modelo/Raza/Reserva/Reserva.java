@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Reserva;
+package edu.fiuba.algo3.modelo.Raza.Reserva;
 
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 

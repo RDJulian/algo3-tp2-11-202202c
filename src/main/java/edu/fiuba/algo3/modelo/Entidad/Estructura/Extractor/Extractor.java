@@ -11,13 +11,11 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
 
 public class Extractor extends Estructura implements ExtraeRecurso {
     private Zanganos zanganos;
@@ -61,6 +59,7 @@ public class Extractor extends Estructura implements ExtraeRecurso {
 
         //Instanciacion de clases especificas a esta entidad
         this.zanganos = new Zanganos();
+        this.raza = new Raza();
     }
 
     @Override

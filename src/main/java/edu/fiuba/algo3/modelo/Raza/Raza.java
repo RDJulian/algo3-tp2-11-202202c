@@ -4,8 +4,7 @@ import edu.fiuba.algo3.modelo.Asentamiento.Asentamiento;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.Raza.Reserva.Reserva;
 
 public class Raza {
     private Reserva reservaMineral;

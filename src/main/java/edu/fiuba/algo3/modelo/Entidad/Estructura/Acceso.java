@@ -6,17 +6,15 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.SinEnergia;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.Energia;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoOperativo;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Vida.Escudo;
-import edu.fiuba.algo3.modelo.Vida.Normal;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Escudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Normal;
 
 public class Acceso extends Estructura implements UsaMementoOperativo {
     private Energia energia;
@@ -60,6 +58,8 @@ public class Acceso extends Estructura implements UsaMementoOperativo {
 
         //Instanciacion de clases especificas a esta entidad
         this.energia = new Energia(this);
+        this.raza = new Raza();
+        this.area = new Area(0, 0);
     }
 
     @Override

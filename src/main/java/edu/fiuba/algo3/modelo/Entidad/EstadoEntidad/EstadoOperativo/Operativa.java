@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
 import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
-import edu.fiuba.algo3.modelo.Vida.Defensa;
-import edu.fiuba.algo3.modelo.Vida.Vida;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Defensa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Vida;
 
 public class Operativa implements EstadoOperativo {
     @Override

@@ -2,20 +2,17 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Area.Coordenada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
-import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.EstadoOcupacion;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPiso;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

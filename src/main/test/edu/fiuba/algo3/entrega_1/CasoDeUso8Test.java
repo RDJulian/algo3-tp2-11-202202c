@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -253,6 +252,7 @@ public class CasoDeUso8Test {
         Area area = mock(Area.class);
         when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
         when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.ocupar()).thenReturn(area);
 
         assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
 

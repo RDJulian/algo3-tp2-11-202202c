@@ -14,14 +14,13 @@ import edu.fiuba.algo3.modelo.Entidad.Memento.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
-import edu.fiuba.algo3.modelo.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
 
 import java.util.ArrayList;
 
@@ -72,6 +71,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         //Instanciacion de clases especificas a esta entidad
         this.larvas = new Larvas();
         this.invisibilidad = new Invisibilidad(this);
+        this.raza = new Raza();
     }
 
     public void usarLarva() {

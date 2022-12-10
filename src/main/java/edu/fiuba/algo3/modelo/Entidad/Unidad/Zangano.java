@@ -13,10 +13,8 @@ import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.RecursoNull;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
 
 import java.util.ArrayList;
 
@@ -61,6 +59,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.tipoUnidad = new UnidadAire();
         this.ataque = new NoAtaca();
         this.contadorDeBajas = 0;
+        this.area = new Area(0, 0);
     }
 
     //Constructor para testear.

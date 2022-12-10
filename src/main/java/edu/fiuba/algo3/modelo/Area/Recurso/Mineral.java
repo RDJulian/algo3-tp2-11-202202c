@@ -1,14 +1,12 @@
-package edu.fiuba.algo3.modelo.Recurso;
+package edu.fiuba.algo3.modelo.Area.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
-import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
-import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
-public class GasVespeno extends Recurso {
-    public GasVespeno() {
-        this.unidades = 5000;
+public class Mineral extends Recurso {
+    public Mineral() {
+        this.unidades = 2000;
     }
 
     //Codigo muy similar.
@@ -20,7 +18,7 @@ public class GasVespeno extends Recurso {
             this.unidades = 0;
         } else {
             this.unidades -= unidades;
-            raza.recolectarGas(unidades);
+            raza.recolectarMineral(unidades);
         }
     }
 

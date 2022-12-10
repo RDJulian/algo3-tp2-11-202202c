@@ -10,8 +10,8 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadNull;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
-import edu.fiuba.algo3.modelo.Vida.Defensa;
-import edu.fiuba.algo3.modelo.Vida.Vida;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Defensa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Vida;
 
 public abstract class Entidad {
     protected Raza raza;
@@ -47,6 +47,7 @@ public abstract class Entidad {
 
     public void destruir() {
         this.estadoOperativo = new Destruido();
+        area.desocupar();
         raza.destruirEntidad(this);
     }
 }

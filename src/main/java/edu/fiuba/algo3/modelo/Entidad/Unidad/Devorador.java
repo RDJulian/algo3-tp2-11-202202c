@@ -11,8 +11,8 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
 
 import java.util.ArrayList;
 

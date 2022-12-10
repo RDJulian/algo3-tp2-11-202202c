@@ -7,11 +7,10 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstrucci
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
 
 public class ReservaDeReproduccion extends Estructura {
 
@@ -34,6 +33,7 @@ public class ReservaDeReproduccion extends Estructura {
         this.estadoOperativo = new EnConstruccion(12);
         this.estadoInvisibilidad = new Visible();
         this.afectaSuministro = new NoAfecta();
+        this.raza = new Raza();
 
         raza.registarEntidad(this);
     }

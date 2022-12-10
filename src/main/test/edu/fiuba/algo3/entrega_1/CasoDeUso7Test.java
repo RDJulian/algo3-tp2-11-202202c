@@ -2,11 +2,9 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Area.Coordenada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
-import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Asimilador;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
@@ -14,18 +12,15 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CasoDeUso7Test {
 
@@ -33,7 +28,7 @@ public class CasoDeUso7Test {
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
         Raza raza = new Raza();
         Recurso recurso = new Mineral();
-        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new EstadoPisoNull(), recurso);
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), recurso);
 
         Zangano zangano = new Zangano(raza, area);
         zangano.pasarTurno();

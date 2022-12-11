@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Entidad;
 
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoEntidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadAtacante;
 import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -18,6 +17,7 @@ public abstract class Entidad {
     protected Vida vida;
     protected Defensa defensa;
     protected Raza raza;
+    protected String nombre;
 
     public void operable() {
         this.estadoEntidad.operable();
@@ -35,4 +35,6 @@ public abstract class Entidad {
         this.estadoEntidad = new Destruido();
         raza.destruirEntidad(this);
     }
+
+    public String getNombre(){ return this.nombre; }
 }

@@ -26,6 +26,8 @@ public class Criadero extends Estructura implements GeneraLarva {
         this.defensa = new SinEscudo();
         this.raza = raza;
         this.larvas = new Larvas();
+
+        this.nombre = "criadero";
     }
 
     //Este metodo es propio y unico de esta estructura.

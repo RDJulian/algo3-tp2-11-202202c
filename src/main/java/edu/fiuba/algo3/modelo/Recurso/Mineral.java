@@ -12,6 +12,7 @@ public class Mineral extends Recurso {
     public Mineral(Posicion posicion) {
         this.posicion = posicion;
         this.unidades = 2000;
+        this.nombre = "mineral";
     }
 
     //Codigo muy similar.
@@ -34,4 +35,5 @@ public class Mineral extends Recurso {
         }
         sobreRecurso.visitar(this);
     }
+
 }

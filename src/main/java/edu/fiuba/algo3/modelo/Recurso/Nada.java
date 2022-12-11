@@ -6,6 +6,11 @@ import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public class Nada extends Recurso {
+
+    public Nada(){
+        this.nombre = "nada";
+        this.unidades = 0;
+    }
     @Override
     public void construible(ConstruibleRecurso sobreRecurso, Posicion posicion) {
         sobreRecurso.visitar(this);

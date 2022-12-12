@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
+import edu.fiuba.algo3.vista.contenedores.ContenedorPropiedadesJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -9,13 +10,12 @@ public class ConfirmarNombreEventHandler implements EventHandler<ActionEvent> {
 
     TextField textField;
     Label label;
+    ContenedorPropiedadesJugadores contenedor;
 
-    String nombreJugador;
-
-    public ConfirmarNombreEventHandler (TextField textField, Label label, String nombreJugador){
+    public ConfirmarNombreEventHandler (TextField textField, Label label, ContenedorPropiedadesJugadores contenedor){
         this.textField = textField;
         this.label = label;
-        this.nombreJugador = nombreJugador;
+        this.contenedor = contenedor;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ConfirmarNombreEventHandler implements EventHandler<ActionEvent> {
         } else {
 
             this.label.setText("Su nombre es: " +  this.textField.getText());
-            this.nombreJugador = this.textField.getText();
+            this.contenedor.setearNombre(this.textField.getText());
 
         }
     }

@@ -13,7 +13,10 @@ import javafx.scene.text.Font;
 
 public class ContenedorPropiedadesJugadores extends VBox {
 
-    public ContenedorPropiedadesJugadores (String raza, String nombreJugador, String colorJugador){
+    String nombreJugador = "no cambió el nombre";
+    String colorJugador = "no cambio el color";
+
+    public ContenedorPropiedadesJugadores (String raza){
 
         //Configuración del Layout
         Image imagen = new Image("file:src/main/java/edu/fiuba/algo3/vista/Assets/fondoPropiedadesJugadores.png");
@@ -32,16 +35,16 @@ public class ContenedorPropiedadesJugadores extends VBox {
         EtiquetaSecundaria etiquetaNombre = new EtiquetaSecundaria("Su nombre es:");
         EtiquetaSecundaria etiquetaColor = new EtiquetaSecundaria("Su color es:");
 
-        BotonConfirmar botonConfirmar = new BotonConfirmar(etiquetaNombre, nombre, nombreJugador);
+        BotonConfirmar botonConfirmar = new BotonConfirmar(etiquetaNombre, nombre, this);
 
         BotonLimpiarTexto botonLimpiarTexto = new BotonLimpiarTexto(nombre);
 
         EtiquetaSecundaria etiquetaSecundariaColor = new EtiquetaSecundaria ("Por favor elija su color:");
 
-        BotonColor botonAmarillo = new BotonColor("Amarillo", "ECF143", etiquetaColor, colorJugador);
-        BotonColor botonRojo = new BotonColor("Rojo", "F53C3C", etiquetaColor, colorJugador);
-        BotonColor botonVerde = new BotonColor("Verde", "68D03E", etiquetaColor, colorJugador);
-        BotonColor botonAzul = new BotonColor("Azul", "4075D8", etiquetaColor, colorJugador);
+        BotonColor botonAmarillo = new BotonColor("Amarillo", "ECF143", etiquetaColor, this);
+        BotonColor botonRojo = new BotonColor("Rojo", "F53C3C", etiquetaColor, this);
+        BotonColor botonVerde = new BotonColor("Verde", "68D03E", etiquetaColor, this);
+        BotonColor botonAzul = new BotonColor("Azul", "4075D8", etiquetaColor, this);
 
         //Contenedores
         HBox nombreRaza = new HBox();
@@ -67,4 +70,21 @@ public class ContenedorPropiedadesJugadores extends VBox {
 
         this.getChildren().addAll(nombreRaza, contenedorNombre, contenedorColor, etiquetaNombre, etiquetaColor);
     }
+
+    public void setearNombre (String nuevoNombre){
+        this.nombreJugador = nuevoNombre;
+    }
+
+    public void setearColor (String nuevoColor){
+        this.colorJugador = nuevoColor;
+    }
+
+    public String getNombre (){
+        return this.nombreJugador;
+    }
+
+    public String getColor (){
+        return this.colorJugador;
+    }
+
 }

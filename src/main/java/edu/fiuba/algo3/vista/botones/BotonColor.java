@@ -7,10 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import edu.fiuba.algo3.vista.contenedores.ContenedorPropiedadesJugadores;
 
 public class BotonColor extends Button {
 
-    public BotonColor (String color, String rgb, EtiquetaSecundaria etiqueta, String colorJugador){
+    public BotonColor (String color, String rgb, EtiquetaSecundaria etiqueta, ContenedorPropiedadesJugadores contenedor){
 
         this.setText(color);
         this.setFont(Font.font("arial", 15));
@@ -20,7 +21,7 @@ public class BotonColor extends Button {
         Background unFondo = new Background(new BackgroundFill(Color.web(rgb, 0.4F), new CornerRadii(25), new Insets(0)));
         super.setBackground(unFondo);
 
-        this.setOnAction(new ConfirmarColorEventHandler(etiqueta, color, colorJugador));
+        this.setOnAction(new ConfirmarColorEventHandler(etiqueta, color, rgb, contenedor));
     }
 
 }

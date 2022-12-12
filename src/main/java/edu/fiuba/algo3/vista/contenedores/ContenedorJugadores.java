@@ -4,14 +4,12 @@ import edu.fiuba.algo3.modelo.Juego.Juego;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.vista.Etiquetas.EtiquetaPrincipal;
 import edu.fiuba.algo3.vista.Etiquetas.EtiquetaSecundaria;
-import edu.fiuba.algo3.vista.botones.BotonComenzarJuego;
 import edu.fiuba.algo3.vista.botones.BotonDeSalir;
-import edu.fiuba.algo3.vista.botones.BotonRefrescar;
+import edu.fiuba.algo3.vista.botones.BotonGenerarJuego;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -21,10 +19,10 @@ public class ContenedorJugadores extends VBox {
     Juego juego;
     Raza razaJugador1;
     Raza razaJugador2;
-    String nombreJugador1 = "nombre 1";
-    String nombreJugador2 = "nombre 2";
-    String colorJugador1 = "color 1";
-    String colorJugador2 = "nombre 2";
+    String nombreJugador1;
+    String nombreJugador2;
+    String colorJugador1;
+    String colorJugador2;
 
     public ContenedorJugadores (Stage stage, Scene escenaPrincipal) {
         super();
@@ -45,16 +43,14 @@ public class ContenedorJugadores extends VBox {
         //Controladores
         EtiquetaPrincipal etiquetaPrincipal = new EtiquetaPrincipal("Por favor elijan sus nombre y colores para empezar a jugar:");
 
-        BotonComenzarJuego botonComenzarJuego = new BotonComenzarJuego(stage, escenaPrincipal);
-
         BotonDeSalir botonDeSalir = new BotonDeSalir();
 
-        ContenedorPropiedadesJugadores jugador1 = new ContenedorPropiedadesJugadores("Protos", this.nombreJugador1, this.colorJugador1);
-        ContenedorPropiedadesJugadores jugador2 = new ContenedorPropiedadesJugadores("Zerg", this.nombreJugador2, this.colorJugador2);
+        ContenedorPropiedadesJugadores jugador1 = new ContenedorPropiedadesJugadores("Protos");
+        ContenedorPropiedadesJugadores jugador2 = new ContenedorPropiedadesJugadores("Zerg");
 
-        EtiquetaSecundaria prueba = new EtiquetaSecundaria(this.nombreJugador1 + "," + this.nombreJugador2 + "," + this.colorJugador1 + "," + this.colorJugador2);
-        prueba.setTextFill(Color.GOLDENROD);
-        BotonRefrescar botonPrueba = new BotonRefrescar(this.nombreJugador1, this.nombreJugador2, this.colorJugador1, this.colorJugador2, prueba);
+        EtiquetaSecundaria mensajeDeError = new EtiquetaSecundaria("");
+
+        BotonGenerarJuego botonGenerarJuego = new BotonGenerarJuego(stage, escenaPrincipal, this, jugador1, jugador2, mensajeDeError);
 
         //Contenedores
         HBox contenedorTop = new HBox();
@@ -68,9 +64,35 @@ public class ContenedorJugadores extends VBox {
 
         HBox contenedorBottom = new HBox();
         contenedorBottom.setAlignment(Pos.CENTER_RIGHT);
-        contenedorBottom.getChildren().addAll(botonPrueba, prueba, botonDeSalir, botonComenzarJuego);
+        contenedorBottom.getChildren().addAll(mensajeDeError, botonDeSalir, botonGenerarJuego);
         contenedorBottom.setPadding(new Insets(10));
 
         this.getChildren().addAll(contenedorTop, contenedorCentro, contenedorBottom);
+    }
+
+    public void setNombres (String jugador1, String jugador2){
+        this.nombreJugador1 = jugador1;
+        this.nombreJugador2 = jugador2;
+    }
+
+    public void setColores (String color1, String color2){
+        this.colorJugador1 = color1;
+        this.colorJugador2 = color2;
+    }
+
+    public String getNombre1 (){
+        return this.nombreJugador1;
+    }
+
+    public String getNombre2 (){
+        return this.nombreJugador2;
+    }
+
+    public String getColor1 (){
+        return this.colorJugador1;
+    }
+
+    public String getColor2 (){
+        return this.colorJugador2;
     }
 }

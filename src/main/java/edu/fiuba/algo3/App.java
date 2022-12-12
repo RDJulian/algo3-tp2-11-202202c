@@ -1,8 +1,8 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.vista.ContenedorBienvenidos;
-import edu.fiuba.algo3.vista.ContenedorGanador;
-import edu.fiuba.algo3.vista.ContenedorJugadores;
+import edu.fiuba.algo3.vista.contenedores.ContenedorBienvenidos;
+import edu.fiuba.algo3.vista.contenedores.ContenedorGanador;
+import edu.fiuba.algo3.vista.contenedores.ContenedorJugadores;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -31,7 +31,6 @@ public class App extends Application {
 
         stage.setScene(escenaBienvenidos);
 
-        //stage.setFullScreen(true);
         stage.show();
 
     }
@@ -39,16 +38,5 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
-    /*
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-     */
 
 }

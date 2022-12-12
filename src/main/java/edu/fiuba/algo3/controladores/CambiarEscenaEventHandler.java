@@ -5,11 +5,11 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
-public class BotonCambiarEscenaEventHandler implements EventHandler<ActionEvent> {
+public class CambiarEscenaEventHandler implements EventHandler<ActionEvent> {
 
     Stage stage;
     Scene proximaEscena;
-    public BotonCambiarEscenaEventHandler (Stage stage, Scene proximaEscena) {
+    public CambiarEscenaEventHandler(Stage stage, Scene proximaEscena) {
         this.stage = stage;
         this.proximaEscena = proximaEscena;
     }
@@ -17,8 +17,6 @@ public class BotonCambiarEscenaEventHandler implements EventHandler<ActionEvent>
     @Override
     public void handle (ActionEvent actionEvent){
         stage.setScene(proximaEscena);
-        //stage.setFullScreenExitHint("");
-        //stage.setFullScreen(true);
     }
 
 }

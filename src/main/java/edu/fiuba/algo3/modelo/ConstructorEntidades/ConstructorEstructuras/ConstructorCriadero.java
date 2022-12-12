@@ -1,36 +1,20 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
+
+import java.util.ArrayList;
 
 public class ConstructorCriadero extends ConstructorEstructuras {
-    public ConstructorCriadero() {
-        this.construibleRecurso = new NoSobreRecurso();
-        this.construiblePiso = new RangoMoho();
-        this.construibleEstructura = new NoRequiereEstructura();
-        this.costoMineral = 200;
-        this.costoGas = 0;
-        this.costoSuministro = 0;
+    public ConstructorCriadero(ArrayList<Estructura> estructuras, Raza raza) {
+        super(estructuras, raza);
     }
 
     @Override
-    public Estructura construir(Posicion posicion, Recurso recurso, Piso piso, Raza raza, Estructura estructuraCorrelativa) {
-        posicion.ocupable();
-        recurso.construible(construibleRecurso, posicion);
-        piso.construible(construiblePiso, posicion);
-        raza.construible(costoMineral, costoGas, costoSuministro);
-        construibleEstructura.visitar(estructuraCorrelativa);
-
-        raza.gastarRecursos(costoMineral, costoGas);
-        Estructura estructura = new Criadero(posicion, raza);
-        raza.registarEntidad(estructura);
-        return estructura;
+    public Estructura construir(Area area) {
+        return new Criadero(area, raza);
     }
 }

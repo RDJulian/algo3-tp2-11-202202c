@@ -1,27 +1,39 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.ConstructorNoInicializadoException;
+import edu.fiuba.algo3.modelo.Excepciones.ConstructorYaInicializadoException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
+import java.util.ArrayList;
+
 public class ConstructorGuardian extends ConstructorUnidades {
-    public ConstructorGuardian() {
-        this.construibleEstructura = new NoRequiereEstructura();
-        this.costoMineral = 50;
-        this.costoGas = 100;
-        this.costoSuministro = 4;
+    //Singleton pattern.
+    static private ConstructorGuardian instancia;
+
+    public ConstructorGuardian(ArrayList<Estructura> estructuras, Raza raza) {
+        super(estructuras, raza);
+        instancia = this;
     }
 
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
-        construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas, costoSuministro);
+    public ConstructorGuardian inicializar(ArrayList<Estructura> estructuras, Raza raza) {
+        if (instancia != null) {
+            throw new ConstructorYaInicializadoException();
+        }
+        return new ConstructorGuardian(estructuras, raza);
+    }
 
-        raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Guardian(posicion, raza);
-        raza.registarEntidad(unidad);
-        return unidad;
+    public static ConstructorGuardian obtenerInstancia() {
+        if (instancia == null) {
+            throw new ConstructorNoInicializadoException();
+        }
+        return instancia;
+    }
+
+    public Unidad construir(Area area) {
+        return new Guardian(area, raza);
     }
 }

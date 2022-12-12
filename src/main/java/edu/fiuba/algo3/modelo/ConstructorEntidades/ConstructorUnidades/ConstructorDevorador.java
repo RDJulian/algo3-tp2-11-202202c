@@ -1,27 +1,39 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Devorador;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.ConstructorNoInicializadoException;
+import edu.fiuba.algo3.modelo.Excepciones.ConstructorYaInicializadoException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
+import java.util.ArrayList;
+
 public class ConstructorDevorador extends ConstructorUnidades {
-    public ConstructorDevorador() {
-        this.construibleEstructura = new NoRequiereEstructura();
-        this.costoMineral = 150;
-        this.costoGas = 50;
-        this.costoSuministro = 4;
+    //Singleton pattern.
+    static private ConstructorDevorador instancia;
+
+    private ConstructorDevorador(ArrayList<Estructura> estructuras, Raza raza) {
+        super(estructuras, raza);
+        instancia = this;
     }
 
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
-        construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas, costoSuministro);
+    public ConstructorDevorador inicializar(ArrayList<Estructura> estructuras, Raza raza) {
+        if (instancia != null) {
+            throw new ConstructorYaInicializadoException();
+        }
+        return new ConstructorDevorador(estructuras, raza);
+    }
 
-        raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Devorador(posicion, raza);
-        raza.registarEntidad(unidad);
-        return unidad;
+    public static ConstructorDevorador obtenerInstancia() {
+        if (instancia == null) {
+            throw new ConstructorNoInicializadoException();
+        }
+        return instancia;
+    }
+
+    public Unidad construir(Area area) {
+        return new Devorador(area, raza);
     }
 }

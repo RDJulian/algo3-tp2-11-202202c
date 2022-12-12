@@ -1,50 +1,74 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreMineral;
+import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
-import edu.fiuba.algo3.modelo.Vida.Escudo;
-import edu.fiuba.algo3.modelo.Vida.Normal;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
 
-public class NexoMineral extends Estructura implements ExtraeRecurso {
-    private Recurso mineral;
+public class NexoMineral extends Estructura implements ExtraeRecurso, EstructuraNoRequerida {
+    public NexoMineral(Area area, Raza raza) {
+        //Chequeos
+        try {
+            this.area = area.ocupar();
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
+        }
 
-    public NexoMineral(Posicion posicion, Recurso mineral, Raza raza) {
-        this.posicion = posicion;
-        posicion.ocupar();
-        this.mineral = mineral;
-        mineral.ocupar(this);
+        try {
+            raza.gastarRecursos(50, 0);
+        } catch (RecursoInsuficienteException e) {
+            area.desocupar();
+            throw new ConstruccionNoValidaException();
+        }
+
+        boolean construible = new SobreMineral().construible(area)
+                && new RangoPilon().construible(area);
+
+        if (!construible) {
+            throw new ConstruccionNoValidaException();
+        }
+
+        //Instanciacion de clases comunes
         this.raza = raza;
+        this.vida = new Normal(250, this);
+        this.escudo = new ConEscudo(250, vida);
 
-        this.estadoEntidad = new EnConstruccion(4);
-        this.rolEnSuministro = new Neutral();
-        this.vida = new Normal(250);
-        this.defensa = new Escudo(250);
-    }
+        this.estadoOperativo = new EnConstruccion(4);
+        this.estadoInvisibilidad = new Visible();
+        this.afectaSuministro = new NoAfecta();
 
-    public void extraerRecurso() {
-        mineral.extraerRecurso(20, raza, this); //Asumimos 20.
+        raza.registarEntidad(this);
     }
 
     @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoEntidad.operable();
+    public void extraerRecurso() {
+        area.extraerRecurso(20, raza); //Asumimos 20.
     }
 
     @Override
     public void pasarTurno() {
-        try {
-            estadoEntidad.operable();
-            extraerRecurso();
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        } catch (EntidadNoOperativaException exception) {
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        }
+        estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ExtraerRecurso(this));
+    }
+
+    @Override
+    public boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura) {
+        return construibleEstructura.visitar(this);
     }
 }

@@ -3,66 +3,42 @@ package edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 
-public class RequiereAcceso implements ConstruibleEstructura {
+import java.util.ArrayList;
+
+public class RequiereAcceso extends ConstruibleEstructura {
     @Override
-    public void visitar(Estructura estructura) {
-        estructura.construible(this);
+    public boolean visitar(Acceso acceso) {
+        return true;
     }
 
     @Override
-    public void visitar(Acceso estructura) {
-
+    public boolean visitar(Espiral espiral) {
+        return false;
     }
 
     @Override
-    public void visitar(Asimilador estructura) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(Guarida guarida) {
+        return false;
     }
 
     @Override
-    public void visitar(Criadero estructura) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(PuertoEstelar puertoEstelar) {
+        return false;
     }
 
     @Override
-    public void visitar(Espiral estructura) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(ReservaDeReproduccion reservaDeReproduccion) {
+        return false;
     }
 
     @Override
-    public void visitar(Extractor estructura) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(Criadero criadero) {
+        return false;
     }
 
     @Override
-    public void visitar(Guarida estructura) {
-        throw new ConstruccionNoValidaException();
-    }
-
-    @Override
-    public void visitar(NexoMineral estructura) {
-        throw new ConstruccionNoValidaException();
-    }
-
-    @Override
-    public void visitar(Pilon estructura) {
-        throw new ConstruccionNoValidaException();
-    }
-
-    @Override
-    public void visitar(ReservaDeReproduccion estructura) {
-        throw new ConstruccionNoValidaException();
-    }
-
-    @Override
-    public void visitar(PuertoEstelar estructura) {
-        throw new ConstruccionNoValidaException();
-    }
-
-    @Override
-    public void visitar(Nada nada) {
-        throw new ConstruccionNoValidaException();
+    public boolean visitar(EstructuraNoRequerida estructuraNoRequerida) {
+        return false;
     }
 }

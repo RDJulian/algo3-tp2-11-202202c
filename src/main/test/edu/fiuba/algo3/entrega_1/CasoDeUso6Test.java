@@ -1,28 +1,41 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 
 public class CasoDeUso6Test {
 
     @Test
     public void test01ElMohoSeExpandeCadaDosTurnosYSePuedeConstruirEnElLuegoDeExpandirse() {
-        ConstruiblePiso rangoMoho = new RangoMoho();
-        Moho moho = new Moho(new Posicion(0, 0));
-        Posicion posicion = new Posicion(6, 6);
+        Area areaMoho = new Area(0, 0);
+        Moho moho = new Moho(areaMoho);
 
-        assertThrows(ConstruccionNoValidaException.class, () -> moho.construible(rangoMoho, posicion));
+        Area area = new Area(6, 6);
+        area.actualizarEstado(moho);
+
+        //Mockeo la raza para no depender de recursos.
+        Raza raza = mock(Raza.class);
+
+        ConstructorEstructuras constructor = new ConstructorCriadero(new ArrayList<>(), raza);
+
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
         moho.pasarTurno();
         moho.pasarTurno();
 
-        assertDoesNotThrow(() -> moho.construible(rangoMoho, posicion));
+        area.actualizarEstado(moho);
+
+        assertDoesNotThrow(() -> constructor.construir(area));
     }
 }

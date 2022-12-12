@@ -1,43 +1,42 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Entidad.Comando.Atacar;
+import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
+import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueUnidad;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
-import edu.fiuba.algo3.modelo.RolEnSuministro.RolEnSuministro;
+import edu.fiuba.algo3.modelo.Area.Area;
 
 public abstract class Unidad extends Entidad {
     protected TipoUnidad tipoUnidad;
-    protected boolean invisible;
+    protected Ataque ataque;
+    protected int contadorDeBajas;
 
     public void atacar(Entidad entidad) {
-        throw new AtaqueNoValidoException();
+        estadoOperativo.operable(new Atacar(ataque, entidad, area));
     }
-
-    @Override
-    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, UnidadAtacante unidadAtacante) {
-        estadoEntidad.atacable();
-        if (!posicion.enRango(posicionAtacante, rangoAtaque) || invisible) {
-            throw new AtaqueNoValidoException();
-        }
-        int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
-        defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
-    }
-
-    public void moverse(Posicion posicion) {
-        this.posicion = posicion;
-    }
-
+    
     public void moverse(Area area) {
-        estadoEntidad.operable();
-        area.mover(this, tipoUnidad);
+        Area areaAnterior = this.area;
+        this.area = area.moverse(tipoUnidad);
+        areaAnterior.desocupar();
+    }
+
+    public void sumarBaja() {
+        contadorDeBajas += 1;
     }
 
     @Override
     public int afectarSuministro(int suministro) {
-        return rolEnSuministro.afectarSuministro(suministro);
+        return afectaSuministro.afectarSuministro(suministro);
     }
+
+    @Override
+    public void recibirAtaque(Ataque ataque, Unidad atacante) {
+        ataque.ataqueEnRango(area);
+        Comando recibirAtaque = new RecibirAtaqueUnidad(this, ataque, tipoUnidad, atacante);
+        estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
+    }
+
 }

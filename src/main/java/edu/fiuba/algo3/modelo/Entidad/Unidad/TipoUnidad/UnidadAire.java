@@ -1,15 +1,20 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad;
 
-import edu.fiuba.algo3.modelo.Area.AreaEspacial;
-import edu.fiuba.algo3.modelo.Area.AreaTierra;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaEspacial;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Area.Area;
 
-public class UnidadAire implements TipoUnidad {
-    //Una unidad de aire puede moverse libremente.
+public class UnidadAire extends TipoUnidad {
     @Override
-    public void visitar(AreaTierra area){}
+    public Area moverse(AreaTierra area, Area posicion) {
+        return posicion.ocupar();
+    }
+
     @Override
-    public void visitar(AreaEspacial area){}
+    public Area moverse(AreaEspacial area, Area posicion) {
+        return posicion.ocupar();
+    }
 
     @Override
     public int recibirDanio(int danioAire, int danioTierra) {

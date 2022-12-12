@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo.Entidad.Suministro;
 
-public class Consumidor extends AfectaSuministro {
-
+public class Consumidor implements AfectaSuministro {
     private int suministroAConsumir;
 
-    public Consumidor(int cantAConsumir) {
-        this.suministroAConsumir = cantAConsumir;
+    public Consumidor(int cantidadAConsumir) {
+        this.suministroAConsumir = cantidadAConsumir;
     }
 
     @Override

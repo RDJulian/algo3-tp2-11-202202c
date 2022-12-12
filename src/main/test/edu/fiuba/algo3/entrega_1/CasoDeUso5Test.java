@@ -150,7 +150,7 @@ public class CasoDeUso5Test {
 
         EstadoOcupacion estadoOcupacionMock = mock(Desocupada.class);
         when(estadoOcupacionMock.ocupar()).thenReturn(estadoOcupacionMock);
-        when(estadoOcupacionMock.ejecutar(any(EstadoPiso.class))).thenCallRealMethod();
+        when(estadoOcupacionMock.cubrirConMoho(any(EstadoPiso.class))).thenCallRealMethod();
 
         Area area = new Area(new Coordenada(5, 5), new AreaTierra(), estadoOcupacionMock, new EstadoPisoNull(), recurso);
         area.actualizarEstado(moho);

@@ -7,17 +7,17 @@ import edu.fiuba.algo3.modelo.Area.Area;
 
 public class NoAtaca extends Ataque {
     @Override
-    public int calcularDanio(TipoUnidad tipoUnidad, Area areaObjetivo) {
+    public int calcularDanio(TipoUnidad tipoUnidad) {
+        return 0;
+    }
+
+    @Override
+    public int calcularDanio() {
         return 0;
     }
 
     @Override
     public void atacar(Entidad entidad, Area areaAtacante) {
         throw new AtaqueNoValidoException();
-    }
-
-    @Override
-    public int calcularDanio(Area area) {
-        return 0;
     }
 }

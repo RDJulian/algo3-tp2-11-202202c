@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.Constr
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorNexoMineral;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorPilon;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -32,7 +33,7 @@ public class CasoDeUso16Test {
         Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), new RecursoNull());
 
         constructor.construir(area);
-        assertThrows(PosicionOcupadaException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
     }
 
     @Test

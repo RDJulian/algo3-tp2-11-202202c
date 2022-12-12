@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Entidad.Memento;
+package edu.fiuba.algo3.modelo.Entidad.Memento.MementoOperativo;
 
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
 
@@ -11,6 +11,6 @@ public class MementoOperativo {
     }
 
     public EstadoOperativo restaurar() {
-        return this.snapshot;
+        return snapshot;
     }
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Comando;
 
-public class Nada implements Comando {
+public class ComandoNull implements Comando {
     public void ejecutar() {
     }
 }

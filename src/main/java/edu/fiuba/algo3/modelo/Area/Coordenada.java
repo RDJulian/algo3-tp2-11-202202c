@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Area;
 
 public class Coordenada {
-    private final int posicionX;
-    private final int posicionY;
+    private int posicionX;
+    private int posicionY;
 
     public Coordenada(int posicionX, int posicionY) {
         this.posicionX = posicionX;

@@ -16,18 +16,15 @@ public abstract class Unidad extends Entidad {
     public void atacar(Entidad entidad) {
         estadoOperativo.operable(new Atacar(ataque, entidad, area));
     }
-
-    @Override
-    public void recibirAtaque(Ataque ataque, Unidad atacante) {
-        Comando recibirAtaque = new RecibirAtaqueUnidad(this, ataque, tipoUnidad, area, atacante);
-        estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
-    }
-
-    //Cambiar.
+    
     public void moverse(Area area) {
         Area areaAnterior = this.area;
-        this.area = area.movible(tipoUnidad);
+        this.area = area.moverse(tipoUnidad);
         areaAnterior.desocupar();
+    }
+
+    public void sumarBaja() {
+        contadorDeBajas += 1;
     }
 
     @Override
@@ -35,7 +32,11 @@ public abstract class Unidad extends Entidad {
         return afectaSuministro.afectarSuministro(suministro);
     }
 
-    public void sumarBaja() {
-        contadorDeBajas += 1;
+    @Override
+    public void recibirAtaque(Ataque ataque, Unidad atacante) {
+        ataque.ataqueEnRango(area);
+        Comando recibirAtaque = new RecibirAtaqueUnidad(this, ataque, tipoUnidad, atacante);
+        estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
     }
+
 }

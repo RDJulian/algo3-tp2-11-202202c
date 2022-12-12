@@ -9,7 +9,7 @@ public class Desocupada implements EstadoOcupacion {
     }
 
     @Override
-    public EstadoPiso ejecutar(EstadoPiso estadoPiso) {
+    public EstadoPiso cubrirConMoho(EstadoPiso estadoPiso) {
         return estadoPiso.cubrirConMoho();
     }
 }

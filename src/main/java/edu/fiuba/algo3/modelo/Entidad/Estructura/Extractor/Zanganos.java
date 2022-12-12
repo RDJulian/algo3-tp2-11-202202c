@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 
 import java.util.ArrayList;
 
-public class Zanganos {
+public class Zanganos implements AgregaZanganos {
     private ArrayList<Zangano> zanganos;
 
     public Zanganos() {
@@ -19,10 +19,16 @@ public class Zanganos {
         }
     }
 
+    @Override
     public void agregarZangano(Zangano zangano) {
         if (zanganos.size() >= 3) {
             throw new ExtractorLlenoException();
         }
         zanganos.add(zangano);
+    }
+
+    @Override
+    public void quitarZangano(Zangano zangano) {
+        zanganos.remove(zangano);
     }
 }

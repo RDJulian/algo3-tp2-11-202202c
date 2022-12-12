@@ -10,21 +10,18 @@ public class RecibirAtaqueUnidad implements Comando {
     private Entidad entidad;
     private Ataque ataque;
     private TipoUnidad tipoUnidad;
-    private Area area;
-
     private Unidad atacante;
 
-    public RecibirAtaqueUnidad(Entidad entidad, Ataque ataque, TipoUnidad tipoUnidad, Area areaObjetivo, Unidad atacante) {
+    public RecibirAtaqueUnidad(Entidad entidad, Ataque ataque, TipoUnidad tipoUnidad, Unidad atacante) {
         this.entidad = entidad;
         this.ataque = ataque;
         this.tipoUnidad = tipoUnidad;
-        this.area = areaObjetivo;
         this.atacante = atacante;
     }
 
     @Override
     public void ejecutar() {
-        int danioARecibir = ataque.calcularDanio(tipoUnidad, area);
+        int danioARecibir = ataque.calcularDanio(tipoUnidad);
         entidad.daniar(danioARecibir, atacante);
     }
 }

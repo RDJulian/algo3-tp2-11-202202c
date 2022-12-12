@@ -15,25 +15,21 @@ public class Ataca extends Ataque {
     }
 
     @Override
-    public int calcularDanio(TipoUnidad tipoUnidad, Area areaObjetivo) {
-        if (!areaObjetivo.enRango(areaAtacante, rangoAtaque)) {
+    public int calcularDanio(TipoUnidad tipoUnidad) {
+        return tipoUnidad.recibirDanio(danioAire, danioTierra);
+    }
+
+    @Override
+    public int calcularDanio() {
+        if (danioTierra == 0) {
             throw new AtaqueNoValidoException();
         }
-        int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
-        return danioARecibir;
+        return danioTierra;
     }
 
     @Override
     public void atacar(Entidad entidad, Area areaAtacante) {
         this.areaAtacante = areaAtacante;
         entidad.recibirAtaque(this, unidadAtacante);
-    }
-
-    @Override
-    public int calcularDanio(Area area) {
-        if (!area.enRango(areaAtacante, rangoAtaque) || danioTierra == 0) {
-            throw new AtaqueNoValidoException();
-        }
-        return danioTierra;
     }
 }

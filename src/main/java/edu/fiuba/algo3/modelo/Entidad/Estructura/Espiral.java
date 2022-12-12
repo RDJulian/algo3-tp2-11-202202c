@@ -4,23 +4,37 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstru
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Zanganos;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 
 import java.util.ArrayList;
 
 public class Espiral extends Estructura {
     public Espiral(Area area, Raza raza, ArrayList<Estructura> estructuras) {
         //Chequeos
-        this.raza = raza;
-        raza.gastarRecursos(150, 100);
+        try {
+            this.area = area.ocupar();
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
+        }
 
+        try {
+            raza.gastarRecursos(150, 100);
+        } catch (RecursoInsuficienteException e) {
+            area.desocupar();
+            throw new ConstruccionNoValidaException();
+        }
 
         boolean construible = new NoSobreRecurso().construible(area)
                 && new RangoMoho().construible(area)
@@ -29,10 +43,11 @@ public class Espiral extends Estructura {
         if (!construible) {
             throw new ConstruccionNoValidaException();
         }
-        this.area = area.ocupar();
+
         //Instanciacion de clases comunes
-        this.vida = new Regenerativa(1300);
-        this.defensa = new SinEscudo();
+        this.raza = raza;
+        this.vida = new Regenerativa(1300, this);
+        this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(10);
         this.estadoInvisibilidad = new Visible();
@@ -41,20 +56,8 @@ public class Espiral extends Estructura {
         raza.registarEntidad(this);
     }
 
-    public Espiral() {
-        //Instanciacion de clases comunes
-        this.vida = new Regenerativa(1300);
-        this.defensa = new SinEscudo();
-
-        this.estadoOperativo = new EnConstruccion(10);
-        this.estadoInvisibilidad = new Visible();
-        this.afectaSuministro = new NoAfecta();
-        this.raza = new Raza();
-        this.area = new Area(0, 0);
-    }
-
     @Override
-    public boolean construible(ConstruibleEstructura construibleEstructura) {
+    public boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura) {
         return construibleEstructura.visitar(this);
     }
 }

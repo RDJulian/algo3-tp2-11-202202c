@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
 import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
+import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoBool;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
-import edu.fiuba.algo3.modelo.Entidad.Vida.Defensa;
-import edu.fiuba.algo3.modelo.Entidad.Vida.Vida;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.Escudo;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Vida;
 
 public interface EstadoOperativo {
     //El estado de una entidad determina como pasa el turno, si puede hacer
@@ -12,9 +13,11 @@ public interface EstadoOperativo {
 
     void operable(Comando comando);
 
-    EstadoOperativo pasarTurno(Vida vida, Defensa defensa, Comando comandoPorTurno);
+    boolean operable(ComandoBool comando);
 
-    void atacable(Comando comando);
+    EstadoOperativo pasarTurno(Vida vida, Escudo escudo, Comando comandoAlPasarTurno);
 
-    int afectarSuministro(AfectaSuministro rol, int suministro);
+    void atacable(Comando comandoAtaque);
+
+    int afectarSuministro(AfectaSuministro afectaSuministro, int suministro);
 }

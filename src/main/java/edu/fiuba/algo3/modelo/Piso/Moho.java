@@ -17,7 +17,7 @@ public class Moho implements Piso {
 
     //Llamar este metodo luego de pasar turno para todas las posiciones. La idea es que se actualicen todas.
     @Override
-    public void actualizarPosicionEnRango(Area area) {
+    public void actualizarArea(Area area) {
         if (area.enRango(this.area, rango)) {
             area.cubrirConMoho();
         }

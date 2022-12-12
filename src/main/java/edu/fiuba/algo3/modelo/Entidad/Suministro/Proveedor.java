@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Suministro;
 
-public class Proveedor extends AfectaSuministro {
+public class Proveedor implements AfectaSuministro {
     //Se podria pedir el suministro que aporta.
 
     public int afectarSuministro(int suministroActual) {

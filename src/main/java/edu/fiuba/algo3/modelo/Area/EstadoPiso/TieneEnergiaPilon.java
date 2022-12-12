@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Area.EstadoPiso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.EstadoEnergia;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.EstadoEnergia.EstadoEnergia;
 
 public class TieneEnergiaPilon implements EstadoPiso {
     @Override
@@ -11,7 +11,7 @@ public class TieneEnergiaPilon implements EstadoPiso {
 
     @Override
     public EstadoEnergia energizar(EstadoEnergia estadoEnergia) {
-        return estadoEnergia;
+        return estadoEnergia.energizar();
     }
 
     @Override

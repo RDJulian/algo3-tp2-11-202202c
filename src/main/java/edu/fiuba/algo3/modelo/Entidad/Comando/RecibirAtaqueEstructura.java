@@ -8,20 +8,18 @@ import edu.fiuba.algo3.modelo.Area.Area;
 public class RecibirAtaqueEstructura implements Comando {
     private Entidad entidad;
     private Ataque ataque;
-    private Area area;
     private Unidad atacante;
 
-    public RecibirAtaqueEstructura(Entidad entidad, Ataque ataque, Area areaObjetivo, Unidad atacante) {
+    public RecibirAtaqueEstructura(Entidad entidad, Ataque ataque, Unidad atacante) {
         this.entidad = entidad;
         this.ataque = ataque;
-        this.area = areaObjetivo;
         this.atacante = atacante;
     }
 
     @Override
     public void ejecutar() {
-        int danioARecibir = ataque.calcularDanio(area);
-        entidad.daniar(danioARecibir, atacante);
+        int danioRecibido = ataque.calcularDanio();
+        entidad.daniar(danioRecibido, atacante);
     }
 }
 

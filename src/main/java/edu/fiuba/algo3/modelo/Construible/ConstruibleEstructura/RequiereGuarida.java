@@ -13,11 +13,6 @@ public class RequiereGuarida extends ConstruibleEstructura {
     }
 
     @Override
-    public boolean visitar(Asimilador asimilador) {
-        return false;
-    }
-
-    @Override
     public boolean visitar(Espiral espiral) {
         return false;
     }
@@ -25,16 +20,6 @@ public class RequiereGuarida extends ConstruibleEstructura {
     @Override
     public boolean visitar(Guarida guarida) {
         return true;
-    }
-
-    @Override
-    public boolean visitar(NexoMineral nexoMineral) {
-        return false;
-    }
-
-    @Override
-    public boolean visitar(Pilon pilon) {
-        return false;
     }
 
     @Override
@@ -53,7 +38,7 @@ public class RequiereGuarida extends ConstruibleEstructura {
     }
 
     @Override
-    public boolean visitar(Extractor extractor) {
+    public boolean visitar(EstructuraNoRequerida estructuraNoRequerida) {
         return false;
     }
 }

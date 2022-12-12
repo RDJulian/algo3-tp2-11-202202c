@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Entidad.Memento;
+package edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
 
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidad;
 
@@ -11,6 +11,6 @@ public class MementoInvisibilidad {
     }
 
     public EstadoInvisibilidad restaurar() {
-        return this.snapshot;
+        return snapshot;
     }
 }

@@ -3,21 +3,34 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
-import edu.fiuba.algo3.modelo.Entidad.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Entidad.Vida.SinEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 
 public class ReservaDeReproduccion extends Estructura {
-
     public ReservaDeReproduccion(Area area, Raza raza) {
         //Chequeos
-        this.raza = raza;
-        raza.gastarRecursos(150, 0);
+        try {
+            this.area = area.ocupar();
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
+        }
+
+        try {
+            raza.gastarRecursos(150, 0);
+        } catch (RecursoInsuficienteException e) {
+            area.desocupar();
+            throw new ConstruccionNoValidaException();
+        }
 
         boolean construible = new NoSobreRecurso().construible(area)
                 && new RangoMoho().construible(area);
@@ -25,31 +38,21 @@ public class ReservaDeReproduccion extends Estructura {
         if (!construible) {
             throw new ConstruccionNoValidaException();
         }
-        this.area = area.ocupar();
+
         //Instanciacion de clases comunes
-        this.vida = new Regenerativa(1000);
-        this.defensa = new SinEscudo();
+        this.raza = raza;
+        this.vida = new Regenerativa(1000, this);
+        this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(12);
         this.estadoInvisibilidad = new Visible();
         this.afectaSuministro = new NoAfecta();
-        this.raza = new Raza();
 
         raza.registarEntidad(this);
     }
 
-    public ReservaDeReproduccion() {
-        //Instanciacion de clases comunes
-        this.vida = new Regenerativa(1000);
-        this.defensa = new SinEscudo();
-
-        this.estadoOperativo = new EnConstruccion(12);
-        this.estadoInvisibilidad = new Visible();
-        this.afectaSuministro = new NoAfecta();
-    }
-
     @Override
-    public boolean construible(ConstruibleEstructura construibleEstructura) {
+    public boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura) {
         return construibleEstructura.visitar(this);
     }
 }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstru
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -172,7 +173,7 @@ public class CasoDeUso8Test {
         when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
         when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
         raza.recolectarMineral(1);
         raza.recolectarGas(1);

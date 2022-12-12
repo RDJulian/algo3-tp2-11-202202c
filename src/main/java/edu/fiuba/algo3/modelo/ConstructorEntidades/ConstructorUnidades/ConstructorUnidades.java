@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 import java.util.ArrayList;
 
 public abstract class ConstructorUnidades {
+    //Factory Method.
     protected ArrayList<Estructura> estructuras;
     protected Raza raza;
 

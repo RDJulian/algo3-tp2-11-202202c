@@ -19,15 +19,9 @@ public abstract class ConstruibleEstructura {
 
     public abstract boolean visitar(Acceso acceso);
 
-    public abstract boolean visitar(Asimilador asimilador);
-
     public abstract boolean visitar(Espiral espiral);
 
     public abstract boolean visitar(Guarida guarida);
-
-    public abstract boolean visitar(NexoMineral nexoMineral);
-
-    public abstract boolean visitar(Pilon pilon);
 
     public abstract boolean visitar(PuertoEstelar puertoEstelar);
 
@@ -35,5 +29,5 @@ public abstract class ConstruibleEstructura {
 
     public abstract boolean visitar(Criadero criadero);
 
-    public abstract boolean visitar(Extractor extractor);
+    public abstract boolean visitar(EstructuraNoRequerida estructuraNoRequerida);
 }

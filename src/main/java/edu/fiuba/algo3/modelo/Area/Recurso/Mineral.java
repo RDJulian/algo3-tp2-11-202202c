@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Area.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
@@ -20,6 +21,16 @@ public class Mineral extends Recurso {
             this.unidades -= unidades;
             raza.recolectarMineral(unidades);
         }
+    }
+
+    @Override
+    public boolean movible(Zangano unidad) {
+        return true;
+    }
+
+    @Override
+    public boolean movible() {
+        return false;
     }
 
     @Override

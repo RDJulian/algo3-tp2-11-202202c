@@ -12,6 +12,7 @@ public class GasVespeno extends Recurso {
     public GasVespeno(Posicion posicion) {
         this.posicion = posicion;
         this.unidades = 5000;
+        this.nombre = "gas";
     }
 
     //Codigo muy similar.
@@ -34,4 +35,5 @@ public class GasVespeno extends Recurso {
         }
         sobreRecurso.visitar(this);
     }
+
 }

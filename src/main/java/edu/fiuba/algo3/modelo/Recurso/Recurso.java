@@ -13,6 +13,7 @@ public abstract class Recurso {
     protected int unidades;
     protected Posicion posicion;
     protected ExtraeRecurso extraeRecurso;
+    protected String nombre;
 
     public abstract void construible(ConstruibleRecurso sobreRecurso, Posicion posicion);
 
@@ -32,4 +33,8 @@ public abstract class Recurso {
         this.extraeRecurso = zangano;
         this.posicion.ocupar();
     }
+
+    public String getNombre(){ return this.nombre;}
+
+    public int getRecursoRestante(){ return unidades; }
 }

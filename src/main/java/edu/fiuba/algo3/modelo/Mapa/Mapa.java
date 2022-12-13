@@ -10,7 +10,6 @@ public class Mapa {
     private ArrayList<ArrayList<Area>> tablero;
     private ArrayList<Piso> pisos;
     private ArrayList<Moho> moho;
-    static Mapa instancia;
 
     private Mapa() {
         this.pisos = new ArrayList<>();
@@ -18,11 +17,12 @@ public class Mapa {
         this.tablero = new TableroFactory().generarTablero();
     }
 
+    private static class Holder {
+        private static Mapa INSTANCE = new Mapa();
+    }
+
     static public Mapa obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new Mapa();
-        }
-        return instancia;
+        return Holder.INSTANCE;
     }
 
     public void generarBases(Base unaBase, Base otraBase) {

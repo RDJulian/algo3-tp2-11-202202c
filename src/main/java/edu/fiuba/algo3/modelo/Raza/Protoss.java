@@ -3,17 +3,16 @@ package edu.fiuba.algo3.modelo.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;
 
 public class Protoss extends Raza {
-    static Protoss instancia;
-
     private Protoss() {
         super();
     }
 
+    private static class Holder {
+        private static Protoss INSTANCE = new Protoss();
+    }
+
     static public Protoss obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new Protoss();
-        }
-        return instancia;
+        return Holder.INSTANCE;
     }
 
     public void registrarEntidad(Scout scout) {
@@ -23,6 +22,6 @@ public class Protoss extends Raza {
 
     //Metodo unicamente para testear
     public void reiniciar() {
-        instancia = new Protoss();
+        Holder.INSTANCE = new Protoss();
     }
 }

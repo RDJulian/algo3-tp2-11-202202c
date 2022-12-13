@@ -79,14 +79,14 @@ public class CasoDeUso28Test {
         AmoSupremo unidad6 = new AmoSupremo(new Area(1, 0));
         pasarKTurnos(unidad6, 10);
 
-        ArrayList<RevelaEntidades> AmosSupremos = new ArrayList<>();
-        AmosSupremos.add(unidad6);
+        ArrayList<RevelaEntidades> amosSupremos = new ArrayList<>();
+        amosSupremos.add(unidad6);
 
         atacarKVeces(unidad, unidad2, 5);
         atacarKVeces(unidad, unidad3, 5);
         atacarKVeces(unidad, unidad4, 5);
 
-        unidad.actualizarEstado(AmosSupremos);
+        unidad.actualizarEstado(amosSupremos);
 
         assertDoesNotThrow(() -> unidad5.atacar(unidad));
     }
@@ -155,16 +155,53 @@ public class CasoDeUso28Test {
         AmoSupremo unidad5 = new AmoSupremo(new Area(1, 0));
         pasarKTurnos(unidad5, 10);
 
-        ArrayList<RevelaEntidades> AmosSupremos = new ArrayList<>();
-        AmosSupremos.add(unidad5);
+        ArrayList<RevelaEntidades> amosSupremos = new ArrayList<>();
+        amosSupremos.add(unidad5);
 
         atacarKVeces(unidad, unidad2, 5);
         atacarKVeces(unidad, unidad3, 5);
         atacarKVeces(unidad, espiral, 125);
 
-        unidad.actualizarEstado(AmosSupremos);
+        unidad.actualizarEstado(amosSupremos);
 
         assertDoesNotThrow(() -> unidad4.atacar(unidad));
+    }
+
+    @Test
+    public void test07UnZealotMataATresUnidadesSeVuelveInvisibleYPuedeSerAtacadoLuegoSeMueveYEsInvisible() {
+        Zealot unidad = new Zealot(new Area(0, 0));
+        pasarKTurnos(unidad, 10);
+
+        Unidad unidad2 = new Zerling(new Area(0, 1));
+        pasarKTurnos(unidad2, 10);
+
+        Unidad unidad3 = new Zerling(new Area(0, 1));
+        pasarKTurnos(unidad3, 10);
+
+        Unidad unidad4 = new Zerling(new Area(0, 1));
+        pasarKTurnos(unidad4, 10);
+
+        Unidad unidad5 = new Hidralisco(new Area(1, 1));
+        pasarKTurnos(unidad5, 10);
+
+        AmoSupremo unidad6 = new AmoSupremo(new Area(1, 0));
+        pasarKTurnos(unidad6, 10);
+
+        ArrayList<RevelaEntidades> amosSupremos = new ArrayList<>();
+        amosSupremos.add(unidad6);
+
+        atacarKVeces(unidad, unidad2, 5);
+        atacarKVeces(unidad, unidad3, 5);
+        atacarKVeces(unidad, unidad4, 5);
+
+        unidad.actualizarEstado(amosSupremos);
+
+        assertDoesNotThrow(() -> unidad5.atacar(unidad));
+
+        unidad.moverse(new Area(10, 10));
+        unidad.actualizarEstado(amosSupremos);
+
+        assertThrows(AtaqueNoValidoException.class, () -> unidad5.atacar(unidad));
     }
 
     void atacarKVeces(Unidad unidad, Entidad entidad, int k) {

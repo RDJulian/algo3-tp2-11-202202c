@@ -7,18 +7,16 @@ import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;
 import edu.fiuba.algo3.modelo.Excepciones.CriaderoSinLarvasException;
 import edu.fiuba.algo3.modelo.Excepciones.RazaZergSinLarvasException;
 
 import java.util.ArrayList;
 
 public class Zerg extends Raza {
-    static Zerg instancia;
     private ArrayList<Extractor> extractores;
     private ArrayList<Criadero> criaderos;
-
     private ConstructorDevorador constructorDevorador;
-
     private ConstructorGuardian constructorGuardian;
 
     private Zerg() {
@@ -29,11 +27,17 @@ public class Zerg extends Raza {
         this.constructorGuardian = new ConstructorGuardian(estructuras, this);
     }
 
+    private static class Holder {
+        private static Zerg INSTANCE = new Zerg();
+    }
+
     static public Zerg obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new Zerg();
-        }
-        return instancia;
+        return Holder.INSTANCE;
+    }
+
+    public void registrarEntidad(Scout scout) {
+        unidades.add(scout);
+        reveladores.add(scout);
     }
 
     public Extractor buscarExtractor(Area area) {
@@ -97,6 +101,6 @@ public class Zerg extends Raza {
 
     //Metodo unicamente para testear
     public void reiniciar() {
-        instancia = new Zerg();
+        Holder.INSTANCE = new Zerg();
     }
 }

@@ -36,7 +36,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
             throw new SuministroInsuficienteException();
         }
 
-        if (!area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereCriadero().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereCriadero().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 
@@ -59,6 +59,13 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         zerg.registrarEntidad(this);
     }
 
+    public Zangano(Area area, Zerg zerg) {
+        this();
+        this.area = area;
+        raza = zerg;
+        this.zerg = zerg;
+    }
+
     public Zangano() {
         //Instanciacion de clases comunes
         this.vida = new Regenerativa(25, this);
@@ -78,6 +85,10 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     //de un extractor, no desocupa el area y se retira de el. Si no se cumple lo anterior, desocupa el area.
     @Override
     public void moverse(Area area) {
+        if (area == this.area) {
+            throw new MovimientoNoValidoException();
+        }
+
         Area areaAnterior = this.area;
         Extractor extractor = zerg.buscarExtractor(area);
 

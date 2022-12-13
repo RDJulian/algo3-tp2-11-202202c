@@ -31,7 +31,7 @@ public class PuertoEstelar extends Estructura implements UsaMementoOperativo {
         raza = protoss;
 
         //Chequeos
-        if (!area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequiereAcceso().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequiereAcceso().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

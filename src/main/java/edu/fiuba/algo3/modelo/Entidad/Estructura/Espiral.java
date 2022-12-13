@@ -26,7 +26,7 @@ public class Espiral extends Estructura {
         raza = zerg;
 
         //Chequeos
-        if (!area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereGuarida().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereGuarida().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

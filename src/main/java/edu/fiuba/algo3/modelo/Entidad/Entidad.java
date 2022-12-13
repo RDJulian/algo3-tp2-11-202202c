@@ -49,7 +49,11 @@ public abstract class Entidad {
     public void destruir() {
         this.estadoOperativo = new Destruido();
         this.afectaSuministro = new NoAfecta();
-        area.desocupar();
-        raza.destruirEntidad(this);
+        if (area != null) {
+            area.desocupar();
+        }
+        if (raza != null) {
+            raza.destruirEntidad(this);
+        }
     }
 }

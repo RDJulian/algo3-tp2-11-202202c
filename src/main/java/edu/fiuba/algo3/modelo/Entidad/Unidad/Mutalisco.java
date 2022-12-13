@@ -36,7 +36,7 @@ public class Mutalisco extends Unidad {
             throw new SuministroInsuficienteException();
         }
 
-        if (!area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereEspiral().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereEspiral().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

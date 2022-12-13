@@ -42,7 +42,6 @@ public class ConstructorTest {
         reiniciarRazas();
 
         Protoss raza = Protoss.obtenerInstancia();
-        raza.gastarRecursos(200, 0);
 
         raza.recolectarMineral(100);
 
@@ -60,7 +59,6 @@ public class ConstructorTest {
         reiniciarRazas();
 
         Protoss raza = Protoss.obtenerInstancia();
-        raza.gastarRecursos(200, 0);
 
         ConstructorEstructuras constructor = new ConstructorPilon(raza.getEstructuras(), raza);
 
@@ -127,6 +125,7 @@ public class ConstructorTest {
         reiniciarRazas();
 
         Protoss protoss = Protoss.obtenerInstancia();
+        protoss.recolectarMineral(100);
 
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
@@ -150,6 +149,7 @@ public class ConstructorTest {
         reiniciarRazas();
 
         Zerg zerg = Zerg.obtenerInstancia();
+        zerg.recolectarMineral(50);
 
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
@@ -177,6 +177,7 @@ public class ConstructorTest {
         reiniciarRazas();
 
         Zerg zerg = Zerg.obtenerInstancia();
+        zerg.recolectarMineral(200);
 
         ConstructorEstructuras constructor = new ConstructorCriadero(zerg.getEstructuras(), zerg);
         Area unArea = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
@@ -201,6 +202,7 @@ public class ConstructorTest {
         reiniciarRazas();
 
         Zerg zerg = Zerg.obtenerInstancia();
+        zerg.recolectarMineral(200);
 
         ConstructorEstructuras constructor = new ConstructorCriadero(zerg.getEstructuras(), zerg);
         Area unArea = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
@@ -227,6 +229,8 @@ public class ConstructorTest {
     public void reiniciarRazas() {
         Protoss.obtenerInstancia().reiniciar();
         Zerg.obtenerInstancia().reiniciar();
+        Protoss.obtenerInstancia().gastarRecursos(200, 0);
+        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 
     public void pasarKTurnos(Raza raza, int k) {

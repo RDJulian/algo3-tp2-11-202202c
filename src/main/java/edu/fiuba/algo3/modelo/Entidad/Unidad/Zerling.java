@@ -29,7 +29,7 @@ public class Zerling extends Unidad {
             throw new SuministroInsuficienteException();
         }
 
-        if (!area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereReservaDeReproduccion().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereReservaDeReproduccion().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

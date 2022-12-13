@@ -28,7 +28,7 @@ public class Hidralisco extends Unidad {
             throw new SuministroInsuficienteException();
         }
 
-        if (!area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereGuarida().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereGuarida().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

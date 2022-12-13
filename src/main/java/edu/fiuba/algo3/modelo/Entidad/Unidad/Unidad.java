@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
+import edu.fiuba.algo3.modelo.Excepciones.MovimientoSobreRecursoException;
 
 public abstract class Unidad extends Entidad {
     protected TipoUnidad tipoUnidad;
@@ -19,6 +21,9 @@ public abstract class Unidad extends Entidad {
     }
 
     public void moverse(Area area) {
+        if (area == this.area) {
+            throw new MovimientoNoValidoException();
+        }
         Area areaAnterior = this.area;
         this.area = area.moverse(this, tipoUnidad);
         areaAnterior.desocupar();

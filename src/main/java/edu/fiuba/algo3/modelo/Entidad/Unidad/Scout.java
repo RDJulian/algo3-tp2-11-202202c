@@ -35,7 +35,7 @@ public class Scout extends Unidad implements RevelaEntidades {
             throw new SuministroInsuficienteException();
         }
 
-        if (!area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequierePuertoEstelar().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequierePuertoEstelar().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

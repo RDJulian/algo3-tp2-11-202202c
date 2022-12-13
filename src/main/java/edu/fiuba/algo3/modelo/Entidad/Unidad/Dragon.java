@@ -32,7 +32,7 @@ public class Dragon extends Unidad {
             throw new SuministroInsuficienteException();
         }
 
-        if (!area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequiereAcceso().construible(estructuras)) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequiereAcceso().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 

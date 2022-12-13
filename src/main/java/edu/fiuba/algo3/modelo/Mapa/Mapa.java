@@ -51,4 +51,8 @@ public class Mapa {
         pisos.add(moho);
         this.moho.add(moho);
     }
+
+    public Area getArea(int i, int j) {
+        return tablero.get(i + 25).get(j + 25);
+    }
 }

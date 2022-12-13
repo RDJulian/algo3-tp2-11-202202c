@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.vista.contenedores;
 
 import edu.fiuba.algo3.modelo.Juego.Juego;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import edu.fiuba.algo3.vista.Etiquetas.EtiquetaPrincipal;
 import edu.fiuba.algo3.vista.Etiquetas.EtiquetaSecundaria;
 import edu.fiuba.algo3.vista.botones.BotonDeSalir;
@@ -17,24 +19,20 @@ public class ContenedorJugadores extends VBox {
 
     Stage stage;
     Juego juego;
-    Raza razaJugador1;
-    Raza razaJugador2;
     String nombreJugador1;
     String nombreJugador2;
     String colorJugador1;
     String colorJugador2;
 
-    public ContenedorJugadores (Stage stage, Scene escenaPrincipal) {
+    public ContenedorJugadores(Stage stage, Scene escenaPrincipal) {
         super();
 
         this.stage = stage;
         this.juego = new Juego();
-        this.razaJugador1 = new Raza();
-        this.razaJugador2 = new Raza();
 
         //Configuración del Layout
-        this.setAlignment (Pos.CENTER);
-        this.setSpacing (20);
+        this.setAlignment(Pos.CENTER);
+        this.setSpacing(20);
         this.setPadding(new Insets(25));
         Image imagen = new Image("file:src/main/java/edu/fiuba/algo3/vista/Assets/fondoJugadores.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -45,7 +43,7 @@ public class ContenedorJugadores extends VBox {
 
         BotonDeSalir botonDeSalir = new BotonDeSalir();
 
-        ContenedorPropiedadesJugadores jugador1 = new ContenedorPropiedadesJugadores("Protos");
+        ContenedorPropiedadesJugadores jugador1 = new ContenedorPropiedadesJugadores("Protoss");
         ContenedorPropiedadesJugadores jugador2 = new ContenedorPropiedadesJugadores("Zerg");
 
         EtiquetaSecundaria mensajeDeError = new EtiquetaSecundaria("");
@@ -70,29 +68,29 @@ public class ContenedorJugadores extends VBox {
         this.getChildren().addAll(contenedorTop, contenedorCentro, contenedorBottom);
     }
 
-    public void setNombres (String jugador1, String jugador2){
+    public void setNombres(String jugador1, String jugador2) {
         this.nombreJugador1 = jugador1;
         this.nombreJugador2 = jugador2;
     }
 
-    public void setColores (String color1, String color2){
+    public void setColores(String color1, String color2) {
         this.colorJugador1 = color1;
         this.colorJugador2 = color2;
     }
 
-    public String getNombre1 (){
+    public String getNombre1() {
         return this.nombreJugador1;
     }
 
-    public String getNombre2 (){
+    public String getNombre2() {
         return this.nombreJugador2;
     }
 
-    public String getColor1 (){
+    public String getColor1() {
         return this.colorJugador1;
     }
 
-    public String getColor2 (){
+    public String getColor2() {
         return this.colorJugador2;
     }
 }

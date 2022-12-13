@@ -3,7 +3,9 @@ package edu.fiuba.algo3.controladores;
 import edu.fiuba.algo3.modelo.Excepciones.JugadoresNoCompatiblesException;
 import edu.fiuba.algo3.modelo.Excepciones.NombreNoValidoException;
 import edu.fiuba.algo3.modelo.Juego.Juego;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import edu.fiuba.algo3.vista.contenedores.ContenedorJugadores;
 import edu.fiuba.algo3.vista.contenedores.ContenedorPropiedadesJugadores;
 import javafx.event.ActionEvent;
@@ -21,11 +23,11 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
     ContenedorPropiedadesJugadores jugador1;
     ContenedorPropiedadesJugadores jugador2;
     Juego juego;
-    Raza razaJugador1;
-    Raza razaJugador2;
+    Protoss razaJugador1;
+    Zerg razaJugador2;
     Label etiqueta;
 
-    public GenerarJuegoEventHandler(Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta){
+    public GenerarJuegoEventHandler(Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta) {
 
         this.stage = stage;
         this.siguienteEscena = siguienteEscena;
@@ -33,32 +35,32 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.juego = new Juego();
-        this.razaJugador1 = new Raza();
-        this.razaJugador2 = new Raza();
+        this.razaJugador1 = Protoss.obtenerInstancia();
+        this.razaJugador2 = Zerg.obtenerInstancia();
         this.etiqueta = etiqueta;
 
     }
 
     @Override
-    public void handle (ActionEvent actionEvent){
+    public void handle(ActionEvent actionEvent) {
 
 
         this.contenedor.setNombres(this.jugador1.getNombre(), this.jugador2.getNombre());
         this.contenedor.setColores(this.jugador1.getColor(), this.jugador2.getColor());
 
-        try  {
+        try {
 
             this.juego.registrarJugadores(this.contenedor.getNombre1(), this.contenedor.getColor1(), this.razaJugador1, this.contenedor.getNombre2(), this.contenedor.getColor2(), this.razaJugador2);
 
             stage.setScene(siguienteEscena);
 
 
-        }catch (NombreNoValidoException e){
+        } catch (NombreNoValidoException e) {
 
             this.etiqueta.setText("Un nombre no es valido");
             this.etiqueta.setTextFill(Color.RED);
 
-        }catch (JugadoresNoCompatiblesException e){
+        } catch (JugadoresNoCompatiblesException e) {
 
             this.etiqueta.setText("Los jugadores comparten nombre o color");
             this.etiqueta.setTextFill(Color.RED);

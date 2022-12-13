@@ -16,7 +16,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
@@ -50,6 +49,11 @@ public class Devorador extends Unidad implements UsaMementoInvisibilidad {
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public Devorador(Area area) {
+        this();
+        this.area = area;
     }
 
     public Devorador() {

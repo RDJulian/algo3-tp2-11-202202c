@@ -11,7 +11,6 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstrucci
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
@@ -49,6 +48,11 @@ public class Hidralisco extends Unidad {
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public Hidralisco(Area area) {
+        this();
+        this.area = area;
     }
 
     public Hidralisco() {

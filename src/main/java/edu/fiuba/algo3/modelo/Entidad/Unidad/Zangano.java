@@ -16,7 +16,6 @@ import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
@@ -117,7 +116,9 @@ public class Zangano extends Unidad implements ExtraeRecurso {
 
     @Override
     public void extraerRecurso() {
-        area.extraerRecurso(10, raza);
+        if (area != null) {
+            area.extraerRecurso(10, raza);
+        }
     }
 
     @Override

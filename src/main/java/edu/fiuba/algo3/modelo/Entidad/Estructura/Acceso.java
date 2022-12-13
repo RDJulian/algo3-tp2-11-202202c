@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.SinEnergia;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
@@ -16,11 +14,9 @@ import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
-import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 public class Acceso extends Estructura implements UsaMementoOperativo {
     private Energia energia;
@@ -45,6 +41,11 @@ public class Acceso extends Estructura implements UsaMementoOperativo {
         }
 
         protoss.registrarEntidad(this);
+    }
+
+    public Acceso(Area area) {
+        this();
+        this.area = area;
     }
 
     public Acceso() {

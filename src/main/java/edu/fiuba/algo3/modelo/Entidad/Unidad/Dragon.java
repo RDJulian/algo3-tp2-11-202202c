@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
@@ -18,7 +17,6 @@ import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 
 import java.util.ArrayList;
 
@@ -47,6 +45,11 @@ public class Dragon extends Unidad {
         }
 
         protoss.registrarEntidad(this);
+    }
+
+    public Dragon(Area area) {
+        this();
+        this.area = area;
     }
 
     public Dragon() {

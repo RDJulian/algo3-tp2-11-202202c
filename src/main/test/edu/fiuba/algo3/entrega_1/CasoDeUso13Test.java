@@ -5,9 +5,7 @@ import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.Constr
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 

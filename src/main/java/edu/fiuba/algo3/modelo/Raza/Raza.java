@@ -54,7 +54,7 @@ public abstract class Raza {
             suministroTotal = estructura.afectarSuministro(suministroTotal);
         }
         for (Unidad unidad : unidades) {
-            unidad.afectarSuministro(suministroTotal);
+            suministroTotal = unidad.afectarSuministro(suministroTotal);
         }
         return suministroTotal;
     }

@@ -40,7 +40,7 @@ public class TableroFactory {
     }
 
     public void generarBases(ArrayList<ArrayList<Area>> tablero, Base unaBase, Base otraBase) {
-        unaBase.esOpuesta(otraBase);
+        unaBase.opuesta(otraBase);
 
         unaBase.generarBase(tablero);
         otraBase.generarBase(tablero);

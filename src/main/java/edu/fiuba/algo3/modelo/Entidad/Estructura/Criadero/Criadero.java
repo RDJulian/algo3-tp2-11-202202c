@@ -53,6 +53,11 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         zerg.registrarEntidad(this);
     }
 
+    public Criadero(Area area) {
+        this();
+        this.area = area;
+    }
+
     public Criadero() {
         //Instanciacion de clases comunes
         this.vida = new Regenerativa(500, this);

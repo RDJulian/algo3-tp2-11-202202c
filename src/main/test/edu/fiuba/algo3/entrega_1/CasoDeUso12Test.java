@@ -22,7 +22,7 @@ public class CasoDeUso12Test {
         estructura.daniar(900);
         //Si regenerase vida, aguantaria el golpe.
 
-        assertThrows(EntidadDestruidaException.class, () -> estructura.operable());
+        assertThrows(EntidadDestruidaException.class, estructura::operable);
     }
 
     public void pasarKTurnos(Estructura estructura, int k) {

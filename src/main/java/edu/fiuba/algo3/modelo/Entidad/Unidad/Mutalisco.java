@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorDevorador;
-import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorGuardian;
-import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorUnidades;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereEspiral;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Comando.EvolucionarADevorador;
+import edu.fiuba.algo3.modelo.Entidad.Comando.EvolucionarAGuardian;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
@@ -16,7 +15,6 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
@@ -59,6 +57,11 @@ public class Mutalisco extends Unidad {
         zerg.registrarEntidad(this);
     }
 
+    public Mutalisco(Area area) {
+        this();
+        this.area = area;
+    }
+
     public Mutalisco() {
         //Instanciacion de clases comunes
         this.vida = new Regenerativa(120, this);
@@ -79,7 +82,7 @@ public class Mutalisco extends Unidad {
         area.desocupar();
 
         try {
-            zerg.construirGuardian(area);
+            estadoOperativo.operable(new EvolucionarAGuardian(zerg, area));
         } catch (ConstruccionNoValidaException e) {
             this.afectaSuministro = anterior;
             area.ocupar();
@@ -95,7 +98,7 @@ public class Mutalisco extends Unidad {
         area.desocupar();
 
         try {
-            zerg.construirDevorador(area);
+            estadoOperativo.operable(new EvolucionarADevorador(zerg, area));
         } catch (ConstruccionNoValidaException e) {
             this.afectaSuministro = anterior;
             area.ocupar();

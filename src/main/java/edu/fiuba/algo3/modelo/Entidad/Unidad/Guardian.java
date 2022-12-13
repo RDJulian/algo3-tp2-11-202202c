@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
@@ -13,7 +12,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
@@ -43,6 +41,11 @@ public class Guardian extends Unidad {
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public Guardian(Area area) {
+        this();
+        this.area = area;
     }
 
     public Guardian() {

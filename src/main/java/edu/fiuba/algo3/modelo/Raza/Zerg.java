@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Raza;
 
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorDevorador;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorGuardian;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
@@ -15,10 +17,16 @@ public class Zerg extends Raza {
     private ArrayList<Extractor> extractores;
     private ArrayList<Criadero> criaderos;
 
+    private ConstructorDevorador constructorDevorador;
+
+    private ConstructorGuardian constructorGuardian;
+
     private Zerg() {
         super();
         this.extractores = new ArrayList<>();
         this.criaderos = new ArrayList<>();
+        this.constructorDevorador = new ConstructorDevorador(estructuras, this);
+        this.constructorGuardian = new ConstructorGuardian(estructuras, this);
     }
 
     static public Zerg obtenerInstancia() {
@@ -80,11 +88,11 @@ public class Zerg extends Raza {
 
     //Llamado a constructores
     public void construirGuardian(Area area) {
-
+        constructorGuardian.construir(area);
     }
 
     public void construirDevorador(Area area) {
-
+        constructorDevorador.construir(area);
     }
 
     //Metodo unicamente para testear

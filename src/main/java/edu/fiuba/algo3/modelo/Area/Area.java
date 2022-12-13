@@ -7,8 +7,6 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.EstadoEnergia.EstadoEnergia;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
-import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.MovimientoSobreRecursoException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.TipoArea.TipoArea;

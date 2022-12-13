@@ -5,9 +5,6 @@ import edu.fiuba.algo3.modelo.Excepciones.NombreNoValidoException;
 import edu.fiuba.algo3.modelo.Mapa.Base;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Raza.Raza;
-import javafx.scene.paint.ImagePattern;
-
-import java.util.ArrayList;
 
 public class Juego {
     private String jugadorUno;

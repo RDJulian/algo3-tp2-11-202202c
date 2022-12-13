@@ -15,11 +15,9 @@ import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
-import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
@@ -46,6 +44,11 @@ public class PuertoEstelar extends Estructura implements UsaMementoOperativo {
         }
 
         protoss.registrarEntidad(this);
+    }
+
+    public PuertoEstelar(Area area) {
+        this();
+        this.area = area;
     }
 
     public PuertoEstelar() {

@@ -4,10 +4,7 @@ import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Area.Coordenada;
 import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.BaseNoOpuestaException;
-import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Raza.Protoss;
 
 import java.util.ArrayList;
 
@@ -34,7 +31,7 @@ public class Base {
         return coordenada.esOpuesta(this.coordenada);
     }
 
-    public void esOpuesta(Base base) {
+    public void opuesta(Base base) {
         if (!base.esOpuesta(coordenada)) {
             throw new BaseNoOpuestaException();
         }

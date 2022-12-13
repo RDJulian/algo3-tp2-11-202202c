@@ -3,16 +3,13 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
@@ -41,6 +38,11 @@ public class Espiral extends Estructura {
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public Espiral(Area area) {
+        this();
+        this.area = area;
     }
 
     public Espiral() {

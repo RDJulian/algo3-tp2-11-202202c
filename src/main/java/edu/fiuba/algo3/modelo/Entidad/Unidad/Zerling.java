@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
@@ -12,7 +11,6 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstrucci
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
@@ -50,6 +48,11 @@ public class Zerling extends Unidad {
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public Zerling(Area area) {
+        this();
+        this.area = area;
     }
 
     public Zerling() {

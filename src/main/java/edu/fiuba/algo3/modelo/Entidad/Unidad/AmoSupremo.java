@@ -15,7 +15,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RazaZergSinLarvasException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
@@ -54,6 +53,11 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public AmoSupremo(Area area) {
+        this();
+        this.area = area;
     }
 
     public AmoSupremo() {

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
 
-import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;

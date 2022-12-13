@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo;
 
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Vida;
-import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 
 public abstract class Escudo {

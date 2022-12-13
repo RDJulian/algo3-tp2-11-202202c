@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreMineral;
 import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
@@ -16,10 +15,8 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
-import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 public class Pilon extends Estructura implements Piso, EstructuraNoRequerida {
     private int rango;
@@ -44,6 +41,11 @@ public class Pilon extends Estructura implements Piso, EstructuraNoRequerida {
         }
 
         protoss.registrarEntidad(this);
+    }
+
+    public Pilon(Area area) {
+        this();
+        this.area = area;
     }
 
     public Pilon() {

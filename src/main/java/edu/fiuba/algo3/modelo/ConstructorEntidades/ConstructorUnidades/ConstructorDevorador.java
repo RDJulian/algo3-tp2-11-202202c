@@ -4,9 +4,6 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Devorador;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.ConstructorNoInicializadoException;
-import edu.fiuba.algo3.modelo.Excepciones.ConstructorYaInicializadoException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;

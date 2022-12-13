@@ -9,7 +9,6 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
-import edu.fiuba.algo3.modelo.Excepciones.MovimientoSobreRecursoException;
 
 public abstract class Unidad extends Entidad {
     protected TipoUnidad tipoUnidad;

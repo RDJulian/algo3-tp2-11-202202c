@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereGuarida;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
@@ -11,7 +10,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
@@ -40,6 +38,11 @@ public class Guarida extends Estructura {
         }
 
         zerg.registrarEntidad(this);
+    }
+
+    public Guarida(Area area) {
+        this();
+        this.area = area;
     }
 
     public Guarida() {

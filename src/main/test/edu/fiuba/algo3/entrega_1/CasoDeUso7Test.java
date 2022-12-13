@@ -12,7 +12,6 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
@@ -21,8 +20,6 @@ import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 
 public class CasoDeUso7Test {
 

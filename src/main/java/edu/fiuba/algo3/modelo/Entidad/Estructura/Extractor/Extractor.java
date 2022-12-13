@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.Comando.AgregarZangano;
 import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
@@ -15,7 +14,6 @@ import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
@@ -47,6 +45,11 @@ public class Extractor extends Estructura implements ExtraeRecurso, AgregaZangan
         zerg.registrarEntidad(this);
     }
 
+    public Extractor(Area area) {
+        this();
+        this.area = area;
+    }
+
     public Extractor() {
         //Instanciacion de clases comunes
         this.vida = new Regenerativa(750, this);
@@ -72,7 +75,9 @@ public class Extractor extends Estructura implements ExtraeRecurso, AgregaZangan
 
     @Override
     public void extraerRecurso() {
-        zanganos.extraerRecurso(area);
+        if (area != null) {
+            zanganos.extraerRecurso(area);
+        }
     }
 
     @Override

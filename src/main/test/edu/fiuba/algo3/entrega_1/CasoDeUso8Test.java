@@ -6,10 +6,8 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 

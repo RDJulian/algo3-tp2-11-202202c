@@ -21,9 +21,6 @@ public class Reserva {
     }
 
     private boolean construible(int unidades) {
-        if (this.unidades - unidades < 0) {
-            return false;
-        }
-        return true;
+        return this.unidades - unidades >= 0;
     }
 }

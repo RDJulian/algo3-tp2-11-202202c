@@ -17,8 +17,8 @@ public class CasoDeUso25Test {
     @Test
     public void test01UnJugadorNoPuedeTenerUnNombreConMenosDeSeisCaracteres() {
         Juego juego = new Juego();
-        Raza unaRaza = Zerg.obtenerInstancia();
-        Raza otraRaza = Protoss.obtenerInstancia();
+        Raza unaRaza = new Zerg();
+        Raza otraRaza = new Protoss();
         assertThrows(NombreNoValidoException.class, () -> juego.registrarJugadores("Pepe",
                 "amarillo", unaRaza, "Carlos", "verde", otraRaza));
         assertDoesNotThrow(() -> juego.registrarJugadores("Esteban",
@@ -28,8 +28,8 @@ public class CasoDeUso25Test {
     @Test
     public void test02UnJugadorNoPuedeTenerElMismoNombreOElMismoColorOLaMismaRazaQueElOtroJugador() {
         Juego juego = new Juego();
-        Raza unaRaza = Zerg.obtenerInstancia();
-        Raza otraRaza = Protoss.obtenerInstancia();
+        Raza unaRaza = new Zerg();
+        Raza otraRaza = new Protoss();
         assertThrows(JugadoresNoCompatiblesException.class, () -> juego.registrarJugadores("Carlos",
                 "amarillo", unaRaza, "Carlos", "verde", otraRaza));
 

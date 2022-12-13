@@ -14,8 +14,7 @@ public class CasoDeUso29Test {
 
     @Test
     public void test01ConstruirMasDe40CriaderosNoDeberiaAumentarLaCapacidadDeSuministro() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         Criadero criadero = new Criadero(new Area(0, 0));
         pasarKTurnos(criadero, 4);
@@ -36,8 +35,7 @@ public class CasoDeUso29Test {
 
     @Test
     public void test02EntrenarMasDe40AmosSupremosNoDeberiaAumentarLaCapacidadDeSuministro() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         AmoSupremo amoSupremo = new AmoSupremo(new Area(0, 0));
         pasarKTurnos(amoSupremo, 5);
@@ -57,8 +55,7 @@ public class CasoDeUso29Test {
 
     @Test
     public void test03UnAmoSupremoEnConstruccionNoAportaSuministro() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         AmoSupremo amoSupremo = new AmoSupremo(new Area(0, 0));
         zerg.registrarEntidad(amoSupremo);
@@ -72,8 +69,7 @@ public class CasoDeUso29Test {
 
     @Test
     public void test03UnCriaderoEnConstruccionNoAportaSuministro() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         Criadero criadero = new Criadero(new Area(0, 0));
         zerg.registrarEntidad(criadero);

@@ -19,25 +19,22 @@ public class Zerg extends Raza {
     private ConstructorDevorador constructorDevorador;
     private ConstructorGuardian constructorGuardian;
 
-    private Zerg() {
+    public Zerg() {
         super();
         this.extractores = new ArrayList<>();
         this.criaderos = new ArrayList<>();
         this.constructorDevorador = new ConstructorDevorador(estructuras, this);
         this.constructorGuardian = new ConstructorGuardian(estructuras, this);
+
+        recolectarMineral(200);
     }
 
-    private static class Holder {
-        private static Zerg INSTANCE = new Zerg();
-    }
-
-    static public Zerg obtenerInstancia() {
-        return Holder.INSTANCE;
-    }
-
-    public void registrarEntidad(Scout scout) {
-        unidades.add(scout);
-        reveladores.add(scout);
+    public Zerg(int mineral, int gas) {
+        super(mineral, gas);
+        this.extractores = new ArrayList<>();
+        this.criaderos = new ArrayList<>();
+        this.constructorDevorador = new ConstructorDevorador(estructuras, this);
+        this.constructorGuardian = new ConstructorGuardian(estructuras, this);
     }
 
     public Extractor buscarExtractor(Area area) {
@@ -97,10 +94,5 @@ public class Zerg extends Raza {
 
     public void construirDevorador(Area area) {
         constructorDevorador.construir(area);
-    }
-
-    //Metodo unicamente para testear
-    public void reiniciar() {
-        Holder.INSTANCE = new Zerg();
     }
 }

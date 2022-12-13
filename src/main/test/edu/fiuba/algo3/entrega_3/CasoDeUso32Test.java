@@ -20,10 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso32Test {
     @Test
     public void test01UnJuegoContinuaSiLasDosRazasTienenConstruccionesEnSuAsentamiento() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        Protoss protoss = Protoss.obtenerInstancia();
-        zerg.reiniciar();
-        protoss.reiniciar();
+        Zerg zerg = new Zerg();
+        Protoss protoss = new Protoss();
 
         Juego juego = new Juego();
 
@@ -40,10 +38,8 @@ public class CasoDeUso32Test {
 
     @Test
     public void test02UnJuegoTerminaSiUnaDeLasDosRazasNoTieneConstruccionesEnSuAsentamiento() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        Protoss protoss = Protoss.obtenerInstancia();
-        zerg.reiniciar();
-        protoss.reiniciar();
+        Zerg zerg = new Zerg();
+        Protoss protoss = new Protoss();
 
         Juego juego = new Juego();
 
@@ -52,6 +48,7 @@ public class CasoDeUso32Test {
         zerg.registrarEntidad(new Criadero(new Area(0, 0)));
         zerg.registrarEntidad(new Mutalisco(new Area(0, 0)));
 
+        protoss.recolectarMineral(100);
         Pilon pilon = new Pilon(areaProtoss(), protoss);
 
         protoss.registrarEntidad(new Scout(new Area(0, 0)));

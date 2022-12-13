@@ -21,8 +21,7 @@ import static org.mockito.Mockito.when;
 public class CasoDeUso8Test {
     @Test
     public void test01AccesoSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.recolectarMineral(149);
         protoss.recolectarGas(0);
 
@@ -48,8 +47,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test02AsimiladorSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.recolectarMineral(99);
         protoss.recolectarGas(0);
 
@@ -75,8 +73,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test03EspiralSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(149);
         zerg.recolectarGas(99);
 
@@ -102,8 +99,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test04GuaridaSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(199);
         zerg.recolectarGas(99);
 
@@ -129,8 +125,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test05NexoMineralSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.recolectarMineral(49);
         protoss.recolectarGas(0);
 
@@ -156,8 +151,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test06PilonSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.recolectarMineral(99);
         protoss.recolectarGas(0);
 
@@ -183,8 +177,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test07PuertoEstelarSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.recolectarMineral(149);
         protoss.recolectarGas(149);
 
@@ -210,8 +203,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test08ReservaDeReproduccionSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(149);
         zerg.recolectarGas(0);
 
@@ -237,8 +229,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test09CriaderoSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(199);
         zerg.recolectarGas(0);
 
@@ -264,8 +255,7 @@ public class CasoDeUso8Test {
 
     @Test
     public void test10ExtractorSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(99);
         zerg.recolectarGas(0);
 
@@ -287,12 +277,5 @@ public class CasoDeUso8Test {
         zerg.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 }

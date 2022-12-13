@@ -36,11 +36,7 @@ import static org.mockito.Mockito.*;
 public class ConstructorTest {
     @Test
     public void test01UnaReservaNoDeberiaGastarseSiUnaEntidadNoPuedeConstruirse() {
-        reiniciarRazas();
-
-        Protoss raza = Protoss.obtenerInstancia();
-
-        raza.recolectarMineral(100);
+        Protoss raza = new Protoss(100, 0);
 
         ConstructorEstructuras constructor = new ConstructorPilon(raza.getEstructuras(), raza);
 
@@ -53,9 +49,7 @@ public class ConstructorTest {
 
     @Test
     public void test02UnAreaNoDeberiaOcuparseSiUnaEntidadNoPuedeConstruirse() {
-        reiniciarRazas();
-
-        Protoss raza = Protoss.obtenerInstancia();
+        Protoss raza = new Protoss(0, 0);
 
         ConstructorEstructuras constructor = new ConstructorPilon(raza.getEstructuras(), raza);
 
@@ -70,10 +64,8 @@ public class ConstructorTest {
 
     @Test
     public void test03UnaEntidadNoSePuedeConstruirSobreUnAreaEspacial() {
-        reiniciarRazas();
-
-        Protoss protoss = Protoss.obtenerInstancia();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
+        Zerg zerg = new Zerg(0, 0);
 
         Criadero criadero = mock(Criadero.class);
         doNothing().when(criadero).usarLarva();
@@ -91,10 +83,8 @@ public class ConstructorTest {
 
     @Test
     public void test04NingunaUnidadSePuedeConstruirSobreUnRecurso() {
-        reiniciarRazas();
-
-        Protoss protoss = Protoss.obtenerInstancia();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
+        Zerg zerg = new Zerg(0, 0);
 
         Estructura estructura = mock(Estructura.class);
         when(estructura.afectarSuministro(any(int.class))).thenReturn(200);
@@ -119,10 +109,7 @@ public class ConstructorTest {
 
     @Test
     public void test05UnaUnidadProtossSoloPuedeConstruirseSobreUnAreaEnergizada() {
-        reiniciarRazas();
-
-        Protoss protoss = Protoss.obtenerInstancia();
-        protoss.recolectarMineral(100);
+        Protoss protoss = new Protoss(100, 0);
 
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
@@ -143,10 +130,7 @@ public class ConstructorTest {
 
     @Test
     public void test06UnaUnidadZergSoloPuedeConstruirseSobreUnAreaConMoho() {
-        reiniciarRazas();
-
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(50);
+        Zerg zerg = new Zerg(50, 0);
 
         Estructura estructuraMock = mock(Estructura.class);
         when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
@@ -171,10 +155,7 @@ public class ConstructorTest {
 
     @Test
     public void test07UnaUnidadZergNoDeberiaGastarUnaLarvaSiNoPuedeConstruirse() {
-        reiniciarRazas();
-
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(200);
+        Zerg zerg = new Zerg(200, 0);
 
         ConstructorEstructuras constructor = new ConstructorCriadero(zerg.getEstructuras(), zerg);
         Area unArea = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
@@ -196,10 +177,7 @@ public class ConstructorTest {
 
     @Test
     public void test08UnaUnidadZergNoDeberiaGastarRecursosNiOcuparUnaPosicionSiNoTieneLarvasParaConstruirse() {
-        reiniciarRazas();
-
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(200);
+        Zerg zerg = new Zerg(200, 0);
 
         ConstructorEstructuras constructor = new ConstructorCriadero(zerg.getEstructuras(), zerg);
         Area unArea = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
@@ -221,13 +199,6 @@ public class ConstructorTest {
         zerg.pasarTurno();
 
         assertDoesNotThrow(() -> unConstructor.construir(area));
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 
     public void pasarKTurnos(Raza raza, int k) {

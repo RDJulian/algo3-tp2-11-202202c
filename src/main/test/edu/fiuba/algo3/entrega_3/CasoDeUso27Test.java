@@ -23,8 +23,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test01CreoUnMutaliscoPeroNoPuedeEvolucionarPorqueLeFaltanRecursos() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(estructuraMockeadaParaTestear());
         zerg.recolectarMineral(100);
         zerg.recolectarGas(100);
@@ -36,8 +35,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test02CreoUnMutaliscoYLoEvolucionoAUnDevorador() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(estructuraMockeadaParaTestear());
         zerg.recolectarMineral(100);
         zerg.recolectarGas(100);

@@ -20,9 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso4Test {
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
         Extractor extractor = new Extractor(areaParaProbar(), zerg);
         pasarKTurnos(extractor, 6);
@@ -34,9 +32,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
         Area area = areaParaProbar();
 
@@ -56,9 +52,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
         Area area = areaParaProbar();
 
@@ -82,9 +76,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
         Area area = areaParaProbar();
 
@@ -112,9 +104,7 @@ public class CasoDeUso4Test {
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
         Area area = areaParaProbar();
 
@@ -151,12 +141,5 @@ public class CasoDeUso4Test {
 
     public Area otraAreaParaProbar() {
         return new Area(new Coordenada(1, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new GasVespeno());
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 }

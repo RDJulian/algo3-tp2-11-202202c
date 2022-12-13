@@ -35,8 +35,8 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.juego = new Juego();
-        this.razaJugador1 = Protoss.obtenerInstancia();
-        this.razaJugador2 = Zerg.obtenerInstancia();
+        this.razaJugador1 = new Protoss();
+        this.razaJugador2 = new Zerg();
         this.etiqueta = etiqueta;
 
     }

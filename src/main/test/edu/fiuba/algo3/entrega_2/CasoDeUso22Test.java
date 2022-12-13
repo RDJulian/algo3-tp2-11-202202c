@@ -30,8 +30,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test01UnAmoSupremoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -55,8 +54,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test02UnDevoradorSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -74,8 +72,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test03UnDragonSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss();
         protoss.recolectarMineral(1000);
         protoss.recolectarGas(1000);
         protoss.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -99,8 +96,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test04UnGuardianSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -118,8 +114,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test05UnHidraliscoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -147,8 +142,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test06UnMutaliscoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -176,8 +170,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test07UnScoutSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss();
         protoss.recolectarMineral(1000);
         protoss.recolectarGas(1000);
         protoss.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -201,8 +194,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test08UnZanganoSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -226,8 +218,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test09UnZealotSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss();
         protoss.recolectarMineral(1000);
         protoss.recolectarGas(1000);
         protoss.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -251,8 +242,7 @@ public class CasoDeUso22Test {
 
     @Test
     public void test10UnZerlingSoloSeConstruyeConLaEstructuraQueLoHabilitaYLuegoTardaLoEstipuladoEnConstruirse() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
         zerg.registrarEntidad(estructuraMockeadaParaSuministro());
@@ -282,13 +272,6 @@ public class CasoDeUso22Test {
         for (int i = 0; i < k; i++) {
             entidad.pasarTurno();
         }
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 
     public Area areaProtoss() {

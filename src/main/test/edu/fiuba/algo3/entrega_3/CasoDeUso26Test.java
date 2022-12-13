@@ -23,8 +23,7 @@ import static org.mockito.Mockito.*;
 public class CasoDeUso26Test {
     @Test
     public void test01UnZanganoNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorZangano(zerg.getEstructuras(), zerg);
@@ -39,8 +38,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test02UnAmoSupremoNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorAmoSupremo(zerg.getEstructuras(), zerg);
@@ -55,8 +53,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test03UnDevoradorNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorDevorador(zerg.getEstructuras(), zerg);
@@ -71,8 +68,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test04UnDragonNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.registrarEntidad(estructuraMockeadaParaTestear());
 
         ConstructorUnidades constructor = new ConstructorDragon(protoss.getEstructuras(), protoss);
@@ -87,8 +83,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test05UnGuardianNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorGuardian(zerg.getEstructuras(), zerg);
@@ -103,8 +98,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test06UnHidraliscoNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorHidralisco(zerg.getEstructuras(), zerg);
@@ -119,8 +113,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test07UnMutaliscoNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorMutalisco(zerg.getEstructuras(), zerg);
@@ -135,8 +128,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test08UnZealotNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.registrarEntidad(estructuraMockeadaParaTestear());
 
         ConstructorUnidades constructor = new ConstructorZealot(protoss.getEstructuras(), protoss);
@@ -151,8 +143,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test09UnScoutNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
         protoss.registrarEntidad(estructuraMockeadaParaTestear());
 
         ConstructorUnidades constructor = new ConstructorScout(protoss.getEstructuras(), protoss);
@@ -167,8 +158,7 @@ public class CasoDeUso26Test {
 
     @Test
     public void test10UnZerlingNoSePuedeConstruirSiNoSeCuentaConLaCantidadDeRecursoNecesario() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(criaderoMockeadoParaTestear());
 
         ConstructorUnidades constructor = new ConstructorZerling(zerg.getEstructuras(), zerg);
@@ -198,13 +188,6 @@ public class CasoDeUso26Test {
         doNothing().when(estructuraMock).usarLarva();
 
         return estructuraMock;
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 
     public Area areaProtoss() {

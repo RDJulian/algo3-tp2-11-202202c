@@ -23,8 +23,12 @@ public abstract class Raza {
         this.unidades = new ArrayList<>();
         this.estructuras = new ArrayList<>();
         this.reveladores = new ArrayList<>();
+    }
 
-        reservaMineral.agregarRecurso(200);
+    public Raza(int mineral, int gas) {
+        this();
+        recolectarMineral(mineral);
+        recolectarGas(gas);
     }
 
     public void recolectarGas(int unidades) {

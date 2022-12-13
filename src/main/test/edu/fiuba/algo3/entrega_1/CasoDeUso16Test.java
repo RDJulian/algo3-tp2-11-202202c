@@ -52,7 +52,7 @@ public class CasoDeUso16Test {
     @Test
     public void test03UnNexoMineralNoSePuedeConstruirSiUnZanganoEstaExtrayendo() {
         Protoss raza = mock(Protoss.class);
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = mock(Zerg.class);
         ConstructorEstructuras constructor = new ConstructorNexoMineral(new ArrayList<>(), raza);
 
         Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), new Mineral());
@@ -70,7 +70,7 @@ public class CasoDeUso16Test {
     @Test
     public void test04UnZanganoNoPuedeExtraerMineralSiUnNexoMineralEstaConstruido() {
         Protoss raza = mock(Protoss.class);
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = mock(Zerg.class);
         ConstructorEstructuras constructor = new ConstructorNexoMineral(new ArrayList<>(), raza);
 
         Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), new Mineral());

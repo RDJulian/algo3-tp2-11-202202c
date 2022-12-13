@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class CasoDeUso17Test {
     @Test
     public void test01GuaridaNecesitaUnaReservaDeReproduccionParaPoderConstruirse() {
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
 
@@ -42,7 +42,7 @@ public class CasoDeUso17Test {
 
     @Test
     public void test02EspiralNecesitaUnaGuaridaParaPoderConstruirse() {
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(1000);
         zerg.recolectarGas(1000);
 

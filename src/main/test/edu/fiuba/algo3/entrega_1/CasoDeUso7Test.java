@@ -25,8 +25,7 @@ public class CasoDeUso7Test {
 
     @Test
     public void test01ZanganoObtieneMineralCorrectamenteParaLosZerg() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
 
         Recurso recurso = new Mineral();
         Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), recurso);
@@ -41,8 +40,7 @@ public class CasoDeUso7Test {
 
     @Test
     public void test02ExtractorObtieneGasCorrectamenteParaLosZerg() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
 
         zerg.recolectarMineral(100);
         Recurso recurso = new GasVespeno();
@@ -64,8 +62,7 @@ public class CasoDeUso7Test {
 
     @Test
     public void test03NexoMineralObtieneMineralCorrectamenteParaLosProtoss() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
 
         protoss.recolectarMineral(50);
         Recurso recurso = new Mineral();
@@ -83,8 +80,7 @@ public class CasoDeUso7Test {
 
     @Test
     public void test04AsimiladorObtieneGasCorrectamenteParaLosProtoss() {
-        reiniciarRazas();
-        Protoss protoss = Protoss.obtenerInstancia();
+        Protoss protoss = new Protoss(0, 0);
 
         protoss.recolectarMineral(100);
         Recurso recurso = new GasVespeno();
@@ -104,12 +100,5 @@ public class CasoDeUso7Test {
         for (int i = 0; i < k; i++) {
             estructura.pasarTurno();
         }
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 }

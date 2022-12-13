@@ -30,8 +30,7 @@ public class CasoDeUso31Test {
 
     @Test
     public void test01DestruirCriaderosDeberiaDisminuirLaCapacidadDeSuministroEn5() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         ConstructorEstructuras constructor = new ConstructorCriadero(zerg.getEstructuras(), zerg);
         zerg.recolectarMineral(600);
@@ -62,8 +61,7 @@ public class CasoDeUso31Test {
 
     @Test
     public void test02DestruirPilonesDeberiaDisminuirLaCapacidadDeSuministroEn5() {
-        Protoss protoss = Protoss.obtenerInstancia();
-        protoss.reiniciar();
+        Protoss protoss = new Protoss(0, 0);
 
         ConstructorEstructuras constructor = new ConstructorPilon(protoss.getEstructuras(), protoss);
         protoss.recolectarMineral(600);
@@ -94,8 +92,7 @@ public class CasoDeUso31Test {
 
     @Test
     public void test03MatarAmosSupremosDeberiaDisminuirLaCapacidadDeSuministroEn5() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         //Este criadero solo mockea las larvas, y no afecta al suministro.
         Criadero estructura = mock(Criadero.class);

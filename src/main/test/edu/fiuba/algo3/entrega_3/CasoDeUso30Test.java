@@ -20,8 +20,7 @@ import static org.mockito.Mockito.*;
 public class CasoDeUso30Test {
     @Test
     public void test01Entrenar201ZanganosConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
         zerg.recolectarMineral(10000);
 
         //Este criadero solo mockea las larvas, y no afecta al suministro.
@@ -49,8 +48,7 @@ public class CasoDeUso30Test {
 
     @Test
     public void test02Entrenar51GuardianesConLaCapacidadMaximaDeSuministroDeberiaLanzarError() {
-        Zerg zerg = Zerg.obtenerInstancia();
-        zerg.reiniciar();
+        Zerg zerg = new Zerg(0, 0);
 
         zerg.recolectarMineral(10000);
         zerg.recolectarGas(10000);

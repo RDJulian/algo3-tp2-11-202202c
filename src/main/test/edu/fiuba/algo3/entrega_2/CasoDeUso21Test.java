@@ -24,12 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class CasoDeUso21Test {
-
-
     @Test
     public void test01UnGuardianNoPuedeEvolucionarSiNoSeCuentanConLosRecursosYSiEstaConstruido() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(estructuraMockeadaParaTestear());
         zerg.recolectarMineral(100);
         zerg.recolectarGas(100);
@@ -52,8 +49,7 @@ public class CasoDeUso21Test {
 
     @Test
     public void test02UnDevoradorNoPuedeEvolucionarSiNoSeCuentanConLosRecursosYSiEstaConstruido() {
-        reiniciarRazas();
-        Zerg zerg = Zerg.obtenerInstancia();
+        Zerg zerg = new Zerg(0, 0);
         zerg.registrarEntidad(estructuraMockeadaParaTestear());
         zerg.recolectarMineral(100);
         zerg.recolectarGas(100);
@@ -72,13 +68,6 @@ public class CasoDeUso21Test {
         zerg.recolectarGas(50);
 
         assertDoesNotThrow(mutalisco::evolucionarADevorador);
-    }
-
-    public void reiniciarRazas() {
-        Protoss.obtenerInstancia().reiniciar();
-        Zerg.obtenerInstancia().reiniciar();
-        Protoss.obtenerInstancia().gastarRecursos(200, 0);
-        Zerg.obtenerInstancia().gastarRecursos(200, 0);
     }
 
     public Criadero estructuraMockeadaParaTestear() {

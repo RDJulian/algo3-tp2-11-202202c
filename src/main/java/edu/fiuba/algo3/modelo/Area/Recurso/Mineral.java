@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 public class Mineral extends Recurso {
     public Mineral() {
         this.unidades = 2000;
+        this.nombre = "mineral";
     }
 
     //Codigo muy similar.

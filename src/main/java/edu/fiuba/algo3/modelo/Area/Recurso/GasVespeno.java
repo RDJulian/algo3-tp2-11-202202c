@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 public class GasVespeno extends Recurso {
     public GasVespeno() {
         this.unidades = 5000;
+        this.nombre = "gas";
     }
 
     //Codigo muy similar.

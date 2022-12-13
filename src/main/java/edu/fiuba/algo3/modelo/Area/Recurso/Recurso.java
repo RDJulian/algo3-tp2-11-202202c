@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public abstract class Recurso {
     protected int unidades;
+    protected String nombre;
 
     public abstract boolean construible(ConstruibleRecurso construibleRecurso);
 
@@ -15,4 +16,12 @@ public abstract class Recurso {
     public abstract boolean visitar(Unidad unidad);
 
     public abstract boolean visitar(Zangano unidad);
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public int getRecursoRestante() {
+        return unidades;
+    }
 }

@@ -6,6 +6,11 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public class RecursoNull extends Recurso {
+    public RecursoNull() {
+        this.nombre = "nada";
+        this.unidades = 0;
+    }
+
     @Override
     public boolean construible(ConstruibleRecurso construibleRecurso) {
         return construibleRecurso.visitar(this);

@@ -1,42 +1,48 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorCriadero;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorEstructuras;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.ConstructorPilon;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorAmoSupremo;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorUnidades;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Nada;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class CasoDeUso31Test {
 
 
     @Test
     public void test01DestruirCriaderosDeberiaDisminuirLaCapacidadDeSuministroEn5() {
-        Raza zerg = new Raza();
-        ConstructorEstructuras constructor = new ConstructorCriadero();
-        zerg.recolectarMineral(600);
-        Moho moho = new Moho(new Posicion(0, -1));
+        Zerg zerg = Zerg.obtenerInstancia();
+        zerg.reiniciar();
 
-        Posicion posicion1 = new Posicion(0, 0);
-        Estructura criadero1 = constructor.construir(posicion1, new edu.fiuba.algo3.modelo.Recurso.Nada(), moho, zerg, new Nada());
+        ConstructorEstructuras constructor = new ConstructorCriadero(zerg.getEstructuras(), zerg);
+        zerg.recolectarMineral(600);
+
+        Estructura criadero1 = constructor.construir(areaZerg());
         pasarKTurnos(criadero1, 4);
 
-        Posicion posicion2 = new Posicion(0, 1);
-        Estructura criadero2 = constructor.construir(posicion2, new edu.fiuba.algo3.modelo.Recurso.Nada(), moho, zerg, new Nada());
+        Estructura criadero2 = constructor.construir(areaZerg());
         pasarKTurnos(criadero2, 4);
 
-        Posicion posicion3 = new Posicion(0, 2);
-        Estructura criadero3 = constructor.construir(posicion3, new edu.fiuba.algo3.modelo.Recurso.Nada(), moho, zerg, new Nada());
+        Estructura criadero3 = constructor.construir(areaZerg());
         pasarKTurnos(criadero3, 4);
 
         assertEquals(15, zerg.suministroRestante());
@@ -56,22 +62,19 @@ public class CasoDeUso31Test {
 
     @Test
     public void test02DestruirPilonesDeberiaDisminuirLaCapacidadDeSuministroEn5() {
-        Raza protoss = new Raza();
-        ConstructorEstructuras constructor = new ConstructorPilon();
-        protoss.recolectarMineral(600);
-        Pilon pilon = new Pilon(new Posicion(-1, -1), new Raza());
-        pasarKTurnos(pilon, 5);
+        Protoss protoss = Protoss.obtenerInstancia();
+        protoss.reiniciar();
 
-        Posicion posicion1 = new Posicion(0, 0);
-        Estructura pilon1 = constructor.construir(posicion1, new edu.fiuba.algo3.modelo.Recurso.Nada(), pilon, protoss, new Nada());
+        ConstructorEstructuras constructor = new ConstructorPilon(protoss.getEstructuras(), protoss);
+        protoss.recolectarMineral(600);
+
+        Estructura pilon1 = constructor.construir(areaProtoss());
         pasarKTurnos(pilon1, 5);
 
-        Posicion posicion2 = new Posicion(0, 1);
-        Estructura pilon2 = constructor.construir(posicion2, new edu.fiuba.algo3.modelo.Recurso.Nada(), pilon, protoss, new Nada());
+        Estructura pilon2 = constructor.construir(areaProtoss());
         pasarKTurnos(pilon2, 5);
 
-        Posicion posicion3 = new Posicion(0, 2);
-        Estructura pilon3 = constructor.construir(posicion3, new edu.fiuba.algo3.modelo.Recurso.Nada(), pilon, protoss, new Nada());
+        Estructura pilon3 = constructor.construir(areaProtoss());
         pasarKTurnos(pilon3, 5);
 
         assertEquals(15, protoss.suministroRestante());
@@ -91,20 +94,25 @@ public class CasoDeUso31Test {
 
     @Test
     public void test03MatarAmosSupremosDeberiaDisminuirLaCapacidadDeSuministroEn5() {
-        Raza zerg = new Raza();
-        ConstructorUnidades constructor = new ConstructorAmoSupremo();
+        Zerg zerg = Zerg.obtenerInstancia();
+        zerg.reiniciar();
+
+        //Este criadero solo mockea las larvas, y no afecta al suministro.
+        Criadero estructura = mock(Criadero.class);
+        doNothing().when(estructura).usarLarva();
+        when(estructura.afectarSuministro(any(int.class))).thenAnswer(i -> i.getArguments()[0]);
+        zerg.registrarEntidad(estructura);
+
+        ConstructorUnidades constructor = new ConstructorAmoSupremo(zerg.getEstructuras(), zerg);
         zerg.recolectarMineral(150);
 
-        Posicion posicion1 = new Posicion(0, 0);
-        Unidad amo1 = constructor.construir(posicion1, zerg, new Nada());
+        Unidad amo1 = constructor.construir(areaZerg());
         pasarKTurnos(amo1, 5);
 
-        Posicion posicion2 = new Posicion(0, 1);
-        Unidad amo2 = constructor.construir(posicion2, zerg, new Nada());
+        Unidad amo2 = constructor.construir(areaZerg());
         pasarKTurnos(amo2, 5);
 
-        Posicion posicion3 = new Posicion(0, 2);
-        Unidad amo3 = constructor.construir(posicion3, zerg, new Nada());
+        Unidad amo3 = constructor.construir(areaZerg());
         pasarKTurnos(amo3, 5);
 
         assertEquals(15, zerg.suministroRestante());
@@ -126,5 +134,13 @@ public class CasoDeUso31Test {
         for (int i = 0; i < k; i++) {
             entidad.pasarTurno();
         }
+    }
+
+    public Area areaProtoss() {
+        return new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), new RecursoNull());
+    }
+
+    public Area areaZerg() {
+        return new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
     }
 }

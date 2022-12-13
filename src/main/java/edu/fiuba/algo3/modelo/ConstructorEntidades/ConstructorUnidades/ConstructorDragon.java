@@ -1,27 +1,22 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Dragon;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+
+import java.util.ArrayList;
 
 public class ConstructorDragon extends ConstructorUnidades {
-    public ConstructorDragon() {
-        this.construibleEstructura = new RequiereAcceso();
-        this.costoMineral = 125;
-        this.costoGas = 50;
-        this.costoSuministro = 3;
+    private Protoss protoss;
+
+    public ConstructorDragon(ArrayList<Estructura> estructuras, Protoss protoss) {
+        super(estructuras);
+        this.protoss = protoss;
     }
 
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
-        construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas, costoSuministro);
-
-        raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Dragon(posicion, raza);
-        raza.registarEntidad(unidad);
-        return unidad;
+    public Unidad construir(Area area) {
+        return new Dragon(area, estructuras, protoss);
     }
 }

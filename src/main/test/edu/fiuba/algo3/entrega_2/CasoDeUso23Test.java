@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Area.AreaTierra;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
@@ -10,8 +8,7 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Guardian;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -21,10 +18,10 @@ public class CasoDeUso23Test {
     //Se prueban dos cosas: los rangos de ataque y el movimiento de las unidades.
     @Test
     public void test01UnaUnidadNoPuedeAtacarAOtraSiEstaFueraDelRangoLuegoSeMueveYLaPuedeAtacar() {
-        Area area = new AreaTierra(new Posicion(10, 10));
-        Unidad guardian = new Guardian(new Posicion(0, 0), new Raza());
+        Area area = new Area(10, 10);
+        Unidad guardian = new Guardian(new Area(0, 0));
         pasarKTurnos(guardian, 12);
-        Unidad dragon = new Dragon(new Posicion(11, 11), new Raza());
+        Unidad dragon = new Dragon(new Area(11, 11));
 
         assertThrows(AtaqueNoValidoException.class, () -> guardian.atacar(dragon));
 
@@ -38,10 +35,10 @@ public class CasoDeUso23Test {
 
     @Test
     public void test02UnaUnidadNoPuedeAtacarAUnaEstructuraSiEstaFueraDelRangoLuegoSeMueveYLaPuedeAtacar() {
-        Area area = new AreaTierra(new Posicion(10, 10));
-        Unidad guardian = new Guardian(new Posicion(0, 0), new Raza());
+        Area area = new Area(10, 10);
+        Unidad guardian = new Guardian(new Area(0, 0));
         pasarKTurnos(guardian, 12);
-        Estructura estructura = new Pilon(new Posicion(11, 11), new Raza());
+        Estructura estructura = new Pilon(new Area(11, 11));
 
         assertThrows(AtaqueNoValidoException.class, () -> guardian.atacar(estructura));
 

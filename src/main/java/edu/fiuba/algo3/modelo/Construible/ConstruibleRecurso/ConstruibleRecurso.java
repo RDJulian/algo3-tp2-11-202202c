@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso;
 
-import edu.fiuba.algo3.modelo.Recurso.GasVespeno;
-import edu.fiuba.algo3.modelo.Recurso.Mineral;
-import edu.fiuba.algo3.modelo.Recurso.Nada;
+import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
+import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
 
 public interface ConstruibleRecurso {
-    void visitar(GasVespeno recurso);
+    boolean visitar(GasVespeno gasVespeno);
 
-    void visitar(Mineral recurso);
+    boolean visitar(Mineral mineral);
 
-    void visitar(Nada recurso);
+    boolean visitar(RecursoNull recursoNull);
 }

@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruiblePiso;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
-import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Piso.Nada;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
 
 public interface ConstruiblePiso {
-    void visitar(Pilon piso);
+    boolean visitar(EstadoPisoNull estadoPisoNull);
 
-    void visitar(Moho piso);
+    boolean visitar(TieneEnergiaPilon tieneEnergiaPilon);
 
-    void visitar(Nada piso);
+    boolean visitar(TieneMoho tieneMoho);
 }

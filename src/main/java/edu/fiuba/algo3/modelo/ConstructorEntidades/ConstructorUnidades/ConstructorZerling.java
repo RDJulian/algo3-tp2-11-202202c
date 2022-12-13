@@ -1,27 +1,22 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zerling;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
+
+import java.util.ArrayList;
 
 public class ConstructorZerling extends ConstructorUnidades {
-    public ConstructorZerling() {
-        this.construibleEstructura = new RequiereReservaDeReproduccion();
-        this.costoMineral = 25;
-        this.costoGas = 0;
-        this.costoSuministro = 1;
+    private Zerg zerg;
+
+    public ConstructorZerling(ArrayList<Estructura> estructuras, Zerg zerg) {
+        super(estructuras);
+        this.zerg = zerg;
     }
 
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
-        construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas, costoSuministro);
-
-        raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Zerling(posicion, raza);
-        raza.registarEntidad(unidad);
-        return unidad;
+    public Unidad construir(Area area) {
+        return new Zerling(area, estructuras, zerg);
     }
 }

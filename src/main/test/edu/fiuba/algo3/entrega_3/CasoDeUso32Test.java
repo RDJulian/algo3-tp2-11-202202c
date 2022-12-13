@@ -1,57 +1,69 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Mutalisco;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;
 import edu.fiuba.algo3.modelo.Juego.Juego;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoDeUso32Test {
-
-
     @Test
     public void test01UnJuegoContinuaSiLasDosRazasTienenConstruccionesEnSuAsentamiento() {
-        Raza zerg = new Raza();
-        Raza protoss = new Raza();
+        Zerg zerg = Zerg.obtenerInstancia();
+        Protoss protoss = Protoss.obtenerInstancia();
+        zerg.reiniciar();
+        protoss.reiniciar();
 
         Juego juego = new Juego();
 
         juego.registrarJugadores("Julian", "rojo", zerg, "Franco", "azul", protoss);
 
-        zerg.registarEntidad(new Criadero(new Posicion(0, 0), zerg));
-        zerg.registarEntidad(new Mutalisco(new Posicion(0, 0), zerg));
+        zerg.registrarEntidad(new Criadero(new Area(0, 0)));
+        zerg.registrarEntidad(new Mutalisco(new Area(0, 0)));
 
-        protoss.registarEntidad(new Pilon(new Posicion(0, 0), protoss));
-        protoss.registarEntidad(new Scout(new Posicion(0, 0), protoss));
+        protoss.registrarEntidad(new Pilon(new Area(0, 0)));
+        protoss.registrarEntidad(new Scout(new Area(0, 0)));
 
         assertFalse(juego::terminarJuego);
     }
 
     @Test
     public void test02UnJuegoTerminaSiUnaDeLasDosRazasNoTieneConstruccionesEnSuAsentamiento() {
-        Raza zerg = new Raza();
-        Raza protoss = new Raza();
+        Zerg zerg = Zerg.obtenerInstancia();
+        Protoss protoss = Protoss.obtenerInstancia();
+        zerg.reiniciar();
+        protoss.reiniciar();
 
         Juego juego = new Juego();
 
         juego.registrarJugadores("Julian", "rojo", zerg, "Franco", "azul", protoss);
 
-        zerg.registarEntidad(new Criadero(new Posicion(0, 0), zerg));
-        zerg.registarEntidad(new Mutalisco(new Posicion(0, 0), zerg));
+        zerg.registrarEntidad(new Criadero(new Area(0, 0)));
+        zerg.registrarEntidad(new Mutalisco(new Area(0, 0)));
 
-        Pilon pilon = new Pilon(new Posicion(0, 0), protoss);
-        protoss.registarEntidad(pilon);
-        protoss.registarEntidad(new Scout(new Posicion(0, 0), protoss));
+        Pilon pilon = new Pilon(areaProtoss(), protoss);
+
+        protoss.registrarEntidad(new Scout(new Area(0, 0)));
 
         assertFalse(juego::terminarJuego);
 
         pilon.destruir();
 
         assertTrue(juego::terminarJuego);
+    }
+
+    public Area areaProtoss() {
+        return new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), new RecursoNull());
     }
 }

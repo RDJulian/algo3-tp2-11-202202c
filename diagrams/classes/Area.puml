@@ -1,0 +1,25 @@
+@startuml
+class edu.fiuba.algo3.modelo.Area.Area {
+- Coordenada coordenada
+- TipoArea tipoArea
+- EstadoOcupacion estadoOcupacion
+- EstadoPiso estadoPiso
+- Recurso recurso
++ Area moverse(Zangano,TipoUnidad)
++ Area moverse(TipoUnidad)
++ Area ocupar()
++ void desocupar()
++ boolean construible(ConstruiblePiso)
++ boolean construible(ConstruibleRecurso)
++ void extraerRecurso(int,Raza)
++ void cubrirConMoho()
++ void energizar()
++ EstadoEnergia energizar(EstadoEnergia)
++ void actualizarEstado(Piso)
++ void actualizarEstado(ArrayList<Piso>)
++ boolean es(Area)
++ boolean esOpuesta(Area)
++ boolean enRango(Area,int)
+- Coordenada getCoordenada()
+}
+@enduml

@@ -1,41 +1,100 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorMutalisco;
+import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorUnidades;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Mutalisco;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
+import edu.fiuba.algo3.modelo.Excepciones.EvolucionNoValidaException;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
+
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 public class CasoDeUso21Test {
+
+
     @Test
-    public void test01UnGuardianNoPuedeEvolucionarSiNoSeCuentanConLosRecursos() {
-        Reserva reservaMineral = new Reserva();
-        Reserva reservaGas = new Reserva();
+    public void test01UnGuardianNoPuedeEvolucionarSiNoSeCuentanConLosRecursosYSiEstaConstruido() {
+        reiniciarRazas();
+        Zerg zerg = Zerg.obtenerInstancia();
+        zerg.registrarEntidad(estructuraMockeadaParaTestear());
+        zerg.recolectarMineral(100);
+        zerg.recolectarGas(100);
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
-        assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarAGuardian(reservaMineral, reservaGas));
+        ConstructorUnidades constructor = new ConstructorMutalisco(zerg.getEstructuras(), zerg);
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
+        Mutalisco mutalisco = (Mutalisco) constructor.construir(area);
 
-        reservaMineral.agregarRecurso(1000);
-        reservaGas.agregarRecurso(1000);
+        assertThrows(EntidadNoOperativaException.class, mutalisco::evolucionarAGuardian);
 
-        assertDoesNotThrow(() -> mutalisco.evolucionarAGuardian(reservaMineral, reservaGas));
+        pasarKTurnos(mutalisco, 12);
+
+        assertThrows(EvolucionNoValidaException.class, mutalisco::evolucionarAGuardian);
+
+        zerg.recolectarMineral(50);
+        zerg.recolectarGas(100);
+
+        assertDoesNotThrow(mutalisco::evolucionarAGuardian);
     }
 
     @Test
-    public void test02UnDevoradorNoPuedeEvolucionarSiNoSeCuentanConLosRecursos() {
-        Reserva reservaMineral = new Reserva();
-        Reserva reservaGas = new Reserva();
+    public void test02UnDevoradorNoPuedeEvolucionarSiNoSeCuentanConLosRecursosYSiEstaConstruido() {
+        reiniciarRazas();
+        Zerg zerg = Zerg.obtenerInstancia();
+        zerg.registrarEntidad(estructuraMockeadaParaTestear());
+        zerg.recolectarMineral(100);
+        zerg.recolectarGas(100);
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
-        assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
+        ConstructorUnidades constructor = new ConstructorMutalisco(zerg.getEstructuras(), zerg);
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
+        Mutalisco mutalisco = (Mutalisco) constructor.construir(area);
 
-        reservaMineral.agregarRecurso(1000);
-        reservaGas.agregarRecurso(1000);
+        assertThrows(EntidadNoOperativaException.class, mutalisco::evolucionarADevorador);
 
-        assertDoesNotThrow(() -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
+        pasarKTurnos(mutalisco, 12);
+
+        assertThrows(EvolucionNoValidaException.class, mutalisco::evolucionarADevorador);
+
+        zerg.recolectarMineral(150);
+        zerg.recolectarGas(50);
+
+        assertDoesNotThrow(mutalisco::evolucionarADevorador);
+    }
+
+    public void reiniciarRazas() {
+        Protoss.obtenerInstancia().reiniciar();
+        Zerg.obtenerInstancia().reiniciar();
+        Protoss.obtenerInstancia().gastarRecursos(200, 0);
+        Zerg.obtenerInstancia().gastarRecursos(200, 0);
+    }
+
+    public Criadero estructuraMockeadaParaTestear() {
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        //Ni del suministro
+        Criadero estructuraMock = mock(Criadero.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+        when(estructuraMock.afectarSuministro(any(int.class))).thenReturn(200);
+        doNothing().when(estructuraMock).usarLarva();
+
+        return estructuraMock;
+    }
+
+    public void pasarKTurnos(Entidad entidad, int k) {
+        for (int i = 0; i < k; i++) {
+            entidad.pasarTurno();
+        }
     }
 }

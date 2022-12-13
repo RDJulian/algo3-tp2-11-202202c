@@ -1,50 +1,73 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
+import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
+import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreMineral;
+import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
-import edu.fiuba.algo3.modelo.Vida.Escudo;
-import edu.fiuba.algo3.modelo.Vida.Normal;
+import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
+import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
+import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
 
-public class NexoMineral extends Estructura implements ExtraeRecurso {
-    private Recurso mineral;
+public class NexoMineral extends Estructura implements ExtraeRecurso, EstructuraNoRequerida {
+    public NexoMineral(Area area, Protoss protoss) {
+        this();
+        raza = protoss;
 
-    public NexoMineral(Posicion posicion, Recurso mineral, Raza raza) {
-        this.posicion = posicion;
-        posicion.ocupar();
-        this.mineral = mineral;
-        mineral.ocupar(this);
-        this.raza = raza;
+        //Chequeos
+        if (!area.construible(new SobreMineral(), new RangoPilon())) {
+            throw new ConstruccionNoValidaException();
+        }
 
-        this.estadoEntidad = new EnConstruccion(4);
-        this.rolEnSuministro = new Neutral();
-        this.vida = new Normal(250);
-        this.defensa = new Escudo(250);
+        try {
+            this.area = area.ocupar();
+            protoss.gastarRecursos(50, 0);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
+        } catch (RecursoInsuficienteException e) {
+            area.desocupar();
+            throw new ConstruccionNoValidaException();
+        }
+
+        protoss.registrarEntidad(this);
     }
 
-    public void extraerRecurso() {
-        mineral.extraerRecurso(20, raza, this); //Asumimos 20.
+    public NexoMineral(Area area) {
+        this();
+        this.area = area;
+    }
+
+    public NexoMineral() {
+        //Instanciacion de clases comunes
+        this.vida = new Normal(250, this);
+        this.escudo = new ConEscudo(250, vida);
+
+        this.estadoOperativo = new EnConstruccion(4);
+        this.estadoInvisibilidad = new Visible();
+        this.afectaSuministro = new NoAfecta();
     }
 
     @Override
-    public void construible(ConstruibleEstructura requiereOtraEstructura) {
-        requiereOtraEstructura.visitar(this);
-        estadoEntidad.operable();
+    public void extraerRecurso() {
+        if (area != null) {
+            area.extraerRecurso(20, raza);
+        } //Asumimos 20.
     }
 
     @Override
     public void pasarTurno() {
-        try {
-            estadoEntidad.operable();
-            extraerRecurso();
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        } catch (EntidadNoOperativaException exception) {
-            estadoEntidad = estadoEntidad.pasarTurno(vida, defensa);
-        }
+        estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ExtraerRecurso(this));
+    }
+
+    @Override
+    public boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura) {
+        return construibleEstructura.visitar(this);
     }
 }

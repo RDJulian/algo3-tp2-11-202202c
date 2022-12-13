@@ -1,55 +1,62 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Area.Coordenada;
+import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
+import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Acceso;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.*;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 public class CasoDeUso27Test {
 
-    void atacarKVeces(UnidadAtacante unidad, Entidad entidad) {
-        for (int i = 0; i < 16; i++) {
-            unidad.atacar(entidad);
-        }
-    }
-
     @Test
     public void test01CreoUnMutaliscoPeroNoPuedeEvolucionarPorqueLeFaltanRecursos() {
-        Reserva reservaGas = new Reserva();
-        Reserva reservaMineral = new Reserva();
+        Zerg zerg = Zerg.obtenerInstancia();
+        zerg.reiniciar();
+        zerg.registrarEntidad(estructuraMockeadaParaTestear());
+        zerg.recolectarMineral(100);
+        zerg.recolectarGas(100);
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
-        assertThrows(RecursoInsuficienteException.class, () -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
+        Mutalisco mutalisco = new Mutalisco(areaZerg(), zerg.getEstructuras(), zerg);
+        pasarKTurnos(mutalisco, 7);
+        assertThrows(EvolucionNoValidaException.class, mutalisco::evolucionarADevorador);
     }
 
     @Test
     public void test02CreoUnMutaliscoYLoEvolucionoAUnDevorador() {
-        Reserva reservaGas = new Reserva();
-        Reserva reservaMineral = new Reserva();
-        reservaGas.agregarRecurso(1000);
-        reservaMineral.agregarRecurso(1000);
+        Zerg zerg = Zerg.obtenerInstancia();
+        zerg.reiniciar();
+        zerg.registrarEntidad(estructuraMockeadaParaTestear());
+        zerg.recolectarMineral(100);
+        zerg.recolectarGas(100);
 
-        Mutalisco mutalisco = new Mutalisco(new Posicion(0, 0), new Raza());
+        Mutalisco mutalisco = new Mutalisco(areaZerg(), zerg.getEstructuras(), zerg);
+        pasarKTurnos(mutalisco, 7);
 
-        assertDoesNotThrow(() -> mutalisco.evolucionarADevorador(reservaMineral, reservaGas));
+        zerg.recolectarMineral(150);
+        zerg.recolectarGas(50);
+
+        assertDoesNotThrow(mutalisco::evolucionarADevorador);
     }
 
     @Test
     public void test03UnDevoradorAtacaAUnaUnidadVoladoraHastaMatarla() {
-        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Unidad unidad = new Devorador(new Area(0, 0));
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Scout(new Posicion(1, 1), new Raza());
+        Unidad otraUnidad = new Scout(new Area(1, 1));
         pasarKTurnos(otraUnidad, 10);
 
         atacarKVeces(unidad, otraUnidad);
@@ -60,10 +67,10 @@ public class CasoDeUso27Test {
 
     @Test
     public void test04UnDevoradorAtacaAUnaUnidadDeTierra() {
-        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Unidad unidad = new Devorador(new Area(0, 0));
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Dragon(new Posicion(1, 1), new Raza());
+        Unidad otraUnidad = new Dragon(new Area(1, 1));
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -71,11 +78,10 @@ public class CasoDeUso27Test {
 
     @Test
     public void test05UnDevoradorAtacaAUnEdificio() {
-        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Unidad unidad = new Devorador(new Area(0, 0));
         pasarKTurnos(unidad, 10);
 
-        Posicion posicion = new Posicion(1, 1);
-        Estructura estructura = new Acceso(posicion, new Raza());
+        Estructura estructura = new Acceso(new Area(1, 1));
         pasarKTurnos(estructura, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(estructura));
@@ -83,10 +89,10 @@ public class CasoDeUso27Test {
 
     @Test
     public void test06UnDevoradorAtacaAUnaUnidadFueraDeRango() {
-        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Unidad unidad = new Devorador(new Area(0, 0));
         pasarKTurnos(unidad, 10);
 
-        Unidad otraUnidad = new Scout(new Posicion(7, 7), new Raza());
+        Unidad otraUnidad = new Scout(new Area(7, 7));
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -95,10 +101,10 @@ public class CasoDeUso27Test {
 
     @Test
     public void test07UnDevoradorEsAtacadoPeroEsInvisible() {
-        UnidadAtacante unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Unidad unidad = new Devorador(new Area(0, 0));
         pasarKTurnos(unidad, 10);
 
-        UnidadAtacante otraUnidad = new Scout(new Posicion(1, 0), new Raza());
+        Unidad otraUnidad = new Scout(new Area(1, 0));
         pasarKTurnos(otraUnidad, 10);
 
         assertThrows(AtaqueNoValidoException.class, () -> otraUnidad.atacar(unidad));
@@ -107,6 +113,26 @@ public class CasoDeUso27Test {
     public void pasarKTurnos(Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             entidad.pasarTurno();
+        }
+    }
+
+    public Area areaZerg() {
+        return new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new RecursoNull());
+    }
+
+    public Criadero estructuraMockeadaParaTestear() {
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Criadero estructuraMock = mock(Criadero.class);
+        when(estructuraMock.construible(any())).thenReturn(true);
+        when(estructuraMock.afectarSuministro(any(int.class))).thenReturn(200);
+        doNothing().when(estructuraMock).usarLarva();
+
+        return estructuraMock;
+    }
+
+    void atacarKVeces(Unidad unidad, Entidad entidad) {
+        for (int i = 0; i < 16; i++) {
+            unidad.atacar(entidad);
         }
     }
 }

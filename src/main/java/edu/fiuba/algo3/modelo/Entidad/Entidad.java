@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.Destruido;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
+import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadNull;
@@ -22,7 +23,7 @@ public abstract class Entidad {
     protected EstadoOperativo estadoOperativo;
     protected EstadoInvisibilidad estadoInvisibilidad;
     protected AfectaSuministro afectaSuministro;
-    
+
     public void pasarTurno() {
         this.estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ComandoNull());
     }
@@ -47,6 +48,7 @@ public abstract class Entidad {
 
     public void destruir() {
         this.estadoOperativo = new Destruido();
+        this.afectaSuministro = new NoAfecta();
         area.desocupar();
         raza.destruirEntidad(this);
     }

@@ -15,18 +15,18 @@ public class Moho implements Piso {
         area.cubrirConMoho();
     }
 
+    public void pasarTurno() {
+        turnos += 1;
+        if (turnos % 2 == 0) {
+            this.rango += 1;
+        }
+    }
+
     //Llamar este metodo luego de pasar turno para todas las posiciones. La idea es que se actualicen todas.
     @Override
     public void actualizarArea(Area area) {
         if (area.enRango(this.area, rango)) {
             area.cubrirConMoho();
-        }
-    }
-
-    public void pasarTurno() {
-        turnos += 1;
-        if (turnos % 2 == 0) {
-            this.rango += 1;
         }
     }
 }

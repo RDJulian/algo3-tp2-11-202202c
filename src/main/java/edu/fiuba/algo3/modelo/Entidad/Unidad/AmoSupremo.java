@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Larvas;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.Invisibilidad;
@@ -14,11 +13,13 @@ import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstrucci
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
+import edu.fiuba.algo3.modelo.Excepciones.RazaZergSinLarvasException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
@@ -26,32 +27,37 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
     private Invisibilidad invisibilidad;
     private int radioDeDeteccion;
 
-    public AmoSupremo(Area area, Raza raza) {
-        //Chequeos
-        raza.usarLarva();
+    public AmoSupremo(Area area, Zerg zerg) {
+        this();
+        raza = zerg;
 
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        //Chequeos
+        if (!area.construible(new NoSobreRecurso(), new RangoMoho())) {
             throw new ConstruccionNoValidaException();
         }
 
+        //Ver como mejorar.
         try {
-            raza.gastarRecursos(50, 0);
+            this.area = area.ocupar();
+            zerg.gastarRecursos(50, 0);
+            zerg.usarLarva();
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
-        }
-
-        boolean construible = new NoSobreRecurso().construible(area)
-                && new RangoMoho().construible(area);
-
-        if (!construible) {
+        } catch (RazaZergSinLarvasException e) {
+            area.desocupar();
+            zerg.recolectarMineral(50);
+            zerg.recolectarGas(0);
             throw new ConstruccionNoValidaException();
         }
 
+        zerg.registrarEntidad(this);
+    }
+
+    public AmoSupremo() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Regenerativa(200, this);
         this.escudo = new SinEscudo(vida);
 
@@ -66,8 +72,6 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
         //Instanciacion de clases especificas a esta entidad
         this.invisibilidad = new Invisibilidad(this);
         this.radioDeDeteccion = 4;
-
-        raza.registarEntidad(this);
     }
 
     @Override

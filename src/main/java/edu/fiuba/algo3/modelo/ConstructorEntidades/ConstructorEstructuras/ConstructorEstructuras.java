@@ -9,11 +9,9 @@ import java.util.ArrayList;
 public abstract class ConstructorEstructuras {
     //Factory Method.
     protected ArrayList<Estructura> estructuras;
-    protected Raza raza;
 
-    public ConstructorEstructuras(ArrayList<Estructura> estructuras, Raza raza) {
+    public ConstructorEstructuras(ArrayList<Estructura> estructuras) {
         this.estructuras = estructuras;
-        this.raza = raza;
     }
 
     public abstract Estructura construir(Area area);

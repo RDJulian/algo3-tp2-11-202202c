@@ -10,9 +10,11 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,7 +28,8 @@ public class CasoDeUso3Test {
     @Test
     public void test01EstructuraNoSePuedeConstruirSobreRecursoSiNoEsUnaDeLasEstructurasCorrectas() {
         //Se mockea la raza para no depender de los costos.
-        Raza raza = mock(Raza.class);
+        Zerg zerg = mock(Zerg.class);
+        Protoss protoss = mock(Protoss.class);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -35,13 +38,13 @@ public class CasoDeUso3Test {
         estructuras.add(estructuraMock);
 
         ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorAcceso(estructuras, raza));
-        constructores.add(new ConstructorCriadero(estructuras, raza));
-        constructores.add(new ConstructorEspiral(estructuras, raza));
-        constructores.add(new ConstructorGuarida(estructuras, raza));
-        constructores.add(new ConstructorPilon(estructuras, raza));
-        constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
-        constructores.add(new ConstructorReservaDeReproduccion(estructuras, raza));
+        constructores.add(new ConstructorAcceso(estructuras, protoss));
+        constructores.add(new ConstructorCriadero(estructuras, zerg));
+        constructores.add(new ConstructorEspiral(estructuras, zerg));
+        constructores.add(new ConstructorGuarida(estructuras, zerg));
+        constructores.add(new ConstructorPilon(estructuras, protoss));
+        constructores.add(new ConstructorPuertoEstelar(estructuras, protoss));
+        constructores.add(new ConstructorReservaDeReproduccion(estructuras, zerg));
 
         //Se mockea el area para no depender de lo que no se prueba.
         EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
@@ -58,7 +61,7 @@ public class CasoDeUso3Test {
     @Test
     public void test02AsimiladorSePuedeConstruirSobreElGasVespeno() {
         //Se mockea la raza para no depender de los costos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -66,7 +69,7 @@ public class CasoDeUso3Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, protoss);
 
         //Se mockea el area para no depender de lo que no se prueba.
         EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
@@ -81,7 +84,7 @@ public class CasoDeUso3Test {
     @Test
     public void test03ExtractorSePuedeConstruirSobreElGasVespeno() {
         //Se mockea la raza para no depender de los costos.
-        Raza raza = mock(Raza.class);
+        Zerg zerg = mock(Zerg.class);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -89,7 +92,7 @@ public class CasoDeUso3Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorExtractor(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorExtractor(estructuras, zerg);
 
         //Se mockea el area para no depender de lo que no se prueba.
         EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
@@ -104,7 +107,7 @@ public class CasoDeUso3Test {
     @Test
     public void test04NexoMineralSePuedeConstruirSobreMineral() {
         //Se mockea la raza para no depender de los costos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -112,7 +115,7 @@ public class CasoDeUso3Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, protoss);
 
         //Se mockea el area para no depender de lo que no se prueba.
         EstadoPiso estadoPisoMock = mock(EstadoPiso.class);

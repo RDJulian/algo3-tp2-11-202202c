@@ -32,11 +32,4 @@ public abstract class Estructura extends Entidad {
     }
 
     public abstract boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura);
-
-    public Estructura estaConstruidaEnArea(Area area) {
-        if (area == this.area) {
-            return this;
-        }
-        return null;
-    }
 }

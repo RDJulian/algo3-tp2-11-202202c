@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Area.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
@@ -24,12 +25,12 @@ public class GasVespeno extends Recurso {
     }
 
     @Override
-    public boolean movible(Zangano unidad) {
+    public boolean visitar(Unidad unidad) {
         return false;
     }
 
     @Override
-    public boolean movible() {
+    public boolean visitar(Zangano unidad) {
         return false;
     }
 

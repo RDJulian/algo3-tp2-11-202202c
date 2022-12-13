@@ -8,9 +8,7 @@ import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.MementoInvisi
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.Invisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.NoAtaca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Area.Area;
@@ -21,40 +19,41 @@ import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
 public class Devorador extends Unidad implements UsaMementoInvisibilidad {
     private Invisibilidad invisibilidad;
 
-    public Devorador(Area area, Raza raza) {
+    public Devorador(Area area, Zerg zerg) {
+        this();
+        raza = zerg;
+
         //Chequeos
-        if (raza.suministroRestante() < 4) {
+        if (zerg.suministroRestante() < 4) {
             throw new SuministroInsuficienteException();
         }
 
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        if (!area.construible(new NoSobreRecurso(), new RangoMoho())) {
             throw new ConstruccionNoValidaException();
         }
 
         try {
-            raza.gastarRecursos(150, 50);
+            this.area = area.ocupar();
+            zerg.gastarRecursos(150, 50);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
         }
 
-        boolean construible = new NoSobreRecurso().construible(area)
-                && new RangoMoho().construible(area);
+        zerg.registrarEntidad(this);
+    }
 
-        if (!construible) {
-            throw new ConstruccionNoValidaException();
-        }
-
+    public Devorador() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Regenerativa(200, this);
         this.escudo = new SinEscudo(vida);
 
@@ -68,8 +67,6 @@ public class Devorador extends Unidad implements UsaMementoInvisibilidad {
 
         //Instanciacion de clases especificas a esta entidad
         this.invisibilidad = new Invisibilidad(this);
-
-        raza.registarEntidad(this);
     }
 
     @Override

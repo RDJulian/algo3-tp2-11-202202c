@@ -5,4 +5,6 @@ import edu.fiuba.algo3.modelo.Area.Area;
 
 public interface TipoArea {
     Area moverse(TipoUnidad tipoUnidad, Area area);
+
+    boolean construible();
 }

@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Comando.GenerarLarva;
 import edu.fiuba.algo3.modelo.Entidad.Comando.UsarLarva;
@@ -20,12 +19,11 @@ import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Piso.Moho;
-import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
@@ -33,30 +31,30 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
     private Larvas larvas;
     private Invisibilidad invisibilidad;
 
-    public Criadero(Area area, Raza raza) {
+    public Criadero(Area area, Zerg zerg) {
+        this();
+        raza = zerg;
+
         //Chequeos
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        if (!area.construible(new NoSobreRecurso(), new RangoMoho())) {
             throw new ConstruccionNoValidaException();
         }
 
         try {
-            raza.gastarRecursos(200, 0);
+            this.area = area.ocupar();
+            zerg.gastarRecursos(200, 0);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
         }
 
-        boolean construible = new NoSobreRecurso().construible(area)
-                && new RangoMoho().construible(area);
+        zerg.registrarEntidad(this);
+    }
 
-        if (!construible) {
-            throw new ConstruccionNoValidaException();
-        }
-
+    public Criadero() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Regenerativa(500, this);
         this.escudo = new SinEscudo(vida);
 
@@ -67,8 +65,6 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         //Instanciacion de clases especificas a esta entidad
         this.larvas = new Larvas();
         this.invisibilidad = new Invisibilidad(this);
-
-        raza.registarEntidad(this);
     }
 
     @Override
@@ -81,18 +77,15 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         larvas.generarLarva();
     }
 
-    private void generarMoho() {
-        Mapa.obtenerInstancia().agregarPiso(new Moho(area));
-    }
-
     //Tener cuidado con este metodo. Si cambia de "En construccion" a "Destruido" se generaria moho.
     //Solo se va a llamar a pasarTurno() desde la raza, y si se destruye no estaria en la lista.
     @Override
     public void pasarTurno() {
         EstadoOperativo estadoAnterior = estadoOperativo;
         estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new GenerarLarva(this));
-        if (estadoAnterior != estadoAnterior) {
-            generarMoho();
+        if (estadoAnterior != estadoOperativo && area != null) {
+            Mapa.obtenerInstancia().agregarPiso(new Moho(area));
+            Mapa.obtenerInstancia().actualizarTablero();
         }
     }
 

@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPisoNull;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneEnergiaPilon;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.TieneMoho;
 
-public class RangoPilon extends ConstruiblePiso {
+public class RangoPilon implements ConstruiblePiso {
     @Override
     public boolean visitar(EstadoPisoNull estadoPisoNull) {
         return false;

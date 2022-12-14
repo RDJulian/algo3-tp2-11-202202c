@@ -1,54 +1,55 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreMineral;
-import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
-import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
+import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Zanganos;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
 
 public class Pilon extends Estructura implements Piso, EstructuraNoRequerida {
     private int rango;
 
-    public Pilon(Area area, Raza raza) {
+    public Pilon(Area area, Protoss protoss) {
+        this();
+        raza = protoss;
+
         //Chequeos
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        if (!area.construible(new NoSobreRecurso(), new RangoPilon())) {
             throw new ConstruccionNoValidaException();
         }
 
         try {
-            raza.gastarRecursos(100, 0);
+            this.area = area.ocupar();
+            protoss.gastarRecursos(100, 0);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
         }
 
-        boolean construible = new NoSobreRecurso().construible(area)
-                && new RangoPilon().construible(area);
+        protoss.registrarEntidad(this);
+    }
 
-        if (!construible) {
-            throw new ConstruccionNoValidaException();
-        }
+    public Pilon(Area area) {
+        this();
+        this.area = area;
+    }
 
+    public Pilon() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Normal(300, this);
         this.escudo = new ConEscudo(300, vida);
 
@@ -58,8 +59,16 @@ public class Pilon extends Estructura implements Piso, EstructuraNoRequerida {
 
         //Instanciacion de clases especificas a esta entidad
         this.rango = 3;
+    }
 
-        raza.registarEntidad(this);
+    @Override
+    public void pasarTurno() {
+        EstadoOperativo estadoAnterior = estadoOperativo;
+        estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ComandoNull());
+        if (estadoAnterior != estadoOperativo && area != null) {
+            Mapa.obtenerInstancia().agregarPiso(this);
+            Mapa.obtenerInstancia().actualizarTablero();
+        }
     }
 
     @Override

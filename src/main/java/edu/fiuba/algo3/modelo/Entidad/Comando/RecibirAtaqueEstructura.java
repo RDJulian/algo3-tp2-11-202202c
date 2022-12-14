@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Entidad.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Area.Area;
 
 public class RecibirAtaqueEstructura implements Comando {
     private Entidad entidad;

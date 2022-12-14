@@ -13,8 +13,9 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,11 +27,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CasoDeUso14Test {
-    //Ver casos de colision entre pisos.
     @Test
     public void test01UnaEstructuraProtossNoSePuedeConstruirSobreMoho() {
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
         //Mockeo un recurso para no depender de esa condicion.
         Recurso recursoMock = mock(Recurso.class);
@@ -44,11 +44,11 @@ public class CasoDeUso14Test {
         estructuras.add(estructuraMock);
 
         ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorNexoMineral(estructuras, raza));
-        constructores.add(new ConstructorPilon(estructuras, raza));
-        constructores.add(new ConstructorAsimilador(estructuras, raza));
-        constructores.add(new ConstructorAcceso(estructuras, raza));
-        constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
+        constructores.add(new ConstructorNexoMineral(estructuras, protoss));
+        constructores.add(new ConstructorPilon(estructuras, protoss));
+        constructores.add(new ConstructorAsimilador(estructuras, protoss));
+        constructores.add(new ConstructorAcceso(estructuras, protoss));
+        constructores.add(new ConstructorPuertoEstelar(estructuras, protoss));
 
         for (ConstructorEstructuras constructor : constructores) {
             assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
@@ -58,13 +58,14 @@ public class CasoDeUso14Test {
     @Test
     public void test02ElMohoNoPuedeExpandirseSobreUnaPosicionConEdificacion() {
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
+        Zerg zerg = mock(Zerg.class);
 
         Area area = new Area(6, 6);
         Moho moho = new Moho(new Area(0, 0));
 
         area.energizar();
-        Pilon pilon = new Pilon(area, raza);
+        Pilon pilon = new Pilon(area, protoss);
 
         //La posicion sigue "energizada"
         moho.pasarTurno();
@@ -75,19 +76,20 @@ public class CasoDeUso14Test {
         pilon.destruir();
 
         //No se puede construir el criadero porque el moho no se expandio.
-        assertThrows(ConstruccionNoValidaException.class, () -> new Criadero(area, raza));
+        assertThrows(ConstruccionNoValidaException.class, () -> new Criadero(area, zerg));
     }
 
     @Test
     public void test03ElMohoSePuedeExpandirseSobreUnaPosicionNoOcupada() {
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
+        Zerg zerg = mock(Zerg.class);
 
         Area area = new Area(6, 6);
         Moho moho = new Moho(new Area(0, 0));
 
         area.energizar();
-        Pilon pilon = new Pilon(area, raza);
+        Pilon pilon = new Pilon(area, protoss);
 
         //La posicion sigue "energizada"
         moho.pasarTurno();
@@ -98,13 +100,13 @@ public class CasoDeUso14Test {
         pilon.destruir();
 
         //No se puede construir el criadero porque el moho no se expandio.
-        assertThrows(ConstruccionNoValidaException.class, () -> new Criadero(area, raza));
+        assertThrows(ConstruccionNoValidaException.class, () -> new Criadero(area, zerg));
 
         //La posicion ahora tiene moho
         moho.pasarTurno();
         moho.pasarTurno();
         area.actualizarEstado(moho);
 
-        assertDoesNotThrow(() -> new Criadero(area, raza));
+        assertDoesNotThrow(() -> new Criadero(area, zerg));
     }
 }

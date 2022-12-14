@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
 
-public class NoSobreRecurso extends ConstruibleRecurso {
+public class NoSobreRecurso implements ConstruibleRecurso {
     @Override
     public boolean visitar(GasVespeno gasVespeno) {
         return false;

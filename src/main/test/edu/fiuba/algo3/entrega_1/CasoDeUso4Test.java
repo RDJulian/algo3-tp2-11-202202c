@@ -9,98 +9,124 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ExtractorLlenoException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 public class CasoDeUso4Test {
-    //Ver como resolver el tema de que una sola entidad puede ocupar un area.
     @Test
     public void test01UnExtractorNoGeneraGasSinZanganos() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
-        Extractor extractor = new Extractor(areaParaProbar(), raza);
+        Extractor extractor = new Extractor(areaParaProbar(), zerg);
         pasarKTurnos(extractor, 6);
 
         extractor.pasarTurno();
 
-        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(0, 1));
+        assertThrows(RecursoInsuficienteException.class, () -> zerg.gastarRecursos(0, 1));
     }
 
     @Test
     public void test02UnExtractorGeneraDiezGasConUnZangano() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
-        Extractor extractor = new Extractor(areaParaProbar(), raza);
+        Area area = areaParaProbar();
+
+        Extractor extractor = new Extractor(area, zerg);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(raza);
+        Zangano zangano = new Zangano(otraAreaParaProbar(), zerg);
         zangano.pasarTurno();
-        extractor.agregarZangano(zangano);
+
+        zangano.moverse(area);
+
         extractor.pasarTurno();
 
-        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(0, 11));
-        assertDoesNotThrow(() -> raza.gastarRecursos(0, 10));
+        assertThrows(RecursoInsuficienteException.class, () -> zerg.gastarRecursos(0, 11));
+        assertDoesNotThrow(() -> zerg.gastarRecursos(0, 10));
     }
 
     @Test
     public void test03UnExtractorGeneraVeinteGasConDosZanganos() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
-        Extractor extractor = new Extractor(areaParaProbar(), raza);
+        Area area = areaParaProbar();
+
+        Extractor extractor = new Extractor(area, zerg);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(raza);
-        zangano.pasarTurno();
-        extractor.agregarZangano(zangano);
-        extractor.agregarZangano(zangano);
+        Zangano zangano1 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano1.pasarTurno();
+
+        Zangano zangano2 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano2.pasarTurno();
+
+        zangano1.moverse(area);
+        zangano2.moverse(area);
+
         extractor.pasarTurno();
 
-        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(0, 21));
-        assertDoesNotThrow(() -> raza.gastarRecursos(0, 20));
+        assertThrows(RecursoInsuficienteException.class, () -> zerg.gastarRecursos(0, 21));
+        assertDoesNotThrow(() -> zerg.gastarRecursos(0, 20));
     }
 
     @Test
     public void test04UnExtractorGeneraTreintaGasConTresZanganos() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
-        Extractor extractor = new Extractor(areaParaProbar(), raza);
+        Area area = areaParaProbar();
+
+        Extractor extractor = new Extractor(area, zerg);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(raza);
-        zangano.pasarTurno();
-        extractor.agregarZangano(zangano);
-        extractor.agregarZangano(zangano);
-        extractor.agregarZangano(zangano);
+        Zangano zangano1 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano1.pasarTurno();
+
+        Zangano zangano2 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano2.pasarTurno();
+
+        Zangano zangano3 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano3.pasarTurno();
+
+        zangano1.moverse(area);
+        zangano2.moverse(area);
+        zangano3.moverse(area);
+
         extractor.pasarTurno();
 
-        assertThrows(RecursoInsuficienteException.class, () -> raza.gastarRecursos(0, 31));
-        assertDoesNotThrow(() -> raza.gastarRecursos(0, 30));
+        assertThrows(RecursoInsuficienteException.class, () -> zerg.gastarRecursos(0, 31));
+        assertDoesNotThrow(() -> zerg.gastarRecursos(0, 30));
     }
 
     @Test
     public void test05UnExtractorNoAdmiteMasDeTresZanganos() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(100);
+        Zerg zerg = new Zerg(100, 0);
 
-        Extractor extractor = new Extractor(areaParaProbar(), raza);
+        Area area = areaParaProbar();
+
+        Extractor extractor = new Extractor(area, zerg);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(raza);
-        zangano.pasarTurno();
-        extractor.agregarZangano(zangano);
-        extractor.agregarZangano(zangano);
-        extractor.agregarZangano(zangano);
+        Zangano zangano1 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano1.pasarTurno();
 
-        assertThrows(ExtractorLlenoException.class, () -> extractor.agregarZangano(zangano));
+        Zangano zangano2 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano2.pasarTurno();
+
+        Zangano zangano3 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano3.pasarTurno();
+
+        Zangano zangano4 = new Zangano(otraAreaParaProbar(), zerg);
+        zangano4.pasarTurno();
+
+        assertDoesNotThrow(() -> zangano1.moverse(area));
+        assertDoesNotThrow(() -> zangano2.moverse(area));
+        assertDoesNotThrow(() -> zangano3.moverse(area));
+        assertThrows(ExtractorLlenoException.class, () -> zangano4.moverse(area));
     }
 
     public void pasarKTurnos(Estructura estructura, Integer k) {
@@ -111,5 +137,9 @@ public class CasoDeUso4Test {
 
     public Area areaParaProbar() {
         return new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new GasVespeno());
+    }
+
+    public Area otraAreaParaProbar() {
+        return new Area(new Coordenada(1, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), new GasVespeno());
     }
 }

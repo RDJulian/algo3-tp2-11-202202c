@@ -14,8 +14,9 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -33,9 +34,9 @@ public class CasoDeUso5Test {
         areaEnergizada.energizar();
 
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
-        Pilon pilon = new Pilon(areaEnergizada, raza);
+        Pilon pilon = new Pilon(areaEnergizada, protoss);
         pasarKTurnos(pilon, 5);
 
         //Se mockea el area para no depender de lo que no se prueba.
@@ -51,11 +52,11 @@ public class CasoDeUso5Test {
         estructuras.add(estructuraMock);
 
         ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorNexoMineral(estructuras, raza));
-        constructores.add(new ConstructorPilon(estructuras, raza));
-        constructores.add(new ConstructorAsimilador(estructuras, raza));
-        constructores.add(new ConstructorAcceso(estructuras, raza));
-        constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
+        constructores.add(new ConstructorNexoMineral(estructuras, protoss));
+        constructores.add(new ConstructorPilon(estructuras, protoss));
+        constructores.add(new ConstructorAsimilador(estructuras, protoss));
+        constructores.add(new ConstructorAcceso(estructuras, protoss));
+        constructores.add(new ConstructorPuertoEstelar(estructuras, protoss));
 
         for (ConstructorEstructuras constructor : constructores) {
             assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
@@ -69,7 +70,7 @@ public class CasoDeUso5Test {
         Moho moho = new Moho(areaConMoho);
 
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Zerg zerg = mock(Zerg.class);
 
         //Se mockea el area para no depender de lo que no se prueba.
         Recurso recurso = mock(Recurso.class);
@@ -84,11 +85,11 @@ public class CasoDeUso5Test {
         estructuras.add(estructuraMock);
 
         ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorCriadero(estructuras, raza));
-        constructores.add(new ConstructorReservaDeReproduccion(estructuras, raza));
-        constructores.add(new ConstructorExtractor(estructuras, raza));
-        constructores.add(new ConstructorGuarida(estructuras, raza));
-        constructores.add(new ConstructorEspiral(estructuras, raza));
+        constructores.add(new ConstructorCriadero(estructuras, zerg));
+        constructores.add(new ConstructorReservaDeReproduccion(estructuras, zerg));
+        constructores.add(new ConstructorExtractor(estructuras, zerg));
+        constructores.add(new ConstructorGuarida(estructuras, zerg));
+        constructores.add(new ConstructorEspiral(estructuras, zerg));
 
         for (ConstructorEstructuras constructor : constructores) {
             assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
@@ -102,9 +103,9 @@ public class CasoDeUso5Test {
         areaEnergizada.energizar();
 
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
-        Pilon pilon = new Pilon(areaEnergizada, raza);
+        Pilon pilon = new Pilon(areaEnergizada, protoss);
         pasarKTurnos(pilon, 5);
 
         //Se mockea el area para no depender de lo que no se prueba.
@@ -124,11 +125,11 @@ public class CasoDeUso5Test {
         estructuras.add(estructuraMock);
 
         ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorNexoMineral(estructuras, raza));
-        constructores.add(new ConstructorPilon(estructuras, raza));
-        constructores.add(new ConstructorAsimilador(estructuras, raza));
-        constructores.add(new ConstructorAcceso(estructuras, raza));
-        constructores.add(new ConstructorPuertoEstelar(estructuras, raza));
+        constructores.add(new ConstructorNexoMineral(estructuras, protoss));
+        constructores.add(new ConstructorPilon(estructuras, protoss));
+        constructores.add(new ConstructorAsimilador(estructuras, protoss));
+        constructores.add(new ConstructorAcceso(estructuras, protoss));
+        constructores.add(new ConstructorPuertoEstelar(estructuras, protoss));
 
         for (ConstructorEstructuras constructor : constructores) {
             assertDoesNotThrow(() -> constructor.construir(area));
@@ -142,7 +143,7 @@ public class CasoDeUso5Test {
         Moho moho = new Moho(areaConMoho);
 
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Zerg zerg = mock(Zerg.class);
 
         //Se mockea el area para no depender de lo que no se prueba.
         Recurso recurso = mock(Recurso.class);
@@ -162,11 +163,11 @@ public class CasoDeUso5Test {
         estructuras.add(estructuraMock);
 
         ArrayList<ConstructorEstructuras> constructores = new ArrayList<>();
-        constructores.add(new ConstructorCriadero(estructuras, raza));
-        constructores.add(new ConstructorReservaDeReproduccion(estructuras, raza));
-        constructores.add(new ConstructorExtractor(estructuras, raza));
-        constructores.add(new ConstructorGuarida(estructuras, raza));
-        constructores.add(new ConstructorEspiral(estructuras, raza));
+        constructores.add(new ConstructorCriadero(estructuras, zerg));
+        constructores.add(new ConstructorReservaDeReproduccion(estructuras, zerg));
+        constructores.add(new ConstructorExtractor(estructuras, zerg));
+        constructores.add(new ConstructorGuarida(estructuras, zerg));
+        constructores.add(new ConstructorEspiral(estructuras, zerg));
 
         for (ConstructorEstructuras constructor : constructores) {
             assertDoesNotThrow(() -> constructor.construir(area));

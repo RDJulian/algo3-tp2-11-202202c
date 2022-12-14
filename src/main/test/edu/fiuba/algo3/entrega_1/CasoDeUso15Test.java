@@ -10,11 +10,12 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoVacioException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Area.Recurso.GasVespeno;
 import edu.fiuba.algo3.modelo.Area.Recurso.Mineral;
 import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.mock;
 public class CasoDeUso15Test {
     @Test
     public void test01ElMineralSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Raza raza = mock(Raza.class);
+        Protoss raza = mock(Protoss.class);
         Recurso mineral = new Mineral();
 
         Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneEnergiaPilon(), mineral);
@@ -40,7 +41,7 @@ public class CasoDeUso15Test {
 
     @Test
     public void test02ElGasVespenoSePuedeExtraerHastaQueSeQuedeVacioYLuegoNoSePuedeSeguirExtrayendo() {
-        Raza raza = mock(Raza.class);
+        Zerg raza = mock(Zerg.class);
         Recurso mineral = new GasVespeno();
 
         Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), new TieneMoho(), mineral);
@@ -48,7 +49,7 @@ public class CasoDeUso15Test {
         Extractor extractor = new Extractor(area, raza);
         pasarKTurnos(extractor, 6);
 
-        Zangano zangano = new Zangano(raza);
+        Zangano zangano = new Zangano(area, raza);
         zangano.pasarTurno();
         extractor.agregarZangano(zangano);
         extractor.agregarZangano(zangano);

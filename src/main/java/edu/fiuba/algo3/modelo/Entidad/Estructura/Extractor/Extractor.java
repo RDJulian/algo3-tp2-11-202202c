@@ -2,56 +2,56 @@ package edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
-import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.SobreGasVespeno;
 import edu.fiuba.algo3.modelo.Entidad.Comando.AgregarZangano;
 import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Larvas;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.EstructuraNoRequerida;
-import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.Invisibilidad;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.ExtraeRecurso;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 public class Extractor extends Estructura implements ExtraeRecurso, AgregaZanganos, EstructuraNoRequerida {
     private Zanganos zanganos;
 
-    public Extractor(Area area, Raza raza) {
+    public Extractor(Area area, Zerg zerg) {
+        this();
+        raza = zerg;
+
         //Chequeos
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        if (!area.construible(new SobreGasVespeno(), new RangoMoho())) {
             throw new ConstruccionNoValidaException();
         }
 
         try {
-            raza.gastarRecursos(100, 0);
+            this.area = area.ocupar();
+            zerg.gastarRecursos(100, 0);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
         }
 
-        boolean construible = new SobreGasVespeno().construible(area)
-                && new RangoMoho().construible(area);
+        zerg.registrarEntidad(this);
+    }
 
-        if (!construible) {
-            throw new ConstruccionNoValidaException();
-        }
+    public Extractor(Area area) {
+        this();
+        this.area = area;
+    }
 
+    public Extractor() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Regenerativa(750, this);
         this.escudo = new SinEscudo(vida);
 
@@ -61,8 +61,6 @@ public class Extractor extends Estructura implements ExtraeRecurso, AgregaZangan
 
         //Instanciacion de clases especificas a esta entidad
         this.zanganos = new Zanganos();
-
-        raza.registarEntidad(this);
     }
 
     @Override
@@ -77,7 +75,9 @@ public class Extractor extends Estructura implements ExtraeRecurso, AgregaZangan
 
     @Override
     public void extraerRecurso() {
-        zanganos.extraerRecurso(area);
+        if (area != null) {
+            zanganos.extraerRecurso(area);
+        }
     }
 
     @Override
@@ -88,5 +88,12 @@ public class Extractor extends Estructura implements ExtraeRecurso, AgregaZangan
     @Override
     public boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura) {
         return construibleEstructura.visitar(this);
+    }
+
+    public Extractor estaConstruidaEnArea(Area area) {
+        if (area == this.area) {
+            return this;
+        }
+        return null;
     }
 }

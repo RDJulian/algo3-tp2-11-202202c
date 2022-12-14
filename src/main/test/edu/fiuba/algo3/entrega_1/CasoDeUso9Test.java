@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class CasoDeUso9Test {
     @Test
     public void test01UnaEstructuraProtossSigueActivaSiSeDestruyeUnPilonPeroEstaEnCercaniaDeOtro() {
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
         Area unaArea = new Area(0, 0);
         Area otraArea = new Area(6, 6);
@@ -33,8 +33,8 @@ public class CasoDeUso9Test {
         unaArea.energizar();
         otraArea.energizar();
 
-        Pilon unPilon = new Pilon(unaArea, raza);
-        Pilon otroPilon = new Pilon(otraArea, raza);
+        Pilon unPilon = new Pilon(unaArea, protoss);
+        Pilon otroPilon = new Pilon(otraArea, protoss);
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
@@ -55,8 +55,8 @@ public class CasoDeUso9Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        Acceso acceso = new Acceso(otraAreaConstruccion, raza);
-        PuertoEstelar puertoEstelar = new PuertoEstelar(areaConstruccion, raza, estructuras);
+        Acceso acceso = new Acceso(otraAreaConstruccion, protoss);
+        PuertoEstelar puertoEstelar = new PuertoEstelar(areaConstruccion, protoss, estructuras);
         pasarKTurnos(acceso, 8);
         pasarKTurnos(puertoEstelar, 10);
 
@@ -77,7 +77,7 @@ public class CasoDeUso9Test {
     @Test
     public void test02UnaEstructuraProtossQuedaInactivaSiSeDestruyeUnPilonYNoEstaEnCercaniaDeOtro() {
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
         Area unaArea = new Area(0, 0);
         Area otraArea = new Area(7, 7);
@@ -85,8 +85,8 @@ public class CasoDeUso9Test {
         unaArea.energizar();
         otraArea.energizar();
 
-        Pilon unPilon = new Pilon(unaArea, raza);
-        Pilon otroPilon = new Pilon(otraArea, raza);
+        Pilon unPilon = new Pilon(unaArea, protoss);
+        Pilon otroPilon = new Pilon(otraArea, protoss);
 
         pasarKTurnos(unPilon, 5);
         pasarKTurnos(otroPilon, 5);
@@ -107,8 +107,8 @@ public class CasoDeUso9Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        Acceso acceso = new Acceso(otraAreaConstruccion, raza);
-        PuertoEstelar puertoEstelar = new PuertoEstelar(areaConstruccion, raza, estructuras);
+        Acceso acceso = new Acceso(otraAreaConstruccion, protoss);
+        PuertoEstelar puertoEstelar = new PuertoEstelar(areaConstruccion, protoss, estructuras);
         pasarKTurnos(acceso, 8);
         pasarKTurnos(puertoEstelar, 10);
 

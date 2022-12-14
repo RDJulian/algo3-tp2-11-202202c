@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo;
 
 import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoBool;
-import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.Escudo;

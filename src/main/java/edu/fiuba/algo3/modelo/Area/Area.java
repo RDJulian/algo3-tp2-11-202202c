@@ -6,8 +6,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.EstadoEnergia.EstadoEnergia;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
-import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.MovimientoSobreRecursoException;
 import edu.fiuba.algo3.modelo.Piso.Piso;
 import edu.fiuba.algo3.modelo.Area.TipoArea.TipoArea;
@@ -21,6 +20,7 @@ import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
 import java.util.ArrayList;
 
 public class Area {
+    //Clase "fachada" que agrupa comportamiento de otras clases.
     private Coordenada coordenada;
     private TipoArea tipoArea;
     private EstadoOcupacion estadoOcupacion;
@@ -55,17 +55,9 @@ public class Area {
     }
 
     //Mover y ocupar van de la mano: si una Unidad se puede mover, ya ocupa el Area.
-    //Recurso implementa movible, que es una solucion facil pero no tan buena.
-    public Area moverse(Zangano unidad, TipoUnidad tipoUnidad) {
-        if (recurso.movible(unidad)) {
-            return tipoArea.moverse(tipoUnidad, this);
-        } else {
-            throw new MovimientoSobreRecursoException();
-        }
-    }
-
-    public Area moverse(TipoUnidad tipoUnidad) {
-        if (recurso.movible()) {
+    //Unidad implementa movible, que es una solucion facil pero no tan buena (double dispatch).
+    public Area moverse(Unidad unidad, TipoUnidad tipoUnidad) {
+        if (unidad.movible(recurso)) {
             return tipoArea.moverse(tipoUnidad, this);
         } else {
             throw new MovimientoSobreRecursoException();
@@ -81,18 +73,6 @@ public class Area {
         this.estadoOcupacion = new Desocupada();
     }
 
-    public boolean construible(ConstruiblePiso construiblePiso) {
-        return estadoPiso.construible(construiblePiso);
-    }
-
-    public boolean construible(ConstruibleRecurso construibleRecurso) {
-        return recurso.construible(construibleRecurso);
-    }
-
-    public void extraerRecurso(int unidades, Raza raza) {
-        recurso.extraerRecurso(unidades, raza);
-    }
-
     public void cubrirConMoho() {
         this.estadoPiso = estadoOcupacion.cubrirConMoho(estadoPiso);
     }
@@ -101,8 +81,14 @@ public class Area {
         this.estadoPiso = estadoPiso.energizar();
     }
 
+    //Una estructura que usa energia depende de la energia del area, por lo que manda su estado y el area determina
+    //si mandar el mensaje para que cambie o no.
     public EstadoEnergia energizar(EstadoEnergia estadoEnergia) {
         return estadoPiso.energizar(estadoEnergia);
+    }
+
+    public void extraerRecurso(int unidades, Raza raza) {
+        recurso.extraerRecurso(unidades, raza);
     }
 
     public void actualizarEstado(Piso piso) {
@@ -116,13 +102,13 @@ public class Area {
         }
     }
 
+    public boolean construible(ConstruibleRecurso construibleRecurso, ConstruiblePiso construiblePiso) {
+        return recurso.construible(construibleRecurso) && estadoPiso.construible(construiblePiso) && tipoArea.construible();
+    }
+
     //Se delega a la coordenada este comportamiento. Se usa un getter para simplificar.
     public boolean es(Area area) {
         return coordenada.es(area.getCoordenada());
-    }
-
-    public boolean esOpuesta(Area area) {
-        return coordenada.esOpuesta(area.getCoordenada());
     }
 
     public boolean enRango(Area area, int radio) {

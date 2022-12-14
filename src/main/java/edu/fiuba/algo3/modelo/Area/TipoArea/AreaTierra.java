@@ -8,4 +8,9 @@ public class AreaTierra implements TipoArea {
     public Area moverse(TipoUnidad tipoUnidad, Area area) {
         return tipoUnidad.moverse(this, area);
     }
+
+    @Override
+    public boolean construible() {
+        return true;
+    }
 }

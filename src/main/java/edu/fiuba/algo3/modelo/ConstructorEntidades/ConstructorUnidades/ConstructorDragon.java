@@ -4,16 +4,19 @@ import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Dragon;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 
 import java.util.ArrayList;
 
 public class ConstructorDragon extends ConstructorUnidades {
-    public ConstructorDragon(ArrayList<Estructura> estructuras, Raza raza) {
-        super(estructuras, raza);
+    private Protoss protoss;
+
+    public ConstructorDragon(ArrayList<Estructura> estructuras, Protoss protoss) {
+        super(estructuras);
+        this.protoss = protoss;
     }
 
     public Unidad construir(Area area) {
-        return new Dragon(area, raza, estructuras);
+        return new Dragon(area, estructuras, protoss);
     }
 }

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereAcceso;
-import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
@@ -13,10 +12,7 @@ import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.MementoInvisi
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.Invisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.NoAtaca;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
@@ -24,44 +20,46 @@ import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
-import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
 
 import java.util.ArrayList;
 
 public class Zealot extends Unidad implements UsaMementoInvisibilidad {
     private Invisibilidad invisibilidad;
 
-    public Zealot(Area area, Raza raza, ArrayList<Estructura> estructuras) {
+    public Zealot(Area area, ArrayList<Estructura> estructuras, Protoss protoss) {
+        this();
+        raza = protoss;
+
         //Chequeos
-        if (raza.suministroRestante() < 2) {
+        if (protoss.suministroRestante() < 2) {
             throw new SuministroInsuficienteException();
         }
 
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoPilon()) && new RequiereAcceso().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 
         try {
-            raza.gastarRecursos(100, 0);
+            this.area = area.ocupar();
+            protoss.gastarRecursos(100, 0);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
         }
 
-        boolean construible = new NoSobreRecurso().construible(area)
-                && new RangoPilon().construible(area)
-                && new RequiereAcceso().construible(estructuras);
+        protoss.registrarEntidad(this);
+    }
 
-        if (!construible) {
-            throw new ConstruccionNoValidaException();
-        }
+    public Zealot(Area area) {
+        this();
+        this.area = area;
+    }
 
+    public Zealot() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Normal(100, this);
         this.escudo = new ConEscudo(60, vida);
 
@@ -75,8 +73,6 @@ public class Zealot extends Unidad implements UsaMementoInvisibilidad {
 
         //Instanciacion de clases especificas a esta entidad
         this.invisibilidad = new Invisibilidad(this);
-
-        raza.registarEntidad(this);
     }
 
     @Override

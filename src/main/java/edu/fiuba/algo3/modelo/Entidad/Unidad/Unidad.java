@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
+import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Entidad.Comando.Atacar;
 import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueUnidad;
@@ -7,6 +8,7 @@ import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
 
 public abstract class Unidad extends Entidad {
     protected TipoUnidad tipoUnidad;
@@ -16,10 +18,13 @@ public abstract class Unidad extends Entidad {
     public void atacar(Entidad entidad) {
         estadoOperativo.operable(new Atacar(ataque, entidad, area));
     }
-    
+
     public void moverse(Area area) {
+        if (area == this.area) {
+            throw new MovimientoNoValidoException();
+        }
         Area areaAnterior = this.area;
-        this.area = area.moverse(tipoUnidad);
+        this.area = area.moverse(this, tipoUnidad);
         areaAnterior.desocupar();
     }
 
@@ -39,4 +44,7 @@ public abstract class Unidad extends Entidad {
         estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
     }
 
+    public boolean movible(Recurso recurso) {
+        return recurso.visitar(this);
+    }
 }

@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Invisibilidad;
 
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Energia.EstadoEnergia.EstadoEnergia;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.EstadoInvisibilidad.EstadoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.EstadoInvisibilidad.Invisible;
-import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Area.Area;

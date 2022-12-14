@@ -4,55 +4,55 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstru
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
-import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
 import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
 public class Guarida extends Estructura {
-    public Guarida(Area area, Raza raza, ArrayList<Estructura> estructuras) {
+    public Guarida(Area area, Zerg zerg, ArrayList<Estructura> estructuras) {
+        this();
+        raza = zerg;
+
         //Chequeos
-        try {
-            this.area = area.ocupar();
-        } catch (PosicionOcupadaException e) {
+        if (!(area.construible(new NoSobreRecurso(), new RangoMoho()) && new RequiereReservaDeReproduccion().construible(estructuras))) {
             throw new ConstruccionNoValidaException();
         }
 
         try {
-            raza.gastarRecursos(200, 100);
+            this.area = area.ocupar();
+            zerg.gastarRecursos(200, 100);
+        } catch (PosicionOcupadaException e) {
+            throw new ConstruccionNoValidaException();
         } catch (RecursoInsuficienteException e) {
             area.desocupar();
             throw new ConstruccionNoValidaException();
         }
 
-        boolean construible = new NoSobreRecurso().construible(area)
-                && new RangoMoho().construible(area)
-                && new RequiereReservaDeReproduccion().construible(estructuras);
+        zerg.registrarEntidad(this);
+    }
 
-        if (!construible) {
-            throw new ConstruccionNoValidaException();
-        }
+    public Guarida(Area area) {
+        this();
+        this.area = area;
+    }
 
+    public Guarida() {
         //Instanciacion de clases comunes
-        this.raza = raza;
         this.vida = new Regenerativa(1250, this);
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(12);
         this.estadoInvisibilidad = new Visible();
         this.afectaSuministro = new NoAfecta();
-
-        raza.registarEntidad(this);
     }
 
     @Override

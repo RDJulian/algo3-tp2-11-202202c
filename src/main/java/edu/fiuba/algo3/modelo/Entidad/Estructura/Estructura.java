@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Entidad.Estructura;
 
-import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
 import edu.fiuba.algo3.modelo.Entidad.Comando.PermitirCorrelatividad;
@@ -32,11 +31,4 @@ public abstract class Estructura extends Entidad {
     }
 
     public abstract boolean permitirCorrelatividad(ConstruibleEstructura construibleEstructura);
-
-    public Estructura estaConstruidaEnArea(Area area) {
-        if (area == this.area) {
-            return this;
-        }
-        return null;
-    }
 }

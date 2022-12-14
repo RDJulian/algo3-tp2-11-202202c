@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class CasoDeUso2Test {
     @Test
     public void test01CriaderoNoEstaOperativoMientrasSeEncuentraEnConstruccion() {

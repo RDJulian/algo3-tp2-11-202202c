@@ -1,10 +1,16 @@
 package edu.fiuba.algo3.modelo.Area.Recurso;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zangano;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public class RecursoNull extends Recurso {
+    public RecursoNull() {
+        this.nombre = "nada";
+        this.unidades = 0;
+    }
+
     @Override
     public boolean construible(ConstruibleRecurso construibleRecurso) {
         return construibleRecurso.visitar(this);
@@ -16,12 +22,12 @@ public class RecursoNull extends Recurso {
     }
 
     @Override
-    public boolean movible(Zangano unidad) {
+    public boolean visitar(Unidad unidad) {
         return true;
     }
 
     @Override
-    public boolean movible() {
+    public boolean visitar(Zangano unidad) {
         return true;
     }
 }

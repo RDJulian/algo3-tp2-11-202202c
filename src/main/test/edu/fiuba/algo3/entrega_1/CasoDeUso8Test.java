@@ -6,9 +6,9 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.ConstruiblePiso;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ import static org.mockito.Mockito.when;
 public class CasoDeUso8Test {
     @Test
     public void test01AccesoSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(149);
-        raza.recolectarGas(0);
+        Protoss protoss = new Protoss(0, 0);
+        protoss.recolectarMineral(149);
+        protoss.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -31,26 +31,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorAcceso(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorAcceso(estructuras, protoss);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        protoss.recolectarMineral(1);
+        protoss.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test02AsimiladorSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(99);
-        raza.recolectarGas(0);
+        Protoss protoss = new Protoss(0, 0);
+        protoss.recolectarMineral(99);
+        protoss.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -58,26 +57,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, protoss);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        protoss.recolectarMineral(1);
+        protoss.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test03EspiralSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(149);
-        raza.recolectarGas(99);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(149);
+        zerg.recolectarGas(99);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -85,26 +83,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorEspiral(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorEspiral(estructuras, zerg);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        zerg.recolectarMineral(1);
+        zerg.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test04GuaridaSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(199);
-        raza.recolectarGas(99);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(199);
+        zerg.recolectarGas(99);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -112,26 +109,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorGuarida(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorGuarida(estructuras, zerg);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        zerg.recolectarMineral(1);
+        zerg.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test05NexoMineralSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(49);
-        raza.recolectarGas(0);
+        Protoss protoss = new Protoss(0, 0);
+        protoss.recolectarMineral(49);
+        protoss.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -139,26 +135,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, protoss);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        protoss.recolectarMineral(1);
+        protoss.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test06PilonSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(99);
-        raza.recolectarGas(0);
+        Protoss protoss = new Protoss(0, 0);
+        protoss.recolectarMineral(99);
+        protoss.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -166,26 +161,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorPilon(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorPilon(estructuras, protoss);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
         assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        protoss.recolectarMineral(1);
+        protoss.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test07PuertoEstelarSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(149);
-        raza.recolectarGas(149);
+        Protoss protoss = new Protoss(0, 0);
+        protoss.recolectarMineral(149);
+        protoss.recolectarGas(149);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -193,26 +187,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorPuertoEstelar(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorPuertoEstelar(estructuras, protoss);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        protoss.recolectarMineral(1);
+        protoss.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test08ReservaDeReproduccionSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(149);
-        raza.recolectarGas(0);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(149);
+        zerg.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -220,26 +213,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorReservaDeReproduccion(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorReservaDeReproduccion(estructuras, zerg);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        zerg.recolectarMineral(1);
+        zerg.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test09CriaderoSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(199);
-        raza.recolectarGas(0);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(199);
+        zerg.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -247,27 +239,25 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorCriadero(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorCriadero(estructuras, zerg);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
-        when(area.ocupar()).thenReturn(area);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        zerg.recolectarMineral(1);
+        zerg.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test10ExtractorSoloSePuedeConstruirSiLasReservasTienenElRecursoSuficiente() {
-        Raza raza = new Raza();
-        raza.recolectarMineral(99);
-        raza.recolectarGas(0);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(99);
+        zerg.recolectarGas(0);
 
         //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
         Estructura estructuraMock = mock(Estructura.class);
@@ -275,17 +265,16 @@ public class CasoDeUso8Test {
         ArrayList<Estructura> estructuras = new ArrayList<>();
         estructuras.add(estructuraMock);
 
-        ConstructorEstructuras constructor = new ConstructorExtractor(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorExtractor(estructuras, zerg);
 
         //Se mockea el area porque no afecta en nada en este test.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        assertThrows(RecursoInsuficienteException.class, () -> constructor.construir(area));
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        raza.recolectarMineral(1);
-        raza.recolectarGas(1);
+        zerg.recolectarMineral(1);
+        zerg.recolectarGas(1);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }

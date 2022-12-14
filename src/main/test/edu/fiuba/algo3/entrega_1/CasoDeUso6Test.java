@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.Constr
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,9 +25,9 @@ public class CasoDeUso6Test {
         area.actualizarEstado(moho);
 
         //Mockeo la raza para no depender de recursos.
-        Raza raza = mock(Raza.class);
+        Zerg zerg = mock(Zerg.class);
 
-        ConstructorEstructuras constructor = new ConstructorCriadero(new ArrayList<>(), raza);
+        ConstructorEstructuras constructor = new ConstructorCriadero(new ArrayList<>(), zerg);
 
         assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 

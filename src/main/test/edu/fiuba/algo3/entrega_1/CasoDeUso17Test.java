@@ -6,7 +6,8 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.ConstruibleRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Raza.Protoss;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -20,51 +21,46 @@ import static org.mockito.Mockito.when;
 public class CasoDeUso17Test {
     @Test
     public void test01GuaridaNecesitaUnaReservaDeReproduccionParaPoderConstruirse() {
-        ArrayList<Estructura> estructuras = new ArrayList<>();
-        Raza raza = mock(Raza.class);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(1000);
+        zerg.recolectarGas(1000);
 
         //Se mockea el area porque no afecta en lo que se prueba.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        ConstructorEstructuras constructor = new ConstructorGuarida(estructuras, raza);
-        ConstructorEstructuras constructorReserva = new ConstructorReservaDeReproduccion(estructuras, raza);
-
-        Estructura estructura = constructorReserva.construir(area);
-        pasarKTurnos(estructura, 100);
+        ConstructorEstructuras constructor = new ConstructorGuarida(zerg.getEstructuras(), zerg);
+        ConstructorEstructuras constructorReserva = new ConstructorReservaDeReproduccion(zerg.getEstructuras(), zerg);
 
         assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
 
-        estructuras.add(estructura);
+        Estructura estructura = constructorReserva.construir(area);
+        pasarKTurnos(estructura, 100);
 
         assertDoesNotThrow(() -> constructor.construir(area));
     }
 
     @Test
     public void test02EspiralNecesitaUnaGuaridaParaPoderConstruirse() {
-        ArrayList<Estructura> estructuras = new ArrayList<>();
-        Raza raza = mock(Raza.class);
+        Zerg zerg = new Zerg(0, 0);
+        zerg.recolectarMineral(1000);
+        zerg.recolectarGas(1000);
 
         //Se mockea el area porque no afecta en lo que se prueba.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        ConstructorEstructuras constructor = new ConstructorGuarida(estructuras, raza);
-        ConstructorEstructuras constructorReserva = new ConstructorReservaDeReproduccion(estructuras, raza);
-        ConstructorEstructuras constructorEspiral = new ConstructorEspiral(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorGuarida(zerg.getEstructuras(), zerg);
+        ConstructorEstructuras constructorReserva = new ConstructorReservaDeReproduccion(zerg.getEstructuras(), zerg);
+        ConstructorEstructuras constructorEspiral = new ConstructorEspiral(zerg.getEstructuras(), zerg);
 
         Estructura estructura = constructorReserva.construir(area);
         pasarKTurnos(estructura, 100);
-        estructuras.add(estructura);
-
-        Estructura otraEstructura = constructor.construir(area);
-        pasarKTurnos(otraEstructura, 100);
 
         assertThrows(ConstruccionNoValidaException.class, () -> constructorEspiral.construir(area));
 
-        estructuras.add(otraEstructura);
+        Estructura otraEstructura = constructor.construir(area);
+        pasarKTurnos(otraEstructura, 100);
 
         assertDoesNotThrow(() -> constructorEspiral.construir(area));
     }
@@ -72,15 +68,14 @@ public class CasoDeUso17Test {
     @Test
     public void test03PuertoEstelarNecesitaUnAccesoParaPoderConstruirse() {
         ArrayList<Estructura> estructuras = new ArrayList<>();
-        Raza raza = mock(Raza.class);
+        Protoss protoss = mock(Protoss.class);
 
         //Se mockea el area porque no afecta en lo que se prueba.
         Area area = mock(Area.class);
-        when(area.construible(any(ConstruiblePiso.class))).thenReturn(true);
-        when(area.construible(any(ConstruibleRecurso.class))).thenReturn(true);
+        when(area.construible(any(ConstruibleRecurso.class), any(ConstruiblePiso.class))).thenReturn(true);
 
-        ConstructorEstructuras constructor = new ConstructorAcceso(estructuras, raza);
-        ConstructorEstructuras constructorPuertoEstelar = new ConstructorPuertoEstelar(estructuras, raza);
+        ConstructorEstructuras constructor = new ConstructorAcceso(estructuras, protoss);
+        ConstructorEstructuras constructorPuertoEstelar = new ConstructorPuertoEstelar(estructuras, protoss);
 
         Estructura estructura = constructor.construir(area);
         pasarKTurnos(estructura, 100);

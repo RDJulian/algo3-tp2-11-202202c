@@ -50,7 +50,7 @@ public class NexoMineral extends Estructura implements ExtraeRecurso, Estructura
         this.escudo = new ConEscudo(250, vida);
 
         this.estadoOperativo = new EnConstruccion(4);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
     }
 

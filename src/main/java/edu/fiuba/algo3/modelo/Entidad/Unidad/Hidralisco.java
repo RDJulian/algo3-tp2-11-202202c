@@ -61,7 +61,7 @@ public class Hidralisco extends Unidad {
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(4);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(2);
 
         this.tipoUnidad = new UnidadTierra();

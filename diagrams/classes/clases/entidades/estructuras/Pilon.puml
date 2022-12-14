@@ -1,0 +1,7 @@
+@startuml
+skinparam classAttributeIconSize 0
+!include EstructuraNoRequerida.puml
+!include ../../piso/Piso.puml
+remove Moho
+EstructuraNoRequerida <|.. Pilon
+@enduml

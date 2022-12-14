@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Moho {
+- int turnos
+- int rango
+- Area area
++ <<Create>> Moho(Area)
++ void pasarTurno()
++ void actualizarArea(Area)
+}
+interface Piso {
+~ void actualizarArea(Area)
+}
+
+class Pilon {
+- int rango
++ <<Create>> Pilon(Area,Protoss)
++ void desenergizar()
++ void pasarTurno()
++ void actualizarArea(Area)
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+Piso <|.. Moho
+Piso <|.. Pilon
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+!include unidades/TipoUnidad.puml
+!include unidades/Ataque.puml
+
+abstract class Unidad {
+# int contadorDeBajas
+# boolean seMovioEsteTurno
++ void pasarTurno()
++ void atacar(Entidad)
++ void moverse(Area)
++ void sumarBaja()
++ int afectarSuministro(int)
++ void recibirAtaque(Ataque,Unidad)
++ boolean movible(Recurso)
+}
+
+Unidad "1" *-right- "1" Ataque
+Unidad "1" *-left- "1" TipoUnidad
+@enduml

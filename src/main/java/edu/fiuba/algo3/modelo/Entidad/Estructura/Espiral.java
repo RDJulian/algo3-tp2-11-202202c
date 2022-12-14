@@ -51,7 +51,7 @@ public class Espiral extends Estructura {
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(10);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
     }
 

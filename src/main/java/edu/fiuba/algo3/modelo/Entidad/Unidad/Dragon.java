@@ -58,7 +58,7 @@ public class Dragon extends Unidad {
         this.escudo = new ConEscudo(80, vida);
 
         this.estadoOperativo = new EnConstruccion(6);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(3);
 
         this.tipoUnidad = new UnidadTierra();

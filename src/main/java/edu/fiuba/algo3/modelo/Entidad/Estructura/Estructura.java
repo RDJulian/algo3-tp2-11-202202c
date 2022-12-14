@@ -18,7 +18,7 @@ public abstract class Estructura extends Entidad {
             throw new AtaqueNoValidoException();
         }
         Comando recibirAtaque = new RecibirAtaqueEstructura(this, ataque, atacante);
-        estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
+        estadoOperativo.atacable(estadoInvisibilidadEntidad.atacable(recibirAtaque));
     }
 
     @Override

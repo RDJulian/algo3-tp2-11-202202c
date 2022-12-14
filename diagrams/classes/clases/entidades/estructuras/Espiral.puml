@@ -1,0 +1,7 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Espiral {
++ <<Create>> Espiral(Area,Zerg,ArrayList<Estructura>)
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+@enduml

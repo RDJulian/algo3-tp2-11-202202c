@@ -59,7 +59,7 @@ public class Scout extends Unidad implements RevelaEntidades {
         this.escudo = new ConEscudo(100, vida);
 
         this.estadoOperativo = new EnConstruccion(9);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(4);
 
         this.tipoUnidad = new UnidadAire();

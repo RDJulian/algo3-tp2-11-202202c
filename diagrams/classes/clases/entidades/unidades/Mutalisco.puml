@@ -1,0 +1,11 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Mutalisco {
+- Zerg zerg
++ <<Create>> Mutalisco(Area,ArrayList<Estructura>,Zerg)
++ void evolucionarAGuardian()
++ void evolucionarADevorador()
+}
+
+
+@enduml

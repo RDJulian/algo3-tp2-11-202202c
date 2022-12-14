@@ -62,7 +62,7 @@ public class Zealot extends Unidad implements UsaMementoInvisibilidad, EntidadIn
         this.escudo = new ConEscudo(60, vida);
 
         this.estadoOperativo = new EnConstruccion(4);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(2);
 
         this.tipoUnidad = new UnidadTierra();
@@ -86,21 +86,21 @@ public class Zealot extends Unidad implements UsaMementoInvisibilidad, EntidadIn
     public void sumarBaja() {
         contadorDeBajas = contadorDeBajas + 1;
         if (contadorDeBajas == 3) {
-            estadoInvisibilidad = new Invisible();
+            estadoInvisibilidadEntidad = new Invisible();
             invisibilidad.sincronizarEstado();
         }
     }
 
     @Override
     public MementoInvisibilidad guardarEstado() {
-        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidad);
-        this.estadoInvisibilidad = new Visible();
+        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidadEntidad);
+        this.estadoInvisibilidadEntidad = new Visible();
         return snapshot;
     }
 
     @Override
     public void restaurarEstado(MementoInvisibilidad snapshot) {
-        this.estadoInvisibilidad = snapshot.restaurar();
+        this.estadoInvisibilidadEntidad = snapshot.restaurar();
     }
 
     @Override

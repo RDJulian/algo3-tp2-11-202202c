@@ -61,7 +61,7 @@ public class Zerling extends Unidad {
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(2);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(1);
 
         this.tipoUnidad = new UnidadTierra();

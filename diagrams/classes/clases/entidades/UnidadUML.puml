@@ -1,0 +1,58 @@
+@startuml
+!include unidades/TipoUnidad.puml
+!include unidades/Ataque.puml
+!include unidades./AmoSupremo.puml
+!include unidades./Devorador.puml
+!include unidades./Dragon.puml
+!include unidades./Guardian.puml
+!include unidades./Hidralisco.puml
+!include unidades./Mutalisco.puml
+!include unidades./Scout.puml
+!include unidades./UnidadNull.puml
+!include unidades./Zangano.puml
+!include unidades./Zealot.puml
+!include unidades./Zerling.puml
+
+remove EntidadInvisible
+remove UsaMementoInvisibilidad
+remove Ataca
+remove NoAtaca
+remove RevelaEntidades
+remove ExtraeRecurso
+remove UsaMementoInvisibilidad
+remove UnidadTierra
+remove UnidadAire
+remove Invisibilidad
+
+abstract class Unidad {
+# int contadorDeBajas
+# boolean seMovioEsteTurno
++ void pasarTurno()
++ void atacar(Entidad)
++ void moverse(Area)
++ void sumarBaja()
++ int afectarSuministro(int)
++ void recibirAtaque(Ataque,Unidad)
++ boolean movible(Recurso)
+}
+
+Unidad "1" *-right- "1" Ataque
+Unidad "1" *-left- "1" TipoUnidad
+
+Unidad <|-- AmoSupremo
+Unidad <|-- Devorador
+AmoSupremo <-[hidden]down-Devorador
+Unidad <|-- Dragon
+Unidad <|-- Guardian
+Dragon <-[hidden]down-Guardian
+Unidad <|-- Hidralisco
+Unidad <|-- Mutalisco
+Hidralisco <-[hidden]down-Mutalisco
+Unidad <|-- Scout
+Unidad <|-- UnidadNull
+UnidadNull <-[hidden]down-Scout
+Unidad <|-- Zangano
+Unidad <|-- Zealot
+Zealot <-[hidden]down-Zangano
+Unidad <|-- Zerling
+@enduml

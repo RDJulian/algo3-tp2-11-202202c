@@ -1,0 +1,9 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Dragon {
++ <<Create>> Dragon(Area,ArrayList<Estructura>,Protoss)
+}
+
+
+
+@enduml

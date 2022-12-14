@@ -50,7 +50,7 @@ public class Asimilador extends Estructura implements ExtraeRecurso, EstructuraN
         this.escudo = new ConEscudo(450, vida);
 
         this.estadoOperativo = new EnConstruccion(6);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
     }
 

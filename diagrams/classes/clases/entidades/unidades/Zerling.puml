@@ -1,0 +1,9 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Zerling {
++ <<Create>> Zerling(Area,ArrayList<Estructura>,Zerg)
+}
+
+
+
+@enduml

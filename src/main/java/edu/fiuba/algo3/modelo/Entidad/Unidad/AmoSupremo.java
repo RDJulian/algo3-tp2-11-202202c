@@ -66,7 +66,7 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(5);
-        this.estadoInvisibilidad = new Invisible();
+        this.estadoInvisibilidadEntidad = new Invisible();
         this.afectaSuministro = new Proveedor();
 
         this.tipoUnidad = new UnidadAire();
@@ -109,14 +109,14 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
 
     @Override
     public MementoInvisibilidad guardarEstado() {
-        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidad);
-        this.estadoInvisibilidad = new Visible();
+        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidadEntidad);
+        this.estadoInvisibilidadEntidad = new Visible();
         return snapshot;
     }
 
     @Override
     public void restaurarEstado(MementoInvisibilidad snapshot) {
-        this.estadoInvisibilidad = snapshot.restaurar();
+        this.estadoInvisibilidadEntidad = snapshot.restaurar();
     }
 
     @Override

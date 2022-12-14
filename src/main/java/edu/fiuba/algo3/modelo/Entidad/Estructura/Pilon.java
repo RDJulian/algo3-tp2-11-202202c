@@ -60,7 +60,7 @@ public class Pilon extends Estructura implements Piso, EstructuraNoRequerida {
         this.escudo = new ConEscudo(300, vida);
 
         this.estadoOperativo = new EnConstruccion(5);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Proveedor();
 
         //Instanciacion de clases especificas a esta entidad

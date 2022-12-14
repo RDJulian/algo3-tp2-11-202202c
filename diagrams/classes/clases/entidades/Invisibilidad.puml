@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Visible {
++ void actualizarEstado(UsaMementoInvisibilidad)
++ void sincronizarEstado(UsaMementoInvisibilidad)
++ EstadoInvisibilidad revelar()
++ EstadoInvisibilidad ocultar()
+}
+class Invisible {
++ <<Create>> Invisible(MementoInvisibilidad)
++ void actualizarEstado(UsaMementoInvisibilidad)
++ void sincronizarEstado(UsaMementoInvisibilidad)
++ EstadoInvisibilidad revelar()
++ EstadoInvisibilidad ocultar()
+}
+class Invisibilidad {
+- UsaMementoInvisibilidad originador
++ <<Create>> Invisibilidad(UsaMementoInvisibilidad)
++ EstadoInvisibilidad invisible(ArrayList<RevelaEntidades>,Area)
++ void actualizarEstado(ArrayList<RevelaEntidades>,Area)
++ void sincronizarEstado()
+}
+abstract class EstadoInvisibilidad {
+# MementoInvisibilidad snapshot
++ {abstract}void actualizarEstado(UsaMementoInvisibilidad)
++ {abstract}void sincronizarEstado(UsaMementoInvisibilidad)
++ {abstract}EstadoInvisibilidad revelar()
++ {abstract}EstadoInvisibilidad ocultar()
+}
+
+
+EstadoInvisibilidad <|-- Visible
+EstadoInvisibilidad <|-- Invisible
+Invisibilidad *-r- EstadoInvisibilidad
+@enduml

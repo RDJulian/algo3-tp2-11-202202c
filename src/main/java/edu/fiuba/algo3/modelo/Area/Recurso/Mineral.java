@@ -12,6 +12,12 @@ public class Mineral extends Recurso {
         this.nombre = "mineral";
     }
 
+    public Mineral(int unidades) {
+        this.unidades = unidades;
+        this.nombre = "mineral";
+    }
+
+
     //Codigo muy similar.
     public void extraerRecurso(int unidades, Raza raza) {
         if (this.unidades == 0) {

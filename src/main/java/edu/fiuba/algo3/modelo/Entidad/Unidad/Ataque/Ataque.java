@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Raza.Raza;
 
 public abstract class Ataque {
     protected Unidad unidadAtacante;
@@ -13,15 +13,21 @@ public abstract class Ataque {
     protected int danioAire;
     protected int rangoAtaque;
 
+    protected Raza razaAtacante;
+    protected boolean atacoEsteTurno;
+
     public abstract int calcularDanio(TipoUnidad tipoUnidad);
 
     public abstract int calcularDanio();
 
-    public abstract void atacar(Entidad entidad, Area areaAtacante);
-    
-    public void ataqueEnRango(Area areaObjetivo) {
-        if (!areaObjetivo.enRango(areaAtacante, rangoAtaque)) {
-            throw new AtaqueNoValidoException();
-        }
+    public abstract void atacar(Entidad entidad, Area areaAtacante, Raza razaAtacante);
+
+    //Band-aid para no tener que cambiar todos los tests.
+    public boolean ataqueValido(Area areaObjetivo, Raza razaObjetivo) {
+        return areaObjetivo.enRango(areaAtacante, rangoAtaque) && (razaObjetivo != razaAtacante || razaObjetivo == null || razaAtacante == null);
+    }
+
+    public void pasarTurno() {
+        atacoEsteTurno = false;
     }
 }

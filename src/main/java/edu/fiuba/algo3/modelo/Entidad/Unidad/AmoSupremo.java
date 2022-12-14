@@ -2,8 +2,11 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Comando.RevelarEntidad;
+import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.MementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.UsaMementoInvisibilidad;
 import edu.fiuba.algo3.modelo.Entidad.Invisibilidad.Invisibilidad;
@@ -11,10 +14,7 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.NoAtaca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
-import edu.fiuba.algo3.modelo.Excepciones.RazaZergSinLarvasException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
+import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Regenerativa;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.SinEscudo;
@@ -22,7 +22,7 @@ import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
-public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInvisibilidad {
+public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInvisibilidad, EntidadInvisible {
     private Invisibilidad invisibilidad;
     private int radioDeDeteccion;
 
@@ -79,13 +79,32 @@ public class AmoSupremo extends Unidad implements RevelaEntidades, UsaMementoInv
     }
 
     @Override
+    public void pasarTurno() {
+        EstadoOperativo estadoAnterior = estadoOperativo;
+        super.pasarTurno();
+        if (estadoAnterior != estadoOperativo && raza != null) {
+            raza.revelarContrincante();
+        }
+    }
+
+    @Override
+    public void moverse(Area area) {
+        super.moverse(area);
+
+        if (raza != null) {
+            raza.revelarUnidad(this);
+            raza.revelarContrincante();
+        }
+    }
+
+    @Override
     public int afectarSuministro(int suministro) {
         return estadoOperativo.afectarSuministro(afectaSuministro, suministro);
     }
 
     @Override
-    public boolean fueraDeRango(Area area) {
-        return !area.enRango(this.area, radioDeDeteccion);
+    public boolean revelar(Area area) {
+        return estadoOperativo.operable(new RevelarEntidad(area, this.area, radioDeDeteccion));
     }
 
     @Override

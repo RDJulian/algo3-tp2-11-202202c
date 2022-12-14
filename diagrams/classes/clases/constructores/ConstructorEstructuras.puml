@@ -1,0 +1,70 @@
+@startuml
+skinparam classAttributeIconSize 0
+class ConstructorExtractor {
+- Zerg zerg
++ <<Create>> ConstructorExtractor(ArrayList<Estructura>,Zerg)
++ Estructura construir(Area)
+}
+class ConstructorReservaDeReproduccion {
+- Zerg zerg
++ <<Create>> ConstructorReservaDeReproduccion(ArrayList<Estructura>,Zerg)
++ Estructura construir(Area)
+}
+abstract class ConstructorEstructuras {
+# ArrayList<Estructura> estructuras
++ <<Create>> ConstructorEstructuras(ArrayList<Estructura>)
++ {abstract}Estructura construir(Area)
+}
+class ConstructorCriadero {
+- Zerg zerg
++ <<Create>> ConstructorCriadero(ArrayList<Estructura>,Zerg)
++ Estructura construir(Area)
+}
+class ConstructorGuarida {
+- Zerg zerg
++ <<Create>> ConstructorGuarida(ArrayList<Estructura>,Zerg)
++ Estructura construir(Area)
+}
+class ConstructorPilon {
+- Protoss protoss
++ <<Create>> ConstructorPilon(ArrayList<Estructura>,Protoss)
++ Estructura construir(Area)
+}
+class ConstructorNexoMineral {
+- Protoss protoss
++ <<Create>> ConstructorNexoMineral(ArrayList<Estructura>,Protoss)
++ Estructura construir(Area)
+}
+class ConstructorAcceso {
+- Protoss protoss
++ <<Create>> ConstructorAcceso(ArrayList<Estructura>,Protoss)
++ Estructura construir(Area)
+}
+class ConstructorEspiral {
+- Zerg zerg
++ <<Create>> ConstructorEspiral(ArrayList<Estructura>,Zerg)
++ Estructura construir(Area)
+}
+class ConstructorPuertoEstelar {
+- Protoss protoss
++ <<Create>> ConstructorPuertoEstelar(ArrayList<Estructura>,Protoss)
++ Estructura construir(Area)
+}
+class ConstructorAsimilador {
+- Protoss protoss
++ <<Create>> ConstructorAsimilador(ArrayList<Estructura>,Protoss)
++ Estructura construir(Area)
+}
+
+
+ConstructorEstructuras <|-- ConstructorExtractor
+ConstructorEstructuras <|-- ConstructorReservaDeReproduccion
+ConstructorEstructuras <|-- ConstructorCriadero
+ConstructorEstructuras <|-- ConstructorGuarida
+ConstructorEstructuras <|-- ConstructorPilon
+ConstructorEstructuras <|-- ConstructorNexoMineral
+ConstructorEstructuras <|-- ConstructorAcceso
+ConstructorEstructuras <|-- ConstructorEspiral
+ConstructorEstructuras <|-- ConstructorPuertoEstelar
+ConstructorEstructuras <|-- ConstructorAsimilador
+@enduml

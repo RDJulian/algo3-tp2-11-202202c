@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+class NoSobreRecurso {
++ boolean visitar(GasVespeno)
++ boolean visitar(Mineral)
++ boolean visitar(RecursoNull)
+}
+class SobreMineral {
++ boolean visitar(GasVespeno)
++ boolean visitar(Mineral)
++ boolean visitar(RecursoNull)
+}
+interface ConstruibleRecurso {
+~ boolean visitar(GasVespeno)
+~ boolean visitar(Mineral)
+~ boolean visitar(RecursoNull)
+}
+class SobreGasVespeno {
++ boolean visitar(GasVespeno)
++ boolean visitar(Mineral)
++ boolean visitar(RecursoNull)
+}
+
+
+ConstruibleRecurso <|.. NoSobreRecurso
+ConstruibleRecurso <|.. SobreMineral
+ConstruibleRecurso <|.. SobreGasVespeno
+@enduml

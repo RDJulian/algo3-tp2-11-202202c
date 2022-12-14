@@ -1,0 +1,28 @@
+@startuml
+!include Coordenada.puml
+!include EstadoOcupacion.puml
+!include EstadoPiso.puml
+!include Recurso.puml
+!include TipoArea.puml
+!include Area.puml
+
+remove AreaEspacial
+remove AreaTierra
+remove Ocupada
+remove Desocupada
+remove TieneEnergiaPilon
+remove TieneMoho
+remove EstadoPisoNull
+remove GasVespeno
+remove Mineral
+remove RecursoNull
+
+Area "1" *-left- "1" Coordenada
+
+Area "1" *-right- "1" TipoArea
+
+Area "1" *-- "1" EstadoOcupacion
+Area "1" *-- "1" EstadoPiso
+Area "1" *-- "1" Recurso
+
+@enduml

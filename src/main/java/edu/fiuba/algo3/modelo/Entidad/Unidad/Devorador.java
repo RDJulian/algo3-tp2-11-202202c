@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad.MementoInvisibilidad;
@@ -22,7 +23,7 @@ import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
-public class Devorador extends Unidad implements UsaMementoInvisibilidad {
+public class Devorador extends Unidad implements UsaMementoInvisibilidad, EntidadInvisible {
     private Invisibilidad invisibilidad;
 
     public Devorador(Area area, Zerg zerg) {

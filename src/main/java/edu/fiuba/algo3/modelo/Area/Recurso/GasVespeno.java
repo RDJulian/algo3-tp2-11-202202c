@@ -12,6 +12,11 @@ public class GasVespeno extends Recurso {
         this.nombre = "gas";
     }
 
+    public GasVespeno(int unidades) {
+        this.unidades = unidades;
+        this.nombre = "gas";
+    }
+
     //Codigo muy similar.
     public void extraerRecurso(int unidades, Raza raza) {
         if (this.unidades == 0) {

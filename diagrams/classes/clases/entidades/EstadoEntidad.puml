@@ -1,0 +1,57 @@
+@startuml
+skinparam classAttributeIconSize 0
+class SinEnergia {
++ void operable(Comando)
++ boolean operable(ComandoBool)
++ EstadoOperativo pasarTurno(Vida,Escudo,Comando)
++ void atacable(Comando)
++ int afectarSuministro(AfectaSuministro,int)
+}
+interface EstadoInvisibilidad {
+~ Comando atacable(Comando)
+}
+interface EstadoOperativo {
+~ void operable(Comando)
+~ boolean operable(ComandoBool)
+~ EstadoOperativo pasarTurno(Vida,Escudo,Comando)
+~ void atacable(Comando)
+~ int afectarSuministro(AfectaSuministro,int)
+}
+class Operativa {
++ void operable(Comando)
++ boolean operable(ComandoBool)
++ EstadoOperativo pasarTurno(Vida,Escudo,Comando)
++ void atacable(Comando)
++ int afectarSuministro(AfectaSuministro,int)
+}
+class Invisible {
++ Comando atacable(Comando)
+}
+class EnConstruccion {
+- int tiempoParaOperar
++ <<Create>> EnConstruccion(int)
++ void operable(Comando)
++ boolean operable(ComandoBool)
++ EstadoOperativo pasarTurno(Vida,Escudo,Comando)
++ void atacable(Comando)
++ int afectarSuministro(AfectaSuministro,int)
+}
+class Destruido {
++ void operable(Comando)
++ boolean operable(ComandoBool)
++ EstadoOperativo pasarTurno(Vida,Escudo,Comando)
++ void atacable(Comando)
++ int afectarSuministro(AfectaSuministro,int)
+}
+class Visible {
++ Comando atacable(Comando)
+}
+
+
+EstadoOperativo <|.. SinEnergia
+EstadoOperativo <|.. Operativa
+EstadoInvisibilidad <|.. Invisible
+EstadoOperativo <|.. EnConstruccion
+EstadoOperativo <|.. Destruido
+EstadoInvisibilidad <|.. Visible
+@enduml

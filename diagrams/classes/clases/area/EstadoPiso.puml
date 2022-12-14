@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+interface EstadoPiso {
+~ boolean construible(ConstruiblePiso)
+~ EstadoEnergia energizar(EstadoEnergia)
+~ EstadoPiso energizar()
+~ EstadoPiso cubrirConMoho()
+~ EstadoPiso limpiar()
+}
+class TieneEnergiaPilon {
++ boolean construible(ConstruiblePiso)
++ EstadoEnergia energizar(EstadoEnergia)
++ EstadoPiso energizar()
++ EstadoPiso cubrirConMoho()
++ EstadoPiso limpiar()
+}
+class EstadoPisoNull {
++ boolean construible(ConstruiblePiso)
++ EstadoEnergia energizar(EstadoEnergia)
++ EstadoPiso energizar()
++ EstadoPiso cubrirConMoho()
++ EstadoPiso limpiar()
+}
+class TieneMoho {
++ boolean construible(ConstruiblePiso)
++ EstadoEnergia energizar(EstadoEnergia)
++ EstadoPiso energizar()
++ EstadoPiso cubrirConMoho()
++ EstadoPiso limpiar()
+}
+
+
+EstadoPiso <|.. TieneEnergiaPilon
+EstadoPiso <|.. EstadoPisoNull
+EstadoPiso <|.. TieneMoho
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+skinparam classAttributeIconSize 0
+class AreaEspacial {
++ Area moverse(TipoUnidad,Area)
++ boolean construible()
+}
+class AreaTierra {
++ Area moverse(TipoUnidad,Area)
++ boolean construible()
+}
+interface TipoArea {
+~ Area moverse(TipoUnidad,Area)
+~ boolean construible()
+}
+
+TipoArea <|.. AreaEspacial
+TipoArea <|.. AreaTierra
+@enduml

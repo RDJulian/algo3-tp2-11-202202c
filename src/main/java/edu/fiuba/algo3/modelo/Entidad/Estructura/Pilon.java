@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.SinEnergia;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Proveedor;
 import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
 import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
@@ -46,6 +47,11 @@ public class Pilon extends Estructura implements Piso, EstructuraNoRequerida {
     public Pilon(Area area) {
         this();
         this.area = area;
+    }
+
+    //Exclusivamente para testear.
+    public void desenergizar() {
+        this.estadoOperativo = new SinEnergia();
     }
 
     public Pilon() {

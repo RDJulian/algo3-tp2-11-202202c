@@ -21,7 +21,7 @@ public class Invisibilidad {
         boolean invisible = true;
         int i = 0;
         while (invisible && i < reveladores.size()) {
-            invisible = reveladores.get(i).fueraDeRango(area);
+            invisible = reveladores.get(i).revelar(area);
             i++;
         }
         if (invisible) {

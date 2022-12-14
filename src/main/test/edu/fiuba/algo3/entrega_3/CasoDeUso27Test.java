@@ -60,6 +60,7 @@ public class CasoDeUso27Test {
         atacarKVeces(unidad, otraUnidad);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -131,6 +132,7 @@ public class CasoDeUso27Test {
     void atacarKVeces(Unidad unidad, Entidad entidad) {
         for (int i = 0; i < 16; i++) {
             unidad.atacar(entidad);
+            unidad.pasarTurno();
         }
     }
 }

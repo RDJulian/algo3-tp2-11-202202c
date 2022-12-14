@@ -1,49 +1,34 @@
 package edu.fiuba.algo3.vista.layouts;
 
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Area.Coordenada;
-import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Entidad.Unidad.UnidadNull;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class VistaCelda extends Canvas {
 
-    private Coordenada coordenada;
-    private Area areaTierra;
-    private Area areaEspacial;
-    private Recurso recurso;
-    private Estructura estructura;
-    private Unidad unidadTerrestre;
-    private Unidad unidadEspacial;
+    private Area area;
     private CamaraJugador camaraJugador;
+    private Entidad entidad;
 
-    public VistaCelda(Coordenada coordenada, Area areaTierra, Area areaEspacial, Recurso recurso, CamaraJugador camaraJugador) {
+    public VistaCelda(Area area, CamaraJugador camaraJugador) {
         super(64,64);
-        this.coordenada = coordenada;
-        this.areaTierra = areaTierra;
-        this.areaEspacial = areaEspacial;
-        this.recurso = recurso;
-        this.estructura = null;
-        this.unidadTerrestre = new UnidadNull();
-        this.unidadEspacial = new UnidadNull();
+        this.area = area;
         this.camaraJugador = camaraJugador;
+        this.entidad = null;
     }
 
     public void update(){
         actualizarPiso();
         dibujarTerreno();
         dibujarPiso();
-        dibujarEstructura();
-        dibujarUnidad(unidadTerrestre);
-        dibujarUnidad(unidadEspacial);
+        dibujarEntidad();
     }
 
     private void actualizarPiso() {
-        camaraJugador.enRangoMoho(areaTierra);
+        camaraJugador.enRangoMoho(area);
     }
 
     private void dibujarImagen(String ruta) {
@@ -53,21 +38,21 @@ public class VistaCelda extends Canvas {
     }
 
     private void dibujarTerreno() {
-        String recurso = this.recurso.getNombre();
+        String recurso = this.area.getNombreRecurso();
         String ruta = "file:src/main/resources/recurso/".concat(recurso).concat(".png");
         dibujarImagen(ruta);
     }
 
     private void dibujarPiso(){
-        String piso = this.areaTierra.getNombre();
+        String piso = this.area.getNombre();
         if(piso=="nada"){return;}
         String ruta = "file:src/main/resources/recurso/".concat(piso).concat(".png");
         dibujarImagen(ruta);
     }
 
-    private void dibujarEstructura() {
-        if (estructura == null){return;}
-        String estructura = this.estructura.getNombre();
+    private void dibujarEntidad() {
+        if (entidad == null){return;}
+        String estructura = this.entidad.getNombre();
         String ruta = "file:src/main/resources/estructuras/".concat(estructura).concat(".png");
         this.dibujarImagen(ruta);
     }
@@ -79,7 +64,7 @@ public class VistaCelda extends Canvas {
         this.dibujarImagen(ruta);
     }
 
-    public void setEstructura(Estructura estructura) {
-        this.estructura = estructura;
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
     }
 }

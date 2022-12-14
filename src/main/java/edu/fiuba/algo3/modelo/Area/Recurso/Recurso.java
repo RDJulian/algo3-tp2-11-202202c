@@ -21,7 +21,4 @@ public abstract class Recurso {
         return this.nombre;
     }
 
-    public int getRecursoRestante() {
-        return unidades;
-    }
 }

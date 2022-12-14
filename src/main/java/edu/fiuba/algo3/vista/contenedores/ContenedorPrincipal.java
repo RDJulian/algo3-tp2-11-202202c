@@ -21,8 +21,8 @@ public class ContenedorPrincipal extends StackPane{
     private CamaraJugador camaraJugadorDos;
 
     public ContenedorPrincipal(Stage stage, Scene proximaEscena, Juego juego){
-        this.estructuras = new ArrayList<ArrayList<Estructura>>();
-        this.unidades = new ArrayList<ArrayList<Unidad>>();
+        this.estructuras = new ArrayList<>();
+        this.unidades = new ArrayList<>();
 
         this.cargarMapa(juego);
         //this.cargarCajaDeComandos(stage);
@@ -38,8 +38,10 @@ public class ContenedorPrincipal extends StackPane{
                 filaUnidades.add(new UnidadNull());
             }
         }
-        this.camaraJugadorUno = new CamaraJugador(this,20,11,-15,-15);
-        this.camaraJugadorDos = new CamaraJugador(this,20,11,-15,-15);
+        this.camaraJugadorUno = new CamaraJugador(this,19,11,15,15);
+        this.camaraJugadorDos = new CamaraJugador(this,19,11,-15,-15);
+        this.getChildren().addAll(camaraJugadorUno);
+        camaraJugadorUno.update();
     }
 
 }

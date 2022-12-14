@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.layouts;
 
 import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.vista.contenedores.ContenedorPrincipal;
 import javafx.scene.layout.GridPane;
@@ -20,8 +21,25 @@ public class CamaraJugador extends GridPane {
         this.ancho = ancho;
         this.centroX = centroX;
         this.centroY = centroY;
-        this.celdas = new ArrayList();
-        this.pisosConMoho = new ArrayList();
+        this.celdas = new ArrayList<>();
+        this.pisosConMoho = new ArrayList<>();
+
+        int minY = centroY-(alto/2);
+        int maxY = centroY+(alto/2);
+        int minX = centroX-(ancho/2);
+        int maxX = centroX+(ancho/2);
+        int indiceColumna = 0;
+        int indiceFila = 0;
+
+        for (int x = minX; x <= maxX; x++) {
+            for (int y = minY; y <= maxY; y++) {
+                Area area = Mapa.obtenerInstancia().getArea(x,y);
+                VistaCelda vistaCelda = new VistaCelda(area, this);
+                agregarCanvas(vistaCelda, indiceColumna, indiceFila);
+                indiceFila++;
+            }
+            indiceColumna++;
+        }
     }
 
 
@@ -40,9 +58,9 @@ public class CamaraJugador extends GridPane {
         }
     }
 
-    public void enRangoMoho(Area areaTierra) {
+    public void enRangoMoho(Area area) {
         for (Moho moho:pisosConMoho) {
-            moho.actualizarArea(areaTierra);
+            moho.actualizarArea(area);
         }
     }
 }

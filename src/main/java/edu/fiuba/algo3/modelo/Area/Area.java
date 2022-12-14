@@ -122,4 +122,8 @@ public class Area {
     public String getNombre() {
         return estadoPiso.getNombre();
     }
+
+    public String getNombreRecurso() {
+        return recurso.getNombre();
+    }
 }

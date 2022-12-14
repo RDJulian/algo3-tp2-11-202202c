@@ -3,9 +3,9 @@ package edu.fiuba.algo3.controladores;
 import edu.fiuba.algo3.modelo.Excepciones.JugadoresNoCompatiblesException;
 import edu.fiuba.algo3.modelo.Excepciones.NombreNoValidoException;
 import edu.fiuba.algo3.modelo.Juego.Juego;
-import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Raza.Zerg;
+import edu.fiuba.algo3.modelo.Mapa.Base;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Raza.*;
 import edu.fiuba.algo3.vista.contenedores.ContenedorJugadores;
 import edu.fiuba.algo3.vista.contenedores.ContenedorPropiedadesJugadores;
 import javafx.event.ActionEvent;
@@ -27,14 +27,14 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
     Zerg razaJugador2;
     Label etiqueta;
 
-    public GenerarJuegoEventHandler(Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta) {
+    public GenerarJuegoEventHandler(Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta, Juego juego) {
 
         this.stage = stage;
         this.siguienteEscena = siguienteEscena;
         this.contenedor = contenedor;
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
-        this.juego = new Juego();
+        this.juego = juego;
         this.razaJugador1 = new Protoss();
         this.razaJugador2 = new Zerg();
         this.etiqueta = etiqueta;
@@ -50,8 +50,9 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
 
         try {
 
-            this.juego.registrarJugadores(this.contenedor.getNombre1(), this.contenedor.getColor1(), this.razaJugador1, this.contenedor.getNombre2(), this.contenedor.getColor2(), this.razaJugador2);
 
+            this.juego.registrarJugadores(this.contenedor.getNombre1(), this.contenedor.getColor1(), this.razaJugador1, this.contenedor.getNombre2(), this.contenedor.getColor2(), this.razaJugador2);
+            Mapa.obtenerInstancia().generarBases(new Base(15, 15), new Base(-15, -15));
             stage.setScene(siguienteEscena);
 
 

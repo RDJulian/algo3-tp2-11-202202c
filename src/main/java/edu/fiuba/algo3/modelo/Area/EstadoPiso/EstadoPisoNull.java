@@ -28,4 +28,9 @@ public class EstadoPisoNull implements EstadoPiso {
     public EstadoPiso limpiar() {
         return this;
     }
+
+    @Override
+    public String getNombre() {
+        return "nada";
+    }
 }

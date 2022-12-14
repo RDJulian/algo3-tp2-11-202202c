@@ -118,4 +118,8 @@ public class Area {
     private Coordenada getCoordenada() {
         return coordenada;
     }
+
+    public String getNombre() {
+        return estadoPiso.getNombre();
+    }
 }

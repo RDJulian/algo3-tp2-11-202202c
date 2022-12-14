@@ -13,4 +13,6 @@ public interface EstadoPiso {
     EstadoPiso cubrirConMoho();
 
     EstadoPiso limpiar();
+
+    String getNombre();
 }

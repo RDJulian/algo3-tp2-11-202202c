@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.botones;
 
 import edu.fiuba.algo3.controladores.GenerarJuegoEventHandler;
+import edu.fiuba.algo3.modelo.Juego.Juego;
 import edu.fiuba.algo3.vista.contenedores.ContenedorJugadores;
 import edu.fiuba.algo3.vista.contenedores.ContenedorPropiedadesJugadores;
 import javafx.geometry.Insets;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 
 public class BotonGenerarJuego extends Button {
 
-    public BotonGenerarJuego (Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta){
+    public BotonGenerarJuego (Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta, Juego juego){
 
         //Propiedades del Boton.
         this.setText("Generar Juego");
@@ -26,7 +27,7 @@ public class BotonGenerarJuego extends Button {
         super.setBackground(unFondo);
 
         //Eventos.
-        setOnAction(new GenerarJuegoEventHandler(stage, siguienteEscena, contenedor, jugador1, jugador2, etiqueta));
+        setOnAction(new GenerarJuegoEventHandler(stage, siguienteEscena, contenedor, jugador1, jugador2, etiqueta,juego));
 
     }
 

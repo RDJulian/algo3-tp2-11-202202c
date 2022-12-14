@@ -18,7 +18,7 @@ public class CasoDeUso23Test {
     //Se prueban dos cosas: los rangos de ataque y el movimiento de las unidades.
     @Test
     public void test01UnaUnidadNoPuedeAtacarAOtraSiEstaFueraDelRangoLuegoSeMueveYLaPuedeAtacar() {
-        Area area = new Area(10, 10);
+        Area area = new Area(2, 2);
         Unidad guardian = new Guardian(new Area(0, 0));
         pasarKTurnos(guardian, 12);
         Unidad dragon = new Dragon(new Area(11, 11));
@@ -36,7 +36,7 @@ public class CasoDeUso23Test {
 
     @Test
     public void test02UnaUnidadNoPuedeAtacarAUnaEstructuraSiEstaFueraDelRangoLuegoSeMueveYLaPuedeAtacar() {
-        Area area = new Area(10, 10);
+        Area area = new Area(2, 2);
         Unidad guardian = new Guardian(new Area(0, 0));
         pasarKTurnos(guardian, 12);
         Estructura estructura = new Pilon(new Area(11, 11));

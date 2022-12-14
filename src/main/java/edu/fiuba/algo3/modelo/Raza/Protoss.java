@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorDragon;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorScout;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.ConstructorZealot;
-import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Scout;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Zealot;
 
@@ -18,7 +17,6 @@ public class Protoss extends Raza {
     private ConstructorZealot constructorZealot;
     private ConstructorScout constructorScout;
     private ConstructorDragon constructorDragon;
-    private Zerg contrincante;
 
     private void generarConstructores() {
         this.constructorNexoMineral = new ConstructorNexoMineral(this.estructuras, this);
@@ -40,24 +38,6 @@ public class Protoss extends Raza {
     public Protoss(int mineral, int gas) {
         super(mineral, gas);
         generarConstructores();
-    }
-
-    public void asignarContrincante(Zerg zerg) {
-        this.contrincante = zerg;
-    }
-
-    @Override
-    public void revelarUnidad(EntidadInvisible entidad) {
-        if (contrincante != null) {
-            contrincante.revelar(entidad);
-        }
-    }
-
-    @Override
-    public void revelarContrincante() {
-        if (contrincante != null) {
-            contrincante.revelar(reveladores);
-        }
     }
 
     public void registrarEntidad(Zealot zealot) {

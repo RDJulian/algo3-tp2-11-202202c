@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequiereCriadero
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Comando.ExtraerRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Comando.Moverse;
 import edu.fiuba.algo3.modelo.Entidad.Comando.UsarExtractor;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
@@ -84,7 +85,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     //de un extractor, no desocupa el area y se retira de el. Si no se cumple lo anterior, desocupa el area.
     @Override
     public void moverse(Area area) {
-        if (area.es(this.area)) {
+        if (area.es(this.area) || !area.enRango(this.area, 3) || seMovioEsteTurno) {
             throw new MovimientoNoValidoException();
         }
 
@@ -92,7 +93,8 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         Extractor extractor = zerg.buscarExtractor(area);
 
         try {
-            this.area = area.moverse(this, tipoUnidad);
+            estadoOperativo.operable(new Moverse(this, tipoUnidad, area));
+            this.area = area;
         } catch (MovimientoSobreRecursoException e) {
             if (extractor != null) {
                 extractor.agregarZangano(this);
@@ -108,6 +110,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         } else {
             areaAnterior.desocupar();
         }
+        seMovioEsteTurno = true;
     }
 
     public void usarExtractor(Area area) {
@@ -125,6 +128,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     public void pasarTurno() {
         estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ExtraerRecurso(this));
         this.ataque.pasarTurno();
+        seMovioEsteTurno = false;
     }
 
     @Override

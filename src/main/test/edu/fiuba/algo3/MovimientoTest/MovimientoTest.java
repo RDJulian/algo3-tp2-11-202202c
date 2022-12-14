@@ -32,11 +32,39 @@ public class MovimientoTest {
     public void test02UnZerlingNoSePuedeMoverALaMismaPosicionOAUnAreaConLasMismasCoordenadas() {
         Area area1 = new Area(0, 0);
         Area area2 = new Area(1, 1);
-        Zerling zangano = new Zerling(new Area(1, 1));
-        zangano.pasarTurno();
+        Zerling zerling = new Zerling(new Area(1, 1));
+        zerling.pasarTurno();
+        zerling.pasarTurno();
 
-        assertThrows(MovimientoNoValidoException.class, () -> zangano.moverse(area2));
-        assertDoesNotThrow(() -> zangano.moverse(area1));
-        assertThrows(MovimientoNoValidoException.class, () -> zangano.moverse(area1));
+        assertThrows(MovimientoNoValidoException.class, () -> zerling.moverse(area2));
+        assertDoesNotThrow(() -> zerling.moverse(area1));
+        assertThrows(MovimientoNoValidoException.class, () -> zerling.moverse(area1));
+    }
+
+    @Test
+    public void test03UnaUnidadSoloSePuedeMoverAUnAreaEnUnRangoDeTres() {
+        Area area1 = new Area(3, 3);
+        Area area2 = new Area(4, 4);
+        Zerling zerling = new Zerling(new Area(0, 0));
+        zerling.pasarTurno();
+        zerling.pasarTurno();
+
+        assertThrows(MovimientoNoValidoException.class, () -> zerling.moverse(area2));
+        assertDoesNotThrow(() -> zerling.moverse(area1));
+    }
+
+    @Test
+    public void test04UnaUnidadSoloSePuedeMoverUnaVezPorTurno() {
+        Area area1 = new Area(3, 3);
+        Area area2 = new Area(2, 2);
+        Zerling zerling = new Zerling(new Area(0, 0));
+        zerling.pasarTurno();
+        zerling.pasarTurno();
+
+        assertDoesNotThrow(() -> zerling.moverse(area1));
+        assertThrows(MovimientoNoValidoException.class, () -> zerling.moverse(area2));
+
+        zerling.pasarTurno();
+        assertDoesNotThrow(() -> zerling.moverse(area2));
     }
 }

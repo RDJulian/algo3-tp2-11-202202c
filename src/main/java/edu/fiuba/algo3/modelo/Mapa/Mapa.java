@@ -29,6 +29,16 @@ public class Mapa {
         new TableroFactory().generarBases(tablero, unaBase, otraBase);
     }
 
+    public void agregarPiso(Piso piso) {
+        pisos.add(piso);
+    }
+
+    public void agregarPiso(Moho moho) {
+        pisos.add(moho);
+        this.moho.add(moho);
+    }
+
+    //Resultado de que el mapa tenga todos los Moho.
     public void pasarTurno() {
         for (Moho moho : this.moho) {
             moho.pasarTurno();
@@ -42,15 +52,7 @@ public class Mapa {
         }
     }
 
-    public void agregarPiso(Piso piso) {
-        pisos.add(piso);
-    }
-
-    public void agregarPiso(Moho moho) {
-        pisos.add(moho);
-        this.moho.add(moho);
-    }
-
+    //Hardcodeado.
     public Area getArea(int i, int j) {
         return tablero.get(i + 25).get(j + 25);
     }

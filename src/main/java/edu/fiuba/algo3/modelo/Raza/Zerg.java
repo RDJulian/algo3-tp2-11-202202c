@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades.*;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
-import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Extractor.Extractor;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.AmoSupremo;
@@ -29,7 +28,6 @@ public class Zerg extends Raza {
     private ConstructorExtractor constructorExtractor;
     private ConstructorGuarida constructorGuarida;
     private ConstructorEspiral constructorEspiral;
-    private Protoss contrincante;
 
     private void generarConstructores() {
         this.extractores = new ArrayList<>();
@@ -61,9 +59,6 @@ public class Zerg extends Raza {
         generarConstructores();
     }
 
-    public void asignarContrincante(Protoss protoss) {
-        this.contrincante = protoss;
-    }
 
     public Extractor buscarExtractor(Area area) {
         Extractor extractor = null;
@@ -91,6 +86,8 @@ public class Zerg extends Raza {
         }
     }
 
+    //Este tipo de solucion parece poco optima. Se crea varios arrays para cosas distintas, lo cual es util
+    //pero claramente engorroso.
     public void registrarEntidad(Extractor extractor) {
         estructuras.add(extractor);
         extractores.add(extractor);
@@ -121,20 +118,6 @@ public class Zerg extends Raza {
         criaderos.remove(entidad);
         reveladores.remove(entidad);
         invisibles.remove(entidad);
-    }
-
-    @Override
-    public void revelarUnidad(EntidadInvisible entidad) {
-        if (contrincante != null) {
-            contrincante.revelar(entidad);
-        }
-    }
-
-    @Override
-    public void revelarContrincante() {
-        if (contrincante != null) {
-            contrincante.revelar(reveladores);
-        }
     }
 
     //Llamado a constructores

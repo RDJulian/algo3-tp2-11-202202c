@@ -75,12 +75,7 @@ public class Zealot extends Unidad implements UsaMementoInvisibilidad, EntidadIn
 
     @Override
     public void moverse(Area area) {
-        if (area.es(this.area)) {
-            throw new MovimientoNoValidoException();
-        }
-        Area areaAnterior = this.area;
-        this.area = area.moverse(this, tipoUnidad);
-        areaAnterior.desocupar();
+        super.moverse(area);
 
         if (raza != null) {
             raza.revelarUnidad(this);

@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Raza.Reserva.Reserva;
 import java.util.ArrayList;
 
 public abstract class Raza {
+    protected Raza contrincante;
     protected Reserva reservaMineral;
     protected Reserva reservaGas;
 
@@ -35,6 +36,13 @@ public abstract class Raza {
         recolectarGas(gas);
     }
 
+    public void asignarContrincante(Raza raza) {
+        if (this.contrincante == null) {
+            this.contrincante = raza;
+            raza.asignarContrincante(this);
+        }
+    }
+
     public void recolectarGas(int unidades) {
         reservaGas.agregarRecurso(unidades);
     }
@@ -56,17 +64,6 @@ public abstract class Raza {
         estructuras.add(estructura);
     }
 
-    public int suministroRestante() {
-        int suministroTotal = 0;
-        for (Estructura estructura : estructuras) {
-            suministroTotal = estructura.afectarSuministro(suministroTotal);
-        }
-        for (Unidad unidad : unidades) {
-            suministroTotal = unidad.afectarSuministro(suministroTotal);
-        }
-        return suministroTotal;
-    }
-
     public void destruirEntidad(Entidad entidad) {
         estructuras.remove(entidad);
         unidades.remove(entidad);
@@ -83,18 +80,29 @@ public abstract class Raza {
         }
     }
 
-    public boolean sinEstructuras() {
-        return estructuras.isEmpty();
+    public int suministroRestante() {
+        int suministroTotal = 0;
+        for (Estructura estructura : estructuras) {
+            suministroTotal = estructura.afectarSuministro(suministroTotal);
+        }
+        for (Unidad unidad : unidades) {
+            suministroTotal = unidad.afectarSuministro(suministroTotal);
+        }
+        return suministroTotal;
     }
 
-    //Metodo para testear.
-    public ArrayList<Estructura> getEstructuras() {
-        return estructuras;
+    //Metodos de revelacion. Se decide que las razas se conozcan entre si.
+    public void revelarUnidad(EntidadInvisible entidad) {
+        if (contrincante != null) {
+            contrincante.revelar(entidad);
+        }
     }
 
-    public abstract void revelarUnidad(EntidadInvisible entidad);
-
-    public abstract void revelarContrincante();
+    public void revelarContrincante() {
+        if (contrincante != null) {
+            contrincante.revelar(reveladores);
+        }
+    }
 
     protected void revelar(EntidadInvisible entidad) {
         entidad.actualizarEstado(this.reveladores);
@@ -104,5 +112,14 @@ public abstract class Raza {
         for (EntidadInvisible entidad : invisibles) {
             entidad.actualizarEstado(reveladores);
         }
+    }
+
+    public boolean sinEstructuras() {
+        return estructuras.isEmpty();
+    }
+
+    //Metodo para testear.
+    public ArrayList<Estructura> getEstructuras() {
+        return estructuras;
     }
 }

@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
 import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
-import edu.fiuba.algo3.modelo.Entidad.Comando.Atacar;
-import edu.fiuba.algo3.modelo.Entidad.Comando.Comando;
-import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
-import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueUnidad;
+import edu.fiuba.algo3.modelo.Entidad.Comando.*;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
@@ -16,11 +13,13 @@ public abstract class Unidad extends Entidad {
     protected TipoUnidad tipoUnidad;
     protected Ataque ataque;
     protected int contadorDeBajas;
+    protected boolean seMovioEsteTurno;
 
     @Override
     public void pasarTurno() {
-        this.estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ComandoNull());
+        super.pasarTurno();
         this.ataque.pasarTurno();
+        seMovioEsteTurno = false;
     }
 
     public void atacar(Entidad entidad) {
@@ -28,12 +27,14 @@ public abstract class Unidad extends Entidad {
     }
 
     public void moverse(Area area) {
-        if (area.es(this.area)) {
+        if (area.es(this.area) || !area.enRango(this.area, 3) || seMovioEsteTurno) {
             throw new MovimientoNoValidoException();
         }
         Area areaAnterior = this.area;
-        this.area = area.moverse(this, tipoUnidad);
+        estadoOperativo.operable(new Moverse(this, tipoUnidad, area));
+        this.area = area;
         areaAnterior.desocupar();
+        seMovioEsteTurno = true;
     }
 
     public void sumarBaja() {

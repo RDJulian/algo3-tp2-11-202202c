@@ -48,12 +48,14 @@ public class InvisibilidadTest {
         AmoSupremo amoSupremo = new AmoSupremo(new Area(10, 10));
         pasarKTurnos(amoSupremo, 5);
 
-        Area areaAMover = new Area(9, 9);
+        Area areaAMover = new Area(3, 3);
 
         protoss.registrarEntidad(zealot);
         zerg.registrarEntidad(amoSupremo);
 
         zealot.moverse(areaAMover);
+        zealot.pasarTurno();
+        zealot.moverse(new Area(6, 6));
 
         Guardian guardian = new Guardian(new Area(1, 1));
         pasarKTurnos(guardian, 4);
@@ -76,11 +78,13 @@ public class InvisibilidadTest {
 
         Criadero criadero = new Criadero(new Area(10, 10));
 
-        Area areaAMover = new Area(6, 6);
+        Area areaAMover = new Area(3, 3);
 
         zerg.registrarEntidad(criadero);
 
         scout.moverse(areaAMover);
+        scout.pasarTurno();
+        scout.moverse(new Area(6, 6));
 
         assertDoesNotThrow(() -> scout.atacar(criadero));
     }
@@ -100,11 +104,13 @@ public class InvisibilidadTest {
 
         AmoSupremo amoSupremo = new AmoSupremo(new Area(10, 10));
 
-        Area areaAMover = new Area(6, 6);
+        Area areaAMover = new Area(3, 3);
 
         zerg.registrarEntidad(amoSupremo);
 
         scout.moverse(areaAMover);
+        scout.pasarTurno();
+        scout.moverse(new Area(6, 6));
 
         assertDoesNotThrow(() -> scout.atacar(amoSupremo));
     }
@@ -137,6 +143,10 @@ public class InvisibilidadTest {
         protoss.registrarEntidad(scout);
         zerg.registrarEntidad(amoSupremo);
 
+        amoSupremo.moverse(new Area(3, 3));
+        amoSupremo.pasarTurno();
+        amoSupremo.moverse(new Area(6, 6));
+        amoSupremo.pasarTurno();
         amoSupremo.moverse(areaAMover);
 
         Guardian guardian = new Guardian(new Area(1, 1));

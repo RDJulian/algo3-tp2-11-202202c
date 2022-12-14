@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequierePuertoEstelar;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
-import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
 import edu.fiuba.algo3.modelo.Entidad.Comando.RevelarEntidad;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
@@ -74,8 +73,7 @@ public class Scout extends Unidad implements RevelaEntidades {
     @Override
     public void pasarTurno() {
         EstadoOperativo estadoAnterior = estadoOperativo;
-        estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ComandoNull());
-        this.ataque.pasarTurno();
+        super.pasarTurno();
         if (estadoAnterior != estadoOperativo && raza != null) {
             raza.revelarContrincante();
         }
@@ -88,12 +86,7 @@ public class Scout extends Unidad implements RevelaEntidades {
 
     @Override
     public void moverse(Area area) {
-        if (area.es(this.area)) {
-            throw new MovimientoNoValidoException();
-        }
-        Area areaAnterior = this.area;
-        this.area = area.moverse(this, tipoUnidad);
-        areaAnterior.desocupar();
+        super.moverse(area);
 
         if (raza != null) {
             raza.revelarContrincante();

@@ -28,4 +28,9 @@ public class TieneEnergiaPilon implements EstadoPiso {
     public EstadoPiso limpiar() {
         return new EstadoPisoNull();
     }
+
+    @Override
+    public String getNombre() {
+        return "pilon";
+    }
 }

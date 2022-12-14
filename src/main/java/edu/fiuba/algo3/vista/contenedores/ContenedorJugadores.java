@@ -15,17 +15,15 @@ import javafx.scene.Scene;
 public class ContenedorJugadores extends VBox {
 
     private Stage stage;
-    private Juego juego;
     private String nombreJugador1;
     private String nombreJugador2;
     private String colorJugador1;
     private String colorJugador2;
 
-    public ContenedorJugadores(Stage stage, Scene escenaPrincipal) {
+    public ContenedorJugadores(Stage stage, Scene escenaPrincipal, Juego juego) {
         super();
 
         this.stage = stage;
-        this.juego = new Juego();
 
         //Configuración del Layout
         this.setAlignment(Pos.CENTER);
@@ -45,7 +43,7 @@ public class ContenedorJugadores extends VBox {
 
         EtiquetaSecundaria mensajeDeError = new EtiquetaSecundaria("");
 
-        BotonGenerarJuego botonGenerarJuego = new BotonGenerarJuego(stage, escenaPrincipal, this, jugador1, jugador2, mensajeDeError);
+        BotonGenerarJuego botonGenerarJuego = new BotonGenerarJuego(stage, escenaPrincipal, this, jugador1, jugador2, mensajeDeError, juego);
 
         //Contenedores
         HBox contenedorTop = new HBox();

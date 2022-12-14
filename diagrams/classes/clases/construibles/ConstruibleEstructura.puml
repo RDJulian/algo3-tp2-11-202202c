@@ -1,0 +1,74 @@
+@startuml
+skinparam classAttributeIconSize 0
+class RequiereReservaDeReproduccion {
++ boolean visitar(Acceso)
++ boolean visitar(Espiral)
++ boolean visitar(Guarida)
++ boolean visitar(PuertoEstelar)
++ boolean visitar(ReservaDeReproduccion)
++ boolean visitar(Criadero)
++ boolean visitar(EstructuraNoRequerida)
+}
+class RequiereEspiral {
++ boolean visitar(Acceso)
++ boolean visitar(Espiral)
++ boolean visitar(Guarida)
++ boolean visitar(PuertoEstelar)
++ boolean visitar(ReservaDeReproduccion)
++ boolean visitar(Criadero)
++ boolean visitar(EstructuraNoRequerida)
+}
+abstract class ConstruibleEstructura {
++ boolean construible(ArrayList<Estructura>)
++ {abstract}boolean visitar(Acceso)
++ {abstract}boolean visitar(Espiral)
++ {abstract}boolean visitar(Guarida)
++ {abstract}boolean visitar(PuertoEstelar)
++ {abstract}boolean visitar(ReservaDeReproduccion)
++ {abstract}boolean visitar(Criadero)
++ {abstract}boolean visitar(EstructuraNoRequerida)
+}
+class RequiereAcceso {
++ boolean visitar(Acceso)
++ boolean visitar(Espiral)
++ boolean visitar(Guarida)
++ boolean visitar(PuertoEstelar)
++ boolean visitar(ReservaDeReproduccion)
++ boolean visitar(Criadero)
++ boolean visitar(EstructuraNoRequerida)
+}
+class RequierePuertoEstelar {
++ boolean visitar(Acceso)
++ boolean visitar(Espiral)
++ boolean visitar(Guarida)
++ boolean visitar(PuertoEstelar)
++ boolean visitar(ReservaDeReproduccion)
++ boolean visitar(Criadero)
++ boolean visitar(EstructuraNoRequerida)
+}
+class RequiereCriadero {
++ boolean visitar(Acceso)
++ boolean visitar(Espiral)
++ boolean visitar(Guarida)
++ boolean visitar(PuertoEstelar)
++ boolean visitar(ReservaDeReproduccion)
++ boolean visitar(Criadero)
++ boolean visitar(EstructuraNoRequerida)
+}
+class RequiereGuarida {
++ boolean visitar(Acceso)
++ boolean visitar(Espiral)
++ boolean visitar(Guarida)
++ boolean visitar(PuertoEstelar)
++ boolean visitar(ReservaDeReproduccion)
++ boolean visitar(Criadero)
++ boolean visitar(EstructuraNoRequerida)
+}
+
+ConstruibleEstructura <|-- RequiereReservaDeReproduccion
+ConstruibleEstructura <|-- RequiereEspiral
+ConstruibleEstructura <|-- RequiereAcceso
+ConstruibleEstructura <|-- RequierePuertoEstelar
+ConstruibleEstructura <|-- RequiereCriadero
+ConstruibleEstructura <|-- RequiereGuarida
+@enduml

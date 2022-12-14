@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Zanganos {
+- ArrayList<Zangano> zanganos
++ void extraerRecurso(Area)
++ void agregarZangano(Zangano)
++ void quitarZangano(Zangano)
+}
+class Extractor {
++ <<Create>> Extractor(Area,Zerg)
++ void agregarZangano(Zangano)
++ void quitarZangano(Zangano)
++ void extraerRecurso()
++ void pasarTurno()
++ boolean permitirCorrelatividad(ConstruibleEstructura)
++ Extractor estaConstruidaEnArea(Area)
+}
+interface AgregaZanganos {
+~ void agregarZangano(Zangano)
+~ void quitarZangano(Zangano)
+}
+
+
+AgregaZanganos <|.. Zanganos
+ExtraeRecurso <|.. Extractor
+AgregaZanganos <|.. Extractor
+EstructuraNoRequerida <|.. Extractor
+Estructura <|-- Extractor
+Extractor -left-> Zanganos
+@enduml

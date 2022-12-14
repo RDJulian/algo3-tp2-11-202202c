@@ -1,0 +1,15 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Acceso {
+- Energia energia
++ <<Create>> Acceso(Area,Protoss)
++ MementoOperativo guardarEstado()
++ void restaurarEstado(MementoOperativo)
++ void actualizarEstado()
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+
+UsaMementoOperativo <|.. Acceso
+Estructura <|-- Acceso
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+skinparam classAttributeIconSize 0
+abstract class Escudo {
+# int cantidadEscudo
+# int limite
++ <<Create>> Escudo(int,Vida)
++ void proteger(int,Unidad)
++ {abstract}void regenerar()
+}
+class Regenerativa {
++ <<Create>> Regenerativa(int,Entidad)
++ void regenerar()
+}
+class SinEscudo {
++ <<Create>> SinEscudo(Vida)
++ void regenerar()
+}
+abstract class Vida {
+# int cantidadVida
+# int limite
+# Entidad entidad
++ <<Create>> Vida(int,Entidad)
++ void daniar(int,Unidad)
++ {abstract}void regenerar()
+}
+class Normal {
++ <<Create>> Normal(int,Entidad)
++ void regenerar()
+}
+class ConEscudo {
++ <<Create>> ConEscudo(int,Vida)
++ void regenerar()
+}
+
+
+Vida <|-- Regenerativa
+Escudo <|-- SinEscudo
+Vida <|-- Normal
+Escudo <|-- ConEscudo
+Escudo -right-> Vida
+@enduml

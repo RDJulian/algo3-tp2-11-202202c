@@ -1,0 +1,70 @@
+@startuml
+skinparam classAttributeIconSize 0
+class ConstructorGuardian {
+- Zerg zerg
++ <<Create>> ConstructorGuardian(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+class ConstructorZealot {
+- Protoss protoss
++ <<Create>> ConstructorZealot(ArrayList<Estructura>,Protoss)
++ Unidad construir(Area)
+}
+class ConstructorAmoSupremo {
+- Zerg zerg
++ <<Create>> ConstructorAmoSupremo(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+class ConstructorHidralisco {
+- Zerg zerg
++ <<Create>> ConstructorHidralisco(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+class ConstructorZangano {
+- Zerg zerg
++ <<Create>> ConstructorZangano(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+class ConstructorDevorador {
+- Zerg zerg
++ <<Create>> ConstructorDevorador(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+class ConstructorDragon {
+- Protoss protoss
++ <<Create>> ConstructorDragon(ArrayList<Estructura>,Protoss)
++ Unidad construir(Area)
+}
+class ConstructorMutalisco {
+- Zerg zerg
++ <<Create>> ConstructorMutalisco(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+class ConstructorZerling {
+- Zerg zerg
++ <<Create>> ConstructorZerling(ArrayList<Estructura>,Zerg)
++ Unidad construir(Area)
+}
+abstract class ConstructorUnidades {
+# ArrayList<Estructura> estructuras
++ <<Create>> ConstructorUnidades(ArrayList<Estructura>)
++ {abstract}Unidad construir(Area)
+}
+class ConstructorScout {
+- Protoss protoss
++ <<Create>> ConstructorScout(ArrayList<Estructura>,Protoss)
++ Unidad construir(Area)
+}
+
+
+ConstructorUnidades <|-- ConstructorGuardian
+ConstructorUnidades <|-- ConstructorZealot
+ConstructorUnidades <|-- ConstructorAmoSupremo
+ConstructorUnidades <|-- ConstructorHidralisco
+ConstructorUnidades <|-- ConstructorZangano
+ConstructorUnidades <|-- ConstructorDevorador
+ConstructorUnidades <|-- ConstructorDragon
+ConstructorUnidades <|-- ConstructorMutalisco
+ConstructorUnidades <|-- ConstructorZerling
+ConstructorUnidades <|-- ConstructorScout
+@enduml

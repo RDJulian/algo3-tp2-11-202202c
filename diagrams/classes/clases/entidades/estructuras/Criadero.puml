@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+interface GeneraLarva {
+~ void generarLarva()
+~ void usarLarva()
+}
+class Criadero {
+- Invisibilidad invisibilidad
++ <<Create>> Criadero(Area,Zerg)
++ void usarLarva()
++ void generarLarva()
++ void pasarTurno()
++ MementoInvisibilidad guardarEstado()
++ void restaurarEstado(MementoInvisibilidad)
++ void actualizarEstado(ArrayList<RevelaEntidades>)
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+class Larvas {
+- int larvas
++ void usarLarva()
++ void generarLarva()
+}
+
+
+GeneraLarva <|.. Criadero
+UsaMementoInvisibilidad <|.. Criadero
+EntidadInvisible <|.. Criadero
+Estructura <|-- Criadero
+Criadero -right-> Larvas
+@enduml

@@ -52,7 +52,7 @@ public abstract class Unidad extends Entidad {
             throw new AtaqueNoValidoException();
         }
         Comando recibirAtaque = new RecibirAtaqueUnidad(this, ataque, tipoUnidad, atacante);
-        estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
+        estadoOperativo.atacable(estadoInvisibilidadEntidad.atacable(recibirAtaque));
     }
 
     public boolean movible(Recurso recurso) {

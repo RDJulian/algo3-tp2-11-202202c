@@ -65,7 +65,7 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(4);
-        this.estadoInvisibilidad = new Invisible();
+        this.estadoInvisibilidadEntidad = new Invisible();
         this.afectaSuministro = new Proveedor();
 
         //Instanciacion de clases especificas a esta entidad
@@ -99,14 +99,14 @@ public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvis
 
     @Override
     public MementoInvisibilidad guardarEstado() {
-        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidad);
-        this.estadoInvisibilidad = new Visible();
+        MementoInvisibilidad snapshot = new MementoInvisibilidad(estadoInvisibilidadEntidad);
+        this.estadoInvisibilidadEntidad = new Visible();
         return snapshot;
     }
 
     @Override
     public void restaurarEstado(MementoInvisibilidad snapshot) {
-        this.estadoInvisibilidad = snapshot.restaurar();
+        this.estadoInvisibilidadEntidad = snapshot.restaurar();
     }
 
     @Override

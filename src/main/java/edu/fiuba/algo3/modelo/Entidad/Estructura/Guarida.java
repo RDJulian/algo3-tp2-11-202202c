@@ -51,7 +51,7 @@ public class Guarida extends Estructura {
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(12);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
     }
 

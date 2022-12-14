@@ -1,0 +1,28 @@
+@startuml
+!include ../mapa/Mapa.puml
+!include ../raza/Raza.puml
+remove Reserva
+remove Unidad
+remove Estructura
+remove ConstructorUnidades
+remove ConstructorEstructuras
+remove Zerg
+remove Protoss
+remove Base
+remove Mapa.Holder
+remove TableroFactory
+
+skinparam classAttributeIconSize 0
+class Juego {
+
+- int turno
++ <<Create>> Juego()
++ void registrarJugadores(String,String,Raza,String,String,Raza)
++ void pasarTurno()
++ Raza razaAJugar()
++ boolean terminarJuego()
+}
+
+Juego -r-> Mapa
+Juego"1" -d-> "2"Raza
+@enduml

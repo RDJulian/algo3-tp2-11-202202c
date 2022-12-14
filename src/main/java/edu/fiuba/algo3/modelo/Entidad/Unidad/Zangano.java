@@ -72,7 +72,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(1);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(1);
 
         this.tipoUnidad = new UnidadTierra();

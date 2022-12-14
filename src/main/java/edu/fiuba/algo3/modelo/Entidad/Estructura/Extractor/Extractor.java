@@ -56,7 +56,7 @@ public class Extractor extends Estructura implements ExtraeRecurso, AgregaZangan
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(6);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
 
         //Instanciacion de clases especificas a esta entidad

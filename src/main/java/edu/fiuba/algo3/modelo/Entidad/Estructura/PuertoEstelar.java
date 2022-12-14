@@ -57,7 +57,7 @@ public class PuertoEstelar extends Estructura implements UsaMementoOperativo {
         this.escudo = new ConEscudo(600, vida);
 
         this.estadoOperativo = new EnConstruccion(10);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
 
         //Instanciacion de clases especificas a esta entidad

@@ -37,5 +37,5 @@ Vida <|-- Regenerativa
 Escudo <|-- SinEscudo
 Vida <|-- Normal
 Escudo <|-- ConEscudo
-Escudo -right-> Vida
+Escudo  "1" o-right-  "1"Vida
 @enduml

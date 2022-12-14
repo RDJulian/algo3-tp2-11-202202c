@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Entidad;
 
 import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.Destruido;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidadEntidad;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.NoAfecta;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
@@ -21,7 +21,7 @@ public abstract class Entidad {
     protected Escudo escudo;
 
     protected EstadoOperativo estadoOperativo;
-    protected EstadoInvisibilidad estadoInvisibilidad;
+    protected EstadoInvisibilidadEntidad estadoInvisibilidadEntidad;
     protected AfectaSuministro afectaSuministro;
 
     protected String nombre;
@@ -59,5 +59,7 @@ public abstract class Entidad {
         }
     }
 
-    public String getNombre(){ return this.nombre; }
+    public String getNombre() {
+        return this.nombre;
+    }
 }

@@ -12,7 +12,6 @@ class Energia {
 }
 class Energizado {
 + <<Create>> Energizado(MementoOperativo)
-+ <<Create>> Energizado()
 + void actualizarEstado(UsaMementoOperativo)
 + EstadoEnergia energizar()
 + EstadoEnergia desenergizar()

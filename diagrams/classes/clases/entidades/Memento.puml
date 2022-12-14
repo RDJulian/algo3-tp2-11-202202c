@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+interface UsaMementoInvisibilidad {
+~ MementoInvisibilidad guardarEstado()
+~ void restaurarEstado(MementoInvisibilidad)
+~ void actualizarEstado(ArrayList<RevelaEntidades>)
+}
+class MementoInvisibilidad {
+- EstadoInvisibilidad snapshot
++ <<Create>> MementoInvisibilidad(EstadoInvisibilidad)
++ EstadoInvisibilidad restaurar()
+}
+interface UsaMementoOperativo {
+~ MementoOperativo guardarEstado()
+~ void restaurarEstado(MementoOperativo)
+~ void actualizarEstado()
+}
+class MementoOperativo {
+- EstadoOperativo snapshot
++ <<Create>> MementoOperativo(EstadoOperativo)
++ EstadoOperativo restaurar()
+}
+
+MementoInvisibilidad <.. UsaMementoInvisibilidad
+
+MementoOperativo <.. UsaMementoOperativo
+@enduml

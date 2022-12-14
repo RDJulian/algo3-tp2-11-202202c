@@ -54,7 +54,7 @@ public class Acceso extends Estructura implements UsaMementoOperativo {
         this.escudo = new ConEscudo(500, vida);
 
         this.estadoOperativo = new EnConstruccion(8);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new NoAfecta();
 
         //Instanciacion de clases especificas a esta entidad

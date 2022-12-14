@@ -7,7 +7,7 @@ class SinEnergia {
 + void atacable(Comando)
 + int afectarSuministro(AfectaSuministro,int)
 }
-interface EstadoInvisibilidad {
+interface EstadoInvisibilidadEntidad {
 ~ Comando atacable(Comando)
 }
 interface EstadoOperativo {
@@ -50,8 +50,8 @@ class Visible {
 
 EstadoOperativo <|.. SinEnergia
 EstadoOperativo <|.. Operativa
-EstadoInvisibilidad <|.. Invisible
+EstadoInvisibilidadEntidad <|.. Invisible
 EstadoOperativo <|.. EnConstruccion
 EstadoOperativo <|.. Destruido
-EstadoInvisibilidad <|.. Visible
+EstadoInvisibilidadEntidad <|.. Visible
 @enduml

@@ -1,5 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
+!include EstructuraNoRequerida.puml
+!include ../ExtraeRecurso.puml
 class Zanganos {
 - ArrayList<Zangano> zanganos
 + void extraerRecurso(Area)
@@ -25,6 +27,6 @@ AgregaZanganos <|.. Zanganos
 ExtraeRecurso <|.. Extractor
 AgregaZanganos <|.. Extractor
 EstructuraNoRequerida <|.. Extractor
-Estructura <|-- Extractor
-Extractor -left-> Zanganos
+
+Extractor *-left- Zanganos
 @enduml

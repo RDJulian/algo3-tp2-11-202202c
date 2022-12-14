@@ -1,0 +1,30 @@
+@startuml
+!include RevelaEntidades.puml
+!include ../EntidadInvisible.puml
+!include ../Memento.puml
+!include ../Invisibilidad.puml
+skinparam classAttributeIconSize 0
+remove MementoOperativo
+remove MementoInvisibilidad
+remove UsaMementoOperativo
+remove EstadoInvisibilidad
+remove Invisible
+remove Visible
+class AmoSupremo {
+- int radioDeDeteccion
++ <<Create>> AmoSupremo(Area,Zerg)
++ void pasarTurno()
++ void moverse(Area)
++ int afectarSuministro(int)
++ boolean revelar(Area)
++ MementoInvisibilidad guardarEstado()
++ void restaurarEstado(MementoInvisibilidad)
++ void actualizarEstado(ArrayList<RevelaEntidades>)
+}
+
+
+RevelaEntidades <|.. AmoSupremo
+UsaMementoInvisibilidad <|.. AmoSupremo
+EntidadInvisible <|.. AmoSupremo
+Invisibilidad -left-* AmoSupremo
+@enduml

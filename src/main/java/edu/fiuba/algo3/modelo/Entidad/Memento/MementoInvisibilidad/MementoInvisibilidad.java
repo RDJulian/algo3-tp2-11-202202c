@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.modelo.Entidad.Memento.MementoInvisibilidad;
 
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidad;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.EstadoInvisibilidadEntidad;
 
 public class MementoInvisibilidad {
     //Forzado a retornar el snapshot si es la estructura la que actualiza su estado.
-    private EstadoInvisibilidad snapshot;
+    private EstadoInvisibilidadEntidad snapshot;
 
-    public MementoInvisibilidad(EstadoInvisibilidad snapshot) {
+    public MementoInvisibilidad(EstadoInvisibilidadEntidad snapshot) {
         this.snapshot = snapshot;
     }
 
-    public EstadoInvisibilidad restaurar() {
+    public EstadoInvisibilidadEntidad restaurar() {
         return snapshot;
     }
 }

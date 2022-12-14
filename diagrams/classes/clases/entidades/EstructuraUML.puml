@@ -1,0 +1,49 @@
+@startuml
+!include estructuras/Acceso.puml
+!include estructuras/Asimilador.puml
+!include estructuras/Criadero.puml
+!include estructuras/Espiral.puml
+!include estructuras/Extractor.puml
+!include estructuras/Guarida.puml
+!include estructuras/NexoMineral.puml
+!include estructuras/Pilon.puml
+!include estructuras/PuertoEstelar.puml
+!include estructuras/ReservaDeReproduccion.puml
+
+remove EntidadInvisible
+remove GeneraLarva
+remove Energia
+remove Larvas
+remove ExtraeRecurso
+remove EstructuraNoRequerida
+remove AgregaZanganos
+remove Piso
+remove Zanganos
+remove Invisibilidad
+
+skinparam classAttributeIconSize 0
+abstract class Estructura {
++ void recibirAtaque(Ataque,Unidad)
++ int afectarSuministro(int)
++ boolean construible(ConstruibleEstructura)
++ {abstract}boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+
+
+Estructura <|-- Acceso
+Estructura <|-- Asimilador
+Acceso <-[hidden]down-Asimilador
+Estructura <|-- Criadero
+Estructura <|-- Espiral
+Criadero <-[hidden]down-Espiral
+Estructura <|-- Extractor
+Estructura <|-- Guarida
+Extractor <-[hidden]down-Guarida
+Estructura <|-- NexoMineral
+Estructura <|-- Pilon
+Pilon <-[hidden]down-NexoMineral
+Estructura <|-- PuertoEstelar
+Estructura <|-- ReservaDeReproduccion
+ReservaDeReproduccion <-[hidden]down-PuertoEstelar
+@enduml

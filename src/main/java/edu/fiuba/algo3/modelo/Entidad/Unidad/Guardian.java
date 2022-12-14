@@ -54,7 +54,7 @@ public class Guardian extends Unidad {
         this.escudo = new SinEscudo(vida);
 
         this.estadoOperativo = new EnConstruccion(4);
-        this.estadoInvisibilidad = new Visible();
+        this.estadoInvisibilidadEntidad = new Visible();
         this.afectaSuministro = new Consumidor(4);
 
         this.tipoUnidad = new UnidadAire();

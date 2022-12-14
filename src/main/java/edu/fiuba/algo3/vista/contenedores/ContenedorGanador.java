@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class ContenedorGanador extends VBox{
 
-    Stage stage;
+    private Stage stage;
 
     public ContenedorGanador (Stage stage) {
         super();

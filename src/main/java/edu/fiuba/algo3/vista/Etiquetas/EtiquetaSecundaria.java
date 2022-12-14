@@ -9,6 +9,7 @@ public class EtiquetaSecundaria extends Label {
 
     public EtiquetaSecundaria(String texto){
 
+        //Configuración de la etiqueta.
         this.setText(texto);
         this.setFont(Font.font("arial", 20));
         this.setTextFill(Color.LIGHTBLUE);

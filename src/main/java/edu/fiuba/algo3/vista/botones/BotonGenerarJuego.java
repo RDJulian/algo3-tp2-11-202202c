@@ -14,11 +14,9 @@ import javafx.stage.Stage;
 
 public class BotonGenerarJuego extends Button {
 
-    Stage stage;
-
     public BotonGenerarJuego (Stage stage, Scene siguienteEscena, ContenedorJugadores contenedor, ContenedorPropiedadesJugadores jugador1, ContenedorPropiedadesJugadores jugador2, Label etiqueta){
 
-        //Propiedades del Boton
+        //Propiedades del Boton.
         this.setText("Generar Juego");
         this.setFont(Font.font("arial", 30));
         this.setPadding(new Insets(10));
@@ -27,6 +25,7 @@ public class BotonGenerarJuego extends Button {
         Background unFondo = new Background(new BackgroundFill(Color.web("4C4EF3", 0.4F), new CornerRadii(25), new Insets(0)));
         super.setBackground(unFondo);
 
+        //Eventos.
         setOnAction(new GenerarJuegoEventHandler(stage, siguienteEscena, contenedor, jugador1, jugador2, etiqueta));
 
     }

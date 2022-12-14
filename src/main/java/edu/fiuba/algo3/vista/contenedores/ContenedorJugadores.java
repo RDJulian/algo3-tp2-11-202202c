@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.vista.contenedores;
 
 import edu.fiuba.algo3.modelo.Juego.Juego;
-import edu.fiuba.algo3.modelo.Raza.Protoss;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Raza.Zerg;
 import edu.fiuba.algo3.vista.Etiquetas.EtiquetaPrincipal;
 import edu.fiuba.algo3.vista.Etiquetas.EtiquetaSecundaria;
 import edu.fiuba.algo3.vista.botones.BotonDeSalir;
@@ -17,12 +14,12 @@ import javafx.scene.Scene;
 
 public class ContenedorJugadores extends VBox {
 
-    Stage stage;
-    Juego juego;
-    String nombreJugador1;
-    String nombreJugador2;
-    String colorJugador1;
-    String colorJugador2;
+    private Stage stage;
+    private Juego juego;
+    private String nombreJugador1;
+    private String nombreJugador2;
+    private String colorJugador1;
+    private String colorJugador2;
 
     public ContenedorJugadores(Stage stage, Scene escenaPrincipal) {
         super();

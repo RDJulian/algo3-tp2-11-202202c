@@ -13,12 +13,12 @@ import javafx.scene.text.Font;
 
 public class ContenedorPropiedadesJugadores extends VBox {
 
-    String nombreJugador = "no cambió el nombre";
-    String colorJugador = "no cambio el color";
+    private String nombreJugador;
+    private String colorJugador;
 
     public ContenedorPropiedadesJugadores (String raza){
 
-        //Configuración del Layout
+        //Configuración del Contenedor
         Image imagen = new Image("file:src/main/java/edu/fiuba/algo3/vista/Assets/fondoPropiedadesJugadores.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.setBackground(new Background(imagenDeFondo));

@@ -13,6 +13,7 @@ public class BotonColor extends Button {
 
     public BotonColor (String color, String rgb, EtiquetaSecundaria etiqueta, ContenedorPropiedadesJugadores contenedor){
 
+        //Configuración del Boton.
         this.setText(color);
         this.setFont(Font.font("arial", 15));
         this.setPadding(new Insets(10));
@@ -21,6 +22,7 @@ public class BotonColor extends Button {
         Background unFondo = new Background(new BackgroundFill(Color.web(rgb, 0.4F), new CornerRadii(25), new Insets(0)));
         super.setBackground(unFondo);
 
+        //Eventos.
         this.setOnAction(new ConfirmarColorEventHandler(etiqueta, color, rgb, contenedor));
     }
 

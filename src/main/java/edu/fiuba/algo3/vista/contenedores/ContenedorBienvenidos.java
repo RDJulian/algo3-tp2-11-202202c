@@ -15,13 +15,13 @@ import javafx.scene.text.Font;
 
 public class ContenedorBienvenidos extends VBox {
 
-    Stage stage;
+    private Stage stage;
 
     public ContenedorBienvenidos (Stage stage, Scene escenaJugadores, String versionDeJava, String versionDeFX){
 
         super();
 
-        //Configuraciones del Layout
+        //Configuraciones del Contenedor.
         this.stage = stage;
         this.setAlignment (Pos.CENTER);
         this.setSpacing (20);

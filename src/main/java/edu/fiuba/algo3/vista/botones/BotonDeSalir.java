@@ -11,7 +11,7 @@ public class BotonDeSalir extends Button {
 
     public BotonDeSalir(){
 
-        //Propiedades del Boton
+        //Propiedades del Boton.
         this.setText("Salir");
         this.setFont(Font.font("arial", 30));
         this.setPadding(new Insets(10));
@@ -20,7 +20,7 @@ public class BotonDeSalir extends Button {
         Background unFondo = new Background(new BackgroundFill(Color.web("4C4EF3", 0.4F), new CornerRadii(25), new Insets(0)));
         super.setBackground(unFondo);
 
-        //Eventos
+        //Eventos.
         this.setOnAction(new SalirEventHandler());
 
     }

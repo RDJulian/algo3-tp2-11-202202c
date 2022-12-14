@@ -12,13 +12,9 @@ import javafx.stage.Stage;
 
 public class BotonComenzarJuego extends Button {
 
-    Stage stage;
-
     public BotonComenzarJuego(Stage stage, Scene nuevaEscena){
 
-        this.stage = stage;
-
-        //Propiedades del Boton
+        //Configuración del Boton.
         this.setText("Comenzar Juego");
         this.setFont(Font.font("arial", 30));
         this.setPadding(new Insets(10));

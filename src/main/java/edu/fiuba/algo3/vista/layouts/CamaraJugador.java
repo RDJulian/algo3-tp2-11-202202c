@@ -38,6 +38,7 @@ public class CamaraJugador extends GridPane {
                 agregarCanvas(vistaCelda, indiceColumna, indiceFila);
                 indiceFila++;
             }
+            indiceFila = 0;
             indiceColumna++;
         }
     }

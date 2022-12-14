@@ -25,16 +25,16 @@ public class App extends Application {
         Juego juego = new Juego();
 
         ContenedorGanador contenedorGanador = new ContenedorGanador(stage);
-        Scene ecsenaGanador = new Scene (contenedorGanador, 1280, 720);
+        Scene ecsenaGanador = new Scene (contenedorGanador, 1920, 1080);
 
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, ecsenaGanador, juego);
-        Scene escenaPrincipal = new Scene(contenedorPrincipal,1280,720);
+        Scene escenaPrincipal = new Scene(contenedorPrincipal,1920,1080);
 
         ContenedorJugadores contenedorJugadores =  new ContenedorJugadores(stage, escenaPrincipal, juego);
-        Scene escenaJugadores = new Scene (contenedorJugadores, 1280, 720);
+        Scene escenaJugadores = new Scene (contenedorJugadores, 1920, 1080);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos (stage, escenaJugadores, javaVersion, javafxVersion);
-        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1280, 720);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1920, 1080);
 
         stage.setScene(escenaBienvenidos);
 

@@ -48,6 +48,8 @@ public class CasoDeUso32Test {
         zerg.registrarEntidad(new Criadero(new Area(0, 0)));
         zerg.registrarEntidad(new Mutalisco(new Area(0, 0)));
 
+        juego.pasarTurno();
+
         protoss.recolectarMineral(100);
         Pilon pilon = new Pilon(areaProtoss(), protoss);
 
@@ -58,6 +60,22 @@ public class CasoDeUso32Test {
         pilon.destruir();
 
         assertTrue(juego::terminarJuego);
+    }
+
+    @Test
+    public void test03UnJuegoEmpiezaLeTocaAlPrimerJugadorLuegoPasaElTurnoYNoEsElEquipoQueJuega() {
+        Zerg zerg = new Zerg();
+        Protoss protoss = new Protoss();
+
+        Juego juego = new Juego();
+
+        juego.registrarJugadores("Julian", "rojo", zerg, "Franco", "azul", protoss);
+
+        assertEquals(zerg, juego.razaAJugar());
+
+        juego.pasarTurno();
+
+        assertNotEquals(zerg, juego.razaAJugar());
     }
 
     public Area areaProtoss() {

@@ -30,6 +30,7 @@ public class CasoDeUso23Test {
         atacarKVeces(guardian, dragon, 7);
 
         assertDoesNotThrow(() -> guardian.atacar(dragon));
+        guardian.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> guardian.atacar(dragon));
     }
 
@@ -47,12 +48,14 @@ public class CasoDeUso23Test {
         atacarKVeces(guardian, estructura, 23);
 
         assertDoesNotThrow(() -> guardian.atacar(estructura));
+        guardian.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> guardian.atacar(estructura));
     }
 
     void atacarKVeces(Unidad unidad, Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacar(entidad);
+            unidad.pasarTurno();
         }
     }
 

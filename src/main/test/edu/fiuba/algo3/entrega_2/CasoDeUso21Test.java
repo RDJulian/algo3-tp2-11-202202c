@@ -14,7 +14,6 @@ import edu.fiuba.algo3.modelo.Entidad.Unidad.Mutalisco;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 import edu.fiuba.algo3.modelo.Excepciones.EvolucionNoValidaException;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Raza.Protoss;
 import edu.fiuba.algo3.modelo.Raza.Zerg;
 import org.junit.jupiter.api.Test;
 

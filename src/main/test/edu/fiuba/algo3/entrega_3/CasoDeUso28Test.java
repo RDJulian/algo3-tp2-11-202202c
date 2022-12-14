@@ -197,6 +197,7 @@ public class CasoDeUso28Test {
         unidad.actualizarEstado(amosSupremos);
 
         assertDoesNotThrow(() -> unidad5.atacar(unidad));
+        unidad5.pasarTurno();
 
         unidad.moverse(new Area(10, 10));
         unidad.actualizarEstado(amosSupremos);
@@ -207,6 +208,7 @@ public class CasoDeUso28Test {
     void atacarKVeces(Unidad unidad, Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacar(entidad);
+            unidad.pasarTurno();
         }
     }
 

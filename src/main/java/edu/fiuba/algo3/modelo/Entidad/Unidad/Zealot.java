@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
+import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
@@ -15,16 +16,13 @@ import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadTierra;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
+import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
 
 import java.util.ArrayList;
 
-public class Zealot extends Unidad implements UsaMementoInvisibilidad {
+public class Zealot extends Unidad implements UsaMementoInvisibilidad, EntidadInvisible {
     private Invisibilidad invisibilidad;
 
     public Zealot(Area area, ArrayList<Estructura> estructuras, Protoss protoss) {
@@ -73,6 +71,20 @@ public class Zealot extends Unidad implements UsaMementoInvisibilidad {
 
         //Instanciacion de clases especificas a esta entidad
         this.invisibilidad = new Invisibilidad(this);
+    }
+
+    @Override
+    public void moverse(Area area) {
+        if (area.es(this.area)) {
+            throw new MovimientoNoValidoException();
+        }
+        Area areaAnterior = this.area;
+        this.area = area.moverse(this, tipoUnidad);
+        areaAnterior.desocupar();
+
+        if (raza != null) {
+            raza.revelarUnidad(this);
+        }
     }
 
     @Override

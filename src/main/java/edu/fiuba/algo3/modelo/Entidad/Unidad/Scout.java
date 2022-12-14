@@ -3,19 +3,19 @@ package edu.fiuba.algo3.modelo.Entidad.Unidad;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.RequierePuertoEstelar;
 import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoPilon;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
+import edu.fiuba.algo3.modelo.Entidad.Comando.ComandoNull;
+import edu.fiuba.algo3.modelo.Entidad.Comando.RevelarEntidad;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.ConEscudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Normal;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
+import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EstadoOperativo;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.Consumidor;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataca;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.UnidadAire;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.ConstruccionNoValidaException;
+import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Area.Area;
-import edu.fiuba.algo3.modelo.Excepciones.PosicionOcupadaException;
-import edu.fiuba.algo3.modelo.Excepciones.RecursoInsuficienteException;
-import edu.fiuba.algo3.modelo.Excepciones.SuministroInsuficienteException;
 import edu.fiuba.algo3.modelo.Raza.Protoss;
 
 import java.util.ArrayList;
@@ -72,7 +72,32 @@ public class Scout extends Unidad implements RevelaEntidades {
     }
 
     @Override
-    public boolean fueraDeRango(Area area) {
-        return !area.enRango(this.area, radioDeDeteccion);
+    public void pasarTurno() {
+        EstadoOperativo estadoAnterior = estadoOperativo;
+        estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ComandoNull());
+        this.ataque.pasarTurno();
+        if (estadoAnterior != estadoOperativo && raza != null) {
+            raza.revelarContrincante();
+        }
+    }
+
+    @Override
+    public boolean revelar(Area area) {
+        return estadoOperativo.operable(new RevelarEntidad(area, this.area, radioDeDeteccion));
+    }
+
+    @Override
+    public void moverse(Area area) {
+        if (area.es(this.area)) {
+            throw new MovimientoNoValidoException();
+        }
+        Area areaAnterior = this.area;
+        this.area = area.moverse(this, tipoUnidad);
+        areaAnterior.desocupar();
+
+        if (raza != null) {
+            raza.revelarContrincante();
+        }
     }
 }
+

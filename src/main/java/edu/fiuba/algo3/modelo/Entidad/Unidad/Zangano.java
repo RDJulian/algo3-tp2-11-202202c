@@ -84,7 +84,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     //de un extractor, no desocupa el area y se retira de el. Si no se cumple lo anterior, desocupa el area.
     @Override
     public void moverse(Area area) {
-        if (area == this.area) {
+        if (area.es(this.area)) {
             throw new MovimientoNoValidoException();
         }
 
@@ -124,6 +124,7 @@ public class Zangano extends Unidad implements ExtraeRecurso {
     @Override
     public void pasarTurno() {
         estadoOperativo = estadoOperativo.pasarTurno(vida, escudo, new ExtraerRecurso(this));
+        this.ataque.pasarTurno();
     }
 
     @Override

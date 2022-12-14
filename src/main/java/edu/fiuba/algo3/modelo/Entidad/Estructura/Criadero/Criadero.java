@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Construible.ConstruiblePiso.RangoMoho;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleRecurso.NoSobreRecurso;
 import edu.fiuba.algo3.modelo.Entidad.Comando.GenerarLarva;
 import edu.fiuba.algo3.modelo.Entidad.Comando.UsarLarva;
+import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoOperativo.EnConstruccion;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Invisible;
 import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.EstadoInvisibilidad.Visible;
@@ -27,7 +28,7 @@ import edu.fiuba.algo3.modelo.Raza.Zerg;
 
 import java.util.ArrayList;
 
-public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvisibilidad {
+public class Criadero extends Estructura implements GeneraLarva, UsaMementoInvisibilidad, EntidadInvisible {
     private Larvas larvas;
     private Invisibilidad invisibilidad;
 

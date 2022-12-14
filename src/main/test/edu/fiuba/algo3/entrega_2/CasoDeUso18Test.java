@@ -168,6 +168,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 39);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -182,6 +183,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 15);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -196,6 +198,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 17);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -210,6 +213,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 6);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -224,6 +228,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 4);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -238,6 +243,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 1);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -252,6 +258,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 4);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -277,6 +284,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 24);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -291,6 +299,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 27);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -327,6 +336,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 5);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -341,6 +351,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 8);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -368,6 +379,7 @@ public class CasoDeUso18Test {
         atacarKVeces(unidad, otraUnidad, 16);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
@@ -398,6 +410,7 @@ public class CasoDeUso18Test {
     void atacarKVeces(Unidad unidad, Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacar(entidad);
+            unidad.pasarTurno();
         }
     }
 

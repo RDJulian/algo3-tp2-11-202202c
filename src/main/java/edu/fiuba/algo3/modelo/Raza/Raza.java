@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Raza;
 
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
@@ -15,7 +16,9 @@ public abstract class Raza {
     protected ArrayList<Unidad> unidades;
 
     protected ArrayList<Estructura> estructuras;
+
     protected ArrayList<RevelaEntidades> reveladores;
+    protected ArrayList<EntidadInvisible> invisibles;
 
     public Raza() {
         this.reservaMineral = new Reserva();
@@ -23,6 +26,7 @@ public abstract class Raza {
         this.unidades = new ArrayList<>();
         this.estructuras = new ArrayList<>();
         this.reveladores = new ArrayList<>();
+        this.invisibles = new ArrayList<>();
     }
 
     public Raza(int mineral, int gas) {
@@ -67,6 +71,7 @@ public abstract class Raza {
         estructuras.remove(entidad);
         unidades.remove(entidad);
         reveladores.remove(entidad);
+        invisibles.remove(entidad);
     }
 
     public void pasarTurno() {
@@ -85,5 +90,19 @@ public abstract class Raza {
     //Metodo para testear.
     public ArrayList<Estructura> getEstructuras() {
         return estructuras;
+    }
+
+    public abstract void revelarUnidad(EntidadInvisible entidad);
+
+    public abstract void revelarContrincante();
+
+    protected void revelar(EntidadInvisible entidad) {
+        entidad.actualizarEstado(this.reveladores);
+    }
+
+    protected void revelar(ArrayList<RevelaEntidades> reveladores) {
+        for (EntidadInvisible entidad : invisibles) {
+            entidad.actualizarEstado(reveladores);
+        }
     }
 }

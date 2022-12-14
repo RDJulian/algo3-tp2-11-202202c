@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Area.Coordenada;
 import edu.fiuba.algo3.modelo.Area.EstadoOcupacion.Desocupada;
 import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPiso;
+import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
 import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 import edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorEstructuras.*;
 import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
@@ -124,5 +125,47 @@ public class CasoDeUso3Test {
 
         assertDoesNotThrow(() -> constructor.construir(areaConMineral));
         assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(areaConGasVespeno));
+    }
+
+    @Test
+    public void test05AsimiladorNoSePuedeConstruirSobreUnAreaSinRecurso() {
+        //Se mockea la raza para no depender de los costos.
+        Protoss protoss = mock(Protoss.class);
+
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
+
+        ConstructorEstructuras constructor = new ConstructorAsimilador(estructuras, protoss);
+
+        //Se mockea el area para no depender de lo que no se prueba.
+        EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
+        when(estadoPisoMock.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new RecursoNull());
+
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
+    }
+
+    @Test
+    public void test06NexoMineralNoSePuedeConstruirSobreUnAreaSinRecurso() {
+        //Se mockea la raza para no depender de los costos.
+        Protoss protoss = mock(Protoss.class);
+
+        //Se mockea una estructura para no depender de la condicion de estructuras correlativas.
+        Estructura estructuraMock = mock(Estructura.class);
+        when(estructuraMock.construible(any(ConstruibleEstructura.class))).thenReturn(true);
+        ArrayList<Estructura> estructuras = new ArrayList<>();
+        estructuras.add(estructuraMock);
+
+        ConstructorEstructuras constructor = new ConstructorNexoMineral(estructuras, protoss);
+
+        //Se mockea el area para no depender de lo que no se prueba.
+        EstadoPiso estadoPisoMock = mock(EstadoPiso.class);
+        when(estadoPisoMock.construible(any(ConstruiblePiso.class))).thenReturn(true);
+        Area area = new Area(new Coordenada(0, 0), new AreaTierra(), new Desocupada(), estadoPisoMock, new RecursoNull());
+        
+        assertThrows(ConstruccionNoValidaException.class, () -> constructor.construir(area));
     }
 }

@@ -7,12 +7,16 @@ import edu.fiuba.algo3.modelo.Entidad.Comando.RecibirAtaqueEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
+import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadNoOperativaException;
 
 public abstract class Estructura extends Entidad {
     @Override
     public void recibirAtaque(Ataque ataque, Unidad atacante) {
-        ataque.ataqueEnRango(area);
+        if (!ataque.ataqueValido(area, raza)) {
+            throw new AtaqueNoValidoException();
+        }
         Comando recibirAtaque = new RecibirAtaqueEstructura(this, ataque, atacante);
         estadoOperativo.atacable(estadoInvisibilidad.atacable(recibirAtaque));
     }
@@ -25,7 +29,7 @@ public abstract class Estructura extends Entidad {
     public boolean construible(ConstruibleEstructura construibleEstructura) {
         try {
             return estadoOperativo.operable(new PermitirCorrelatividad(this, construibleEstructura));
-        } catch (EntidadNoOperativaException e) {
+        } catch (EntidadNoOperativaException | EntidadDestruidaException e) {
             return false;
         }
     }

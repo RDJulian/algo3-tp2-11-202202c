@@ -13,8 +13,9 @@ import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Entidad.Suministro.AfectaSuministro;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Escudo.Escudo;
 import edu.fiuba.algo3.modelo.Entidad.Defensa.Vida.Vida;
+import edu.fiuba.algo3.mvc.Observable;
 
-public abstract class Entidad {
+public abstract class Entidad extends Observable {
     protected Raza raza;
     protected Area area;
     protected Vida vida;

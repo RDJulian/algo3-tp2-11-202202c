@@ -19,20 +19,20 @@ public class TableroFactory {
     public ArrayList<ArrayList<Area>> generarTablero() {
         ArrayList<ArrayList<Area>> tablero = new ArrayList<>();
 
-        while (tablero.size() < 51) {
+        while (tablero.size() <= 51) {
             ArrayList<Area> columna = new ArrayList<>();
-            while (columna.size() < 51) {
+            while (columna.size() <= 51) {
                 columna.add(null);
             }
             tablero.add(columna);
         }
 
-        for (int i = -25; i <= 25; i++) {
-            for (int j = -25; j <= 25; j++) {
-                if (modulo(i) + modulo(j) < 6 || modulo(i) + modulo(j) > 45)
-                    tablero.get(i + 25).set(j + 25, new Area(new Coordenada(i, j), new AreaEspacial(), new RecursoNull()));
+        for (int x = -25; x <= 25; x++) {
+            for (int y = -25; y <= 25; y++) {
+                if (modulo(x) + modulo(y) < 6 || modulo(x) + modulo(y) > 45)
+                    tablero.get(x + 25).set(50 - (y + 25), new Area(new Coordenada(x, y), new AreaEspacial(), new RecursoNull()));
                 else
-                    tablero.get(i + 25).set(j + 25, new Area(new Coordenada(i, j), new AreaTierra(), new RecursoNull()));
+                    tablero.get(x + 25).set(50 - (y + 25), new Area(new Coordenada(x, y), new AreaTierra(), new RecursoNull()));
             }
         }
 

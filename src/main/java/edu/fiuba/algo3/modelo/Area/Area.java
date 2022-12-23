@@ -16,10 +16,11 @@ import edu.fiuba.algo3.modelo.Area.EstadoPiso.EstadoPiso;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
 import edu.fiuba.algo3.modelo.Area.Recurso.RecursoNull;
+import edu.fiuba.algo3.mvc.Observable;
 
 import java.util.ArrayList;
 
-public class Area {
+public class Area extends Observable {
     //Clase "fachada" que agrupa comportamiento de otras clases.
     private Coordenada coordenada;
     private TipoArea tipoArea;
@@ -115,7 +116,7 @@ public class Area {
         return coordenada.enRango(area.getCoordenada(), radio);
     }
 
-    private Coordenada getCoordenada() {
+    public Coordenada getCoordenada() {
         return coordenada;
     }
 

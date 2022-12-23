@@ -20,8 +20,7 @@ public class Juego {
     }
 
     //Se debe llamar antes de empezar con la secuencia del juego.
-    public void registrarJugadores(String unNombre, String unColor, Raza unaRaza,
-                                   String otroNombre, String otroColor, Raza otraRaza) {
+    public void registrarJugadores(String unNombre, String unColor, Raza unaRaza, String otroNombre, String otroColor, Raza otraRaza) {
         if (unNombre.length() < 6 || otroNombre.length() < 6) {
             throw new NombreNoValidoException();
         }

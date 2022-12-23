@@ -35,4 +35,12 @@ public class Coordenada {
     public boolean es(Coordenada coordenada) {
         return coordenada.es(this.posicionX, this.posicionY);
     }
+
+    public int x(){
+        return posicionX;
+    }
+
+    public int y(){
+        return posicionY;
+    }
 }

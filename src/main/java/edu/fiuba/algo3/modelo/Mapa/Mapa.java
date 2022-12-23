@@ -3,10 +3,11 @@ package edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Piso.Moho;
 import edu.fiuba.algo3.modelo.Piso.Piso;
+import edu.fiuba.algo3.mvc.Observable;
 
 import java.util.ArrayList;
 
-public class Mapa {
+public class Mapa extends Observable {
     private ArrayList<ArrayList<Area>> tablero;
     private ArrayList<Piso> pisos;
     private ArrayList<Moho> moho;
@@ -53,7 +54,5 @@ public class Mapa {
     }
 
     //Hardcodeado.
-    public Area getArea(int i, int j) {
-        return tablero.get(i + 25).get(j + 25);
-    }
+    public Area getArea(int x, int y) { return tablero.get(x + 25).get(50-(y + 25)); }
 }

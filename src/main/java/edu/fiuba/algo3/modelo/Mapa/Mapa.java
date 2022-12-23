@@ -46,13 +46,19 @@ public class Mapa extends Observable {
         }
     }
 
+    //Fix rapido, pero no deberia haber areas nulas.
     public void actualizarTablero() {
         for (ArrayList<Area> areas : tablero) {
-            for (Area area : areas)
-                area.actualizarEstado(pisos);
+            for (Area area : areas) {
+                if (area != null) {
+                    area.actualizarEstado(pisos);
+                }
+            }
         }
     }
 
     //Hardcodeado.
-    public Area getArea(int x, int y) { return tablero.get(x + 25).get(50-(y + 25)); }
+    public Area getArea(int x, int y) {
+        return tablero.get(x + 25).get(50 - (y + 25));
+    }
 }

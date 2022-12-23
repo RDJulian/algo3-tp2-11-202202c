@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor Usuario
+participant "unidad:Unidad" as A
+participant "areaAnterior:Area" as H
+participant "comando:Moverse" as C
+participant "__:EstadoOperativo__" as B
+participant "__:TipoUnidad__" as G
+participant "area:Area" as D
+participant "__:Recurso__" as E
+participant "__:TipoArea__" as F
+
+Usuario -> A : moverse(area)
+create C
+A->C: <<create>>
+A -> B:operar(comando)
+B->C:ejecutar()
+C->D:moverse(unidad, tipoUnidad)
+D->E:movible(unidad)
+return true
+D->F:moverse(tipoUnidad, this)
+F ->G:moverse(this, area)
+G->D: ocupar()
+D-->A:area
+A->A:this.area = area
+A-> H : desocupar()
+
+
+@enduml

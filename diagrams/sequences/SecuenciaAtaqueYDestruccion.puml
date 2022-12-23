@@ -16,7 +16,7 @@ participant "__:Vida__" as E
 Usuario -> A : atacar(otra)
 create F
 A -> F : <<create>>
-A ->G : operable(comando)
+A ->G : operar(comando)
 G->F :ejecutar()
 F -> C : atacar(otra, areaAtacante, razaAtacante)
 C -> B : recibirAtaque(this, una)
@@ -26,7 +26,7 @@ create H
 B -> H:<<create>>
 B -> I : atacable(comando)
 return comando
-B-> J : operable(comando)
+B-> J : operar(comando)
 J -> H: ejecutar()
 H -> B : daniar(danioARecibir, una)
 B -> D : proteger(danioARecibir, una)

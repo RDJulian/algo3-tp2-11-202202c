@@ -1,28 +1,48 @@
 package edu.fiuba.algo3.modelo.Raza;
 
-import edu.fiuba.algo3.modelo.Asentamiento.Asentamiento;
+import edu.fiuba.algo3.modelo.Entidad.Entidad;
+import edu.fiuba.algo3.modelo.Entidad.EntidadInvisible;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.RevelaEntidades;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Reserva.Reserva;
+import edu.fiuba.algo3.modelo.Raza.Reserva.Reserva;
 
-public class Raza {
+import java.util.ArrayList;
 
-    //Esta clase deberia tener mas responsabilidad. Deberia ser como clase manejadora de
-    //lo que corresponda a una Raza (estructuras, unidades, etc.)
-    //La desventaja de tener una clase como esta es que se termina haciendo pasamano con las reservas.
-    private Reserva reservaMineral;
-    private Reserva reservaGas;
-    private Asentamiento asentamiento;
+public abstract class Raza {
+    protected Raza contrincante;
+    protected Reserva reservaMineral;
+    protected Reserva reservaGas;
+
+    protected ArrayList<Unidad> unidades;
+
+    protected ArrayList<Estructura> estructuras;
+
+    protected ArrayList<RevelaEntidades> reveladores;
+    protected ArrayList<EntidadInvisible> invisibles;
 
     public Raza() {
         this.reservaMineral = new Reserva();
         this.reservaGas = new Reserva();
-        this.asentamiento = new Asentamiento();
+        this.unidades = new ArrayList<>();
+        this.estructuras = new ArrayList<>();
+        this.reveladores = new ArrayList<>();
+        this.invisibles = new ArrayList<>();
     }
 
-    //Estos metodos delegan a las Reservas correspondientes.
-    //Sirven tanto para unidades como para estructuras.
-    //Como las reservas son de la misma clase, se necesita dos metodos separados para cada una.
+    public Raza(int mineral, int gas) {
+        this();
+        recolectarMineral(mineral);
+        recolectarGas(gas);
+    }
+
+    public void asignarContrincante(Raza raza) {
+        if (this.contrincante == null) {
+            this.contrincante = raza;
+            raza.asignarContrincante(this);
+        }
+    }
+
     public void recolectarGas(int unidades) {
         reservaGas.agregarRecurso(unidades);
     }
@@ -31,40 +51,75 @@ public class Raza {
         reservaMineral.agregarRecurso(unidades);
     }
 
-    public void construible(int costoMineral, int costoGas, int costoSuministro) {
-        this.reservaMineral.construible(costoMineral);
-        this.reservaGas.construible(costoGas);
-        this.asentamiento.construible(costoSuministro);
-    }
-
     public void gastarRecursos(int mineral, int gas) {
         reservaGas.gastarRecurso(gas);
         reservaMineral.gastarRecurso(mineral);
     }
 
-    //Ver si es necesario. Metodo para testear.
+    public void registrarEntidad(Unidad unidad) {
+        unidades.add(unidad);
+    }
+
+    public void registrarEntidad(Estructura estructura) {
+        estructuras.add(estructura);
+    }
+
+    public void destruirEntidad(Entidad entidad) {
+        estructuras.remove(entidad);
+        unidades.remove(entidad);
+        reveladores.remove(entidad);
+        invisibles.remove(entidad);
+    }
+
+    public void pasarTurno() {
+        for (Estructura estructura : estructuras) {
+            estructura.pasarTurno();
+        }
+        for (Unidad unidad : unidades) {
+            unidad.pasarTurno();
+        }
+    }
+
     public int suministroRestante() {
-        return this.asentamiento.suministroRestante();
+        int suministroTotal = 0;
+        for (Estructura estructura : estructuras) {
+            suministroTotal = estructura.afectarSuministro(suministroTotal);
+        }
+        for (Unidad unidad : unidades) {
+            suministroTotal = unidad.afectarSuministro(suministroTotal);
+        }
+        return suministroTotal;
     }
 
-    public void registarEntidad(Estructura entidad) {
-        asentamiento.registrarEntidad(entidad);
+    //Metodos de revelacion. Se decide que las razas se conozcan entre si.
+    public void revelarUnidad(EntidadInvisible entidad) {
+        if (contrincante != null) {
+            contrincante.revelar(entidad);
+        }
     }
 
-    public void registarEntidad(Unidad entidad) {
-        asentamiento.registrarEntidad(entidad);
+    public void revelarContrincante() {
+        if (contrincante != null) {
+            contrincante.revelar(reveladores);
+        }
     }
 
-    public void destruirEntidad(Estructura entidad) {
-        asentamiento.destruirEntidad(entidad);
+    protected void revelar(EntidadInvisible entidad) {
+        entidad.actualizarEstado(this.reveladores);
     }
 
-    public void destruirEntidad(Unidad entidad) {
-        asentamiento.destruirEntidad(entidad);
+    protected void revelar(ArrayList<RevelaEntidades> reveladores) {
+        for (EntidadInvisible entidad : invisibles) {
+            entidad.actualizarEstado(reveladores);
+        }
     }
-
 
     public boolean sinEstructuras() {
-        return asentamiento.sinEstructuras();
+        return estructuras.isEmpty();
+    }
+
+    //Metodo para testear.
+    public ArrayList<Estructura> getEstructuras() {
+        return estructuras;
     }
 }

@@ -1,0 +1,15 @@
+@startuml
+!include EstructuraNoRequerida.puml
+!include ../ExtraeRecurso.puml
+skinparam classAttributeIconSize 0
+class NexoMineral {
++ <<Create>> NexoMineral(Area,Protoss)
++ void extraerRecurso()
++ void pasarTurno()
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+
+ExtraeRecurso <|.. NexoMineral
+EstructuraNoRequerida <|.. NexoMineral
+@enduml

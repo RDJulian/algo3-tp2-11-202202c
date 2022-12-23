@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+state EstadoInvisibilidad{
+
+
+EstadoInvisibilidad: Para el Scout, antes y despues de matar 3 entidades
+    state Antes{
+    state "Visible" as 1
+        [*] --> 1
+        1 --> 1 : al entrar / salir del rango de un revelador
+    }
+    state Despues{
+    state "Visible" as 2
+        Invisible --> 2 : al entrar / salir del rango de un revelador
+        2 --> Invisible
+    }
+}
+Antes-->Despues
+@enduml

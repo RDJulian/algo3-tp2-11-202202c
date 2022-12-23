@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+state EstadoArea{
+    state EstadoOcupacion{
+        [*] --> Desocupada
+        Desocupada --> Ocupada
+        Ocupada --> Desocupada
+    }
+    state EstadoPiso{
+        [*] --> EstadoPisoNull
+        state EstadoPisoNull
+        state TieneEnergiaPilon
+        state TieneMoho
+        EstadoPisoNull --> TieneEnergiaPilon
+        EstadoPisoNull --> TieneMoho
+        TieneEnergiaPilon --> TieneMoho
+        TieneEnergiaPilon --> EstadoPisoNull
+    }
+}
+@enduml

@@ -1,0 +1,110 @@
+@startuml
+skinparam classAttributeIconSize 0
+class EvolucionarAGuardian {
+- Zerg zerg
+- Area area
++ <<Create>> EvolucionarAGuardian(Zerg,Area)
++ void ejecutar()
+}
+class UsarLarva {
+- Larvas larvas
++ <<Create>> UsarLarva(Larvas)
++ void ejecutar()
+}
+class Moverse {
+- Unidad unidad
+- TipoUnidad tipoUnidad
+- Area area
++ <<Create>> Moverse(Unidad,TipoUnidad,Area)
++ void ejecutar()
+}
+interface Comando {
+~ void ejecutar()
+}
+class AgregarZangano {
+- Zanganos zanganos
+- Zangano zangano
++ <<Create>> AgregarZangano(Zanganos,Zangano)
++ void ejecutar()
+}
+class RecibirAtaqueUnidad {
+- Entidad entidad
+- Ataque ataque
+- TipoUnidad tipoUnidad
+- Unidad atacante
++ <<Create>> RecibirAtaqueUnidad(Entidad,Ataque,TipoUnidad,Unidad)
++ void ejecutar()
+}
+class ComandoNull {
++ void ejecutar()
+}
+class RecibirAtaqueEstructura {
+- Entidad entidad
+- Ataque ataque
+- Unidad atacante
++ <<Create>> RecibirAtaqueEstructura(Entidad,Ataque,Unidad)
++ void ejecutar()
+}
+class PermitirCorrelatividad {
+- Estructura estructura
+- ConstruibleEstructura construibleEstructura
++ <<Create>> PermitirCorrelatividad(Estructura,ConstruibleEstructura)
++ boolean ejecutar()
+}
+class GenerarLarva {
+- GeneraLarva criadero
++ <<Create>> GenerarLarva(GeneraLarva)
++ void ejecutar()
+}
+interface ComandoBool {
+~ boolean ejecutar()
+}
+class Atacar {
+- Ataque ataque
+- Entidad objetivo
+- Area areaAtacante
+- Raza razaAtacante
++ <<Create>> Atacar(Ataque,Entidad,Area,Raza)
++ void ejecutar()
+}
+class RevelarEntidad {
+~ Area areaObjetivo
+~ Area areaRevelador
+~ int radioDeDeteccion
++ <<Create>> RevelarEntidad(Area,Area,int)
++ boolean ejecutar()
+}
+class EvolucionarADevorador {
+- Zerg zerg
+- Area area
++ <<Create>> EvolucionarADevorador(Zerg,Area)
++ void ejecutar()
+}
+class UsarExtractor {
+- Area area
+- Raza raza
++ <<Create>> UsarExtractor(Area,Raza)
++ void ejecutar()
+}
+class ExtraerRecurso {
+- ExtraeRecurso entidad
++ <<Create>> ExtraerRecurso(ExtraeRecurso)
++ void ejecutar()
+}
+
+
+Comando <|.. EvolucionarAGuardian
+Comando <|.. UsarLarva
+Comando <|.. Moverse
+Comando <|.. AgregarZangano
+Comando <|.. RecibirAtaqueUnidad
+Comando <|.. ComandoNull
+Comando <|.. RecibirAtaqueEstructura
+ComandoBool <|.. PermitirCorrelatividad
+Comando <|.. GenerarLarva
+Comando <|.. Atacar
+ComandoBool <|.. RevelarEntidad
+Comando <|.. EvolucionarADevorador
+Comando <|.. UsarExtractor
+Comando <|.. ExtraerRecurso
+@enduml

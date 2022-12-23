@@ -1,0 +1,8 @@
+@startuml
+skinparam classAttributeIconSize 0
+class ReservaDeReproduccion {
++ <<Create>> ReservaDeReproduccion(Area,Zerg)
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+@enduml

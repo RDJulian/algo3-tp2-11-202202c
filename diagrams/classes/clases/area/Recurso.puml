@@ -1,0 +1,33 @@
+@startuml
+skinparam classAttributeIconSize 0
+class GasVespeno {
++ void extraerRecurso(int,Raza)
++ boolean visitar(Unidad)
++ boolean visitar(Zangano)
++ boolean construible(ConstruibleRecurso)
+}
+class Mineral {
++ void extraerRecurso(int,Raza)
++ boolean visitar(Unidad)
++ boolean visitar(Zangano)
++ boolean construible(ConstruibleRecurso)
+}
+abstract class Recurso {
+# int unidades
++ {abstract}boolean construible(ConstruibleRecurso)
++ {abstract}void extraerRecurso(int,Raza)
++ {abstract}boolean visitar(Unidad)
++ {abstract}boolean visitar(Zangano)
+}
+class RecursoNull {
++ void extraerRecurso(int,Raza)
++ boolean visitar(Unidad)
++ boolean visitar(Zangano)
++ boolean construible(ConstruibleRecurso)
+}
+
+
+Recurso <|-- GasVespeno
+Recurso <|-- Mineral
+Recurso <|-- RecursoNull
+@enduml

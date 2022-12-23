@@ -1,0 +1,38 @@
+@startuml
+!include ../Memento.puml
+!include ../EntidadInvisible.puml
+!include ../Invisibilidad.puml
+remove EstadoInvisibilidad
+remove Visible
+remove Invisible
+skinparam classAttributeIconSize 0
+remove MementoInvisibilidad
+remove MementoOperativo
+remove UsaMementoOperativo
+interface GeneraLarva {
+~ void generarLarva()
+~ void usarLarva()
+}
+class Criadero {
++ <<Create>> Criadero(Area,Zerg)
++ void usarLarva()
++ void generarLarva()
++ void pasarTurno()
++ MementoInvisibilidad guardarEstado()
++ void restaurarEstado(MementoInvisibilidad)
++ void actualizarEstado(ArrayList<RevelaEntidades>)
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+class Larvas {
+- int larvas
++ void usarLarva()
++ void generarLarva()
+}
+
+
+GeneraLarva <|.. Criadero
+UsaMementoInvisibilidad <|.. Criadero
+EntidadInvisible <|.. Criadero
+Criadero *-left- Larvas
+Criadero *-r- Invisibilidad
+@enduml

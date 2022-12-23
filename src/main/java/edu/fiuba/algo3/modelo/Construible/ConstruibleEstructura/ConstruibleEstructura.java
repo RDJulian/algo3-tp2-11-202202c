@@ -1,29 +1,32 @@
 package edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura;
 
 import edu.fiuba.algo3.modelo.Entidad.Estructura.*;
+import edu.fiuba.algo3.modelo.Entidad.Estructura.Criadero.Criadero;
 
-public interface ConstruibleEstructura {
-    void visitar(Estructura estructura);
+import java.util.ArrayList;
 
-    void visitar(Acceso estructura);
+public abstract class ConstruibleEstructura {
+    public boolean construible(ArrayList<Estructura> estructuras) {
+        boolean construible = false;
+        int i = 0;
+        while (!construible && i < estructuras.size()) {
+            construible = estructuras.get(i).construible(this);
+            i++;
+        }
+        return construible;
+    }
 
-    void visitar(Asimilador estructura);
+    public abstract boolean visitar(Acceso acceso);
 
-    void visitar(Criadero estructura);
+    public abstract boolean visitar(Espiral espiral);
 
-    void visitar(Espiral estructura);
+    public abstract boolean visitar(Guarida guarida);
 
-    void visitar(Extractor estructura);
+    public abstract boolean visitar(PuertoEstelar puertoEstelar);
 
-    void visitar(Guarida estructura);
+    public abstract boolean visitar(ReservaDeReproduccion reservaDeReproduccion);
 
-    void visitar(NexoMineral estructura);
+    public abstract boolean visitar(Criadero criadero);
 
-    void visitar(Pilon estructura);
-
-    void visitar(ReservaDeReproduccion estructura);
-
-    void visitar(PuertoEstelar estructura);
-
-    void visitar(Nada nada);
+    public abstract boolean visitar(EstructuraNoRequerida estructuraNoRequerida);
 }

@@ -2,25 +2,25 @@ package edu.fiuba.algo3.modelo.Juego;
 
 import edu.fiuba.algo3.modelo.Excepciones.JugadoresNoCompatiblesException;
 import edu.fiuba.algo3.modelo.Excepciones.NombreNoValidoException;
-import edu.fiuba.algo3.modelo.Juego.Jugador.Jugador;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Raza.Raza;
 
 import java.util.ArrayList;
 
 public class Juego {
-    //Esta clase podria ser la encargada de manejar los turnos.
-    private ArrayList<Jugador> jugadores;
-    private Raza razaJugadorUno;
-    private Raza razaJugadorDos;
+    private Mapa mapa;
+    private ArrayList<Raza> razas;
+    private int turno;
 
     public Juego() {
-        this.jugadores = new ArrayList<>();
+        this.mapa = Mapa.obtenerInstancia();
+
+        this.razas = new ArrayList<>();
+        this.turno = 1;
     }
 
-    //Las razas deberian ser singletons. No deberia haber mas de una instancia de ambas.
-    //Si se hace eso, esta comparacion se puede mantener sencilla. Color podrian ser los de javafx.
-    public void registrarJugadores(String unNombre, String unColor, Raza unaRaza,
-                                   String otroNombre, String otroColor, Raza otraRaza) {
+    //Se debe llamar antes de empezar con la secuencia del juego.
+    public void registrarJugadores(String unNombre, String unColor, Raza unaRaza, String otroNombre, String otroColor, Raza otraRaza) {
         if (unNombre.length() < 6 || otroNombre.length() < 6) {
             throw new NombreNoValidoException();
         }
@@ -31,14 +31,25 @@ public class Juego {
             throw new JugadoresNoCompatiblesException();
         }
 
-        jugadores.add(new Jugador(unNombre, unColor));
-        jugadores.add(new Jugador(otroNombre, otroColor));
+        razas.add(unaRaza);
+        razas.add(otraRaza);
+        unaRaza.asignarContrincante(otraRaza);
+    }
 
-        this.razaJugadorUno = unaRaza;
-        this.razaJugadorDos = otraRaza;
+    public void pasarTurno() {
+        for (Raza raza : razas) {
+            raza.pasarTurno();
+        }
+        mapa.pasarTurno();
+        mapa.actualizarTablero();
+        turno += 1;
+    }
+
+    public Raza razaAJugar() {
+        return razas.get(turno - 1 % 2);
     }
 
     public boolean terminarJuego() {
-        return razaJugadorUno.sinEstructuras() || razaJugadorDos.sinEstructuras();
+        return razas.get(0).sinEstructuras() || razas.get(1).sinEstructuras();
     }
 }

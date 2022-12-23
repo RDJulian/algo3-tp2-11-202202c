@@ -1,0 +1,15 @@
+@startuml
+!include RevelaEntidades.puml
+skinparam classAttributeIconSize 0
+class Scout {
+- int radioDeDeteccion
++ <<Create>> Scout(Area,ArrayList<Estructura>,Protoss)
++ void pasarTurno()
++ boolean revelar(Area)
++ void moverse(Area)
+}
+
+
+RevelaEntidades <|.. Scout
+
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Guardian {
++ <<Create>> Guardian(Area,Zerg)
+}
+
+
+
+@enduml

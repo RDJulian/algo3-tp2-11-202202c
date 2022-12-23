@@ -1,27 +1,22 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.NoRequiereEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Devorador;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Raza.Zerg;
+
+import java.util.ArrayList;
 
 public class ConstructorDevorador extends ConstructorUnidades {
-    public ConstructorDevorador() {
-        this.construibleEstructura = new NoRequiereEstructura();
-        this.costoMineral = 150;
-        this.costoGas = 50;
-        this.costoSuministro = 4;
+    private Zerg zerg;
+
+    public ConstructorDevorador(ArrayList<Estructura> estructuras, Zerg zerg) {
+        super(estructuras);
+        this.zerg = zerg;
     }
 
-    public Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa) {
-        construibleEstructura.visitar(estructuraCorrelativa);
-        raza.construible(costoMineral, costoGas, costoSuministro);
-
-        raza.gastarRecursos(costoMineral, costoGas);
-        Unidad unidad = new Devorador(posicion, raza);
-        raza.registarEntidad(unidad);
-        return unidad;
+    public Unidad construir(Area area) {
+        return new Devorador(area, zerg);
     }
 }

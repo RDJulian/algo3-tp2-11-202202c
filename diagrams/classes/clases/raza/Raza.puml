@@ -1,0 +1,118 @@
+@startuml
+!include ../constructores/ConstructorUnidades.puml
+!include ../constructores/ConstructorEstructuras.puml
+!include ../entidades/UnidadUML.puml
+!include ../entidades/EstructuraUML.puml
+skinparam classAttributeIconSize 0
+remove Zealot
+remove Zangano
+remove UnidadNull
+remove Scout
+remove Zerling
+remove AmoSupremo
+remove Devorador
+remove Dragon
+remove Guardian
+remove Hidralisco
+remove Mutalisco
+remove Ataque
+remove TipoUnidad
+remove ConstructorAmoSupremo
+remove ConstructorGuardian
+remove ConstructorZealot
+remove ConstructorHidralisco
+remove ConstructorZangano
+remove ConstructorDevorador
+remove ConstructorDragon
+remove ConstructorMutalisco
+remove ConstructorZerling
+remove ConstructorScout
+remove ConstructorExtractor
+remove ConstructorReservaDeReproduccion
+remove ConstructorCriadero
+remove ConstructorGuarida
+remove ConstructorPilon
+remove ConstructorNexoMineral
+remove ConstructorAcceso
+remove ConstructorEspiral
+remove ConstructorPuertoEstelar
+remove ConstructorAsimilador
+remove Extractor
+remove Guarida
+remove Criadero
+remove Espiral
+remove Pilon
+remove NexoMineral
+remove Acceso
+remove Asimilador
+remove ReservaDeReproduccion
+remove PuertoEstelar
+class Protoss {
+-ConstructorEntidades constructores
+-ConstructorUnidades constructores
++ <<Create>> Protoss()
+
++ void registrarEntidad(Zealot)
++ void registrarEntidad(Scout)
+
++ void construirEntidad(Area)
+}
+abstract class Raza {
+# Raza contrincante
++ <<Create>> Raza()
++ void asignarContrincante(Raza)
+
++ void recolectarGas(int)
++ void recolectarMineral(int)
++ void gastarRecursos(int,int)
+
++ void registrarEntidad(Unidad)
++ void registrarEntidad(Estructura)
++ void destruirEntidad(Entidad)
+
++ void pasarTurno()
++ int suministroRestante()
+
++ void revelarUnidad(EntidadInvisible)
++ void revelarContrincante()
+# void revelar(EntidadInvisible)
+# void revelar(ArrayList<RevelaEntidades>)
+
++ boolean sinEstructuras()
+}
+class Reserva {
+- int unidades
++ <<Create>> Reserva()
++ void agregarRecurso(int)
++ void gastarRecurso(int)
+}
+class Zerg {
+-ConstructorEntidades constructores
+-ConstructorUnidades constructores
++ <<Create>> Zerg()
+
++ Extractor buscarExtractor(Area)
++ void usarLarva()
+
++ void registrarEntidad(Extractor)
++ void registrarEntidad(Criadero)
++ void registrarEntidad(AmoSupremo)
++ void registrarEntidad(Devorador)
+
++ void destruirEntidad(Entidad)
+
++ void construirEntidad(Area)
+}
+
+
+
+Raza <|-- Protoss
+Raza <|-- Zerg
+Raza "1"*-r-"2"Reserva
+Raza "1" o-- "0..*" Unidad
+Raza "1" o-- "0..*" Estructura
+Protoss-->ConstructorEstructuras
+Zerg-->ConstructorEstructuras
+Protoss-->ConstructorUnidades
+Zerg-->ConstructorUnidades
+@enduml

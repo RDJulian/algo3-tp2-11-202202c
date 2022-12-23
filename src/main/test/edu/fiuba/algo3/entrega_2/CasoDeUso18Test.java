@@ -1,27 +1,22 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.*;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.Excepciones.EntidadDestruidaException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
-import edu.fiuba.algo3.modelo.Recurso.Mineral;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoDeUso18Test {
-
     //Supuesto: Todas las estructuras se construyen en Tierra.
     @Test
     public void test01UnZanganoNoHaceDanio() {
-        Posicion posicion = new Posicion(0, 0);
-        Raza raza = new Raza();
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), raza);
-        Unidad unidad = new Zangano(posicion, raza);
+        Estructura estructura = new NexoMineral();
+        Unidad unidad = new Zangano();
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -31,9 +26,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test02UnZerlingHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Zerling(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Zerling(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -49,9 +45,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test03UnHidraliscoHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Hidralisco(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Hidralisco(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -67,9 +64,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test04UnMutaliscoHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Mutalisco(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Mutalisco(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -85,9 +83,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test05UnGuardianHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Guardian(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Guardian(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -103,9 +102,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test06UnZealotHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Zealot(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Zealot(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -121,9 +121,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test07UnDragonHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Dragon(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Dragon(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -139,9 +140,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test08UnScoutHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Scout(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Scout(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -157,92 +159,115 @@ public class CasoDeUso18Test {
 
     @Test
     public void test09UnZerlingHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad unidad = new Zerling(new Posicion(0, 0), new Raza());
-        Unidad otraUnidad = new Zealot(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad unidad = new Zerling(area);
+        Unidad otraUnidad = new Zealot(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 39);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test10UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zealot(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Hidralisco(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zealot(area);
+        Unidad unidad = new Hidralisco(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 15);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test11UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zealot(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Mutalisco(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zealot(area);
+        Unidad unidad = new Mutalisco(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 17);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test12UnGuardianHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zealot(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Guardian(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zealot(area);
+        Unidad unidad = new Guardian(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 6);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test13UnZealotHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zerling(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Zealot(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zerling(area);
+        Unidad unidad = new Zealot(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 4);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test14UnDragonHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zerling(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Dragon(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zerling(area);
+        Unidad unidad = new Dragon(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 1);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test15UnScoutHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zerling(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Scout(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zerling(area);
+        Unidad unidad = new Scout(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 4);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test16UnZerlingHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad unidad = new Zerling(new Posicion(0, 0), new Raza());
-        Unidad otraUnidad = new Scout(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad unidad = new Zerling(area);
+        Unidad otraUnidad = new Scout(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -250,32 +275,40 @@ public class CasoDeUso18Test {
 
     @Test
     public void test17UnHidraliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Scout(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Hidralisco(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Scout(area);
+        Unidad unidad = new Hidralisco(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 24);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test18UnMutaliscoHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Scout(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Mutalisco(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Scout(area);
+        Unidad unidad = new Mutalisco(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 27);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test19UnGuardianHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Scout(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Guardian(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Scout(area);
+        Unidad unidad = new Guardian(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -283,8 +316,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test20UnZealotHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Mutalisco(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Zealot(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Mutalisco(area);
+        Unidad unidad = new Zealot(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -292,33 +327,40 @@ public class CasoDeUso18Test {
 
     @Test
     public void test21UnDragonHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Mutalisco(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Dragon(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Mutalisco(area);
+        Unidad unidad = new Dragon(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 5);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test22UnScoutHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Mutalisco(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Scout(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Mutalisco(area);
+        Unidad unidad = new Scout(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 8);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test23UnAmoSupremoNoHaceDanio() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new AmoSupremo(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new AmoSupremo(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -328,20 +370,25 @@ public class CasoDeUso18Test {
 
     @Test
     public void test24UnDevoradorHaceElDanioEsperadoAUnaUnidadDeAire() {
-        Unidad otraUnidad = new Scout(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Scout(area);
+        Unidad unidad = new Devorador(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         atacarKVeces(unidad, otraUnidad, 16);
 
         assertDoesNotThrow(() -> unidad.atacar(otraUnidad));
+        unidad.pasarTurno();
         assertThrows(EntidadDestruidaException.class, () -> unidad.atacar(otraUnidad));
     }
 
     @Test
     public void test25UnDevoradorHaceElDanioEsperadoAUnaUnidadDeTierra() {
-        Unidad otraUnidad = new Zealot(new Posicion(0, 0), new Raza());
-        Unidad unidad = new Devorador(new Posicion(0, 0), new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Unidad otraUnidad = new Zealot(area);
+        Unidad unidad = new Devorador(areaAtacante);
         pasarKTurnos(unidad, 12);
 
         assertThrows(AtaqueNoValidoException.class, () -> unidad.atacar(otraUnidad));
@@ -349,9 +396,10 @@ public class CasoDeUso18Test {
 
     @Test
     public void test26UnDevoradorHaceElDanioEsperadoAUnaEstructura() {
-        Posicion posicion = new Posicion(0, 0);
-        Estructura estructura = new NexoMineral(posicion, new Mineral(posicion), new Raza());
-        Unidad unidad = new Devorador(posicion, new Raza());
+        Area area = new Area(0, 0);
+        Area areaAtacante = new Area(1, 1);
+        Estructura estructura = new NexoMineral(area);
+        Unidad unidad = new Devorador(areaAtacante);
 
         pasarKTurnos(estructura, 12);
         pasarKTurnos(unidad, 12);
@@ -362,6 +410,7 @@ public class CasoDeUso18Test {
     void atacarKVeces(Unidad unidad, Entidad entidad, int k) {
         for (int i = 0; i < k; i++) {
             unidad.atacar(entidad);
+            unidad.pasarTurno();
         }
     }
 

@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+class NoAtaca {
++ int calcularDanio(TipoUnidad)
++ int calcularDanio()
++ void atacar(Entidad,Area,Raza)
+}
+class Ataca {
++ <<Create>> Ataca(Unidad,int,int,int)
++ int calcularDanio(TipoUnidad)
++ int calcularDanio()
++ void atacar(Entidad,Area,Raza)
+}
+abstract class Ataque {
+# Unidad unidadAtacante
+# Area areaAtacante
+# int danioTierra
+# int danioAire
+# int rangoAtaque
+# Raza razaAtacante
+# boolean atacoEsteTurno
++ {abstract}int calcularDanio(TipoUnidad)
++ {abstract}int calcularDanio()
++ {abstract}void atacar(Entidad,Area,Raza)
++ boolean ataqueValido(Area,Raza)
++ void pasarTurno()
+}
+
+
+Ataque <|-- NoAtaca
+Ataque <|-- Ataca
+@enduml

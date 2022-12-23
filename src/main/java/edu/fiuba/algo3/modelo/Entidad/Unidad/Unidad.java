@@ -1,57 +1,61 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad;
 
-import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Area.Recurso.Recurso;
+import edu.fiuba.algo3.modelo.Entidad.Comando.*;
 import edu.fiuba.algo3.modelo.Entidad.Entidad;
-import edu.fiuba.algo3.modelo.Entidad.EstadoEntidad.Destruido;
+import edu.fiuba.algo3.modelo.Entidad.Unidad.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad.TipoUnidad;
+import edu.fiuba.algo3.modelo.Area.Area;
 import edu.fiuba.algo3.modelo.Excepciones.AtaqueNoValidoException;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.RolEnSuministro.Neutral;
+import edu.fiuba.algo3.modelo.Excepciones.MovimientoNoValidoException;
 
 public abstract class Unidad extends Entidad {
-    //Ver que hacer con esto, no todos implementan
     protected TipoUnidad tipoUnidad;
-    protected int danioTierra;
-    protected int danioAire;
-    protected int rangoAtaque;
-    protected boolean invisible;
+    protected Ataque ataque;
     protected int contadorDeBajas;
-
-
-    //Segregar en una interfaz Atacante.
-    public void atacar(Entidad entidad) {
-        estadoEntidad.operable();
-        entidad.daniar(danioTierra, danioAire, posicion, rangoAtaque, this);
-    }
+    protected boolean seMovioEsteTurno;
 
     @Override
-    public void daniar(int danioTierra, int danioAire, Posicion posicionAtacante, int rangoAtaque, Unidad unidadAtacante) {
-        estadoEntidad.atacable();
-        if (!posicion.enRango(posicionAtacante, rangoAtaque) || invisible) {
-            throw new AtaqueNoValidoException();
-        }
-        int danioARecibir = tipoUnidad.recibirDanio(danioAire, danioTierra);
-        defensa.proteger(this, this.vida, danioARecibir, unidadAtacante);
+    public void pasarTurno() {
+        super.pasarTurno();
+        this.ataque.pasarTurno();
+        seMovioEsteTurno = false;
     }
 
-    //Deberia ser private.
-    public void moverse(Posicion posicion) {
-        this.posicion = posicion;
+    public void atacar(Entidad entidad) {
+        estadoOperativo.operable(new Atacar(ataque, entidad, area, raza));
     }
 
     public void moverse(Area area) {
-        estadoEntidad.operable();
-        area.mover(this, tipoUnidad);
+        if (area.es(this.area) || !area.enRango(this.area, 3) || seMovioEsteTurno) {
+            throw new MovimientoNoValidoException();
+        }
+        Area areaAnterior = this.area;
+        estadoOperativo.operable(new Moverse(this, tipoUnidad, area));
+        this.area = area;
+        areaAnterior.desocupar();
+        seMovioEsteTurno = true;
     }
 
     public void sumarBaja() {
-        contadorDeBajas = contadorDeBajas + 1;
+        contadorDeBajas += 1;
     }
 
     @Override
-    public void destruir() {
-        this.estadoEntidad = new Destruido();
-        this.rolEnSuministro = new Neutral();
-        raza.destruirEntidad(this);
+    public int afectarSuministro(int suministro) {
+        return afectaSuministro.afectarSuministro(suministro);
+    }
+
+    @Override
+    public void recibirAtaque(Ataque ataque, Unidad atacante) {
+        if (!ataque.ataqueValido(area, raza)) {
+            throw new AtaqueNoValidoException();
+        }
+        Comando recibirAtaque = new RecibirAtaqueUnidad(this, ataque, tipoUnidad, atacante);
+        estadoOperativo.atacable(estadoInvisibilidadEntidad.atacable(recibirAtaque));
+    }
+
+    public boolean movible(Recurso recurso) {
+        return recurso.visitar(this);
     }
 }

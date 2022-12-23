@@ -1,0 +1,15 @@
+@startuml
+!include EstructuraNoRequerida.puml
+!include ../ExtraeRecurso.puml
+skinparam classAttributeIconSize 0
+class Asimilador {
++ <<Create>> Asimilador(Area,Protoss)
++ void extraerRecurso()
++ void pasarTurno()
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+
+ExtraeRecurso <|.. Asimilador
+EstructuraNoRequerida <|.. Asimilador
+@enduml

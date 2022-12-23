@@ -1,0 +1,19 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Ocupada {
++ EstadoOcupacion ocupar()
++ EstadoPiso cubrirConMoho(EstadoPiso)
+}
+class Desocupada {
++ EstadoOcupacion ocupar()
++ EstadoPiso cubrirConMoho(EstadoPiso)
+}
+interface EstadoOcupacion {
+~ EstadoOcupacion ocupar()
+~ EstadoPiso cubrirConMoho(EstadoPiso)
+}
+
+
+EstadoOcupacion <|.. Ocupada
+EstadoOcupacion <|.. Desocupada
+@enduml

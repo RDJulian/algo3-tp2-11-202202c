@@ -1,0 +1,9 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Guarida {
++ <<Create>> Guarida(Area,Zerg,ArrayList<Estructura>)
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+note right of Mapa{
+Singleton pattern
+}
+class TableroFactory {
++ ArrayList<ArrayList<Area>> generarTablero()
++ void generarBases(ArrayList<ArrayList<Area>>,Base,Base)
+}
+class Base {
+- int posicionX
+- int posicionY
+- Coordenada coordenada
++ <<Create>> Base(int,int)
++ void generarBase(ArrayList<ArrayList<Area>>)
++ void opuesta(Base)
+}
+class Mapa {
+- ArrayList<ArrayList<Area>> tablero
+- ArrayList<Piso> pisos
+- ArrayList<Moho> moho
++ {static} Mapa obtenerInstancia()
++ void generarBases(Base,Base)
++ void agregarPiso(Piso)
++ void agregarPiso(Moho)
++ void pasarTurno()
++ void actualizarTablero()
+}
+class Mapa.Holder {
+- {static} Mapa INSTANCE
+}
+
+Mapa ..> TableroFactory
+Mapa ..>Base
+
+Base <.. TableroFactory
+
+Mapa +.. Mapa.Holder
+@enduml

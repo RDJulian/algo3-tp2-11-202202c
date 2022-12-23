@@ -1,16 +1,18 @@
 package edu.fiuba.algo3.modelo.ConstructorEntidades.ConstructorUnidades;
 
-import edu.fiuba.algo3.modelo.Construible.ConstruibleEstructura.ConstruibleEstructura;
 import edu.fiuba.algo3.modelo.Entidad.Estructura.Estructura;
 import edu.fiuba.algo3.modelo.Entidad.Unidad.Unidad;
-import edu.fiuba.algo3.modelo.Posicion.Posicion;
-import edu.fiuba.algo3.modelo.Raza.Raza;
+import edu.fiuba.algo3.modelo.Area.Area;
+
+import java.util.ArrayList;
 
 public abstract class ConstructorUnidades {
-    protected ConstruibleEstructura construibleEstructura;
-    protected int costoMineral;
-    protected int costoGas;
-    protected int costoSuministro;
+    //Factory Method.
+    protected ArrayList<Estructura> estructuras;
 
-    public abstract Unidad construir(Posicion posicion, Raza raza, Estructura estructuraCorrelativa);
+    public ConstructorUnidades(ArrayList<Estructura> estructuras) {
+        this.estructuras = estructuras;
+    }
+
+    public abstract Unidad construir(Area area);
 }

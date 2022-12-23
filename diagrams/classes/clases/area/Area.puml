@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Area {
++ <<Create>> Area(Coordenada,TipoArea,EstadoOcupacion,EstadoPiso,Recurso)
+
++ Area moverse(Unidad,TipoUnidad)
++ Area ocupar()
++ void desocupar()
+
++ void cubrirConMoho()
++ void energizar()
++ EstadoEnergia energizar(EstadoEnergia)
+
++ void extraerRecurso(int,Raza)
+
++ void actualizarEstado(Piso)
++ void actualizarEstado(ArrayList<Piso>)
+
++ boolean construible(ConstruibleRecurso,ConstruiblePiso)
+
++ boolean es(Area)
++ boolean enRango(Area,int)
+}
+@enduml

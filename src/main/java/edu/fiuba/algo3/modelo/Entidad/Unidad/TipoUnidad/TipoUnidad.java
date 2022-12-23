@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.modelo.Entidad.Unidad.TipoUnidad;
 
-import edu.fiuba.algo3.modelo.Area.AreaEspacial;
-import edu.fiuba.algo3.modelo.Area.AreaTierra;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaEspacial;
+import edu.fiuba.algo3.modelo.Area.Area;
+import edu.fiuba.algo3.modelo.Area.TipoArea.AreaTierra;
 
-public interface TipoUnidad {
-    void visitar(AreaTierra area);
+public abstract class TipoUnidad {
+    public abstract Area moverse(AreaTierra area, Area posicion);
 
-    void visitar(AreaEspacial area);
-
-    int recibirDanio(int danioAire, int danioTierra);
+    public abstract Area moverse(AreaEspacial area, Area posicion);
+    
+    public abstract int recibirDanio(int danioAire, int danioTierra);
 }

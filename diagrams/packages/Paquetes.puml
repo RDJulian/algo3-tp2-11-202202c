@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/component-diagram
+skinparam linetype ortho
+top to bottom direction
+package "Modelo" {
+    package "Area" {
+        package "EstadoOcupacion" {
+        }
+        package "EstadoPiso" {
+        }
+        package "Recurso" {
+        }
+        package "TipoArea" {
+        }
+    }
+    package "ConstructorEntidades" {
+        package "ConstructorUnidades"{
+        }
+        package "ConstructorEstructuras" {
+        }
+    }
+    package "Construible" {
+        package "ConstruiblePiso" {
+        }
+        package "ConstruibleEstructura" {
+        }
+        package "ConstruibleRecurso" {
+        }
+    }
+    package "Entidad" {
+        package "Estructura" {
+                package "Energia" {
+                }
+            }
+        package "Comando" {
+        }
+        package "Defensa" {
+            package "Escudo"{
+            }
+            package "Vida"{
+            }
+        }
+        package "EstadoEntidad" {
+            package "EstadoInvisibilidad" {
+            }
+            package "EstadoOperativo" {
+            }
+        }
+        package "Invisibilidad" {
+        }
+        package "Memento" {
+        }
+        package "Suministro" {
+        }
+        package "Unidad" {
+            package "Ataque"{
+            }
+            package "TipoUnidad"{
+            }
+        }
+    }
+    package "Juego" {
+    }
+    package "Mapa" {
+    }
+    package "Piso"{
+    }
+    package "Raza"{
+        package "Reserva"{
+        }
+    }
+}
+
+"Juego" ..> "Raza"
+"Juego" ..> "Mapa"
+"Mapa" ..> "Area"
+"Mapa" ..> "Piso"
+"Estructura" ..> "Piso"
+"Raza" <..> "Entidad"
+"Raza" <..> "ConstructorEntidades"
+"Entidad" ..> "Construible"
+"Entidad" ..> "Area"
+
+@enduml

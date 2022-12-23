@@ -1,0 +1,8 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Hidralisco {
++ <<Create>> Hidralisco(Area,ArrayList<Estructura>,Zerg)
+}
+
+
+@enduml

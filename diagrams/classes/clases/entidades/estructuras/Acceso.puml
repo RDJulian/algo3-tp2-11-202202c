@@ -1,0 +1,23 @@
+@startuml
+!include ../Memento.puml
+!include ../Energia.puml
+remove EstadoEnergia
+remove Energizado
+remove NoEnergizado
+skinparam classAttributeIconSize 0
+class Acceso {
++ <<Create>> Acceso(Area,Protoss)
++ MementoOperativo guardarEstado()
++ void restaurarEstado(MementoOperativo)
++ void actualizarEstado()
++ boolean permitirCorrelatividad(ConstruibleEstructura)
+}
+
+remove MementoInvisibilidad
+remove MementoOperativo
+remove UsaMementoInvisibilidad
+
+
+UsaMementoOperativo <|.. Acceso
+Acceso *-left- Energia
+@enduml

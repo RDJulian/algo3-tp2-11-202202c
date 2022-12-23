@@ -1,0 +1,102 @@
+@startuml
+skinparam classAttributeIconSize 0
+!include Defensa.puml
+!include EstadoEntidad.puml
+!include Suministro.puml
+!include EstructuraUML.puml
+!include UnidadUML.puml
+!include Comandos.puml
+!include ../construibles/ConstruibleEstructura.puml
+!include ../construibles/ConstruiblePiso.puml
+!include ../construibles/ConstruibleRecurso.puml
+
+remove RequiereAcceso
+remove RequiereEspiral
+remove RequierePuertoEstelar
+remove RequiereCriadero
+remove RequiereGuarida
+remove RequiereReservaDeReproduccion
+remove RangoMoho
+remove RangoPilon
+remove NoSobreRecurso
+remove SobreMineral
+remove SobreGasVespeno
+remove UsarLarva
+remove EvolucionarAGuardian
+remove RecibirAtaqueUnidad
+remove RecibirAtaqueEstructura
+remove Atacar
+remove UsarExtractor
+remove Moverse
+remove GenerarLarva
+remove AgregarZangano
+remove ComandoNull
+remove EvolucionarADevorador
+remove ExtraerRecurso
+remove PermitirCorrelatividad
+remove RevelarEntidad
+remove Ataque
+remove TipoUnidad
+remove Dragon
+remove Zerling
+remove Zealot
+remove Zangano
+remove Mutalisco
+remove Hidralisco
+remove Guardian
+remove UnidadNull
+remove ReservaDeReproduccion
+remove Pilon
+remove Acceso
+remove PuertoEstelar
+remove Asimilador
+remove AmoSupremo
+remove Scout
+remove Devorador
+remove NexoMineral
+remove Extractor
+remove Guarida
+remove Espiral
+remove Criadero
+remove ConEscudo
+remove SinEscudo
+remove Normal
+remove Regenerativa
+remove SinEnergia
+remove Operativa
+remove Visible
+remove Invisible
+remove EnConstruccion
+remove Destruido
+remove Consumidor
+remove NoAfecta
+remove Proveedor
+class Area{
+{method}//Resumido
+}
+abstract class Entidad {
+# Raza raza
++ void pasarTurno()
++ void daniar(int,Unidad)
++ {abstract}void recibirAtaque(Ataque,Unidad)
++ {abstract}int afectarSuministro(int)
++ void destruir()
+}
+
+Escudo "1" -right-*  "1"Entidad
+Vida "1" --*  "1"Entidad
+Entidad "1" -right->  "1"Area
+EstadoOperativo "1" --* "1" Entidad
+EstadoInvisibilidadEntidad "1" --*  "1"Entidad
+AfectaSuministro "1" -right-*  "1"Entidad
+EstadoInvisibilidadEntidad ..> Comando
+EstadoOperativo ..> ComandoBool
+EstadoOperativo ..> Comando: conoce
+
+Entidad ..> ConstruiblePiso : conoce
+Entidad ..> ConstruibleEstructura
+Entidad ..> ConstruibleRecurso
+
+Entidad <|-- Unidad
+Entidad <|-- Estructura
+@enduml

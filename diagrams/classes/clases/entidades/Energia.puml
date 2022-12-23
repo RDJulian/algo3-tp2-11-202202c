@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+class NoEnergizado {
++ void actualizarEstado(UsaMementoOperativo)
++ EstadoEnergia energizar()
++ EstadoEnergia desenergizar()
+}
+class Energia {
+- UsaMementoOperativo originador
++ <<Create>> Energia(UsaMementoOperativo)
++ void actualizarEstado(Area)
+}
+class Energizado {
++ <<Create>> Energizado(MementoOperativo)
++ void actualizarEstado(UsaMementoOperativo)
++ EstadoEnergia energizar()
++ EstadoEnergia desenergizar()
+}
+abstract class EstadoEnergia {
+# MementoOperativo snapshot
++ {abstract}void actualizarEstado(UsaMementoOperativo)
++ {abstract}EstadoEnergia energizar()
++ {abstract}EstadoEnergia desenergizar()
+}
+
+
+EstadoEnergia <|-- NoEnergizado
+EstadoEnergia <|-- Energizado
+EstadoEnergia -left-* Energia
+@enduml

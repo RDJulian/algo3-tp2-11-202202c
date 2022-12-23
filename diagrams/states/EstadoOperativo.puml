@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+state EstadoOperativo{
+    state C <<choice>>
+    state EnConstruccion
+    state Operativo
+    state Destruido
+
+[*] --> EnConstruccion
+EnConstruccion --> C
+C--> EnConstruccion  : tiempoParaOperar > 0
+EnConstruccion --> Destruido
+C --> Operativo : tiempoParaOperar = 0
+Operativo --> Destruido : al recibir daño letal
+
+
+Destruido --> [*]
+}
+@enduml

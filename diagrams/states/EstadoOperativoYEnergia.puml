@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/state-diagram
+state EstadoOperativo{
+state ConEnergia{
+    state C <<choice>>
+    state EnConstruccion
+    state Operativo
+
+}
+    state Destruido
+
+state SinEnergia
+
+ConEnergia --> SinEnergia : si no esta en rango de un pilon
+SinEnergia --> ConEnergia
+SinEnergia --> Destruido
+[*] --> EnConstruccion
+EnConstruccion --> C
+C--> EnConstruccion  : tiempoParaOperar > 0
+EnConstruccion --> Destruido
+C --> Operativo : tiempoParaOperar = 0
+Operativo --> Destruido : al recibir daño letal
+
+
+Destruido --> [*]
+}
+@enduml

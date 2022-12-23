@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+state EstadoInvisibilidad{
+EstadoInvisibilidad: Para entidades que son invisibles
+        [*] --> Invisible
+        Invisible --> Visible : al entrar / salir del rango de un revelador
+        Visible --> Invisible
+}
+@enduml

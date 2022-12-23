@@ -24,6 +24,8 @@ public class ContenedorJugadores extends VBox {
         super();
 
         this.stage = stage;
+        this.nombreJugador1 = "f";
+        this.nombreJugador2 = "f";
 
         //Configuración del Layout
         this.setAlignment(Pos.CENTER);

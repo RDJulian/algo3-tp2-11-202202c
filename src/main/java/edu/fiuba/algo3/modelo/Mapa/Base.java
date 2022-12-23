@@ -20,11 +20,11 @@ public class Base {
     }
 
     public void generarBase(ArrayList<ArrayList<Area>> tablero) {
-        tablero.get(posicionX + 25).set(posicionY + 25, new Area(new Coordenada(posicionX, posicionY), new AreaTierra(), new GasVespeno()));
-        tablero.get(posicionX + 27).set(posicionY + 25, new Area(new Coordenada(posicionX + 2, posicionY), new AreaTierra(), new GasVespeno()));
-        tablero.get(posicionX + 23).set(posicionY + 25, new Area(new Coordenada(posicionX - 2, posicionY), new AreaTierra(), new GasVespeno()));
-        tablero.get(posicionX + 25).set(posicionY + 27, new Area(new Coordenada(posicionX, posicionY + 2), new AreaTierra(), new GasVespeno()));
-        tablero.get(posicionX + 25).set(posicionY + 23, new Area(new Coordenada(posicionX, posicionY - 2), new AreaTierra(), new GasVespeno()));
+        tablero.get(posicionX + 25).set(50-(posicionY + 25), new Area(new Coordenada(posicionX, posicionY), new AreaTierra(), new GasVespeno()));
+        tablero.get(posicionX + 27).set(50-(posicionY + 25), new Area(new Coordenada(posicionX + 2, posicionY), new AreaTierra(), new GasVespeno()));
+        tablero.get(posicionX + 23).set(50-(posicionY + 25), new Area(new Coordenada(posicionX - 2, posicionY), new AreaTierra(), new GasVespeno()));
+        tablero.get(posicionX + 25).set(50-(posicionY + 27), new Area(new Coordenada(posicionX, posicionY + 2), new AreaTierra(), new GasVespeno()));
+        tablero.get(posicionX + 25).set(50-(posicionY + 23), new Area(new Coordenada(posicionX, posicionY - 2), new AreaTierra(), new GasVespeno()));
     }
 
     private boolean esOpuesta(Coordenada coordenada) {

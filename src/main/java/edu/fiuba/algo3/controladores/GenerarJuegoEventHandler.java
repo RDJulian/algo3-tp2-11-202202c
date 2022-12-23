@@ -38,7 +38,6 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
         this.razaJugador1 = new Protoss();
         this.razaJugador2 = new Zerg();
         this.etiqueta = etiqueta;
-
     }
 
     @Override
@@ -52,7 +51,6 @@ public class GenerarJuegoEventHandler implements EventHandler<ActionEvent> {
 
 
             this.juego.registrarJugadores(this.contenedor.getNombre1(), this.contenedor.getColor1(), this.razaJugador1, this.contenedor.getNombre2(), this.contenedor.getColor2(), this.razaJugador2);
-            Mapa.obtenerInstancia().generarBases(new Base(15, 15), new Base(-15, -15));
             stage.setScene(siguienteEscena);
 
 
